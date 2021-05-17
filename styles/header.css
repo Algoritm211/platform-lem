@@ -1,0 +1,19 @@
+*{
+    font-family: "Helvetica Neue", sans-serif;
+}
+.navbar{
+    height: 70px;
+}
+.navigation-li{
+    color: black;
+    font-weight: 400;
+}
+.logo-text{
+    font-weight: 600;
+    font-size: 28px;
+}
+.login-button{
+    border-radius: 8px;
+    border: 1px solid black;
+    color: black!important;
+}

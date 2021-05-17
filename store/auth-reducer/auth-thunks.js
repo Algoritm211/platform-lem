@@ -1,6 +1,5 @@
 import { setAppReady } from '../app-reducer/app-reducer'
 import {
-  setAuthError,
   setIsAuth,
   setUserAuthData,
   toggleIsLoading,

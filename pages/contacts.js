@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from '../components/Header/Header'
+import ContactUs from '../components/ContactUs/ContactUs'
 
-const ContacUs = () => {
+const Contacts = () => {
   return (
     <div>
       <Header />
+      <ContactUs />
     </div>
   )
 }
 
-export default ContacUs
+export default Contacts

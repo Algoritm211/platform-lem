@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Header from '../components/Header/Header'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import MainPage from '../components/MainPage/MainPage'
 import React from 'react'
 

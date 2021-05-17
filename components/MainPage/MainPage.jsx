@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { authUser } from '../../store/auth-reducer/auth-thunks'
 
 
 const MainPage = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(authUser())
+    }, [])
     return (
         <div>
             <div className="container first-block my-3">

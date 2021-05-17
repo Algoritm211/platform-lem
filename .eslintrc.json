@@ -27,6 +27,7 @@
     "linebreak-style": "off",
     "react/prop-types": 0,
     "no-trailing-spaces": "off",
+    "operator-linebreak": ["error", "before"],
     "semi": ["error", "never"]
   }
 }

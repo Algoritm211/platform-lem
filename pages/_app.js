@@ -2,10 +2,29 @@ import '../styles/globals.css'
 import '../styles/header.css'
 import '../styles/mainPage.css'
 import React from 'react'
+import { wrapper } from '../store/store'
+import App from 'next/app'
 
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+class MyApp extends App {
+  static async getInitialProps({ Component, context }) {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(context)
+      : {}
+    return { pageProps }
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+
+    return (
+      <Component {...pageProps} />
+    )
+  }
 }
 
-export default MyApp
+// function MyApp({ Component, pageProps }) {
+//   return <Component {...pageProps} />
+// }
+
+export default wrapper.withRedux(MyApp)

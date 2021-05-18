@@ -6,8 +6,8 @@ function SampleNextArrow(props) {
   return (
     <div
       // className={className}
-      className="carousel-block-arrows"
-      style={{ ...style, right: '-25px' }}
+      className="carousel-block-arrows carousel-arrows-right"
+      style={{ ...style }}
       onClick={onClick}
     >
       <i className="fas fa-arrow-circle-right carousel-arrows"/>
@@ -19,8 +19,8 @@ function SamplePrevArrow(props) {
   const { style, onClick } = props
   return (
     <div
-      className="carousel-block-arrows"
-      style={{ ...style, left: '-25px' }}
+      className="carousel-block-arrows carousel-arrows-left"
+      style={{ ...style }}
       onClick={onClick}
     >
       <i className="fas fa-arrow-circle-left carousel-arrows"/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseCard from '../CourseCard/CourseCard'
-import MultipleItems from './Subject-carousel'
+import Carousel from './Subject-carousel'
 
 const CoursePage = () => {
   return (
@@ -21,7 +21,7 @@ const CoursePage = () => {
             <form action="" method="GET" name="search" role="search" className="border-form">
               <p className="inp-wrap cat-wrap" style={{ borderRight: '1px solid rgba(51,51,51,0.3)' }}>
                 <select name="search categories" id="categories" className="search-input">
-                  <option value="category" selected>Category</option>
+                  <option value="category" defaultValue>Category</option>
                   <option value="newyork">New York</option>
                   <option value="chicago">Chicago</option>
                   <option value="losangeles">Los Angeles</option>
@@ -63,7 +63,7 @@ const CoursePage = () => {
         </div>
       </div>
       <div className="container">
-        <MultipleItems />
+        <Carousel />
       </div>
     </div>
   )

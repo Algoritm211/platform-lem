@@ -10,6 +10,7 @@ import React from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
+import Head from 'next/head'
 
 
 class MyApp extends App {
@@ -25,6 +26,12 @@ class MyApp extends App {
 
     return (
       <React.Fragment>
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#000000" />
+          <title>Platform LEM</title>
+        </Head>
         <NextNprogress
           color="#29D"
           startPosition={0.3}

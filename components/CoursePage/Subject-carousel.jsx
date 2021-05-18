@@ -31,11 +31,11 @@ function SamplePrevArrow(props) {
 const Carousel = () => {
   const [size, setSize] = useState([0, 0])
 
-  useEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight])
-    }
+  function updateSize() {
+    setSize([document.documentElement.clientWidth, document.documentElement.clientHeight])
+  }
 
+  useEffect(() => {
     window.addEventListener('resize', updateSize)
     updateSize()
     return () => window.removeEventListener('resize', updateSize)

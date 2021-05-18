@@ -1,0 +1,47 @@
+*{
+    font-family: Montserrat, sans-serif;
+}
+.carousel-card{
+    border-radius: 8px;
+    padding: 20px;
+    transition: 0.5s;
+}
+.carousel-card:hover{
+    box-shadow: 0 0 1rem rgba(124, 160, 255, 0.56) !important;
+    transition: 0.5s;
+}
+
+.carousel-title{
+    font-size: 18px;
+    font-weight: 600;
+}
+.carousel-subtitle{
+    font-size: 14px;
+    font-weight: 400;
+}
+.carousel-block-arrows{
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+}
+.carousel-arrows{
+    font-size: 24px;
+    pointer-events: none;
+    cursor: default;
+    padding: 10px;
+    background-color: rgba(255,255,255,.5);
+    color: rgba(34,34,34,.9);
+    border-radius: 50%;
+    box-shadow: 0 0 1px 0 rgb(0 0 0 / 15%), 0 1px 1px 0 rgb(0 0 0 / 15%);
+    transition: 0.5s;
+}

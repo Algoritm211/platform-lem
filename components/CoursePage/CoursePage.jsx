@@ -1,5 +1,6 @@
 import React from 'react'
 import CourseCard from '../CourseCard/CourseCard'
+import MultipleItems from './Subject-carousel'
 
 const CoursePage = () => {
   return (
@@ -60,6 +61,9 @@ const CoursePage = () => {
             <CourseCard />
           </div>
         </div>
+      </div>
+      <div className="container">
+        <MultipleItems />
       </div>
     </div>
   )

@@ -21,7 +21,7 @@
     margin: 0;
     color: white;
 }
-.course-card-like-button{
+.course-card-rating .fa-heart{
     font-size: 16px;
     font-weight: 400;
     margin: 0;

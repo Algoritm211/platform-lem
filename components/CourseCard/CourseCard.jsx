@@ -13,7 +13,7 @@ const CourseCard = () => {
           <i className="fas fa-play course-card-btn-text"/>
         </button>
         <div className="course-card-rating d-flex">
-          <i className="far fa-heart course-card-like-button"/>
+          <i className="far fa-heart"/>
           <p className="course-card-text">24</p>
         </div>
       </div>

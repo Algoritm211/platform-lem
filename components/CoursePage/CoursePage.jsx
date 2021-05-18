@@ -22,18 +22,18 @@ const CoursePage = () => {
               <p className="inp-wrap cat-wrap" style={{ borderRight: '1px solid rgba(51,51,51,0.3)' }}>
                 <select name="search categories" id="categories" className="search-input">
                   <option value="category" defaultValue>Category</option>
-                  <option value="newyork">New York</option>
-                  <option value="chicago">Chicago</option>
-                  <option value="losangeles">Los Angeles</option>
-                  <option value="seattle">Seattle</option>
-                  <option value="dallas">Dallas</option>
-                  <option value="boston">Boston</option>
-                  <option value="sanfran">San Francisco</option>
+                  <option value="newyork">Math</option>
+                  <option value="chicago">Science</option>
+                  <option value="losangeles">IT</option>
+                  <option value="seattle">Geography</option>
+                  <option value="dallas">Art</option>
+                  <option value="boston">English</option>
+                  <option value="sanfran">History</option>
                 </select>
                 <i className="fas fa-caret-down"/>
               </p>
               <p className="inp-wrap search-wrap">
-                <input type="search" name="search-term" id="search-field" className="search-input" placeholder="e.g. math, chemistry"/></p>
+                <input type="search" name="search-term" id="search-field" className="search-input" placeholder="e.g. math, chemistry or history"/></p>
               <p className="inp-wrap submit-wrap">
                 <button className="search-btn">
                   <i className="fas fa-search grid-100"/>
@@ -57,7 +57,7 @@ const CoursePage = () => {
           <div className="col-12 col-md-7">
             <CourseCard />
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-12">
             <CourseCard />
           </div>
         </div>

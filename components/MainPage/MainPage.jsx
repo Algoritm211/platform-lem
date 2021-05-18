@@ -1,9 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { authUser } from '../../store/auth-reducer/auth-thunks'
+import RegistrationModal from '../Form/Registration'
+import LoginModal from '../Form/Login'
 
 
 const MainPage = () => {
+  const [loginModalShow, setLoginModalShow] = useState(false)
+  const [registrationModalShow, setRegistrationModalShow] = useState(false)
+
+  const switchModals = () => {
+    setLoginModalShow((prev) => !prev)
+    setRegistrationModalShow((prev) => !prev)
+  }
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(authUser())
@@ -16,13 +25,23 @@ const MainPage = () => {
             <h3 className="content-title mb-2">Get Free Education</h3>
             <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor</p>
-            <button className="content-btn">Learn more</button>
+            <button className="content-btn" onClick={() => setLoginModalShow(true)}>Get Started</button>
           </div>
           <div className="col-12 col-md-8 m-auto">
             <img className="content-image" src="/1.png" alt="photo"/>
           </div>
         </div>
       </div>
+      <RegistrationModal
+        show={registrationModalShow}
+        switchModals={() => switchModals()}
+        onHide={() => setRegistrationModalShow(false)}
+      />
+      <LoginModal
+        show={loginModalShow}
+        switchModals={() => switchModals()}
+        onHide={() => setLoginModalShow(false)}
+      />
       <div className="container my-5">
         <div className="row">
           <div className="col-2 col-md-1 b-radius" style={{ backgroundColor: '#B2CCFC'}}>

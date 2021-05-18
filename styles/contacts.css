@@ -1,0 +1,31 @@
+*{
+    font-family: Montserrat, sans-serif;
+}
+.contact-link{
+    text-decoration: none;
+    transition: 0.5s;
+}
+.contact-link:hover{
+    text-decoration: none;
+    transition: 0.5s;
+}
+.contacts-illustration, .contacts-text, .contacts-links{
+    text-decoration: none;
+    margin: 0;
+    font-size: 16px;
+    line-height: 16px;
+}
+.contacts-illustration{
+    padding-right: 5px;
+}
+.contacts-illustration:hover, .contacts-text:hover, .contacts-links:hover{
+    color: #6f6f6f;
+}
+@media (max-width: 769px) {
+    .contacts-illustration, .contacts-text, .contacts-links{
+        text-decoration: none;
+        margin: 0;
+        font-size: 24px;
+        line-height: 24px;
+    }
+}

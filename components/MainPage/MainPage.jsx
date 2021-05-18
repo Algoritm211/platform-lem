@@ -25,7 +25,7 @@ const MainPage = () => {
       </div>
       <div className="container my-5">
         <div className="row">
-          <div className="col-2 col-md-1 b-radius" style={{ backgroundColor: '#B2CCFC' }}>
+          <div className="col-2 col-md-1 b-radius" style={{ backgroundColor: '#B2CCFC'}}>
             <h3 className="vertical-title mb-2">Categories</h3>
           </div>
           <div className="col-10 col-md-11 pr-sm-0 mr-sm-0">

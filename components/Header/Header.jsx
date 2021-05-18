@@ -32,8 +32,8 @@ const Header = () => {
             <li className="nav-item px-2">
               <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setModalShow(true)}>Get Started</button>
             </li>
-            {/* <MyVerticallyCenteredModal*/}
-            <MyCenteredModal
+            {/* <MyCenteredModal*/}
+            <MyVerticallyCenteredModal
               show={modalShow}
               onHide={() => setModalShow(false)}
             />

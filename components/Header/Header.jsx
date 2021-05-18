@@ -35,9 +35,11 @@ const Header = () => {
               <Nav.Link href="#mem" className={'navigation-li px-3'}>
                 Prices
               </Nav.Link>
-              <Nav.Link href="#me" className={'navigation-li px-3'}>
-                Contacts
-              </Nav.Link>
+              <Link href={'/contacts'}>
+                <Nav.Link href={'/contacts'} className={'navigation-li px-3'}>
+                  Contacts
+                </Nav.Link>
+              </Link>
               <Nav.Item href="#m" className={'navigation-li px-2'}>
                 <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
               </Nav.Item>

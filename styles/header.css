@@ -14,6 +14,13 @@
 }
 .login-button{
     border-radius: 8px;
+    text-decoration: none;
+    background-color: white;
     border: 1px solid black;
     color: black!important;
+    transition: 0.5s;
+}
+.login-button:hover{
+    background-color: #f8faff;
+    transition: 0.5s;
 }

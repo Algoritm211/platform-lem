@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { Nav, Navbar } from 'react-bootstrap'
+import Link from 'next/link'
 
 
 const Header = () => {
@@ -23,10 +24,14 @@ const Header = () => {
             <Nav className="mr-auto">
             </Nav>
             <Nav>
-              <Nav.Link href="#deets" className={'navigation-li px-3'}>Main</Nav.Link>
-              <Nav.Link href="#meme" className={'navigation-li px-3'}>
-                Courses
-              </Nav.Link>
+              <Link href={'/'}>
+                <Nav.Link href="/" className={'navigation-li px-3'}>Main</Nav.Link>
+              </Link>
+              <Link href={'/programs'}>
+                <Nav.Link href={'/programs'} className={'navigation-li px-3'}>
+                  Courses
+                </Nav.Link>
+              </Link>
               <Nav.Link href="#mem" className={'navigation-li px-3'}>
                 Prices
               </Nav.Link>

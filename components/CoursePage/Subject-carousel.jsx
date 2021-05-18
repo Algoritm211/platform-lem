@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 
 function SampleNextArrow(props) {
@@ -28,46 +28,59 @@ function SamplePrevArrow(props) {
   )
 }
 
-export default class CustomArrows extends Component {
-  render() {
-    const settings = {
-      dots: false,
-      infinite: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      nextArrow: <SampleNextArrow/>,
-      prevArrow: <SamplePrevArrow/>,
+const Carousel = () => {
+  const [size, setSize] = useState([0, 0])
+
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight])
     }
-    return (
-      <div>
-        <h2> Multiple items </h2>
-        <Slider {...settings}>
-          <div className="container">
-            <div className="carousel-card" style={{ backgroundColor: '#B2CCFC' }}>
-              <h3 className="carousel-title" style={{ color: '#466aa8' }}>Math</h3>
-              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>12 courses</p>
-            </div>
-          </div>
-          <div className="container">
-            <div className="carousel-card" style={{ backgroundColor: '#f0c4d7' }}>
-              <h3 className="carousel-title" style={{ color: '#ce5c9b' }}>Chemistry</h3>
-              <p className="carousel-subtitle" style={{ color: '#ce5c9b' }}>2 programs</p>
-            </div>
-          </div>
-          <div className="container">
-            <div className="carousel-card" style={{ backgroundColor: '#8cdac8' }}>
-              <h3 className="carousel-title" style={{ color: '#387d65' }}>Physics</h3>
-              <p className="carousel-subtitle" style={{ color: '#387d65' }}>8 programs</p>
-            </div>
-          </div>
-          <div className="container">
-            <div className="carousel-card" style={{ backgroundColor: '#B2CCFC' }}>
-              <h3 className="carousel-title" style={{ color: '#466aa8' }}>IT</h3>
-              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>28 courses</p>
-            </div>
-          </div>
-        </Slider>
-      </div>
-    )
+
+    window.addEventListener('resize', updateSize)
+    updateSize()
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: size[0] < 512 ? 1 : 3,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow/>,
+    prevArrow: <SamplePrevArrow/>,
   }
+
+  return (
+    <div>
+      <h2> Multiple items </h2>
+      <Slider {...settings}>
+        <div className="container">
+          <div className="carousel-card" style={{ backgroundColor: '#B2CCFC' }}>
+            <h3 className="carousel-title" style={{ color: '#466aa8' }}>Math</h3>
+            <p className="carousel-subtitle" style={{ color: '#466aa8' }}>12 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card" style={{ backgroundColor: '#f0c4d7' }}>
+            <h3 className="carousel-title" style={{ color: '#ce5c9b' }}>Chemistry</h3>
+            <p className="carousel-subtitle" style={{ color: '#ce5c9b' }}>2 programs</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card" style={{ backgroundColor: '#8cdac8' }}>
+            <h3 className="carousel-title" style={{ color: '#387d65' }}>Physics</h3>
+            <p className="carousel-subtitle" style={{ color: '#387d65' }}>8 programs</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card" style={{ backgroundColor: '#B2CCFC' }}>
+            <h3 className="carousel-title" style={{ color: '#466aa8' }}>IT</h3>
+            <p className="carousel-subtitle" style={{ color: '#466aa8' }}>28 courses</p>
+          </div>
+        </div>
+      </Slider>
+    </div>
+  )
 }
+
+export default Carousel

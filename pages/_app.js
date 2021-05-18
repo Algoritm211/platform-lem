@@ -9,6 +9,7 @@ import '../styles/carouselPage.css'
 import React from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'
+import NextNprogress from 'nextjs-progressbar'
 
 
 class MyApp extends App {
@@ -23,7 +24,15 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <Component {...pageProps} />
+      <React.Fragment>
+        <NextNprogress
+          color="#29D"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height="3"
+        />
+        <Component {...pageProps} />
+      </React.Fragment>
     )
   }
 }

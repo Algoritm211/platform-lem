@@ -11,7 +11,7 @@ import App from 'next/app'
 
 
 class MyApp extends App {
-  static async getInitialProps({ Component, context }) {
+  static async getServer({ Component, context }) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(context)
       : {}

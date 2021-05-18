@@ -1,46 +1,56 @@
-import React from 'react'
-import MyVerticallyCenteredModal from '../Form/Login'
-import MyCenteredModal from '../Form/Registration'
+import React, { useState } from 'react'
+import RegistrationModal from '../Form/Registration'
+import LoginModal from '../Form/Login'
+import { Nav, Navbar } from 'react-bootstrap'
+
 
 const Header = () => {
-  const [modalShow, setModalShow] = React.useState(false)
+  const [loginModalShow, setLoginModalShow] = useState(false)
+  const [registrationModalShow, setRegistrationModalShow] = useState(false)
+
+  const switchModals = () => {
+    setLoginModalShow((prev) => !prev)
+    setRegistrationModalShow((prev) => !prev)
+  }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-white">
-      <div className="container">
-        <a className="navbar-brand logo-text mb-0 h1" href="/">LEM</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"/>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarResponsive">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item px-2 active">
-              <a className="nav-link navigation-li" href="#">Main
-                <span className="sr-only">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item px-2">
-              <a className="nav-link navigation-li" href="#">Courses</a>
-            </li>
-            <li className="nav-item px-2">
-              <a className="nav-link navigation-li" href="#">Price</a>
-            </li>
-            <li className="nav-item px-2">
-              <a className="nav-link navigation-li" href="#">Contacts</a>
-            </li>
-            <li className="nav-item px-2">
-              <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setModalShow(true)}>Get Started</button>
-            </li>
-            {/* <MyCenteredModal*/}
-            <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-          </ul>
+    <>
+      <Navbar collapseOnSelect expand="lg" bg="navbar-light">
+        <div className="container">
+          <Navbar.Brand href="#home">LEM</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+          <Navbar.Collapse id="responsive-navbar-nav" className={'ml-auto'}>
+            <Nav className="mr-auto">
+            </Nav>
+            <Nav>
+              <Nav.Link href="#deets" className={'navigation-li px-3'}>Main</Nav.Link>
+              <Nav.Link href="#meme" className={'navigation-li px-3'}>
+                Courses
+              </Nav.Link>
+              <Nav.Link href="#mem" className={'navigation-li px-3'}>
+                Prices
+              </Nav.Link>
+              <Nav.Link href="#me" className={'navigation-li px-3'}>
+                Contacts
+              </Nav.Link>
+              <Nav.Item href="#m" className={'navigation-li px-2'}>
+                <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
         </div>
-      </div>
-    </nav>
+      </Navbar>
+      <RegistrationModal
+        show={registrationModalShow}
+        switchModals={() => switchModals()}
+        onHide={() => setRegistrationModalShow(false)}
+      />
+      <LoginModal
+        show={loginModalShow}
+        switchModals={() => switchModals()}
+        onHide={() => setLoginModalShow(false)}
+      />
+    </>
   )
 }
 

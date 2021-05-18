@@ -1,9 +1,7 @@
 *{
     font-family: "Helvetica Neue", sans-serif;
 }
-.navbar{
-    height: 70px;
-}
+.navbar{}
 .navigation-li{
     color: black;
     font-weight: 400;

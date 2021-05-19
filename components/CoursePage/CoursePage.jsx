@@ -13,9 +13,10 @@ const CoursePage = () => {
   }, [])
   // console.log(courses)
 
-  const coursesBlock = courses.map((course) => {
+  const coursesBlock = courses.map((course, index) => {
+    const countBlock = index % 3 === 0 ? 8 : 4
     return (
-      <div className="col-12 col-md-6" key={course._id}>
+      <div className={`col-12 col-md-${countBlock}`} key={course._id}>
         <CourseCard course={course}/>
       </div>
     )

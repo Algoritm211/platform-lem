@@ -5,7 +5,6 @@
     width: 100%;
     height: 250px;
     padding: 25px;
-    background-image: url("https://cdn.pixabay.com/photo/2013/04/11/19/46/building-102840_1280.jpg");
     background-size: cover;
     border-radius: 8px;
     margin: 10px 0;
@@ -23,7 +22,6 @@
 }
 .course-card-rating .fa-heart{
     font-size: 16px;
-    font-weight: 400;
     margin: 0;
     color: white;
     line-height: 24px;

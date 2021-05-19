@@ -16,6 +16,11 @@ class CourseAPI {
     const { data } = await instanceAxios.get(`/course/${id}`)
     return data
   }
+
+  async toggleLike(id) {
+    const { data } = await instanceAxios.get(`/course/like?courseId=${id}`)
+    return data
+  }
 }
 
 

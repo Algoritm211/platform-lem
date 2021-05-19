@@ -2,14 +2,14 @@ import React from 'react'
 
 const ProfileNavbar = () => {
   return (
-    <div>
-      <button className="profile-create-course d-flex mb-5">
+    <div className="profile-mobile">
+      <div className="profile-create-course d-flex mb-5">
         <h3 className="profile-create-course-text">Create new course</h3>
         <i className="fas fa-plus-circle profile-create-course-illustration"/>
-      </button>
+      </div>
       <div className="profile-button d-flex mb-4">
         <i className="fab fa-flipboard profile-button-illustration"/>
-        <p className="profile-button-text">My Courses</p>
+        <p className="profile-button-text">Dashboard</p>
       </div>
       <div className="profile-button d-flex mb-4">
         <i className="fab fa-elementor profile-button-illustration"/>

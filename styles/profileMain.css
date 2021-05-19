@@ -64,6 +64,7 @@
 .profile-button-text{
     font-size: 14px;
     font-weight: 600;
+    line-height: 24px;
     margin: 0;
 }
 .profile-welcome{
@@ -118,6 +119,9 @@
     font-weight: 400;
     margin: 0;
 }
+.profile-mobile{
+    display: block;
+}
 @media (max-width: 1200px) {
     .profile-welcome-img{
         top: -70px;
@@ -127,5 +131,43 @@
     .profile-welcome-img{
         top: -35px;
     }
+    .profile-button-text{
+        font-size: 12px;
+    }
+    .profile-button-illustration{
+        font-size: 16px;
+        width: 30px;
+    }
 }
-
+@media (max-width: 768px) {
+    .profile-button-text{
+        font-size: 14px;
+    }
+    .profile-button-illustration{
+        font-size: 20px;
+        width: 30px;
+    }
+}
+@media (max-width: 576px) {
+    .profile-upgrade-block{
+        display: none;
+    }
+    .profile-create-course{
+        display: none !important;
+    }
+    .profile-mobile{
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid #888888;
+    }
+    .profile-button-illustration{
+        font-size: 16px;
+        width: auto;
+    }
+    .profile-button-text{
+        font-size: 12px;
+    }
+    .profile-button{
+        padding: 0 8px;
+    }
+}

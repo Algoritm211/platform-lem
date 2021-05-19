@@ -1,0 +1,59 @@
+*{
+    font-family: Montserrat, sans-serif;
+}
+.price-card{
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+.price-card-name{
+    font-size: 14px;
+    font-weight: 600;
+}
+.price-card-title{
+    font-size: 40px;
+    font-weight: 600;
+}
+.price-card-sum{
+    font-size: 20px;
+    font-weight: 400;
+    color: #888888;
+}
+.price-benefits{
+    list-style: none;
+    padding: 0;
+}
+.price-benefits-one{
+    display: flex;
+    line-height: 24px;
+}
+.price-benefits-ill{
+    font-size: 16px;
+    line-height: 24px;
+    padding-right: 10px;
+    color: #63c76a;
+}
+.price-benefits-text{
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+}
+.price-button{
+    border-radius: 8px;
+    border: 1px solid #0070f3;
+    padding: 10px 15px;
+    color: white;
+    background-color: #0070f3;
+    transition: 0.5s;
+}
+.price-button:hover{
+    background-color: #005ac7;
+}
+.current-plan{
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #0070f3;
+}
+.current-plan:hover{
+    background-color: white !important;
+}

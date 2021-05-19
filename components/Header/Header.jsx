@@ -34,9 +34,11 @@ const Header = () => {
                   Courses
                 </Nav.Link>
               </Link>
-              <Nav.Link href="#mem" className={'navigation-li px-3'}>
-                Prices
-              </Nav.Link>
+              <Link href={'/plans'}>
+                <Nav.Link href={'/programs'} className={'navigation-li px-3'}>
+                  Plans
+                </Nav.Link>
+              </Link>
               <Link href={'/contacts'}>
                 <Nav.Link href={'/contacts'} className={'navigation-li px-3'}>
                   Contacts

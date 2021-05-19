@@ -3,6 +3,7 @@ import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link'
+import UserImage from './UserImage'
 
 
 const Header = () => {
@@ -16,7 +17,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="navbar-light">
+      <Navbar collapseOnSelect expand="md" bg="navbar-light">
         <div className="container">
           <Link href={'/'}>
             <Navbar.Brand href="/">LEM</Navbar.Brand>
@@ -44,11 +45,12 @@ const Header = () => {
                   Contacts
                 </Nav.Link>
               </Link>
-              <Nav.Item href="#m" className={'navigation-li px-2'}>
-                <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
-              </Nav.Item>
+              {/*<Nav.Item href="#" className={'navigation-li px-2'}>*/}
+              {/*  <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>*/}
+              {/*</Nav.Item>*/}
             </Nav>
           </Navbar.Collapse>
+          <UserImage/>
         </div>
       </Navbar>
       <RegistrationModal

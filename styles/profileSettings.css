@@ -23,16 +23,6 @@
     font-weight: 600;
     margin-bottom: 20px;
 }
-
-.avatar-img{
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-    justify-content: center;
-    align-items: center;
-    margin-right: 15px;
-    border-radius: 8px;
-}
 .acc-info{
     margin-bottom: 20px;
 }

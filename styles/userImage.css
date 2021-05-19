@@ -1,0 +1,122 @@
+.personIcon{
+    font-size: 24px;
+    color: black;
+}
+.dropdown-divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #eae7f5;
+}
+.avatar-img{
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 8px;
+}
+.accDropBlock {
+    /* justify-content: center; */
+    padding: 10px 20px;
+    cursor: default;
+}
+.accDropIcon {
+    align-items: center;
+    line-height: 40px;
+    font-size: 24px;
+}
+.accDropTitle {
+    margin-top: 5px;
+    color: #384046;
+    line-height: 14px;
+    font-size: 14px;
+}
+.accDropMail{
+    margin-top: 5px;
+    color: rgba(0,0,0,.5);
+    line-height: 14px;
+    font-size: 12px;
+}
+.dropdown ul {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: calc(100%);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+}
+
+.dropdown ul li {
+    min-width: 200px;
+    list-style: none;
+}
+
+.dropdown ul a {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #21262a;
+    text-decoration: none;
+}
+
+.dropdown ul a i {
+    font-size: 12px;
+}
+
+.dropdown ul a:hover, .dropdown ul .active:hover, .dropdown ul li:hover > a {
+    color: rgba(0,0,0,.5);
+    text-decoration: none;
+}
+
+.dropdown:hover > ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+.dropdown{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@media (max-width: 768px) {
+    .dropdown ul {
+        display: block;
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        padding: 10px 0;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        background: #fff;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+        transition: 0.3s;
+    }
+    .dropdown:hover > ul {
+        opacity: 1;
+        top: 48px;
+        float: right;
+        right: 0px;
+        visibility: visible;
+    }
+    .navbar-toggler{
+        border-radius: 8px;
+    }
+    .dropdown{
+        padding: .25rem .75rem;
+        border-radius: 8px;
+        color: rgba(0,0,0,.5);
+        border: 1px solid rgba(0,0,0,.1);;
+    }
+    .avatar-img{
+        height: 30px!important;
+        width: 30px!important;
+    }
+}

@@ -33,7 +33,7 @@
     border-radius: 8px;
     bottom: 20px;
     padding: 15px;
-    background-color: rgba(255,255,255, 0.3);
+    background-color: rgba(255,255,255, 0.5);
     transition: 0.5s;
 }
 .course-card-rating{
@@ -47,7 +47,7 @@
     transition: 0.5s;
 }
 .course-card-btn:hover{
-    background-color: rgba(255,255,255, 0.2);
+    background-color: rgba(255,255,255, 0.4);
     transition: 0.5s;
 }
 .course-card-btn-text{

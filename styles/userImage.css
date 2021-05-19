@@ -83,7 +83,6 @@
 }
 .dropdown{
     padding-left: 1rem;
-    padding-right: 1rem;
 }
 @media (max-width: 768px) {
     .dropdown ul {
@@ -105,15 +104,6 @@
         float: right;
         right: 0px;
         visibility: visible;
-    }
-    .navbar-toggler{
-        border-radius: 8px;
-    }
-    .dropdown{
-        padding: .25rem .75rem;
-        border-radius: 8px;
-        color: rgba(0,0,0,.5);
-        border: 1px solid rgba(0,0,0,.1);;
     }
     .avatar-img{
         height: 30px!important;

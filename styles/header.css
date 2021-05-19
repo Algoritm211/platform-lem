@@ -22,3 +22,12 @@
     background-color: #f8faff;
     transition: 0.5s;
 }
+.navbar-toggler{
+    padding: 0;
+    font-size: 24px;
+    border: none;
+}
+.navbar-toggler-icon{
+    height: 1em;
+    width: 1em;
+}

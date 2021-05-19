@@ -2,8 +2,8 @@ import React from 'react'
 
 const PricePage = () => {
   return (
-    <div className="container">
-      <div className="container first-block my-3">
+    <div className="container my-3">
+      <div style={{ backgroundColor: '#B2CCFC', borderRadius: '8px' }}>
         <div className="row">
           <div className="col-12 col-md-4 p-5 m-auto">
             <h3 className="content-title mb-2">Upgrade your education</h3>

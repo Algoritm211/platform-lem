@@ -51,7 +51,7 @@ const CoursePage = () => {
                 <i className="fas fa-caret-down"/>
               </p>
               <p className="inp-wrap search-wrap">
-                <input type="search" name="search-term" id="search-field" className="search-input" placeholder="e.g. math, chemistry or history"/></p>
+                <input type="search" name="search-term" id="search-field" className="search-input" placeholder="e.g. math, chemistry"/></p>
               <p className="inp-wrap submit-wrap">
                 <button className="search-btn">
                   <i className="fas fa-search grid-100"/>

@@ -127,25 +127,16 @@
         border-radius: 0;
     }
     .cat-wrap {
-        width: 50%;
+        width: 20%;
     }
     .submit-wrap {
-        width: 50%;
-        display: block;
-    }
-    .search-btn {
-        border-radius: 8px;
-        margin-bottom: 5px;
-    }
-    .search-form {
-        padding: 0 1rem;
+        width: 10%;
     }
 }
 
 @media screen and (max-width: 560px) {
     .cat-wrap,
     .search-wrap {
-        width: 100%;
         margin-bottom: 0.5rem;
     }
     .grid-80 {
@@ -153,5 +144,15 @@
     }
     .grid-20 {
         width: 25%;
+    }
+    .search-input{
+        padding: 0;
+    }
+    .cat-wrap {
+        display: none;
+    }
+    .search-wrap {
+        width: 90%;
+        padding: 0 10px;
     }
 }

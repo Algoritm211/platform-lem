@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { authUser } from '../../store/auth-reducer/auth-thunks'
+import React, { useState } from 'react'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 
@@ -13,10 +11,6 @@ const MainPage = () => {
     setLoginModalShow((prev) => !prev)
     setRegistrationModalShow((prev) => !prev)
   }
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(authUser())
-  }, [])
   return (
     <div>
       <div className="container first-block my-3">
@@ -44,14 +38,15 @@ const MainPage = () => {
       />
       <div className="container my-5">
         <div className="row">
-          <div className="col-2 col-md-1 b-radius" style={{ backgroundColor: '#B2CCFC'}}>
+          <div className="col-2 col-md-1 b-radius" style={{ backgroundColor: '#B2CCFC' }}>
             <h3 className="vertical-title mb-2">Categories</h3>
           </div>
           <div className="col-10 col-md-11 pr-sm-0 mr-sm-0">
             <div className="row">
               <div className="col-12 col-md-6">
                 <a className="card-link" href="#">
-                  <div className="b-radius category-card d-flex p-3 mb-3"
+                  <div
+                    className="b-radius category-card d-flex p-3 mb-3"
                     style={{ backgroundColor: '#8cdac8' }}>
                     <div className="col-4 m-auto">
                       <img className="content-image" src="/2.png" alt="photo"/>
@@ -66,7 +61,8 @@ const MainPage = () => {
               </div>
               <div className="col-12 col-md-6">
                 <a className="card-link" href="#">
-                  <div className="b-radius category-card d-flex p-3 mb-3"
+                  <div
+                    className="b-radius category-card d-flex p-3 mb-3"
                     style={{ backgroundColor: '#f0c4d7' }}>
                     <div className="col-4 m-auto">
                       <img className="content-image" src="/2.png" alt="photo"/>
@@ -83,7 +79,8 @@ const MainPage = () => {
 
               <div className="col-12 col-md-6">
                 <a className="card-link" href="#">
-                  <div className="b-radius category-card d-flex p-3 mb-md-0 mb-3"
+                  <div
+                    className="b-radius category-card d-flex p-3 mb-md-0 mb-3"
                     style={{ backgroundColor: '#f0c4d7' }}>
                     <div className="col-4 m-auto">
                       <img className="content-image" src="/2.png" alt="photo"/>
@@ -99,7 +96,8 @@ const MainPage = () => {
 
 
               <div className="col-12 col-md-6"><a className="card-link" href="#">
-                <div className="b-radius category-card d-flex p-3 mb-0"
+                <div
+                  className="b-radius category-card d-flex p-3 mb-0"
                   style={{ backgroundColor: '#8cdac8' }}>
                   <div className="col-4 m-auto">
                     <img className="content-image" src="/2.png" alt="photo"/>

@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CourseCard from '../CourseCard/CourseCard'
 import Carousel from './Subject-carousel'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadAllCourses } from '../../store/courses-reducer/courses-thunks'
+import { getAllCourses } from '../../store/courses-reducer/courses-selector'
 
 const CoursePage = () => {
+  const dispatch = useDispatch()
+  const courses = useSelector(getAllCourses)
+  useEffect(() => {
+    dispatch(loadAllCourses(1, ''))
+  }, [])
+  // console.log(courses)
+
+  const coursesBlock = courses.map((course) => {
+    return (
+      <div className="col-12 col-md-6" key={course._id}>
+        <CourseCard course={course}/>
+      </div>
+    )
+  })
   return (
     <div>
       <div className="container my-3" style={{ backgroundColor: '#f0c4d7', borderRadius: '8px' }}>
@@ -45,21 +62,22 @@ const CoursePage = () => {
       </div>
       <div className="container my-5">
         <div className="row">
-          <div className="col-12 col-md-8">
-            <CourseCard />
-          </div>
-          <div className="col-12 col-md-4">
-            <CourseCard />
-          </div>
-          <div className="col-12 col-md-5">
-            <CourseCard />
-          </div>
-          <div className="col-12 col-md-7">
-            <CourseCard />
-          </div>
-          <div className="col-12 col-md-12">
-            <CourseCard />
-          </div>
+          {coursesBlock}
+          {/* <div className="col-12 col-md-8">*/}
+          {/*  <CourseCard />*/}
+          {/* </div>*/}
+          {/* <div className="col-12 col-md-4">*/}
+          {/*  <CourseCard />*/}
+          {/* </div>*/}
+          {/* <div className="col-12 col-md-5">*/}
+          {/*  <CourseCard />*/}
+          {/* </div>*/}
+          {/* <div className="col-12 col-md-7">*/}
+          {/*  <CourseCard />*/}
+          {/* </div>*/}
+          {/* <div className="col-12 col-md-12">*/}
+          {/*  <CourseCard />*/}
+          {/* </div>*/}
         </div>
       </div>
       <div className="container">

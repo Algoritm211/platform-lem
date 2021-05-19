@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CourseCard = () => {
+const CourseCard = ({ course }) => {
   return (
     <div>
       <div className="course-image">
-        <h2 className="course-card-title">Title</h2>
-        <p className="course-card-text">24 lessons</p>
+        <h2 className="course-card-title">{course.title}</h2>
+        <p className="course-card-text">{course.lessons.length} lessons</p>
         <button className="course-card-btn d-flex">
           <p className="course-card-btn-text m-0 pr-3">
             Start
@@ -14,7 +14,7 @@ const CourseCard = () => {
         </button>
         <div className="course-card-rating d-flex">
           <i className="far fa-heart"/>
-          <p className="course-card-text">24</p>
+          <p className="course-card-text">{course.rating}</p>
         </div>
       </div>
     </div>

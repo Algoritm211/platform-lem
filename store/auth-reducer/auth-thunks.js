@@ -11,7 +11,7 @@ export const authUser = () => async (dispatch) => {
   try {
     dispatch(toggleIsLoading(true))
     dispatch(setAppReady(false))
-    const { data } = await AuthAPI.auth()
+    const data = await AuthAPI.auth()
     dispatch(setUserAuthData(data.user))
     dispatch(setAppReady(true))
     dispatch(toggleIsLoading(false))

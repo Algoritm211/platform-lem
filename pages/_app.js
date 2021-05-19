@@ -9,12 +9,26 @@ import '../styles/carouselPage.css'
 import '../styles/contacts.css'
 import '../styles/profileMain.css'
 import '../styles/profileSettings.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import Head from 'next/head'
+import { useDispatch } from 'react-redux'
+import { authUser } from '../store/auth-reducer/auth-thunks'
+import { getCookie } from '../components/utils/cookieFunctions'
 
+
+function MyComponent({ children }) {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (getCookie('authToken')) {
+      dispatch(authUser())
+    }
+  }, [dispatch])
+
+  return <>{children}</>
+}
 
 class MyApp extends App {
   static async getServer({ Component, context }) {
@@ -28,11 +42,11 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <React.Fragment>
+      <MyComponent>
         <Head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="theme-color" content="#000000" />
+          <meta charSet="utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <meta name="theme-color" content="#000000"/>
           <title>Platform LEM</title>
         </Head>
         <NextNprogress
@@ -42,7 +56,7 @@ class MyApp extends App {
           height="3"
         />
         <Component {...pageProps} />
-      </React.Fragment>
+      </MyComponent>
     )
   }
 }

@@ -1,6 +1,5 @@
 import instanceAxios from './api.config'
 
-
 class AuthAPI {
   async auth() {
     const { data } = await instanceAxios.get('/auth/authorization')

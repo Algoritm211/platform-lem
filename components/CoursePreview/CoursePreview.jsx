@@ -3,6 +3,7 @@ import React from 'react'
 const CoursePreview = () => {
   return (
     <div>
+      <button className="mobile-course-preview-button">Get started</button>
       <div
         style={{ backgroundColor: '#3A5FA4', padding: '50px 0' }}
       >

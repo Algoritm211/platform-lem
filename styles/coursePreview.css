@@ -29,7 +29,7 @@
     background-color: #0070f3;
     transition: 0.5s;
 }
-.course-preview-button:hover{
+.course-preview-button:hover, .mobile-course-preview-button:hover{
     transition: 0.5s;
     background-color: #005ac7;
 }
@@ -58,3 +58,21 @@
     line-height: 24px;
     padding-right: 5px;
 }
+@media (max-width: 576px) {
+    .mobile-course-preview-button{
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        border: 1px solid #0070f3;
+        padding: 10px 15px;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        margin: 0;
+        z-index: 5;
+        background-color: #0070f3;
+        transition: 0.5s;
+    }
+}
+

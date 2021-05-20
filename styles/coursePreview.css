@@ -1,0 +1,60 @@
+.course-preview-name{
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+}
+.course-preview-title{
+    font-size: 28px;
+    font-weight: 600;
+}
+.course-preview-text{
+    font-size: 16px;
+    margin: 0;
+    font-weight: 400;
+    color: white;
+}
+.course-preview-price{
+    font-size: 28px;
+    margin: 0;
+    font-weight: 600;
+}
+.course-preview-button{
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid #0070f3;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #0070f3;
+    transition: 0.5s;
+}
+.course-preview-button:hover{
+    transition: 0.5s;
+    background-color: #005ac7;
+}
+.course-preview-info-block{
+    width: 100%;
+    background-color: #f7f7fc;
+    padding: 20px;
+    border-radius: 8px;
+}
+.course-preview-info-title{
+    font-size: 16px;
+    font-weight: 600;
+}
+.course-preview-info-text{
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+.course-preview-rating{
+    color: white;
+    line-height: 24px;
+    padding-right: 5px;
+}
+.course-preview-rating .fa-users, .course-preview-rating .fa-heart{
+    color: white;
+    line-height: 24px;
+    padding-right: 5px;
+}

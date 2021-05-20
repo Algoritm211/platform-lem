@@ -15,7 +15,7 @@ const CourseCard = ({ course }) => {
   return (
     <div>
       <div
-        style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3) ), url('${course.coursePreview}')` }}
+        style={{ backgroundPosition: 'center center', backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3) ), url('${course.coursePreview}')` }}
         className="course-image">
         <h2 className="course-card-title">{course.title}</h2>
         <p className="course-card-text">{course.lessons.length} lessons</p>

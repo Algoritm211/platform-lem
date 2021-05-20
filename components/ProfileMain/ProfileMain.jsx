@@ -18,18 +18,28 @@ const ProfileMain = () => {
             <ProfileNavbar/>
           </div>
           <div className="col-sm-9 col-md-10">
-            <div className="profile-welcome d-flex">
+            <div className="col-12 сol-sm-6 profile-welcome">
               <div className="profile-welcome-block">
                 <h3 className="profile-welcome-title">Welcome, {user.name}</h3>
                 <p className="profile-welcome-subtitle">Are you ready to new day?</p>
               </div>
-              <div className="col-6">
+              <div className="col-12 col-sm-6">
                 <img className="profile-welcome-img" src="/7.png" alt="upgrade"/>
               </div>
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">My Courses</h3>
               {courseBlock}
+              <div className="profile-courses-one d-flex my-3">
+                <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>
+                <div className="profile-courses-one-content">
+                  <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>Uh-oh...</h3>
+                  <p className="profile-courses-one-text">You don't have any courses yet</p>
+                  <a href="#" className="profile-courses-nocourse-a">
+                    <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let's find new course</p>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

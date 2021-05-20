@@ -72,10 +72,12 @@
     padding: 30px;
     border-radius: 8px;
     width: 100%;
+    display: flex;
     margin-bottom: 40px;
 }
 .profile-welcome-block{
     width: 75%;
+    margin: auto;
 }
 .profile-welcome-title{
     font-size: 24px;
@@ -101,6 +103,12 @@
     padding: 20px;
     border-radius: 8px;
 }
+.profile-courses-nocourses-img{
+    height: auto;
+    width: 200px;
+    margin-right: 20px;
+    object-fit: cover;
+}
 .profile-courses-one-content{
     width: 60%;
 }
@@ -122,6 +130,13 @@
 .profile-mobile{
     display: block;
 }
+.profile-courses-nocourse-a{
+    text-decoration: underline;
+    color: #005ac7;
+}
+.profile-courses-nocourse-a:hover{
+    color: #0070f3;
+}
 @media (max-width: 1200px) {
     .profile-welcome-img{
         top: -70px;
@@ -129,7 +144,8 @@
 }
 @media (max-width: 992px) {
     .profile-welcome-img{
-        top: -35px;
+        position: initial;
+        width: 100%;
     }
     .profile-button-text{
         font-size: 12px;
@@ -137,6 +153,12 @@
     .profile-button-illustration{
         font-size: 16px;
         width: 30px;
+    }
+    .profile-upgrade-button{
+        font-size: 12px;
+    }
+    .profile-upgrade-text{
+        font-size: 10px;
     }
 }
 @media (max-width: 768px) {
@@ -146,6 +168,18 @@
     .profile-button-illustration{
         font-size: 20px;
         width: 30px;
+    }
+    .profile-upgrade-button{
+        font-size: 14px;
+    }
+    .profile-upgrade-text{
+        font-size: 12px;
+    }
+    .profile-welcome-title{
+        font-size: 20px;
+    }
+    .profile-welcome-subtitle{
+        font-size: 14px;
     }
 }
 @media (max-width: 576px) {
@@ -169,5 +203,11 @@
     }
     .profile-button{
         padding: 0 8px;
+    }
+    .profile-courses-nocourses-img{
+        width: 100px;
+    }
+    .profile-welcome{
+        display: block;
     }
 }

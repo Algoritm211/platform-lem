@@ -53,14 +53,16 @@
     border-radius: 8px;
     border: solid 2px #dadce0;
     font-weight: 600;
-    color: rgba(0,0,0,.5);
+    color: rgba(0,0,0,.9);
     font-size: 13px;
 }
 .form-select:active, .form-select:focus{
     border-color: #005ac7;
+
 }
 .form-control:focus, .form-control:focus, .inputAcc:active, .inputAcc:focus{
     box-shadow: 0 0 10px rgb(0 90 199 / 30%);
+    color: rgba(0,0,0,.9);
     border: solid 2px #005ac7;
 }
 .inputAcc{
@@ -69,7 +71,7 @@
     border: solid 2px #dadce0;
     box-sizing: border-box;
     border-radius: 8px;
-    color: rgba(0,0,0,.5);;
+    color: rgba(0,0,0,.9);;
     font-weight: 600;
     font-size: 13px;
     padding: 10px 20px;

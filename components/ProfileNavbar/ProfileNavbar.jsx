@@ -8,7 +8,7 @@ const ProfileNavbar = () => {
   const fieldCreator = (textLink, routePath, iconClass) => {
     return (
       <Link href={routePath}>
-        <a className={'d-flex'} style={{ color: router.route.includes(routePath) && '#0070f3' }}>
+        <a className={'profile-button-link d-flex'} style={{ color: router.route.includes(routePath) && '#0070f3' }}>
           <i className={iconClass + ' profile-button-illustration'}/>
           <p className="profile-button-text">{textLink}</p>
         </a>

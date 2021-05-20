@@ -1,6 +1,5 @@
 import React from 'react'
 import Slider from 'react-slick'
-import ThemeCard from '../CourseCard/ThemeCard'
 import withPageSize from '../HOC/withPageSize'
 
 function SampleNextArrow(props) {
@@ -44,11 +43,42 @@ const Carousel = ({ size }) => {
   return (
     <div>
       <Slider {...settings}>
-        <div className="container"><ThemeCard/></div>
-        <div className="container"><ThemeCard/></div>
-        <div className="container"><ThemeCard/></div>
-        <div className="container"><ThemeCard/></div>
-        <div className="container"><ThemeCard/></div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#B2CCFC' }}>
+            <h3 className="carousel-title" style={{ color: '#466aa8' }}>Math</h3>
+            <p className="carousel-subtitle" style={{ color: '#466aa8' }}>12 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#8cdac8' }}>
+            <h3 className="carousel-title" style={{ color: '#408971' }}>IT</h3>
+            <p className="carousel-subtitle" style={{ color: '#408971' }}>18 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#f0c4d7' }}>
+            <h3 className="carousel-title" style={{ color: '#895169' }}>Chemistry</h3>
+            <p className="carousel-subtitle" style={{ color: '#895169' }}>2 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#B2CCFC' }}>
+            <h3 className="carousel-title" style={{ color: '#466aa8' }}>Physics</h3>
+            <p className="carousel-subtitle" style={{ color: '#466aa8' }}>3 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#8cdac8' }}>
+            <h3 className="carousel-title" style={{ color: '#408971' }}>Biology</h3>
+            <p className="carousel-subtitle" style={{ color: '#408971' }}>4 courses</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="carousel-card my-3" style={{ backgroundColor: '#f0c4d7' }}>
+            <h3 className="carousel-title" style={{ color: '#895169' }}>History</h3>
+            <p className="carousel-subtitle" style={{ color: '#895169' }}>7 courses</p>
+          </div>
+        </div>
       </Slider>
     </div>
   )

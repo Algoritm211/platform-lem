@@ -58,10 +58,14 @@
     line-height: 24px;
     padding-right: 5px;
 }
+.mobile-course-preview-button{
+    display: none;
+}
 @media (max-width: 576px) {
     .mobile-course-preview-button{
         border-radius: 10px 10px 0 0;
         width: 100%;
+        display: block;
         position: fixed;
         bottom: 0;
         border: 1px solid #0070f3;

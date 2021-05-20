@@ -7,18 +7,32 @@ import UserImage from './UserImage'
 import withPageSize from '../HOC/withPageSize'
 import { getIsAuth } from '../../store/auth-reducer/auth-selector'
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 
 
 const Header = ({ size }) => {
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
   const isAuth = useSelector(getIsAuth)
+  const router = useRouter()
+  // console.log(router)
 
   const switchModals = () => {
     setLoginModalShow((prev) => !prev)
     setRegistrationModalShow((prev) => !prev)
   }
 
+  const menuFieldCreator = (textLink, routePath) => {
+    const regex = new RegExp('^' + routePath + '$', 'g')
+    return (
+      <Link href={routePath}>
+        <Nav.Link
+          style={{ color: router.route.match(regex) && 'black' }}
+          href={routePath}
+          className={'navigation-li px-3'}>{textLink}</Nav.Link>
+      </Link>
+    )
+  }
   return (
     <>
       <Navbar collapseOnSelect expand="md" bg="navbar-light">
@@ -42,24 +56,10 @@ const Header = ({ size }) => {
             <Nav className="mr-auto">
             </Nav>
             <Nav>
-              <Link href={'/'}>
-                <Nav.Link href="/" className={'navigation-li px-3'}>Main</Nav.Link>
-              </Link>
-              <Link href={'/programs'}>
-                <Nav.Link href={'/programs'} className={'navigation-li px-3'}>
-                  Courses
-                </Nav.Link>
-              </Link>
-              <Link href={'/plans'}>
-                <Nav.Link href={'/programs'} className={'navigation-li px-3'}>
-                  Plans
-                </Nav.Link>
-              </Link>
-              <Link href={'/contacts'}>
-                <Nav.Link href={'/contacts'} className={'navigation-li px-3'}>
-                  Contacts
-                </Nav.Link>
-              </Link>
+              {menuFieldCreator('Main', '/')}
+              {menuFieldCreator('Courses', '/programs')}
+              {menuFieldCreator('Plans', '/plans')}
+              {menuFieldCreator('Contacts', '/contacts')}
             </Nav>
             {size[0] >= 768 && (
               <React.Fragment>

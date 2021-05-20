@@ -85,7 +85,7 @@ const ProfileSettings = () => {
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5 d-flex">
                   <img
-                    className="avatar-img"
+                    className="avatar-img my-auto"
                     src={user.avatar?.url ? user.avatar.url : noUserPhoto}
                     alt="avatar"/>
                   {!isLoading ? (

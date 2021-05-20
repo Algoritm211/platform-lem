@@ -61,6 +61,10 @@
     padding: 0 10px;
     line-height: 24px;
 }
+.profile-button-link:hover{
+    color: #0070f3;
+    text-decoration: none;
+}
 .profile-button-text{
     font-size: 14px;
     font-weight: 600;
@@ -131,11 +135,12 @@
     display: block;
 }
 .profile-courses-nocourse-a{
-    text-decoration: underline;
-    color: #005ac7;
+    text-decoration: none;
+    color: #0070f3;
 }
 .profile-courses-nocourse-a:hover{
-    color: #0070f3;
+    color: #005ac7;
+    text-decoration: none;
 }
 @media (max-width: 1200px) {
     .profile-welcome-img{

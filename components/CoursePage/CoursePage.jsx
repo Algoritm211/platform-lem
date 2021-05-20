@@ -4,8 +4,7 @@ import Carousel from './Subject-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadAllCourses } from '../../store/courses-reducer/courses-thunks'
 import { getAllCourses } from '../../store/courses-reducer/courses-selector'
-import Slider from 'react-slick'
-import ThemeCard from '../CourseCard/ThemeCard'
+// import Slider from 'react-slick'
 
 const CoursePage = () => {
   const dispatch = useDispatch()
@@ -94,25 +93,16 @@ const CoursePage = () => {
         <h2 className="category-picker py-3">Popular themes</h2>
         <div className="row">
           <div className="col-6 col-md-4">
-            <ThemeCard/>
+            <div className="carousel-card my-3" style={{ backgroundColor: '#B2CCFC' }}>
+              <h3 className="carousel-title" style={{ color: '#466aa8' }}>Math</h3>
+              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>12 courses</p>
+            </div>
           </div>
           <div className="col-6 col-md-4">
-            <ThemeCard/>
-          </div>
-          <div className="col-6 col-md-4">
-            <ThemeCard/>
-          </div>
-          <div className="col-6 col-md-3">
-            <ThemeCard/>
-          </div>
-          <div className="col-6 col-md-3">
-            <ThemeCard/>
-          </div>
-          <div className="col-6 col-md-3">
-            <ThemeCard/>
-          </div>
-          <div className="col-6 col-md-3">
-            <ThemeCard/>
+            <div className="carousel-card my-3" style={{ backgroundColor: '#B2CCFC' }}>
+              <h3 className="carousel-title" style={{ color: '#466aa8' }}>Math</h3>
+              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>12 courses</p>
+            </div>
           </div>
         </div>
       </div>

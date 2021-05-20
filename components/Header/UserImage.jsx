@@ -19,7 +19,7 @@ const UserImage = () => {
           style={{ width: '24px', height: '24px' }}
           src={user?.avatar?.url ? user.avatar.url : noUserPhoto}
           alt="avatar"/>
-        <ul>
+        <ul /* style={{ opacity: isMenuOpen ? '1' : '0' }}*/>
           <div>
             <div className="d-flex accDropBlock">
               <img

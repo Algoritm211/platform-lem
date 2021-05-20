@@ -1,42 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link'
 import UserImage from './UserImage'
+import withPageSize from '../HOC/withPageSize'
+import { getIsAuth } from '../../store/auth-reducer/auth-selector'
+import { useSelector } from 'react-redux'
 
 
-const Header = () => {
+const Header = ({ size }) => {
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
-  const [size, setSize] = useState([0, 0])
+  const isAuth = useSelector(getIsAuth)
 
   const switchModals = () => {
     setLoginModalShow((prev) => !prev)
     setRegistrationModalShow((prev) => !prev)
   }
 
-  function updateSize() {
-    setSize([document.documentElement.clientWidth, document.documentElement.clientHeight])
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', updateSize)
-    updateSize()
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
-
   return (
     <>
       <Navbar collapseOnSelect expand="md" bg="navbar-light">
-        <div className="container d-flex justify-content-between">
+        <div className="container">
           <Link href={'/'}>
             <Navbar.Brand href="/">LEM</Navbar.Brand>
           </Link>
-          {size[0] <= 768 && (
+          {size[0] < 768 && (
             <div className="d-flex justify-content-between">
               <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-              <UserImage/>
+              {isAuth
+                ? (<UserImage/>)
+                : (
+                  <div className={'navigation-li px-2'}>
+                    <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
+                  </div>
+                )}
             </div>
           )}
           <Navbar.Collapse id="responsive-navbar-nav" className={'ml-auto'}>
@@ -61,11 +60,18 @@ const Header = () => {
                   Contacts
                 </Nav.Link>
               </Link>
-              {/* <Nav.Item href="#" className={'navigation-li px-2'}>*/}
-              {/*  <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>*/}
-              {/* </Nav.Item>*/}
             </Nav>
-            {size[0] > 768 && <UserImage/>}
+            {size[0] >= 768 && (
+              <React.Fragment>
+                {isAuth
+                  ? (<UserImage/>)
+                  : (
+                    <div className={'navigation-li px-2'}>
+                      <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
+                    </div>
+                  )}
+              </React.Fragment>
+            )}
           </Navbar.Collapse>
         </div>
       </Navbar>
@@ -83,4 +89,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default withPageSize(Header)

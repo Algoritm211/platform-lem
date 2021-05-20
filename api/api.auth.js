@@ -15,6 +15,11 @@ class AuthAPI {
     const { data } = await instanceAxios.post('/auth/login', { email, password })
     return data
   }
+
+  async logout() {
+    const { data } = await instanceAxios.post('/auth/logout')
+    return data
+  }
 }
 
 

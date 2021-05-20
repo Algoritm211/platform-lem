@@ -1,7 +1,64 @@
 import React from 'react'
 import ProfileNavbar from '../ProfileNavbar/ProfileNavbar'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIsLoading, getUserData } from '../../store/auth-reducer/auth-selector'
+import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth-reducer/user-thunks'
+
+const editProfileSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+  surName: Yup.string()
+    .matches(/^[^<>%$]*$/i, 'Присутні заборонені символи'),
+  description: Yup.string()
+    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+  city: Yup.string()
+    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+})
+
 
 const ProfileSettings = () => {
+  const user = useSelector(getUserData)
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getIsLoading)
+  const formik = useFormik({
+    enableReinitialize: true,
+    validationSchema: editProfileSchema,
+    initialValues: {
+      name: user.name,
+      surName: user.surName,
+      role: user.role,
+      city: user.city || '',
+      description: user.description,
+      dayBirth: user?.birthdayDate?.split('-')[0] || 1,
+      monthBirth: user?.birthdayDate?.split('-')[1] || 1,
+      yearBirth: user?.birthdayDate?.split('-')[2] || 2000,
+      gender: user.gender,
+    },
+    onSubmit: (values) => {
+      const userData = {
+        name: values.name,
+        surName: values.surName,
+        role: values.role,
+        city: values.city,
+        description: values.description,
+        birthdayDate: [values.dayBirth, values.monthBirth, values.yearBirth].join('-'),
+        gender: values.gender,
+      }
+      dispatch(updateUserInfo(userData))
+    },
+  })
+  const noUserPhoto = '/no-avatar.png'
+
+  const onHandleImage = (event) => {
+    dispatch(uploadAvatar(event.target.files[0]))
+    console.log()
+  }
+
+  const onDeletePhoto = () => {
+    dispatch(deleteAvatar())
+  }
   return (
     <div>
       <div className="container my-5">
@@ -20,36 +77,47 @@ const ProfileSettings = () => {
                   className="acc-join-title">Приєднався 19/05/2021 {/* {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}*/}</span>
               </div>
             </div>
-            <form /* onSubmit={formik.handleSubmit}*/ className="pt-3">
+            <form onSubmit={formik.handleSubmit} className="pt-3">
               <h3 className="acc-subtitle">Особисті дані</h3>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
                   <span className="info-title">Аватар</span>
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5 d-flex">
-                  <img className="avatar-img" src="https://vdostavka.ru/wp-content/uploads/2019/05/no-avatar.png"/* {user.avatar ? `${process.env.REACT_APP_URL}/${user.avatar}` : noUserPhoto}*/
+                  <img
+                    className="avatar-img"
+                    src={user.avatar?.url ? user.avatar.url : noUserPhoto}
                     alt="avatar"/>
-                  {/* <input type={'file'} id={'avatar'} name={'avatar'} onChange={onHandleImage}*/}
-                  {/*  multiple={false}*/}
-                  {/*  hidden={true} accept="image/jpeg,image/png"/>*/}
-                  <label htmlFor={'avatar'} className="avatar-change">Оновити</label>
-                  <span /* onClick={onDeletePhoto}*/ className="avatar-delete">Видалити</span>
+                  {!isLoading ? (
+                    <>
+                      <input
+                        type={'file'}
+                        id={'avatar'}
+                        name={'avatar'} onChange={onHandleImage}
+                        multiple={false}
+                        hidden={true} accept="image/jpeg,image/png"/>
+                      <label htmlFor={'avatar'} className="avatar-change">Оновити</label>
+                      <span onClick={onDeletePhoto} className="avatar-delete">Видалити</span>
+                    </>
+                  ) : (
+                    <span className="avatar-change" style={{ cursor: 'progress' }}>Оновлення...</span>
+                  )}
                 </div>
               </div>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Ім'я</span>
+                  <span className="info-title">Ім`я</span>
                 </div>
 
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <input
                     className={'inputAcc'}
-                    /* value={formik.values.name}
-                    onChange={formik.handleChange}*/
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
                     type="name"
                     name="name"
                     id="name"/>
-                  {/* {formik.errors.name}*/}
+                  {formik.errors.name}
                 </div>
               </div>
               <div className="row acc-info d-flex">
@@ -59,32 +127,31 @@ const ProfileSettings = () => {
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <input
                     className={'inputAcc'}
-                    // value={formik.values.surName}
-                    // onChange={formik.handleChange}
+                    value={formik.values.surName}
+                    onChange={formik.handleChange}
                     type="surName"
                     name="surName"
                     id="surname"/>
-                  {/* {formik.errors.surName}*/}
+                  {formik.errors.surName}
                 </div>
               </div>
 
 
-              {/* {user.role === 'expert' && (*/}
-              <div className="row acc-info d-flex">
-                <div className="col-12 col-md-3">
-                  <span className="info-title">Посада</span>
-                </div>
-                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                  <textarea
-                    // value={formik.values.description}
-                    // onChange={formik.handleChange}
-                    className="form-control inputAcc"
-                    placeholder="Розкажіть про себе"
-                    id="description"/>
-                  {/* {formik.errors.description}*/}
-                </div>
-              </div>
-              
+              {user.role === 'teacher' && (
+                <div className="row acc-info d-flex">
+                  <div className="col-12 col-md-3">
+                    <span className="info-title">Посада</span>
+                  </div>
+                  <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <textarea
+                      value={formik.values.description}
+                      onChange={formik.handleChange}
+                      className="form-control inputAcc"
+                      placeholder="Розкажіть про себе"
+                      id="description"/>
+                    {formik.errors.description}
+                  </div>
+                </div>)}
 
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
@@ -93,12 +160,12 @@ const ProfileSettings = () => {
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <input
                     className={'inputAcc'}
-                    // value={formik.values.city}
-                    // onChange={formik.handleChange}
+                    value={formik.values.city}
+                    onChange={formik.handleChange}
                     type="city"
                     name="city"
                     id="city"/>
-                  {/* {formik.errors.city}*/}
+                  {formik.errors.city}
                 </div>
               </div>
               <div className="row acc-info d-flex">
@@ -108,8 +175,8 @@ const ProfileSettings = () => {
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5 justify-content-center">
                   <div className="select-wrap">
                     <select
-                      // value={formik.values.dayBirth}
-                      // onChange={formik.handleChange}
+                      value={formik.values.dayBirth}
+                      onChange={formik.handleChange}
                       name={'dayBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
@@ -149,8 +216,8 @@ const ProfileSettings = () => {
 
 
                     <select
-                      // value={formik.values.monthBirth}
-                      // onChange={formik.handleChange}
+                      value={formik.values.monthBirth}
+                      onChange={formik.handleChange}
                       name={'monthBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
@@ -171,8 +238,8 @@ const ProfileSettings = () => {
 
 
                     <select
-                      // value={formik.values.yearBirth}
-                      // onChange={formik.handleChange}
+                      value={formik.values.yearBirth}
+                      onChange={formik.handleChange}
                       name={'yearBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
@@ -286,18 +353,19 @@ const ProfileSettings = () => {
                 <div className="col-12  col-md-8 col-lg-6 col-xl-5">
                   <div className="custom-controls-stacked px-2">
                     <span className="form-check">
-                      <input className="form-check-input" type="radio"
+                      <input
+                        className="form-check-input" type="radio"
                         value={'man'}
-                        // checked={formik.values.gender === 'man'}
-                        // onChange={formik.handleChange}
+                        checked={formik.values.gender === 'man'}
+                        onChange={formik.handleChange}
                         name="gender" id="flexRadioDefault2"/>
                       <label className="form-check-label" htmlFor="flexRadioDefault2">Чоловіча</label>
                     </span>
                     <span className="form-check">
                       <input
-                        // onChange={formik.handleChange}
+                        onChange={formik.handleChange}
                         className="form-check-input" type="radio"
-                        // checked={formik.values.gender === 'woman'}
+                        checked={formik.values.gender === 'woman'}
                         value={'woman'}
                         name="gender" id="flexRadioDefault3"/>
                       <label className="form-check-label" htmlFor="flexRadioDefault3">Жіноча</label>
@@ -307,9 +375,8 @@ const ProfileSettings = () => {
               </div>
               <div className="acc-info d-flex">
                 <div className="d-flex justify-content-start">
-                  <button className="acc-save-button" /* disabled={isLoading}*/ type="submit">
-                    {/* {!isLoading ? 'Зберегти налаштування' : 'Зберігається'}*/}
-                    Save
+                  <button className="acc-save-button" disabled={isLoading} type="submit">
+                    {!isLoading ? 'Зберегти налаштування' : 'Зберігається'}
                   </button>
                 </div>
 

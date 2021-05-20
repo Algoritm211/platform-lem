@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Slider from 'react-slick'
 import ThemeCard from '../CourseCard/ThemeCard'
+import withPageSize from '../HOC/withPageSize'
 
 function SampleNextArrow(props) {
   const { style, onClick } = props
@@ -29,19 +30,8 @@ function SamplePrevArrow(props) {
   )
 }
 
-const Carousel = () => {
-  const [size, setSize] = useState([0, 0])
 
-  function updateSize() {
-    setSize([document.documentElement.clientWidth, document.documentElement.clientHeight])
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', updateSize)
-    updateSize()
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
-
+const Carousel = ({ size }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -54,14 +44,14 @@ const Carousel = () => {
   return (
     <div>
       <Slider {...settings}>
-        <div className="container"><ThemeCard /></div>
-        <div className="container"><ThemeCard /></div>
-        <div className="container"><ThemeCard /></div>
-        <div className="container"><ThemeCard /></div>
-        <div className="container"><ThemeCard /></div>
+        <div className="container"><ThemeCard/></div>
+        <div className="container"><ThemeCard/></div>
+        <div className="container"><ThemeCard/></div>
+        <div className="container"><ThemeCard/></div>
+        <div className="container"><ThemeCard/></div>
       </Slider>
     </div>
   )
 }
 
-export default Carousel
+export default withPageSize(Carousel)

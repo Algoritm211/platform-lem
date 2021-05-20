@@ -29,17 +29,20 @@ const ProfileMain = () => {
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">My Courses</h3>
-              {courseBlock}
-              <div className="profile-courses-one d-flex my-3">
-                <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>
-                <div className="profile-courses-one-content">
-                  <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>Uh-oh...</h3>
-                  <p className="profile-courses-one-text">You don't have any courses yet</p>
-                  <a href="#" className="profile-courses-nocourse-a">
-                    <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let's find new course</p>
-                  </a>
-                </div>
-              </div>
+              {courseBlock.length !== 0
+                ? courseBlock
+                : (
+                  <div className="profile-courses-one d-flex my-3">
+                    <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>
+                    <div className="profile-courses-one-content">
+                      <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>Uh-oh...</h3>
+                      <p className="profile-courses-one-text">You don`t have any courses yet</p>
+                      <a href="#" className="profile-courses-nocourse-a">
+                        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let`s find new course</p>
+                      </a>
+                    </div>
+                  </div>
+                )}
             </div>
           </div>
         </div>

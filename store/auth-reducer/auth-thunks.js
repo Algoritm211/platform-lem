@@ -1,5 +1,6 @@
 import { setAppReady } from '../app-reducer/app-reducer'
 import {
+  logout,
   registrationSuccess,
   setIsAuth, setRegistrationError,
   setUserAuthData,
@@ -37,5 +38,15 @@ export const registerUser = (userData) => async (dispatch) => {
   } catch (error) {
     console.log(error)
     dispatch(setRegistrationError(error.response?.data?.message))
+  }
+}
+
+export const logoutUser = () => async (dispatch) => {
+  try {
+    await AuthAPI.logout()
+    dispatch(logout())
+  } catch (error) {
+    console.log(error)
+    dispatch(setIsAuth({ isAuth: false }))
   }
 }

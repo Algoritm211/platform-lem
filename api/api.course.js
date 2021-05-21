@@ -2,8 +2,8 @@ import instanceAxios from './api.config'
 
 class CourseAPI {
   // title, description, category
-  async create(courseData) {
-    const { data } = await instanceAxios.post('/course/create', courseData)
+  async create(formData) {
+    const { data } = await instanceAxios.post('/course/create', formData)
     return data
   }
 

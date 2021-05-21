@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadCurrentCourse } from '../../store/courses-reducer/courses-thunks'
+import { loadCurrentCourse, subscribeToCourse, unsubscribeCourse } from '../../store/courses-reducer/courses-thunks'
 import { getCurrentCourse } from '../../store/courses-reducer/courses-selector'
+import { getUserData } from '../../store/auth-reducer/auth-selector'
 
 const CoursePreview = () => {
   const dispatch = useDispatch()
   const course = useSelector(getCurrentCourse)
+  const user = useSelector(getUserData)
   const router = useRouter()
   useEffect(() => {
     dispatch(loadCurrentCourse(router.query.id))
@@ -14,6 +16,15 @@ const CoursePreview = () => {
   if (!course) {
     return <div>loading...</div>
   }
+
+  const onSubscribe = () => {
+    dispatch(subscribeToCourse(course._id))
+  }
+
+  const onUnsubscribe = () => {
+    dispatch(unsubscribeCourse(course._id))
+  }
+
   return (
     <div>
       <button className="mobile-course-preview-button">Get started</button>
@@ -54,7 +65,15 @@ const CoursePreview = () => {
           <div className="col-12 col-md-4 mt-5">
             <img className="my-3" style={{ width: '100%' }} src="https://cdn.pixabay.com/photo/2016/06/13/07/59/pi-1453836_1280.jpg" alt="course-preview-photo"/>
             <p className="course-preview-price my-3">Free</p>
-            <button className="course-preview-button">Get started</button>
+            {user?.courses?.includes(course._id) ? (
+              <button
+                style={{ backgroundColor: 'green' }}
+                className="course-preview-button"
+                onClick={onUnsubscribe}>Go to course</button>
+            ) : (
+              <button className="course-preview-button" onClick={onSubscribe}>Get started</button>
+            )}
+
             <div className="course-preview-info-block my-5">
               <p className="course-preview-info-title">The course includes</p>
               <p className="course-preview-info-text">{course.lessons.length} Lesson</p>

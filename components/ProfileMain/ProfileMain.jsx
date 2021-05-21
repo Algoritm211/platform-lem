@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth-reducer/auth-selector'
 import ProfileCourseCard from './ProfileCourseCard'
+import { loadUserCourses } from '../../store/courses-reducer/courses-thunks'
+import { getUserCourses } from '../../store/courses-reducer/courses-selector'
 import Link from 'next/link'
-import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 
 const ProfileMain = () => {
+  const dispatch = useDispatch()
   const user = useSelector(getUserData)
+  const userCourses = useSelector(getUserCourses)
 
-  const courseBlock = user.courses.map((course) => {
+  useEffect(() => {
+    dispatch(loadUserCourses())
+  }, [])
+
+  if (!userCourses) {
+    return <div>loading...</div>
+  }
+
+  const courseBlock = userCourses.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
   })
   return (
@@ -39,9 +50,11 @@ const ProfileMain = () => {
                     <div className="profile-courses-one-content">
                       <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>Uh-oh...</h3>
                       <p className="profile-courses-one-text">You don`t have any courses yet</p>
-                      <a href="#" className="profile-courses-nocourse-a">
-                        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let`s find new course</p>
-                      </a>
+                      <Link href={'/programs'}>
+                        <a className="profile-courses-nocourse-a">
+                          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let`s find new course</p>
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 )}

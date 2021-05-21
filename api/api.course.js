@@ -21,6 +21,21 @@ class CourseAPI {
     const { data } = await instanceAxios.get(`/course/like?courseId=${id}`)
     return data
   }
+
+  async subscribe(id) {
+    const { data } = await instanceAxios.get(`course/subscribe?courseId=${id}`)
+    return data
+  }
+
+  async unsubscribe(id) {
+    const { data } = await instanceAxios.delete(`course/subscribe?courseId=${id}`)
+    return data
+  }
+
+  async getUserCourses() {
+    const { data } = await instanceAxios.get('course/user')
+    return data
+  }
 }
 
 

@@ -60,6 +60,9 @@ const coursesReducer = createSlice({
         deleteCallback(course),
       )
     },
+    deleteFromLearning(state, action) {
+      state.usersCourses = state.usersCourses.filter((course) => course._id !== action.payload)
+    },
   },
 })
 
@@ -68,6 +71,7 @@ export const {
   toggleIsLoading,
   setUserCourses,
   setCurrentCourse,
+  deleteFromLearning,
   updateCourse,
   deleteCourse,
   clearCurrentCourse,

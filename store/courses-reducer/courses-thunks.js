@@ -1,7 +1,8 @@
 import CourseAPI from '../../api/api.course'
 import {
+  deleteFromLearning,
   setAllCourses,
-  setCurrentCourse,
+  setCurrentCourse, setUserCourses,
   toggleIsLoading, updateCourse,
 } from './courses-reducer'
 import { setUserData } from '../auth-reducer/auth-reducer'
@@ -31,3 +32,22 @@ export const toggleLikeCourse = (courseId) => async (dispatch) => {
   dispatch(updateCourse(data.course))
 }
 
+export const subscribeToCourse = (courseId) => async (dispatch) => {
+  const data = await CourseAPI.subscribe(courseId)
+  dispatch(setUserData(data.user))
+  dispatch(setCurrentCourse(data.course))
+}
+
+export const unsubscribeCourse = (courseId) => async (dispatch) => {
+  dispatch(deleteFromLearning(courseId))
+  const data = await CourseAPI.unsubscribe(courseId)
+  dispatch(setUserData(data.user))
+  dispatch(setCurrentCourse(data.course))
+}
+
+export const loadUserCourses = () => async (dispatch) => {
+  dispatch(toggleIsLoading(true))
+  const data = await CourseAPI.getUserCourses()
+  dispatch(setUserCourses(data))
+  dispatch(toggleIsLoading(false))
+}

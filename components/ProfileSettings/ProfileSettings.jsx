@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileNavbar from '../ProfileNavbar/ProfileNavbar'
+import ProfileNavbar from '../Navbars/ProfileNavbar'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,8 +1,10 @@
 import React from 'react'
-import ProfileNavbar from '../ProfileNavbar/ProfileNavbar'
+import ProfileNavbar from '../Navbars/ProfileNavbar'
 import { useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth-reducer/auth-selector'
 import ProfileCourseCard from './ProfileCourseCard'
+import Link from 'next/link'
+import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 
 const ProfileMain = () => {
   const user = useSelector(getUserData)

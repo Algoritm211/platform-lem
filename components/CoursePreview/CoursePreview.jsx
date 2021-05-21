@@ -27,7 +27,14 @@ const CoursePreview = () => {
 
   return (
     <div>
-      <button className="mobile-course-preview-button">Get started</button>
+      {user?.courses?.includes(course._id) ? (
+        <button
+          style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
+          className="mobile-course-preview-button"
+          onClick={onUnsubscribe}>Go to course</button>
+      ) : (
+        <button className="mobile-course-preview-button" onClick={onSubscribe}>Get started</button>
+      )}
       <div
         style={{ backgroundColor: '#3A5FA4', padding: '50px 0' }}
       >
@@ -67,7 +74,7 @@ const CoursePreview = () => {
             <p className="course-preview-price my-3">Free</p>
             {user?.courses?.includes(course._id) ? (
               <button
-                style={{ backgroundColor: 'green' }}
+                style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
                 className="course-preview-button"
                 onClick={onUnsubscribe}>Go to course</button>
             ) : (

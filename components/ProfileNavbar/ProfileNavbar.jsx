@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal'
 
 const ProfileNavbar = () => {
   const router = useRouter()
+  const [createCourseModalShow, setCreateCourseModalShow] = useState(false)
 
   const fieldCreator = (textLink, routePath, iconClass) => {
     return (
@@ -17,7 +19,7 @@ const ProfileNavbar = () => {
   }
   return (
     <div className="profile-mobile">
-      <div className="profile-create-course d-flex mb-5">
+      <div className="profile-create-course d-flex mb-5" onClick={() => setCreateCourseModalShow(true)}>
         <h3 className="profile-create-course-text">Create new course</h3>
         <i className="fas fa-plus-circle profile-create-course-illustration"/>
       </div>
@@ -35,7 +37,12 @@ const ProfileNavbar = () => {
         <p className="profile-upgrade-text">Upgrade to PRO version to get more features</p>
         <button className="profile-upgrade-button">Upgrade</button>
       </div>
+      <CreateCourseModal
+        show={createCourseModalShow}
+        onHide={() => setCreateCourseModalShow(false)}
+      />
     </div>
+
   )
 }
 

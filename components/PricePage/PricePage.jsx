@@ -35,11 +35,11 @@ const PricePage = () => {
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Lorem ipsum</p>
+                <p className="price-benefits-text">3 editor elements</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Basic courses triangle</p>
+                <p className="price-benefits-text">Basic tools of the course</p>
               </div>
             </div>
             <button type="button" className="price-button current-plan mb-4">Your current plan</button>
@@ -56,19 +56,19 @@ const PricePage = () => {
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">10 users included</p>
+                <p className="price-benefits-text">60 users included</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">2 courses available</p>
+                <p className="price-benefits-text">5 courses available</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Lorem ipsum</p>
+                <p className="price-benefits-text">5 editor elements</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Basic courses triangle</p>
+                <p className="price-benefits-text">Files and analytics of the course</p>
               </div>
             </div>
             <button type="button" className="price-button mb-4">Get upgrade</button>
@@ -85,19 +85,19 @@ const PricePage = () => {
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">10 users included</p>
+                <p className="price-benefits-text">100+ users included</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">2 courses available</p>
+                <p className="price-benefits-text">20 courses available</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Lorem ipsum</p>
+                <p className="price-benefits-text">7 editor elements</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Basic courses triangle</p>
+                <p className="price-benefits-text">Access level of moderator</p>
               </div>
             </div>
             <button type="button" className="price-button mb-4">Get upgrade</button>

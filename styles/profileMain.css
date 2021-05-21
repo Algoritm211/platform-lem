@@ -93,9 +93,12 @@
     margin: 0;
 }
 .profile-welcome-img{
-    width: 90%;
+    width: 80%;
     position: absolute;
-    top: -90px;
+    top: -75px;
+}
+.profile-welcome-height{
+    height: 150px;
 }
 .profile-welcome-course-img{
     width: 100%;
@@ -173,7 +176,7 @@
 }
 @media (max-width: 1200px) {
     .profile-welcome-img{
-        top: -70px;
+        top: -45px;
     }
 }
 @media (max-width: 992px) {
@@ -193,6 +196,9 @@
     }
     .profile-upgrade-text{
         font-size: 10px;
+    }
+    .profile-welcome-height{
+        height: auto;
     }
 }
 @media (max-width: 768px) {

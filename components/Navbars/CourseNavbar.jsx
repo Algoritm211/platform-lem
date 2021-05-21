@@ -22,7 +22,7 @@ const CourseNavbar = () => {
           <p className="profile-button-text" style={{ fontSize: '16px' }}>Course</p>
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Description', '/description', 'fas fa-align-left')}
+          {fieldCreator('Description', '/editor', 'fas fa-align-left')}
         </div>
         <div className="profile-button d-flex mb-4">
           {fieldCreator('Content', '/course', 'fas fa-th-large')}
@@ -32,7 +32,7 @@ const CourseNavbar = () => {
           {fieldCreator('Dashboard', '/profile', 'fab fa-flipboard')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Editor', '/editor', 'fab fa-elementor')}
+          {fieldCreator('Teaching', '/teaching', 'fas fa-book')}
         </div>
         <div className="profile-button d-flex mb-4">
           {fieldCreator('Settings', '/settings', 'fas fa-cog')}
@@ -40,7 +40,9 @@ const CourseNavbar = () => {
         <div className="profile-upgrade-block mt-5">
           <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
           <p className="profile-upgrade-text">Upgrade to PRO version to get more features</p>
-          <button className="profile-upgrade-button">Upgrade</button>
+          <a href={`/plans`}>
+            <button className="profile-upgrade-button">Upgrade</button>
+          </a>
         </div>
       </div>
     </div>

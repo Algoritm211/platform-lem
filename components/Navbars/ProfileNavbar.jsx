@@ -27,7 +27,7 @@ const ProfileNavbar = () => {
         {fieldCreator('Dashboard', '/profile', 'fab fa-flipboard')}
       </div>
       <div className="profile-button d-flex mb-4">
-        {fieldCreator('Editor', '/editor', 'fab fa-elementor')}
+        {fieldCreator('Teaching', '/teaching', 'fas fa-book')}
       </div>
       <div className="profile-button d-flex mb-4">
         {fieldCreator('Settings', '/settings', 'fas fa-cog')}
@@ -35,7 +35,9 @@ const ProfileNavbar = () => {
       <div className="profile-upgrade-block mt-5">
         <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
         <p className="profile-upgrade-text">Upgrade to PRO version to get more features</p>
-        <button className="profile-upgrade-button">Upgrade</button>
+        <a href={`/plans`}>
+          <button className="profile-upgrade-button">Upgrade</button>
+        </a>
       </div>
       <CreateCourseModal
         show={createCourseModalShow}

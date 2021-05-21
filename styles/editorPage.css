@@ -1,0 +1,30 @@
+.tox-tinymce{
+    border: 1px solid #0070f3 !important;
+    min-height: 300px !important;
+    border-radius: 8px;
+}
+.editor-preview-image{
+    width: 100%;
+    border-radius: 8px;
+}
+.editor-lesson-block{
+    border-radius: 8px;
+    border: 1px solid #0070f3;
+}
+.editor-lesson-title{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+.editor-input{
+    outline: none;
+    width: 100%;
+    border: solid 2px #dadce0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 0 !important;
+    color: rgba(0,0,0,.9);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+}

@@ -43,9 +43,9 @@ const UserImage = () => {
               Dashboard</a>
           </li>
           <li>
-            <a href={`/myprof`}>
-              <i className="fab fa-elementor" style={{ marginRight: '10px' }}/>
-              Editor</a>
+            <a href={`/teaching`}>
+              <i className="fas fa-book" style={{ marginRight: '10px' }}/>
+              Teaching</a>
           </li>
           <li>
             <a href={`/settings`}>

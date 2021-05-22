@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
-import { getUserCourses } from '../../store/courses-reducer/courses-selector'
-import { loadUserCourses } from '../../store/courses-reducer/courses-thunks'
+import { getUserData } from '../../store/auth/selectors'
+import { getUserCourses } from '../../store/courses/selectors'
+import { loadUserCourses } from '../../store/courses/thunks'
 import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
 
 const ProfileTeaching = () => {

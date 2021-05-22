@@ -4,8 +4,8 @@ import {
   setAllCourses,
   setCurrentCourse, setUserCourses,
   toggleIsLoading, updateCourse,
-} from './courses-reducer'
-import { setUserData } from '../auth-reducer/auth-reducer'
+} from './reducer'
+import { setUserData } from '../auth/reducer'
 
 export const createCourse = (courseData) => async (dispatch) => {
   dispatch(toggleIsLoading(true))

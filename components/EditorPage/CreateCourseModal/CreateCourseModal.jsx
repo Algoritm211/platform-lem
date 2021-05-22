@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import CourseAPI from '../../../api/api.course'
-import { setCurrentCourse } from '../../../store/courses-reducer/courses-reducer'
+import { setCurrentCourse } from '../../../store/courses/reducer'
 
 const createCourseValidationSchema = Yup.object().shape({
   title: Yup.string()

@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
-import { loginUser } from '../../store/auth-reducer/auth-thunks'
+import { loginUser } from '../../store/auth/auth.thunks'
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()

@@ -1,18 +1,28 @@
 import UserAPI from '../../api/api.user'
-import { logout, setUserData, toggleIsLoading } from './auth-reducer'
+import { logout, setUserData, toggleIsLoading } from './reducer'
 
 export const uploadAvatar = (photoFile) => async (dispatch) => {
-  dispatch(toggleIsLoading(true))
-  const data = await UserAPI.uploadAvatar(photoFile)
-  dispatch(setUserData(data.user))
-  dispatch(toggleIsLoading(false))
+  try {
+    dispatch(toggleIsLoading(true))
+    const data = await UserAPI.uploadAvatar(photoFile)
+    dispatch(setUserData(data.user))
+    dispatch(toggleIsLoading(false))
+  } catch (error) {
+    console.log(error)
+    dispatch(toggleIsLoading(false))
+  }
 }
 
 export const deleteAvatar = () => async (dispatch) => {
-  dispatch(toggleIsLoading(true))
-  const data = await UserAPI.deleteAvatar()
-  dispatch(setUserData(data.user))
-  dispatch(toggleIsLoading(false))
+  try {
+    dispatch(toggleIsLoading(true))
+    const data = await UserAPI.deleteAvatar()
+    dispatch(setUserData(data.user))
+    dispatch(toggleIsLoading(false))
+  } catch (error) {
+    console.log(error)
+    dispatch(toggleIsLoading(false))
+  }
 }
 
 // all fields in update updateObj must be named like User model fields

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleLikeCourse } from '../../store/courses-reducer/courses-thunks'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
+import { toggleLikeCourse } from '../../store/courses/thunks'
+import { getUserData } from '../../store/auth/selectors'
 import Link from 'next/link'
 
 const CourseCard = ({ course }) => {

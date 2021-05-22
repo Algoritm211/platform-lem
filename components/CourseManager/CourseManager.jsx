@@ -1,16 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
-import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
 import CourseNavbar from '../Navbars/CourseNavbar'
 import Link from 'next/link'
 
 const CourseManager = () => {
-  const user = useSelector(getUserData)
-
-  // const courseBlock = user.courses.map((course) => {
-  //   return <ProfileCourseCard course={course} key={course._id}/>
-  // })
   return (
     <div>
       <div className="container my-5">
@@ -34,7 +26,6 @@ const CourseManager = () => {
                 <h3 className="profile-courses-one-lessonNumber">1.</h3>
                 <div className="profile-courses-one-content">
                   <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  {/*<p className="profile-courses-one-text">Lesson description</p>*/}
                   <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
                 </div>
                 <div className="ml-auto">
@@ -51,7 +42,7 @@ const CourseManager = () => {
                 <h3 className="profile-courses-one-lessonNumber">2.</h3>
                 <div className="profile-courses-one-content">
                   <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  {/*<p className="profile-courses-one-text">Lesson description</p>*/}
+                  {/* <p className="profile-courses-one-text">Lesson description</p>*/}
                   <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
                 </div>
                 <div className="ml-auto">
@@ -68,7 +59,7 @@ const CourseManager = () => {
                 <h3 className="profile-courses-one-lessonNumber">3.</h3>
                 <div className="profile-courses-one-content">
                   <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  {/*<p className="profile-courses-one-text">Lesson description</p>*/}
+                  {/* <p className="profile-courses-one-text">Lesson description</p>*/}
                   <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
                 </div>
                 <div className="ml-auto">

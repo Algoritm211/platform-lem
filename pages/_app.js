@@ -19,8 +19,8 @@ import App from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import Head from 'next/head'
 import { useDispatch } from 'react-redux'
-import { authUser } from '../store/auth-reducer/auth-thunks'
 import { getCookie } from '../components/utils/cookieFunctions'
+import { authUser } from '../store/auth/auth.thunks'
 
 
 function MyComponent({ children }) {

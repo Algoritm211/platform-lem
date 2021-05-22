@@ -2,8 +2,8 @@ import React from 'react'
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
-import { unsubscribeCourse } from '../../store/courses-reducer/courses-thunks'
+import { getUserData } from '../../store/auth/selectors'
+import { unsubscribeCourse } from '../../store/courses/thunks'
 
 const ProfileCourseCard = ({ course }) => {
   const dispatch = useDispatch()

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
+import { getUserData } from '../../store/auth/selectors'
 import ProfileCourseCard from './ProfileCourseCard'
-import { loadUserCourses } from '../../store/courses-reducer/courses-thunks'
-import { getUserCourses } from '../../store/courses-reducer/courses-selector'
+import { loadUserCourses } from '../../store/courses/thunks'
+import { getUserCourses } from '../../store/courses/selectors'
 import Link from 'next/link'
 
 const ProfileMain = () => {

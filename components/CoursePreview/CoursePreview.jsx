@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadCurrentCourse, subscribeToCourse, unsubscribeCourse } from '../../store/courses-reducer/courses-thunks'
-import { getCurrentCourse } from '../../store/courses-reducer/courses-selector'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
+import { loadCurrentCourse, subscribeToCourse, unsubscribeCourse } from '../../store/courses/thunks'
+import { getCurrentCourse } from '../../store/courses/selectors'
+import { getUserData } from '../../store/auth/selectors'
 
 const CoursePreview = () => {
   const dispatch = useDispatch()

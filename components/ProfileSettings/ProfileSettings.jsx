@@ -3,8 +3,8 @@ import ProfileNavbar from '../Navbars/ProfileNavbar'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsLoading, getUserData } from '../../store/auth-reducer/auth-selector'
-import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth-reducer/user-thunks'
+import { getIsLoading, getUserData } from '../../store/auth/selectors'
+import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth/user.thunks'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string()

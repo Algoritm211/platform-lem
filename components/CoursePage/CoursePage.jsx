@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import CourseCard from '../CourseCard/CourseCard'
 import Carousel from './Subject-carousel'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadAllCourses } from '../../store/courses-reducer/courses-thunks'
-import { getAllCourses } from '../../store/courses-reducer/courses-selector'
+import { loadAllCourses } from '../../store/courses/thunks'
+import { getAllCourses } from '../../store/courses/selectors'
 // import Slider from 'react-slick'
 
 const CoursePage = () => {

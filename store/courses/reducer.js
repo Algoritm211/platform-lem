@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const coursesReducer = createSlice({
+const reducer = createSlice({
   name: 'coursesReducer',
   initialState: {
     allCourses: [],
@@ -77,6 +77,6 @@ export const {
   clearCurrentCourse,
   setUserAuthorCourses,
   setFilters,
-} = coursesReducer.actions
+} = reducer.actions
 
-export default coursesReducer.reducer
+export default reducer.reducer

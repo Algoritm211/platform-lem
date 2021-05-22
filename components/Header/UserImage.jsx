@@ -1,7 +1,7 @@
 import React from 'react'
-import { getUserData } from '../../store/auth-reducer/auth-selector'
+import { getUserData } from '../../store/auth/selectors'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUser } from '../../store/auth-reducer/auth-thunks'
+import { logoutUser } from '../../store/auth/auth.thunks'
 
 const UserImage = () => {
   const user = useSelector(getUserData)

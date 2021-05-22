@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const authReducer = createSlice({
+const reducer = createSlice({
   name: 'auth',
   initialState: {
     userData: {},
@@ -49,6 +49,6 @@ export const {
   registrationSuccess,
   setRegistrationError,
   toggleIsLoading,
-} = authReducer.actions
+} = reducer.actions
 
-export default authReducer.reducer
+export default reducer.reducer

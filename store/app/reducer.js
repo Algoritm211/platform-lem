@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const appReducer = createSlice({
+const reducer = createSlice({
   name: 'appReducer',
   initialState: {
     isReady: false,
@@ -12,5 +12,5 @@ const appReducer = createSlice({
   },
 })
 
-export const { setAppReady } = appReducer.actions
-export default appReducer.reducer
+export const { setAppReady } = reducer.actions
+export default reducer.reducer

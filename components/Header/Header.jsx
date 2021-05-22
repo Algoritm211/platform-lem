@@ -5,7 +5,7 @@ import { Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link'
 import UserImage from './UserImage'
 import withPageSize from '../HOC/withPageSize'
-import { getIsAuth } from '../../store/auth-reducer/auth-selector'
+import { getIsAuth } from '../../store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 

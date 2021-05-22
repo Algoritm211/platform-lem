@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
-import { registerUser } from '../../store/auth-reducer/auth-thunks'
+import { registerUser } from '../../store/auth/auth.thunks'
 
 const registrationValidationSchema = Yup.object().shape({
   name: Yup.string()

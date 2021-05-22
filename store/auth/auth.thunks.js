@@ -1,11 +1,11 @@
-import { setAppReady } from '../app-reducer/app-reducer'
+import { setAppReady } from '../app/reducer'
 import {
   logout,
   registrationSuccess,
   setIsAuth, setRegistrationError,
   setUserAuthData,
   toggleIsLoading,
-} from './auth-reducer'
+} from './reducer'
 import AuthAPI from '../../api/api.auth'
 
 export const authUser = () => async (dispatch) => {

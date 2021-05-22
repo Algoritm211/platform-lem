@@ -21,10 +21,10 @@ const EditorPage = () => {
                 <input className={'editor-input d-block my-auto'}
                   // value={title}
                   // onChange={(event) => setTitle(event.target.value)}
-                       type="text"
-                       placeholder="Course title"
-                       name="title"
-                       id="title"/>
+                  type="text"
+                  placeholder="Course title"
+                  name="title"
+                  id="title"/>
               </div>
             </div>
             <h3 className="editor-lesson-title mt-5 mb-3">Course short description</h3>
@@ -52,10 +52,9 @@ const EditorPage = () => {
                   'searchreplace visualblocks code fullscreen',
                   'insertdatetime media table paste code help wordcount',
                 ],
-                toolbar:
-                  `undo redo | formatselect | bold italic backcolor | \
-						alignleft aligncenter alignright alignjustify | \
-						bullist numlist outdent indent | removeformat | help`,
+                toolbar: `undo redo | formatselect | bold italic backcolor | \
+                          alignleft aligncenter alignright alignjustify | \
+                          bullist numlist outdent indent | removeformat | help`,
               }}
               // onEditorChange={handleEditorChange}
             />

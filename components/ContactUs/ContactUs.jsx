@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 
 const ContactUs = () => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('contacts')
   return (
     <div>
       <div className="container my-3">
@@ -10,8 +10,7 @@ const ContactUs = () => {
           <div className="row">
             <div className="col-12 col-md-4 p-5 m-auto">
               <h3 className="content-title mb-2">{t('title')}</h3>
-              <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor</p>
+              <p className="content-text">{t('description')}</p>
               <a className="contact-link" href="https://t.me/EdwardDK">
                 <div className="d-flex mt-5 contacts-links py-1">
                   <i className="fab fa-telegram contacts-illustration"/>

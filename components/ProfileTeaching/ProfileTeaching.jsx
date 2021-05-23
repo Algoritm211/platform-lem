@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserCourses } from '../../store/courses/selectors'
+import { getUserAuthorCourses, getUserCourses } from '../../store/courses/selectors'
 import { loadUserCourses } from '../../store/courses/thunks'
 import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
 
 const ProfileTeaching = () => {
+  const coursesUserAuthor = useSelector(getUserAuthorCourses)
   const dispatch = useDispatch()
   const userCourses = useSelector(getUserCourses)
 
@@ -19,6 +20,10 @@ const ProfileTeaching = () => {
   }
 
   const courseBlock = userCourses.map((course) => {
+    return <ProfileCourseCard course={course} key={course._id}/>
+  })
+
+  const courseCreatedBlock = coursesUserAuthor.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
   })
   return (
@@ -41,7 +46,7 @@ const ProfileTeaching = () => {
             <div className="profile-courses">
               <h3 className="profile-courses-title">Teaching</h3>
               {courseBlock.length !== 0
-                ? courseBlock
+                ? courseCreatedBlock
                 : (
                   <div className="profile-courses-one d-flex my-3">
                     <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>

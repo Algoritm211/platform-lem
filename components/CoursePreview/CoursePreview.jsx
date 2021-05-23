@@ -65,12 +65,12 @@ const CoursePreview = () => {
         <div className="row">
           <div className="col-12 col-md-8 mt-5">
             <h3 className="course-preview-title my-3">About course</h3>
-            <p>
-              {course?.about}
+            <p dangerouslySetInnerHTML={{ __html: course?.about }}>
+              {/* {course?.about}*/}
             </p>
           </div>
           <div className="col-12 col-md-4 mt-5">
-            <img className="my-3" style={{ width: '100%' }} src="https://cdn.pixabay.com/photo/2016/06/13/07/59/pi-1453836_1280.jpg" alt="course-preview-photo"/>
+            <img className="my-3" style={{ width: '100%' }} src={course.coursePreview?.url || course.coursePreview} alt="course-preview-photo"/>
             <p className="course-preview-price my-3">Free</p>
             {user?.courses?.includes(course._id) ? (
               <button

@@ -4,23 +4,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth/selectors'
 import ProfileCourseCard from './ProfileCourseCard'
 import { loadUserCourses } from '../../store/courses/thunks'
-import { getUserCourses } from '../../store/courses/selectors'
+import { getUserAuthorCourses, getUserCourses } from '../../store/courses/selectors'
 import Link from 'next/link'
 
 const ProfileMain = () => {
   const dispatch = useDispatch()
   const user = useSelector(getUserData)
   const userCourses = useSelector(getUserCourses)
+  const coursesUserAuthor = useSelector(getUserAuthorCourses)
 
   useEffect(() => {
     dispatch(loadUserCourses())
   }, [])
 
-  if (!userCourses) {
+  if (!userCourses || !coursesUserAuthor) {
     return <div>loading...</div>
   }
 
-  const courseBlock = userCourses.map((course) => {
+  const courseCreatedBlock = coursesUserAuthor.map((course) => {
+    return <ProfileCourseCard course={course} key={course._id}/>
+  })
+
+  const courseLearningBlock = userCourses.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
   })
   return (
@@ -42,8 +47,9 @@ const ProfileMain = () => {
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">My Courses</h3>
-              {courseBlock.length !== 0
-                ? courseBlock
+              {courseCreatedBlock}
+              {courseLearningBlock.length !== 0
+                ? courseLearningBlock
                 : (
                   <div className="profile-courses-one d-flex my-3">
                     <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>

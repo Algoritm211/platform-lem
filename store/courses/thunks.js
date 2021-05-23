@@ -2,7 +2,7 @@ import CourseAPI from '../../api/api.course'
 import {
   deleteFromLearning,
   setAllCourses,
-  setCurrentCourse, setUserCourses,
+  setCurrentCourse, setUserAuthorCourses, setUserCourses,
   toggleIsLoading, updateCourse,
 } from './reducer'
 import { setUserData } from '../auth/reducer'
@@ -12,6 +12,24 @@ export const createCourse = (courseData) => async (dispatch) => {
   const data = await CourseAPI.create(courseData)
   dispatch(setCurrentCourse(data.course))
   dispatch(toggleIsLoading(false))
+}
+// title, description, about, id
+export const updateCourseInfo = (courseData) => async (dispatch) => {
+  dispatch(toggleIsLoading(true))
+  const data = await CourseAPI.update(courseData)
+  dispatch(setCurrentCourse(data.course))
+  dispatch(toggleIsLoading(false))
+}
+// id and photo file
+export const updateCoursePreview = (formData) => async (dispatch) => {
+  try {
+    dispatch(toggleIsLoading(true))
+    const data = await CourseAPI.updatePreview(formData)
+    dispatch(setCurrentCourse(data.course))
+    dispatch(toggleIsLoading(false))
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const loadAllCourses = (page, filters) => async (dispatch) => {
@@ -49,5 +67,6 @@ export const loadUserCourses = () => async (dispatch) => {
   dispatch(toggleIsLoading(true))
   const data = await CourseAPI.getUserCourses()
   dispatch(setUserCourses(data))
+  dispatch(setUserAuthorCourses(data))
   dispatch(toggleIsLoading(false))
 }

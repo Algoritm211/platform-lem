@@ -7,6 +7,17 @@ class CourseAPI {
     return data
   }
 
+  // title, description, about, id
+  async update(formValues) {
+    const { data } = await instanceAxios.post('/course/update', formValues)
+    return data
+  }
+
+  async updatePreview(formData) {
+    const { data } = await instanceAxios.post('/course/preview-update', formData)
+    return data
+  }
+
   async all(page, filters) {
     const { data } = await instanceAxios.get(`/course?page=${page}&filters=${filters}`)
     return data

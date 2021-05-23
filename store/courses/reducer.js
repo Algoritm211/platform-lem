@@ -14,7 +14,7 @@ const reducer = createSlice({
   },
   reducers: {
     toggleIsLoading: (state, action) => {
-      state.isLoading = action
+      state.isLoading = action.payload
     },
     setAllCourses: (state, action) => {
       state.allCourses = action.payload.courses

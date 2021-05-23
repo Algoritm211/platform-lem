@@ -37,6 +37,15 @@ const CourseManager = () => {
                     </a>
                   </Link>
                 </div>
+                <div className="ml-1">
+                  <Link href={`/programs/`}>
+                    <a style={{ textDecoration: 'none' }}>
+                      <button className="lesson-delete-btn d-flex">
+                        <i className="fas fa-trash-alt"/>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
               </div>
               <div className="profile-courses-one d-flex my-3">
                 <h3 className="profile-courses-one-lessonNumber">2.</h3>
@@ -50,6 +59,15 @@ const CourseManager = () => {
                     <a style={{ textDecoration: 'none' }}>
                       <button className="lesson-btn d-flex">
                         <i className="fas fa-pen"/>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
+                <div className="ml-1">
+                  <Link href={`/programs/`}>
+                    <a style={{ textDecoration: 'none' }}>
+                      <button className="lesson-delete-btn d-flex">
+                        <i className="fas fa-trash-alt"/>
                       </button>
                     </a>
                   </Link>
@@ -68,6 +86,34 @@ const CourseManager = () => {
                       <button className="lesson-btn d-flex">
                         <i className="fas fa-pen"/>
                       </button>
+                    </a>
+                  </Link>
+                </div>
+                <div className="ml-1">
+                  <Link href={`/programs/`}>
+                    <a style={{ textDecoration: 'none' }}>
+                      <button className="lesson-delete-btn d-flex">
+                        <i className="fas fa-trash-alt"/>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+              <div className="profile-courses-one d-flex my-3">
+                <div className="mr-3">
+                  <Link href={`/programs/`}>
+                    <a style={{ textDecoration: 'none' }}>
+                      <button className="lesson-btn d-flex">
+                        <i className="fas fa-plus"/>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
+                <div className="profile-courses-one-content">
+                  <h3 className="profile-courses-one-title">Let`s create another lesson</h3>
+                  <Link href={`#`}>
+                    <a style={{ textDecoration: 'none' }}>
+                      <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Click the button left</p>
                     </a>
                   </Link>
                 </div>

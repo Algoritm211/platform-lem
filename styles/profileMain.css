@@ -154,6 +154,20 @@
     background-color: #005ac7;
     transition: 0.5s;
 }
+.lesson-delete-btn{
+    display: flex;
+    justify-content: right;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    background-color: crimson;
+    transition: 0.5s;
+}
+.lesson-delete-btn:hover{
+    background-color: #c11135;
+    transition: 0.5s;
+}
 .profile-courses-one-title{
     font-size: 16px;
     font-weight: 600;

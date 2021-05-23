@@ -1,0 +1,122 @@
+.courses-lecture{
+    font-size: 16px;
+}
+.course-description{
+    font-size: 14px;
+    color: #7e919f;
+}
+.course-page{
+    display: flex;
+}
+.course-info{
+    position: fixed;
+    right: 3rem;
+}
+@media (max-width: 768px) {
+    .courses-title{
+        margin-bottom: 1rem!important;
+    }
+    .course-info{
+        position: inherit;
+    }
+}
+@media (width: 768px) {
+    .course-info{
+        top: 114px;
+        position: fixed;
+    }
+}
+
+@media (max-width: 769px) {
+    .course-page{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@media (min-width: 1140px) {
+    .course-info{
+        position: fixed;
+        right: 5rem;
+        margin-right: fill;
+    }
+}
+@media (min-width: 1320px) {
+    .course-info{
+        position: fixed;
+        right: 7rem;
+    }
+}
+@media (min-width: 1720px) {
+    .course-info{
+        position: fixed;
+        right: 12rem;
+    }
+}
+@media (min-width: 1920px) {
+    .course-info{
+        position: relative;
+        right: 0;
+    }
+}
+.courses-lecture{
+    font-size: 16px;
+}
+.course-description{
+    font-size: 14px;
+    color: #7e919f;
+}
+.course-page{
+    display: flex;
+}
+.course-info{
+    position: fixed;
+    right: 3rem;
+}
+@media (max-width: 768px) {
+    .courses-title{
+        margin-bottom: 1rem!important;
+    }
+    .course-info{
+        position: inherit;
+    }
+}
+@media (width: 768px) {
+    .course-info{
+        top: 114px;
+        position: fixed;
+    }
+}
+
+@media (max-width: 769px) {
+    .course-page{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@media (min-width: 1140px) {
+    .course-info{
+        position: fixed;
+        right: 5rem;
+        margin-right: fill;
+    }
+}
+@media (min-width: 1320px) {
+    .course-info{
+        position: fixed;
+        right: 7rem;
+    }
+}
+@media (min-width: 1720px) {
+    .course-info{
+        position: fixed;
+        right: 12rem;
+    }
+}
+@media (min-width: 1920px) {
+    .course-info{
+        position: relative;
+        right: 0;
+    }
+}

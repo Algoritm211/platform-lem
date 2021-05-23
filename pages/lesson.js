@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../components/Header/Header'
-import LessonPage from '../components/LessonPage/LessonPage'
+import Lesson from '../components/Lesson/Lesson'
 
-const Lesson = () => {
+const CourseLesson = () => {
   return (
     <div>
       <Header/>
-      <LessonPage/>
+      <Lesson/>
     </div>
   )
 }
 
-export default Lesson
+export default CourseLesson

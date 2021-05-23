@@ -21,7 +21,7 @@ import Head from 'next/head'
 import { useDispatch } from 'react-redux'
 import { getCookie } from '../components/utils/cookieFunctions'
 import { authUser } from '../store/auth/auth.thunks'
-
+import { appWithTranslation } from 'next-i18next'
 
 function MyComponent({ children }) {
   const dispatch = useDispatch()
@@ -65,4 +65,4 @@ class MyApp extends App {
   }
 }
 
-export default wrapper.withRedux(MyApp)
+export default wrapper.withRedux(appWithTranslation(MyApp))

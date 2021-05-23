@@ -11,11 +11,9 @@ const rootReducer = combineReducers({
   coursesReducer,
 })
 
-// create a makeStore function
 const makeStore = (context) =>
   configureStore({
     reducer: rootReducer,
   })
 
-// export an assembled wrapper
 export const wrapper = createWrapper(makeStore, { debug: false })

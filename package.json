@@ -16,6 +16,7 @@
     "bootstrap": "^4.6.0",
     "formik": "^2.2.6",
     "next": "10.2.0",
+    "next-i18next": "^8.3.0",
     "next-redux-wrapper": "^6.0.2",
     "nextjs-progressbar": "0.0.9",
     "react": "17.0.2",

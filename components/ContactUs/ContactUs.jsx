@@ -1,13 +1,15 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 
 const ContactUs = () => {
+  const { t } = useTranslation('common')
   return (
     <div>
       <div className="container my-3">
         <div style={{ backgroundColor: '#8cdac8', borderRadius: '8px' }}>
           <div className="row">
             <div className="col-12 col-md-4 p-5 m-auto">
-              <h3 className="content-title mb-2">Stay in touch</h3>
+              <h3 className="content-title mb-2">{t('title')}</h3>
               <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor</p>
               <a className="contact-link" href="https://t.me/EdwardDK">

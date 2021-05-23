@@ -8,7 +8,8 @@ const Lesson = () => {
       <div className="container course-page mt-5">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-8">
-            <h1>Lesson title</h1>
+            <h1 className="category-picker">Lesson title</h1>
+            <h3 className="editor-lesson-title mt-5 mb-3">Task 1</h3>
             <p className="courses-lecture mb-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus. Amet facilisis magna etiam
               tempor orci eu lobortis elementum. Consectetur a erat nam at lectus. Tempor id eu nisl nunc mi ipsum. Tortor at risus viverra adipiscing at in tellus integer feugiat. Malesuada fames ac turpis
@@ -40,8 +41,17 @@ const Lesson = () => {
               }}
               // onEditorChange={handleEditorChange}
             />
-            <div className="mt-3"/>
-            <div className="d-flex">
+
+            <h3 className="editor-lesson-title mt-5 mb-3">Test answer</h3>
+            <input className={'editor-input d-block my-auto'}
+              // value={title}
+              // onChange={(event) => setTitle(event.target.value)}
+                   type="answer"
+                   placeholder="Test answer"
+                   name="answer"
+                   id="answer"/>
+
+            <div className="d-flex mt-3">
               <div className="d-flex justify-content-start mb-5">
                 <button className="content-btn">
                   Next task

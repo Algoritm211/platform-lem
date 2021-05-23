@@ -25,7 +25,7 @@ const CourseNavbar = () => {
           {fieldCreator('Description', '/editor', 'fas fa-align-left')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Content', '/course', 'fas fa-th-large')}
+          {fieldCreator('Content', '/courseplan', 'fas fa-th-large')}
         </div>
 
         <div className="profile-button d-flex pt-5 mb-4" style={{ borderTop: '1px solid #212529' }}>

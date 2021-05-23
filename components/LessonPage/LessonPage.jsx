@@ -113,6 +113,14 @@ const LessonPage = () => {
               }}
               // onEditorChange={handleEditorChange}
             />
+            <h3 className="editor-lesson-title mt-5 mb-3">Right answer on your question</h3>
+            <input className={'editor-input d-block my-auto'}
+              // value={title}
+              // onChange={(event) => setTitle(event.target.value)}
+                   type="answer"
+                   placeholder="Right answer"
+                   name="answer"
+                   id="answer"/>
           </div>
 
 

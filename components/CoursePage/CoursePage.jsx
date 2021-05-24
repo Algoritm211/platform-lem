@@ -6,11 +6,14 @@ import { loadAllCourses } from '../../store/courses/thunks'
 import { getAllCourses } from '../../store/courses/selectors'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
+import { getIsAuth } from '../../store/auth/selectors'
+import UserImage from '../Header/UserImage'
 // import Slider from 'react-slick'
 
 const CoursePage = () => {
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
+  const isAuth = useSelector(getIsAuth)
 
   const switchModals = () => {
     setLoginModalShow((prev) => !prev)
@@ -116,21 +119,27 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
-      <div className="container my-5">
-        <h2 className="category-picker py-3">Want to create your own course?</h2>
-        <div style={{ backgroundColor: '#B2CCFC', borderRadius: '8px' }}>
-          <div className="row">
-            <div className="col-12 col-md-3 m-auto">
-              <img className="content-image" src="/14.png" alt="photo"/>
+      <div>
+        {isAuth
+          ? (<div/>)
+          : (
+            <div className="container my-5">
+              <h2 className="category-picker py-3">Want to create your own course?</h2>
+              <div style={{ backgroundColor: '#B2CCFC', borderRadius: '8px' }}>
+                <div className="row">
+                  <div className="col-12 col-md-3 m-auto">
+                    <img className="content-image" src="/14.png" alt="photo"/>
+                  </div>
+                  <div className="col-12 col-md-9 p-5 m-auto">
+                    <h3 className="content-title mb-2">Create an account</h3>
+                    <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor</p>
+                    <button className="content-btn" onClick={() => setRegistrationModalShow(true)}>Get Started</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-12 col-md-9 p-5 m-auto">
-              <h3 className="content-title mb-2">Create an account</h3>
-              <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor</p>
-              <button className="content-btn" onClick={() => setLoginModalShow(true)}>Get Started</button>
-            </div>
-          </div>
-        </div>
+          )}
       </div>
       <RegistrationModal
         show={registrationModalShow}

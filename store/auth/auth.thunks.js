@@ -18,6 +18,7 @@ export const authUser = () => async (dispatch) => {
     dispatch(toggleIsLoading(false))
   } catch (error) {
     dispatch(setIsAuth({ isAuth: false }))
+    dispatch(toggleIsLoading(false))
   }
 }
 

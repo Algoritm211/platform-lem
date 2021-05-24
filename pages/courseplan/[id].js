@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header'
 import CourseManager from '../../components/CourseManager/CourseManager'
 import { wrapper } from '../../store/store'
 import LessonAPI from '../../api/api.lesson'
+import withEditProtect from '../../components/HOC/withEditProtect'
 
 const CoursePlan = ({ course, lessons }) => {
   return (
@@ -13,7 +14,7 @@ const CoursePlan = ({ course, lessons }) => {
   )
 }
 
-export default CoursePlan
+export default withEditProtect(CoursePlan)
 
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const { id } = ctx.params

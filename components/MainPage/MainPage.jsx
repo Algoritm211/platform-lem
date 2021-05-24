@@ -95,7 +95,7 @@ const MainPage = ({ size }) => {
                 <div className="carousel-card d-flex" style={{ backgroundColor: '#f7f7fc', height: '100%', alignItems: 'center' }}>
                   <h3 className="carousel-title m-0 pr-2">Check course`s page</h3>
                   <i className="fas fa-arrow-right"/>
-                  {/*<p className="carousel-subtitle" style={{ color: 'rgb(137, 81, 105)' }}>2 courses</p></div>*/}
+                  {/* <p className="carousel-subtitle" style={{ color: 'rgb(137, 81, 105)' }}>2 courses</p></div>*/}
                 </div>
               </a>
             </Link>

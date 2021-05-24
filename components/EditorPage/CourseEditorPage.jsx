@@ -8,7 +8,7 @@ import { getCurrentCourse, getIsLoading } from '../../store/courses/selectors'
 import { updateCourseInfo, updateCoursePreview } from '../../store/courses/thunks'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 
-const EditorPage = ({ course }) => {
+const CourseEditorPage = ({ course }) => {
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const currentCourse = useSelector(getCurrentCourse)
@@ -28,7 +28,6 @@ const EditorPage = ({ course }) => {
     onSubmit: (values) => {
       values['about'] = editorBody
       values['id'] = course._id
-      alert(JSON.stringify(values, null, 2))
       dispatch(updateCourseInfo(values))
     },
   })
@@ -119,4 +118,4 @@ const EditorPage = ({ course }) => {
 }
 
 
-export default EditorPage
+export default CourseEditorPage

@@ -149,7 +149,7 @@ const PricePage = () => {
             <button type="button" className="price-button mb-4">Get upgrade</button>
           </div>
         </div>
-        {/*<div className="col-md-4 my-3 text-center">*/}
+        {/* <div className="col-md-4 my-3 text-center">*/}
         {/*  <div className="price-card mb-4">*/}
         {/*    <h3 className="price-card-name mt-4 mb-3">Master</h3>*/}
         {/*    <h1 className="price-card-title pricing-card-title mb-3">*/}
@@ -177,7 +177,7 @@ const PricePage = () => {
         {/*    </div>*/}
         {/*    <button type="button" className="price-button mb-4">Get upgrade</button>*/}
         {/*  </div>*/}
-        {/*</div>*/}
+        {/* </div>*/}
 
       </div>
       <div className="row justify-content-center d-flex">

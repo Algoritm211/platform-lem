@@ -2,26 +2,22 @@ import React, { useEffect } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserAuthorCourses, getUserCourses } from '../../store/courses/selectors'
+import { getUserAuthorCourses } from '../../store/courses/selectors'
 import { loadUserCourses } from '../../store/courses/thunks'
 import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
+import withAuthRequired from '../HOC/withAuthRequired'
 
 const ProfileTeaching = () => {
-  const coursesUserAuthor = useSelector(getUserAuthorCourses)
   const dispatch = useDispatch()
-  const userCourses = useSelector(getUserCourses)
+  const coursesUserAuthor = useSelector(getUserAuthorCourses)
 
   useEffect(() => {
     dispatch(loadUserCourses())
   }, [])
 
-  if (!userCourses) {
+  if (!coursesUserAuthor) {
     return <div>loading...</div>
   }
-
-  const courseBlock = userCourses.map((course) => {
-    return <ProfileCourseCard course={course} key={course._id}/>
-  })
 
   const courseCreatedBlock = coursesUserAuthor.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
@@ -45,7 +41,7 @@ const ProfileTeaching = () => {
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">Teaching</h3>
-              {courseBlock.length !== 0
+              {courseCreatedBlock.length !== 0
                 ? courseCreatedBlock
                 : (
                   <div className="profile-courses-one d-flex my-3">
@@ -69,4 +65,4 @@ const ProfileTeaching = () => {
   )
 }
 
-export default ProfileTeaching
+export default withAuthRequired(ProfileTeaching)

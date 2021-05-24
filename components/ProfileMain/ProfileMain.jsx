@@ -4,26 +4,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth/selectors'
 import ProfileCourseCard from './ProfileCourseCard'
 import { loadUserCourses } from '../../store/courses/thunks'
-import { getUserAuthorCourses, getUserCourses } from '../../store/courses/selectors'
+import { getUserCourses } from '../../store/courses/selectors'
 import Link from 'next/link'
 
 const ProfileMain = () => {
   const dispatch = useDispatch()
   const user = useSelector(getUserData)
   const userCourses = useSelector(getUserCourses)
-  const coursesUserAuthor = useSelector(getUserAuthorCourses)
 
   useEffect(() => {
     dispatch(loadUserCourses())
   }, [])
 
-  if (!userCourses || !coursesUserAuthor) {
+  if (!userCourses) {
     return <div>loading...</div>
   }
-
-  const courseCreatedBlock = coursesUserAuthor.map((course) => {
-    return <ProfileCourseCard course={course} key={course._id}/>
-  })
 
   const courseLearningBlock = userCourses.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
@@ -47,7 +42,6 @@ const ProfileMain = () => {
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">My Courses</h3>
-              {courseCreatedBlock}
               {courseLearningBlock.length !== 0
                 ? courseLearningBlock
                 : (

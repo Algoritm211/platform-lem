@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
-import EditorPage from '../../components/EditorPage/EditorPage'
+import EditorPage from '../../components/EditorPage/CourseEditorPage'
 import CourseAPI from '../../api/api.course'
 import { wrapper } from '../../store/store'
+import withEditProtect from '../../components/HOC/withEditProtect'
 
 const Editor = ({ course }) => {
   return (
@@ -13,7 +14,7 @@ const Editor = ({ course }) => {
   )
 }
 
-export default Editor
+export default withEditProtect(Editor)
 
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const { id } = ctx.query

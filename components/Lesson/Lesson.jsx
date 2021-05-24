@@ -46,10 +46,10 @@ const Lesson = () => {
             <input className={'editor-input d-block my-auto'}
               // value={title}
               // onChange={(event) => setTitle(event.target.value)}
-                   type="answer"
-                   placeholder="Test answer"
-                   name="answer"
-                   id="answer"/>
+              type="answer"
+              placeholder="Test answer"
+              name="answer"
+              id="answer"/>
 
             <div className="d-flex mt-3">
               <div className="d-flex justify-content-start mb-5">

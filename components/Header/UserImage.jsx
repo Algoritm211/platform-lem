@@ -2,6 +2,7 @@ import React from 'react'
 import { getUserData } from '../../store/auth/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../../store/auth/auth.thunks'
+import Link from 'next/link'
 
 const UserImage = () => {
   const user = useSelector(getUserData)
@@ -54,9 +55,11 @@ const UserImage = () => {
           </li>
           <div className="dropdown-divider"/>
           <li>
-            <a onClick={onLogout} style={{ cursor: 'pointer' }}>
-              <i className="fas fa-power-off" style={{ marginRight: '10px' }}/>
-              Exit</a>
+            <Link href={'/'}>
+              <a onClick={onLogout} style={{ cursor: 'pointer' }}>
+                <i className="fas fa-power-off" style={{ marginRight: '10px' }}/>
+                Exit</a>
+            </Link>
           </li>
         </ul>
       </div>

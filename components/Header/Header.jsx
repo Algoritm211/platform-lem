@@ -15,7 +15,6 @@ const Header = ({ size }) => {
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
   const isAuth = useSelector(getIsAuth)
   const router = useRouter()
-  // console.log(router)
 
   const switchModals = () => {
     setLoginModalShow((prev) => !prev)

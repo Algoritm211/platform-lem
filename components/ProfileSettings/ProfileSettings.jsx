@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsLoading, getUserData } from '../../store/auth/selectors'
 import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth/user.thunks'
+import withAuthRequired from '../HOC/withAuthRequired'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string()
@@ -390,4 +391,4 @@ const ProfileSettings = () => {
   )
 }
 
-export default ProfileSettings
+export default withAuthRequired(ProfileSettings)

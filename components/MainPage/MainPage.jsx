@@ -41,7 +41,7 @@ const MainPage = ({ size }) => {
       />
 
       <div className="container my-5">
-        <div className="row">
+        <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-3 my-3">
             <h2 className="category-picker m-auto">Learn Easy</h2>
           </div>
@@ -54,7 +54,7 @@ const MainPage = ({ size }) => {
       </div>
 
       <div className="container my-5">
-        <div className="row">
+        <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-6 my-3">
             <img className="content-image" src="/12.png" alt="photo"/>
           </div>
@@ -68,7 +68,7 @@ const MainPage = ({ size }) => {
       </div>
 
       <div className="container my-5">
-        <div className="row">
+        <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-6 my-3">
             <h2 className="category-picker my-3">Additional lessons</h2>
             <p className="content-text mb-3" style={{ margin: '0' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

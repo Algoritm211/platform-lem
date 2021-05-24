@@ -7,8 +7,6 @@ import { getAllCourses } from '../../store/courses/selectors'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { getIsAuth } from '../../store/auth/selectors'
-import UserImage from '../Header/UserImage'
-// import Slider from 'react-slick'
 
 const CoursePage = () => {
   const [loginModalShow, setLoginModalShow] = useState(false)
@@ -81,21 +79,6 @@ const CoursePage = () => {
         <h2 className="category-picker py-3">Popular courses</h2>
         <div className="row">
           {coursesBlock}
-          {/* <div className="col-12 col-md-8">*/}
-          {/*  <CourseCard />*/}
-          {/* </div>*/}
-          {/* <div className="col-12 col-md-4">*/}
-          {/*  <CourseCard />*/}
-          {/* </div>*/}
-          {/* <div className="col-12 col-md-5">*/}
-          {/*  <CourseCard />*/}
-          {/* </div>*/}
-          {/* <div className="col-12 col-md-7">*/}
-          {/*  <CourseCard />*/}
-          {/* </div>*/}
-          {/* <div className="col-12 col-md-12">*/}
-          {/*  <CourseCard />*/}
-          {/* </div>*/}
         </div>
       </div>
       <div className="container my-5">

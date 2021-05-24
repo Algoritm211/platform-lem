@@ -99,25 +99,18 @@ const CourseManager = () => {
                   </Link>
                 </div>
               </div>
-              <div className="profile-courses-one d-flex my-3">
-                <div className="mr-3">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
+              <Link href={`#`}>
+                <a style={{ textDecoration: 'none' }}>
+                  <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
+                    <div className="mr-3">
                       <button className="lesson-btn d-flex">
                         <i className="fas fa-plus"/>
                       </button>
-                    </a>
-                  </Link>
-                </div>
-                <div className="profile-courses-one-content">
-                  <h3 className="profile-courses-one-title">Let`s create another lesson</h3>
-                  <Link href={`#`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Click the button left</p>
-                    </a>
-                  </Link>
-                </div>
-              </div>
+                    </div>
+                    <h3 className="profile-courses-one-title m-0">Create another lesson</h3>
+                  </div>
+                </a>
+              </Link>
             </div>
           </div>
         </div>

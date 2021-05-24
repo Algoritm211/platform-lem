@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CourseNavbar from '../Navbars/CourseNavbar'
 import { Editor } from '@tinymce/tinymce-react'
 import Link from 'next/link'
+import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
+import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
+import { useDispatch } from 'react-redux'
+import { Button } from 'react-bootstrap'
+import { updateLesson } from '../../store/lesson/thunks'
 
-const LessonPage = () => {
+const LessonEditor = ({ lesson, course }) => {
+  const dispatch = useDispatch()
+  const [lessonTitle, setLessonTitle] = useState()
+
+  useEffect(() => {
+    dispatch(setCurrentCourse(course))
+    dispatch(setCurrentLesson(lesson))
+    setLessonTitle(lesson.title)
+    return () => {
+      dispatch(clearCurrentCourse())
+      dispatch(clearCurrentLesson())
+    }
+  }, [])
+
+  const onTitleSave = () => {
+    dispatch(updateLesson(lesson._id, { title: lessonTitle }))
+  }
+
   return (
     <div>
       <div className="container my-5">
@@ -13,15 +35,16 @@ const LessonPage = () => {
           </div>
           <div className="col-sm-9 col-md-10">
             <h1 className="editor-title mb-5">Settings of the lesson</h1>
-            <h3 className="editor-lesson-title mb-3">Course title</h3>
-            <input className={'editor-input d-block my-auto'}
-              // value={title}
-              // onChange={(event) => setTitle(event.target.value)}
-                   type="text"
-                   placeholder="Course title"
-                   name="title"
-                   id="title"/>
-
+            <h3 className="editor-lesson-title mb-3">Lesson title</h3>
+            <input
+              className={'editor-input d-block my-auto'}
+              value={lessonTitle}
+              onChange={(event) => setLessonTitle(event.target.value)}
+              type="text"
+              placeholder="Course title"
+              name="title"
+              id="title"/>
+            <Button onClick={onTitleSave}>Save lesson title</Button>
             <div className="my-5">
               <h3 className="editor-lesson-title mb-3">Lesson plan</h3>
               <div className="d-flex">
@@ -108,19 +131,20 @@ const LessonPage = () => {
                 ],
                 toolbar:
                   `undo redo | formatselect | bold italic backcolor | \
-						alignleft aligncenter alignright alignjustify | \
-						bullist numlist outdent indent | removeformat | help`,
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | removeformat | help`,
               }}
               // onEditorChange={handleEditorChange}
             />
             <h3 className="editor-lesson-title mt-5 mb-3">Right answer on your question</h3>
-            <input className={'editor-input d-block my-auto'}
+            <input
+              className={'editor-input d-block my-auto'}
               // value={title}
               // onChange={(event) => setTitle(event.target.value)}
-                   type="answer"
-                   placeholder="Right answer"
-                   name="answer"
-                   id="answer"/>
+              type="answer"
+              placeholder="Right answer"
+              name="answer"
+              id="answer"/>
           </div>
 
 
@@ -133,4 +157,4 @@ const LessonPage = () => {
   )
 }
 
-export default LessonPage
+export default LessonEditor

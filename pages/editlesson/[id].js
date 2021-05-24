@@ -1,0 +1,27 @@
+import React from 'react'
+import Header from '../../components/Header/Header'
+import LessonEditor from '../../components/LessonPage/LessonEditor'
+import { wrapper } from '../../store/store'
+import LessonAPI from '../../api/api.lesson'
+
+const CourseLessonEditor = ({ lesson, course }) => {
+  return (
+    <div>
+      <Header/>
+      <LessonEditor lesson={lesson} course={course}/>
+    </div>
+  )
+}
+
+export default CourseLessonEditor
+
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
+  const { id } = ctx.params
+  const data = await LessonAPI.getOne(id)
+  return {
+    props: {
+      lesson: data.lesson,
+      course: data.course,
+    },
+  }
+})

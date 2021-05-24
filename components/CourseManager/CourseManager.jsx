@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CourseNavbar from '../Navbars/CourseNavbar'
-import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
+import { clearLessons, setLessons } from '../../store/lesson/reducer'
+import { getLessons } from '../../store/lesson/selectors'
+import { getCurrentCourse } from '../../store/courses/selectors'
+import LessonCard from '../LessonPage/LessonCard'
+import LessonAPI from '../../api/api.lesson'
+import { useRouter } from 'next/router'
 
-const CourseManager = () => {
+const CourseManager = ({ course, lessons }) => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const currentLessons = useSelector(getLessons)
+  const currentCourse = useSelector(getCurrentCourse)
+
+  useEffect(() => {
+    dispatch(setCurrentCourse(course))
+    dispatch(setLessons(lessons))
+    return () => {
+      dispatch(clearCurrentCourse())
+      dispatch(clearLessons())
+    }
+  }, [])
+
+  const onCreateLesson = async () => {
+    if (currentCourse) {
+      const data = await LessonAPI.create(currentCourse._id)
+      await router.push(`/editlesson/${data.lesson._id}`)
+    }
+  }
+
+  const lessonBlock = currentLessons.map((lesson, index) => {
+    return <LessonCard lesson={lesson} key={lesson._id} lessonIndex={index}/>
+  })
   return (
     <div>
       <div className="container my-5">
@@ -13,7 +44,7 @@ const CourseManager = () => {
           <div className="col-sm-9 col-md-10">
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>
               <div className="profile-welcome-block">
-                <h3 className="profile-welcome-title">Course title</h3>
+                <h3 className="profile-welcome-title">{course.title}</h3>
                 <p className="profile-welcome-subtitle">Here you can see your lessons, change them, delete and whatever you want!</p>
               </div>
               <div className="col-12 col-sm-6">
@@ -21,96 +52,18 @@ const CourseManager = () => {
               </div>
             </div>
             <div className="profile-courses">
-              <h3 className="profile-courses-title">Lessons(3)</h3>
-              <div className="profile-courses-one d-flex my-3">
-                <h3 className="profile-courses-one-lessonNumber">1.</h3>
-                <div className="profile-courses-one-content">
-                  <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
-                </div>
-                <div className="ml-auto">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-btn d-flex">
-                        <i className="fas fa-pen"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-                <div className="ml-1">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-delete-btn d-flex">
-                        <i className="fas fa-trash-alt"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-              <div className="profile-courses-one d-flex my-3">
-                <h3 className="profile-courses-one-lessonNumber">2.</h3>
-                <div className="profile-courses-one-content">
-                  <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  {/* <p className="profile-courses-one-text">Lesson description</p>*/}
-                  <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
-                </div>
-                <div className="ml-auto">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-btn d-flex">
-                        <i className="fas fa-pen"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-                <div className="ml-1">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-delete-btn d-flex">
-                        <i className="fas fa-trash-alt"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-              <div className="profile-courses-one d-flex my-3">
-                <h3 className="profile-courses-one-lessonNumber">3.</h3>
-                <div className="profile-courses-one-content">
-                  <h3 className="profile-courses-one-title">Lesson Title</h3>
-                  {/* <p className="profile-courses-one-text">Lesson description</p>*/}
-                  <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
-                </div>
-                <div className="ml-auto">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-btn d-flex">
-                        <i className="fas fa-pen"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-                <div className="ml-1">
-                  <Link href={`/programs/`}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <button className="lesson-delete-btn d-flex">
-                        <i className="fas fa-trash-alt"/>
-                      </button>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-              <Link href={`#`}>
-                <a style={{ textDecoration: 'none' }}>
-                  <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
-                    <div className="mr-3">
-                      <button className="lesson-btn d-flex">
-                        <i className="fas fa-plus"/>
-                      </button>
-                    </div>
-                    <h3 className="profile-courses-one-title m-0">Create another lesson</h3>
+              <h3 className="profile-courses-title">Lessons({currentLessons.length})</h3>
+              {lessonBlock}
+              <a style={{ textDecoration: 'none' }} onClick={onCreateLesson}>
+                <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
+                  <div className="mr-3">
+                    <button className="lesson-btn d-flex">
+                      <i className="fas fa-plus"/>
+                    </button>
                   </div>
-                </a>
-              </Link>
+                  <h3 className="profile-courses-one-title m-0">Create another lesson</h3>
+                </div>
+              </a>
             </div>
           </div>
         </div>

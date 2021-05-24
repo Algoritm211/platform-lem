@@ -1,9 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import { getCurrentCourse } from '../../store/courses/selectors'
 
 const CourseNavbar = () => {
   const router = useRouter()
+  const currentCourse = useSelector(getCurrentCourse)
 
   const fieldCreator = (textLink, routePath, iconClass) => {
     return (
@@ -22,10 +25,10 @@ const CourseNavbar = () => {
           <p className="profile-button-text" style={{ fontSize: '16px' }}>Course</p>
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Description', '/editor', 'fas fa-align-left')}
+          {fieldCreator('Description', `/editor/${currentCourse?._id}`, 'fas fa-align-left')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Content', '/courseplan', 'fas fa-th-large')}
+          {fieldCreator('Content', `/courseplan/${currentCourse?._id}`, 'fas fa-th-large')}
         </div>
 
         <div className="profile-button d-flex pt-5 mb-4" style={{ borderTop: '1px solid #212529' }}>

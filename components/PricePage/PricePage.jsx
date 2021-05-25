@@ -1,14 +1,15 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 
 const PricePage = () => {
+  const { t } = useTranslation('plans')
   return (
     <div className="container my-3">
       <div style={{ backgroundColor: '#B2CCFC', borderRadius: '8px' }}>
         <div className="row">
           <div className="col-12 col-md-4 p-5 m-auto">
-            <h3 className="content-title mb-2">Upgrade your education</h3>
-            <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor</p>
+            <h3 className="content-title mb-2">{t('title')}</h3>
+            <p className="content-text">{t('subtitle')}</p>
           </div>
           <div className="col-12 col-md-8 m-auto">
             <img className="content-image" src="/8.png" alt="photo"/>
@@ -18,209 +19,179 @@ const PricePage = () => {
       <div className="row justify-content-center d-flex">
         <div className="col-12 col-sm-6 col-lg-4 my-3 text-center">
           <div className="price-card mb-4">
-            <h3 className="price-card-name mt-4 mb-3">Basic</h3>
+            <h3 className="price-card-name mt-4 mb-3">{t('basic')}</h3>
             <h1 className="price-card-title pricing-card-title mb-3">
               <small className="price-card-sum">$</small>
               2000
-              <small className="price-card-sum">/2 weeks</small>
+              <small className="price-card-sum" style={{ whiteSpace: 'nowrap' }}>{t('twoWeeks')}</small>
             </h1>
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Adaptive design</p>
+                <p className="price-benefits-text">{t('design')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Personal account</p>
+                <p className="price-benefits-text">{t('account')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text"><b>2</b> permission levels</p>
+                <p className="price-benefits-text"><b>2</b> {t('permissions')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Taking courses</p>
+                <p className="price-benefits-text">{t('takeCourse')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Ability to create courses</p>
+                <p className="price-benefits-text">{t('createCourse')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text"><b>4</b> types of assignments for building lessons</p>
+                <p className="price-benefits-text"><b>4</b> {t('taskType')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Service technical support</p>
+                <p className="price-benefits-text">{t('techSupport')}</p>
               </div>
 
               <div style={{ color: '#b4b4b4' }}>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">The ability to create classes and assign teachers to them</p>
+                  <p className="price-benefits-text">{t('groupClasses')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">Search the site, subjects and courses</p>
+                  <p className="price-benefits-text">{t('search')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">Enroll in a course of a certain class</p>
+                  <p className="price-benefits-text">{t('enrollClasses')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">Add and store files on the site</p>
+                  <p className="price-benefits-text">{t('files')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">Online / offline class score table</p>
+                  <p className="price-benefits-text">{t('scoreTable')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-times-circle price-benefits-ill" style={{ color: '#b4b4b4' }}/>
-                  <p className="price-benefits-text">Schedules for each class</p>
+                  <p className="price-benefits-text">{t('schedule')}</p>
                 </div>
               </div>
             </div>
-            <button type="button" className="price-button mb-4">Get upgrade</button>
+            <button type="button" className="price-button mb-4">{t('upgradeButton')}</button>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-4 my-3 text-center">
           <div className="price-card mb-4">
-            <h3 className="price-card-name mt-4 mb-3">Pro</h3>
+            <h3 className="price-card-name mt-4 mb-3">{t('premium')}</h3>
             <h1 className="price-card-title pricing-card-title mb-3">
               <small className="price-card-sum">$</small>
               3500
-              <small className="price-card-sum">/month</small>
+              <small className="price-card-sum">{t('month')}</small>
             </h1>
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Adaptive design</p>
+                <p className="price-benefits-text">{t('design')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Personal account</p>
+                <p className="price-benefits-text">{t('account')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text"><b>3+</b> permission levels</p>
+                <p className="price-benefits-text"><b>3+</b> {t('permissions')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Taking courses</p>
+                <p className="price-benefits-text">{t('takeCourse')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Ability to create courses</p>
+                <p className="price-benefits-text">{t('createCourse')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text"><b>7</b> types of assignments for building lessons</p>
+                <p className="price-benefits-text"><b>7</b> {t('taskType')}</p>
               </div>
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Service technical support</p>
+                <p className="price-benefits-text">{t('techSupport')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">The ability to create classes and assign teachers to them</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('groupClasses')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Search the site, subjects and courses</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('search')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Enroll in a course of a certain class</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('enrollClasses')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Add and store files on the site</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('files')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Online / offline class score table</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('scoreTable')}</p>
               </div>
               <div className="price-benefits-one">
-                <i className="far fa-check-circle price-benefits-ill"/>
-                <p className="price-benefits-text">Schedules for each class</p>
+                <i className="far fa-check-circle price-benefits-ill" />
+                <p className="price-benefits-text">{t('schedule')}</p>
               </div>
             </div>
-            <button type="button" className="price-button mb-4">Get upgrade</button>
+            <button type="button" className="price-button mb-4">{t('upgradeButton')}</button>
           </div>
         </div>
-        {/* <div className="col-md-4 my-3 text-center">*/}
-        {/*  <div className="price-card mb-4">*/}
-        {/*    <h3 className="price-card-name mt-4 mb-3">Master</h3>*/}
-        {/*    <h1 className="price-card-title pricing-card-title mb-3">*/}
-        {/*      <small className="price-card-sum">$</small>*/}
-        {/*      300*/}
-        {/*      <small className="price-card-sum">/mo</small>*/}
-        {/*    </h1>*/}
-        {/*    <div className="price-benefits my-5">*/}
-        {/*      <div className="price-benefits-one">*/}
-        {/*        <i className="far fa-check-circle price-benefits-ill"/>*/}
-        {/*        <p className="price-benefits-text">100+ users included</p>*/}
-        {/*      </div>*/}
-        {/*      <div className="price-benefits-one">*/}
-        {/*        <i className="far fa-check-circle price-benefits-ill"/>*/}
-        {/*        <p className="price-benefits-text">20 courses available</p>*/}
-        {/*      </div>*/}
-        {/*      <div className="price-benefits-one">*/}
-        {/*        <i className="far fa-check-circle price-benefits-ill"/>*/}
-        {/*        <p className="price-benefits-text">7 editor elements</p>*/}
-        {/*      </div>*/}
-        {/*      <div className="price-benefits-one">*/}
-        {/*        <i className="far fa-check-circle price-benefits-ill"/>*/}
-        {/*        <p className="price-benefits-text">Access level of moderator</p>*/}
-        {/*      </div>*/}
-        {/*    </div>*/}
-        {/*    <button type="button" className="price-button mb-4">Get upgrade</button>*/}
-        {/*  </div>*/}
-        {/* </div>*/}
-
       </div>
       <div className="row justify-content-center d-flex">
         <div className="col-12 col-sm-12 col-lg-8 my-3 text-center">
           <div className="price-card mb-4">
-            <h3 className="price-card-name mt-4 mb-3">Additional functions</h3>
+            <h3 className="price-card-name mt-4 mb-3">{t('addFunc')}</h3>
             <div className="row p-0 m-0 d-flex" style={{ alignItems: 'center' }}>
               <div className="price-benefits col-12 col-md-6 my-5">
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Assessment and rating of courses</p>
+                  <p className="price-benefits-text">{t('rating')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Adding a new task type for building a lesson</p>
+                  <p className="price-benefits-text">{t('newTask')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Login to the site via Google/Facebook</p>
+                  <p className="price-benefits-text">{t('login')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Multilingual pages</p>
+                  <p className="price-benefits-text">{t('lang')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Implementation of certificates and diplomas for specific courses</p>
+                  <p className="price-benefits-text">{t('certificates')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Mail / phone number confirmation during registration</p>
+                  <p className="price-benefits-text">{t('confirmation')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Search engine promotion tools</p>
+                  <p className="price-benefits-text">{t('promotion')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">Web-Site analytics</p>
+                  <p className="price-benefits-text">{t('webAnalytics')}</p>
                 </div>
                 <div className="price-benefits-one">
                   <i className="far fa-dot-circle price-benefits-ill"/>
-                  <p className="price-benefits-text">User analytics</p>
+                  <p className="price-benefits-text">{t('userAnalytics')}</p>
                 </div>
               </div>
               <div className="col-12 col-md-6 my-5">

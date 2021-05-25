@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar, Form } from 'react-bootstrap'
 import Link from 'next/link'
 import UserImage from './UserImage'
 import withPageSize from '../HOC/withPageSize'
 import { getIsAuth } from '../../store/auth/selectors'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 
 const Header = ({ size }) => {
+  const { t } = useTranslation('header')
+
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
   const isAuth = useSelector(getIsAuth)
@@ -55,10 +58,18 @@ const Header = ({ size }) => {
             <Nav className="mr-auto">
             </Nav>
             <Nav>
-              {menuFieldCreator('Main', '/')}
-              {menuFieldCreator('Courses', '/programs')}
-              {menuFieldCreator('Plans', '/plans')}
-              {menuFieldCreator('Contacts', '/contacts')}
+              {menuFieldCreator( t('main'), '/')}
+              {menuFieldCreator( t('courses'), '/programs')}
+              {menuFieldCreator( t('plans'), '/plans')}
+              {menuFieldCreator( t('contacts'), '/contacts')}
+              <Form className="navigation-li px-3 d-flex" style={{ alignItems: 'center' }}>
+                <Form.Group className="m-0" controlId="exampleForm.SelectCustomSizeSm">
+                  <Form.Control as="select" size="sm" custom>
+                    <option>Русский</option>
+                    <option>English</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
             </Nav>
             {size[0] >= 768 && (
               <React.Fragment>

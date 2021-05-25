@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header/Header'
 import MainPage from '../components/MainPage/MainPage'
 import React from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 export default function Home() {
@@ -19,3 +20,12 @@ export default function Home() {
     </div>
   )
 }
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...await serverSideTranslations(locale, ['header']),
+    },
+  }
+}
+

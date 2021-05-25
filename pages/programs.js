@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header/Header'
 import CoursePage from '../components/CoursePage/CoursePage'
 import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Programs = () => {
   return (
@@ -20,3 +21,11 @@ const Programs = () => {
 }
 
 export default Programs
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...await serverSideTranslations(locale, ['header']),
+    },
+  }
+}

@@ -49,7 +49,7 @@ const Header = ({ size }) => {
                 ? (<UserImage/>)
                 : (
                   <div className={'navigation-li px-2'}>
-                    <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
+                    <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>{t('start')}</button>
                   </div>
                 )}
             </div>
@@ -77,7 +77,7 @@ const Header = ({ size }) => {
                   ? (<UserImage/>)
                   : (
                     <div className={'navigation-li px-2'}>
-                      <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>Get Started</button>
+                      <button className="nav-link px-2 m-auto login-button navigation-li" role="button" onClick={() => setLoginModalShow(true)}>{t('start')}</button>
                     </div>
                   )}
               </React.Fragment>

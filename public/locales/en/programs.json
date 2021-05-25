@@ -1,0 +1,20 @@
+{
+  "title": "Find your course",
+  "subtitle": "Here you can find all the courses of your educational institution, additional classes or find what you like",
+  "category": "Category",
+  "math": "Math",
+  "science": "Science",
+  "it": "IT",
+  "geography": "Geography",
+  "art": "Art",
+  "english": "English",
+  "history": "History",
+  "example": "e.g. math, chemistry",
+  "popular": "Popular courses",
+  "subjects": "Subjects",
+  "themes": "Popular themes",
+  "ownCourse": "Want to create your own course?",
+  "createAcc": "Create an account",
+  "start": "Get Started",
+  "newInfo": "Share what you are good at. It can help other people learn new things"
+}

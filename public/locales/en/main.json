@@ -1,0 +1,19 @@
+{
+  "title": "School On Web-site",
+  "subtitle": "Learn easier and more efficiently thanks to your school`s platform. All your classmates are already here",
+  "start": "Get Started",
+  "learnEasy": "Learn Easy",
+  "learnDescription": "On this platform, you have the opportunity to independently study both the school curriculum and certain courses on the topics presented on our\n              platform. The platform is an adapted teaching\n              program that is taught in both schools and universities",
+  "createCourse": "Create courses",
+  "createDescription": "Create courses to make learning easier, more convenient and understandable for students. Structure your course with a lesson system. Give students assignments in these lessons to practice and memorize the topic you have given",
+  "additionalCourse": "Additional lessons",
+  "additionalDescription": "Allow your students to develop in a comprehensive way with the additional activities they can find on your institution's website. Learn programming, business, startups, or playing the guitar all on one site. The perfect platform!",
+  "goToCourse": "Go to course page",
+  "favoriteSubj": "Choose your favorite subject",
+  "checkCourse" : "Check course`s page",
+  "math": "Math",
+  "it": "IT",
+  "biology": "Biology",
+  "chemistry": "Chemistry",
+  "existCourses": "courses"
+}

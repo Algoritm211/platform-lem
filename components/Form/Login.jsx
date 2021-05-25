@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { loginUser } from '../../store/auth/auth.thunks'
+import { useTranslation } from 'next-i18next'
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,6 +17,8 @@ const loginValidationSchema = Yup.object().shape({
 })
 
 function LoginModal({ switchModals, ...props }) {
+  const { t } = useTranslation('auth')
+
   const dispatch = useDispatch()
   const formik = useFormik({
     enableReinitialize: true,
@@ -39,7 +42,7 @@ function LoginModal({ switchModals, ...props }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <h1 className="AuthTitle">Login</h1>
+          <h1 className="AuthTitle">{t('login')}</h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -59,7 +62,7 @@ function LoginModal({ switchModals, ...props }) {
               </div>
 
               <div className="form-textbox">
-                <label htmlFor="pass">Password</label>
+                <label htmlFor="pass">{t('pass')}</label>
                 <input
                   value={formik.values.password}
                   onChange={formik.handleChange}
@@ -73,7 +76,7 @@ function LoginModal({ switchModals, ...props }) {
               <div className="form-textbox">
                 <button
                   type="submit" name="submit" id="submit" className="submit" value="Log in" style={{ width: '100%' }}>
-                  Log in
+                  {t('logInButton')}
                 </button>
               </div>
             </form>
@@ -81,20 +84,20 @@ function LoginModal({ switchModals, ...props }) {
             <div className="form-textbox" style={{ textAlign: 'center' }}>
               <div className="or-container">
                 <div className="line-separator"/>
-                <div className="or-label">or</div>
+                <div className="or-label">{t('or')}</div>
                 <div className="line-separator"/>
               </div>
               <div className="row">
                 <div className="col-md-12">
                   <button className="btn btn-lg btn-google btn-block btn-outline">
-                    <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt={'googleImg'}/> Login Using Google
+                    <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt={'googleImg'}/> {t('google')}
                   </button>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-12">
                   <a className="btn btn-lg btn-facebook btn-block btn-outline" href="#">
-                    <i className="fab fa-facebook"/> Login Using Facebook
+                    <i className="fab fa-facebook"/> {t('facebook')}
                   </a>
                 </div>
               </div>
@@ -104,10 +107,10 @@ function LoginModal({ switchModals, ...props }) {
       </Modal.Body>
       <Modal.Footer>
         <p className="loginhere">
-          Do not have an account?&nbsp;
-          <a className="loginhere-link cup" onClick={switchModals}>Sign up</a>
+          {t('changeToReg')}&nbsp;
+          <a className="loginhere-link cup" onClick={switchModals}>{t('changeReg')}</a>
         </p>
-        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>Close</Button>
+        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>{t('close')}</Button>
       </Modal.Footer>
     </Modal>
   )

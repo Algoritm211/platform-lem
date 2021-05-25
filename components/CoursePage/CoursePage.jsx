@@ -7,8 +7,11 @@ import { getAllCourses } from '../../store/courses/selectors'
 import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { getIsAuth } from '../../store/auth/selectors'
+import { useTranslation } from 'next-i18next'
 
 const CoursePage = () => {
+  const { t } = useTranslation('programs')
+
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
   const isAuth = useSelector(getIsAuth)
@@ -42,9 +45,8 @@ const CoursePage = () => {
               <img className="content-image" src="/3.png" alt="photo"/>
             </div>
             <div className="col-12 col-md-4 p-5 m-auto">
-              <h3 className="content-title mb-2">Find your course</h3>
-              <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor</p>
+              <h3 className="content-title mb-2">{t('title')}</h3>
+              <p className="content-text">{t('subtitle')}</p>
             </div>
           </div>
           <div className="container" style={{ paddingBottom: '15px' }}>
@@ -52,19 +54,19 @@ const CoursePage = () => {
               <form action="" method="GET" name="search" role="search" className="border-form">
                 <p className="inp-wrap cat-wrap" style={{ borderRight: '1px solid rgba(51,51,51,0.3)' }}>
                   <select name="search categories" id="categories" className="search-input">
-                    <option value="category" defaultValue>Category</option>
-                    <option value="newyork">Math</option>
-                    <option value="chicago">Science</option>
-                    <option value="losangeles">IT</option>
-                    <option value="seattle">Geography</option>
-                    <option value="dallas">Art</option>
-                    <option value="boston">English</option>
-                    <option value="sanfran">History</option>
+                    <option value="category" defaultValue>{t('category')}</option>
+                    <option value="newyork">{t('math')}</option>
+                    <option value="chicago">{t('science')}</option>
+                    <option value="losangeles">{t('it')}</option>
+                    <option value="seattle">{t('geography')}</option>
+                    <option value="dallas">{t('art')}</option>
+                    <option value="boston">{t('english')}</option>
+                    <option value="sanfran">{t('history')}</option>
                   </select>
                   <i className="fas fa-caret-down"/>
                 </p>
                 <p className="inp-wrap search-wrap">
-                  <input type="search" name="search-term" id="search-field" className="search-input" placeholder="e.g. math, chemistry"/></p>
+                  <input type="search" name="search-term" id="search-field" className="search-input" placeholder={t('example')} /></p>
                 <p className="inp-wrap submit-wrap">
                   <button className="search-btn">
                     <i className="fas fa-search grid-100"/>
@@ -76,17 +78,17 @@ const CoursePage = () => {
         </div>
       </div>
       <div className="container my-5">
-        <h2 className="category-picker py-3">Popular courses</h2>
+        <h2 className="category-picker py-3">{t('popular')}</h2>
         <div className="row">
           {coursesBlock}
         </div>
       </div>
       <div className="container my-5">
-        <h2 className="category-picker py-3">Subjects</h2>
+        <h2 className="category-picker py-3">{t('subjects')}</h2>
         <Carousel/>
       </div>
       <div className="container my-5">
-        <h2 className="category-picker py-3">Popular themes</h2>
+        <h2 className="category-picker py-3">{t('themes')}</h2>
         <div className="row">
           <div className="col-6 col-md-4">
             <div className="carousel-card my-3" style={{ backgroundColor: '#B2CCFC' }}>
@@ -107,17 +109,16 @@ const CoursePage = () => {
           ? (<div/>)
           : (
             <div className="container my-5">
-              <h2 className="category-picker py-3">Want to create your own course?</h2>
+              <h2 className="category-picker py-3">{t('ownCourse')}</h2>
               <div style={{ backgroundColor: '#B2CCFC', borderRadius: '8px' }}>
                 <div className="row">
                   <div className="col-12 col-md-3 m-auto">
                     <img className="content-image" src="/14.png" alt="photo"/>
                   </div>
                   <div className="col-12 col-md-9 p-5 m-auto">
-                    <h3 className="content-title mb-2">Create an account</h3>
-                    <p className="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor</p>
-                    <button className="content-btn" onClick={() => setRegistrationModalShow(true)}>Get Started</button>
+                    <h3 className="content-title mb-2">{t('createAcc')}</h3>
+                    <p className="content-text">{t('newInfo')}</p>
+                    <button className="content-btn" onClick={() => setRegistrationModalShow(true)}>{t('start')}</button>
                   </div>
                 </div>
               </div>

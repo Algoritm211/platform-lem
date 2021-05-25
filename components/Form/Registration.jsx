@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { registerUser } from '../../store/auth/auth.thunks'
+import { useTranslation } from 'next-i18next'
 
 const registrationValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -23,6 +24,8 @@ const registrationValidationSchema = Yup.object().shape({
 })
 
 function RegistrationModal({ switchModals, ...props }) {
+  const { t } = useTranslation('auth')
+
   const dispatch = useDispatch()
   // const [isTeacher, setIsTeacher] = useState(false)
   const formik = useFormik({
@@ -57,24 +60,15 @@ function RegistrationModal({ switchModals, ...props }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <h1 className="AuthTitle">Registration</h1>
+          <h1 className="AuthTitle">{t('registration')}</h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="containerReg">
           <div className="sign-up-content">
             <form className="signup-form" onSubmit={formik.handleSubmit}>
-              {/* <div className="form-radio">*/}
-              {/*  <input className={`${isExpert ? 'inputRadio' : 'inputRadioChecked'}`} type="radio" name="member_level"*/}
-              {/*    value="student" id="student"/>*/}
-              {/*  <label htmlFor="student">Student</label>*/}
-
-              {/*  <input className={`${isExpert ? 'inputRadioChecked' : 'inputRadio'}`} type="radio" name="member_level"*/}
-              {/*    value="expert" id="expert"/>*/}
-              {/*  <label htmlFor="expert">Expert</label>*/}
-              {/* </div>*/}
               <div className="form-textbox">
-                <label htmlFor="name">Full name</label>
+                <label htmlFor="name">{t('name')}</label>
                 <input
                   value={formik.values.name}
                   onChange={formik.handleChange}
@@ -94,7 +88,7 @@ function RegistrationModal({ switchModals, ...props }) {
               </div>
 
               <div className="form-textbox">
-                <label htmlFor="pass">Password</label>
+                <label htmlFor="pass">{t('pass')}</label>
                 <input
                   value={formik.values.password}
                   onChange={formik.handleChange}
@@ -104,7 +98,7 @@ function RegistrationModal({ switchModals, ...props }) {
               </div>
 
               <div className="form-textbox">
-                <label htmlFor="confirm-pass">Confirm Password</label>
+                <label htmlFor="confirm-pass">{t('confPass')}</label>
                 <input
                   value={formik.values.confirmPassword}
                   onChange={formik.handleChange}
@@ -116,7 +110,7 @@ function RegistrationModal({ switchModals, ...props }) {
               <div className="form-textbox">
                 <button
                   type="submit" id="submit" className="submit" style={{ width: '100%' }}>
-                  Sign Up
+                  {t('signUpButton')}
                 </button>
               </div>
             </form>
@@ -125,10 +119,10 @@ function RegistrationModal({ switchModals, ...props }) {
       </Modal.Body>
       <Modal.Footer>
         <p className="loginhere">
-          Already have an account?&nbsp;
-          <a className="loginhere-link" onClick={switchModals}>Log in</a>
+          {t('changeToLogin')}&nbsp;
+          <a className="loginhere-link" onClick={switchModals}>{t('changeLogin')}</a>
         </p>
-        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>Close</Button>
+        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>{t('close')}</Button>
       </Modal.Footer>
     </Modal>
   )

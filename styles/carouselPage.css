@@ -58,4 +58,11 @@
     .carousel-arrows-right{
         right: -15px;
     }
+    .carousel-title{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .carousel-subtitle{
+        font-size: 12px;
+    }
 }

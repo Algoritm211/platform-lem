@@ -25,7 +25,7 @@ export default Programs
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header']),
+      ...await serverSideTranslations(locale, ['programs', 'header', 'auth']),
     },
   }
 }

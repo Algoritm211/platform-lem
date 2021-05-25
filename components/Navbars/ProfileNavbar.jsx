@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal'
+import { useTranslation } from 'next-i18next'
 
 const ProfileNavbar = () => {
   const router = useRouter()
   const [createCourseModalShow, setCreateCourseModalShow] = useState(false)
+  const { t } = useTranslation('navbar')
 
   const fieldCreator = (textLink, routePath, iconClass) => {
     return (
@@ -20,23 +22,23 @@ const ProfileNavbar = () => {
   return (
     <div className="profile-mobile">
       <div className="profile-create-course d-flex mb-5" onClick={() => setCreateCourseModalShow(true)}>
-        <h3 className="profile-create-course-text">Create new course</h3>
+        <h3 className="profile-create-course-text">{t('createCourse')}</h3>
         <i className="fas fa-plus-circle profile-create-course-illustration"/>
       </div>
       <div className="profile-button d-flex mb-4">
-        {fieldCreator('Dashboard', '/profile', 'fab fa-flipboard')}
+        {fieldCreator( t('dashboard'), '/profile', 'fab fa-flipboard')}
       </div>
       <div className="profile-button d-flex mb-4">
-        {fieldCreator('Teaching', '/teaching', 'fas fa-book')}
+        {fieldCreator( t('teaching'), '/teaching', 'fas fa-book')}
       </div>
       <div className="profile-button d-flex mb-4">
-        {fieldCreator('Settings', '/settings', 'fas fa-cog')}
+        {fieldCreator( t('settings'), '/settings', 'fas fa-cog')}
       </div>
       <div className="profile-upgrade-block mt-5">
         <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
-        <p className="profile-upgrade-text">Upgrade to PRO version to get more features</p>
-        <a href={`/plans`}>
-          <button className="profile-upgrade-button">Upgrade</button>
+        <p className="profile-upgrade-text">{t('upToPro')}</p>
+        <a href={`/plans`} style={{ textDecoration: 'none' }}>
+          <button className="profile-upgrade-button">{t('upgrade')}</button>
         </a>
       </div>
       <CreateCourseModal

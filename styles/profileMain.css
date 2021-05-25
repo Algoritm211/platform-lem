@@ -180,6 +180,9 @@
 .profile-mobile{
     display: block;
 }
+.separator-mobile{
+    display: block;
+}
 .profile-courses-nocourse-a{
     text-decoration: none;
     color: #0070f3;
@@ -240,13 +243,11 @@
     .profile-upgrade-block{
         display: none;
     }
+    .separator-mobile{
+        display: none;
+    }
     .profile-create-course{
         display: none !important;
-    }
-    .profile-mobile{
-        display: flex;
-        justify-content: center;
-        border-bottom: 1px solid #888888;
     }
     .profile-button-illustration{
         font-size: 16px;
@@ -256,12 +257,21 @@
         font-size: 12px;
     }
     .profile-button{
-        padding: 0 8px;
+        padding: 0;
     }
     .profile-courses-nocourses-img{
         width: 100px;
     }
     .profile-welcome{
         display: block;
+    }
+    .profile-courses-one-img{
+        display: none;
+    }
+}
+@media (max-width: 575px) {
+    .profile-mobile{
+        display: flex;
+        justify-content: center;
     }
 }

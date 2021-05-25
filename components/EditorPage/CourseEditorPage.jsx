@@ -104,7 +104,7 @@ const CourseEditorPage = ({ course }) => {
               }}
               onEditorChange={handleEditorChange}
             />
-            <Button type={'submit'} disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+            <Button className="mt-3" type={'submit'} disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
           </form>
 
 

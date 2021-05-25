@@ -3,5 +3,9 @@
   "courses" : "Курсы",
   "plans": "Тарифы",
   "contacts": "Контакты",
-  "start": "Начать"
+  "start": "Начать",
+  "dashboard": "Аккаунт",
+  "teaching": "Обучение",
+  "settings": "Настройки",
+  "exit": "Выход"
 }

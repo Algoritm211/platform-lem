@@ -3,5 +3,9 @@
   "courses" : "Courses",
   "plans": "Plans",
   "contacts": "Contacts",
-  "start": "Get started"
+  "start": "Get started",
+  "dashboard": "Dashboard",
+  "teaching": "Teaching",
+  "settings": "Settings",
+  "exit": "Exit"
 }

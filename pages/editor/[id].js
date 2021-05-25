@@ -16,6 +16,14 @@ const Editor = ({ course }) => {
 
 export default withEditProtect(Editor)
 
+// export const getStaticProps = async ({ locale }) => {
+//   return {
+//     props: {
+//       ...await serverSideTranslations(locale, ['navbar', 'header']),
+//     },
+//   }
+// }
+
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const { id } = ctx.query
   const data = await CourseAPI.one(id)

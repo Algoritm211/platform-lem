@@ -3,8 +3,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { getCurrentCourse } from '../../store/courses/selectors'
+import { useTranslation } from 'next-i18next'
 
 const CourseNavbar = () => {
+  const { t } = useTranslation('navbar')
+
   const router = useRouter()
   const currentCourse = useSelector(getCurrentCourse)
 
@@ -19,32 +22,34 @@ const CourseNavbar = () => {
     )
   }
   return (
-    <div className="profile-mobile">
+    <div className="profile-mobile" style={{ justifyContent: 'space-around' }}>
       <div className="profile-button mb-4">
         <div className="profile-button d-flex mb-3">
-          <p className="profile-button-text" style={{ fontSize: '16px' }}>Course</p>
+          <p className="profile-button-text" style={{ fontSize: '16px' }}>{t('course')}</p>
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Description', `/editor/${currentCourse?._id}`, 'fas fa-align-left')}
+          {fieldCreator(t('description'), `/editor/${currentCourse?._id}`, 'fas fa-align-left')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Content', `/courseplan/${currentCourse?._id}`, 'fas fa-th-large')}
+          {fieldCreator( t('content'), `/courseplan/${currentCourse?._id}`, 'fas fa-th-large')}
         </div>
-
-        <div className="profile-button d-flex pt-5 mb-4" style={{ borderTop: '1px solid #212529' }}>
-          {fieldCreator('Dashboard', '/profile', 'fab fa-flipboard')}
+        <hr className="separator-mobile" />
+      </div>
+      <div className="profile-button mb-4">
+        <div className="profile-button d-flex mb-4">
+          {fieldCreator( t('dashboard'), '/profile', 'fab fa-flipboard')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Teaching', '/teaching', 'fas fa-book')}
+          {fieldCreator( t('teaching'), '/teaching', 'fas fa-book')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator('Settings', '/settings', 'fas fa-cog')}
+          {fieldCreator( t('settings'), '/settings', 'fas fa-cog')}
         </div>
         <div className="profile-upgrade-block mt-5">
           <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
-          <p className="profile-upgrade-text">Upgrade to PRO version to get more features</p>
+          <p className="profile-upgrade-text">{t('upToPro')}</p>
           <a href={`/plans`}>
-            <button className="profile-upgrade-button">Upgrade</button>
+            <button className="profile-upgrade-button">{t('upgrade')}</button>
           </a>
         </div>
       </div>

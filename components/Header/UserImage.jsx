@@ -3,8 +3,11 @@ import { getUserData } from '../../store/auth/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../../store/auth/auth.thunks'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 const UserImage = () => {
+  const { t } = useTranslation('header')
+
   const user = useSelector(getUserData)
   const dispatch = useDispatch()
   const noUserPhoto = '/no-avatar.png'
@@ -41,24 +44,24 @@ const UserImage = () => {
           <li>
             <a href={`/profile`}>
               <i className="fab fa-flipboard" style={{ marginRight: '10px' }}/>
-              Dashboard</a>
+              {t('dashboard')}</a>
           </li>
           <li>
             <a href={`/teaching`}>
               <i className="fas fa-book" style={{ marginRight: '10px' }}/>
-              Teaching</a>
+              {t('teaching')}</a>
           </li>
           <li>
             <a href={`/settings`}>
               <i className="fas fa-cog" style={{ marginRight: '10px' }}/>
-              Settings</a>
+              {t('settings')}</a>
           </li>
           <div className="dropdown-divider"/>
           <li>
             <Link href={'/'}>
               <a onClick={onLogout} style={{ cursor: 'pointer' }}>
                 <i className="fas fa-power-off" style={{ marginRight: '10px' }}/>
-                Exit</a>
+                {t('exit')}</a>
             </Link>
           </li>
         </ul>

@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import CourseNavbar from '../Navbars/CourseNavbar'
-import { Editor } from '@tinymce/tinymce-react'
 import Link from 'next/link'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { updateLesson } from '../../store/lesson/thunks'
+import TextStepEditor from '../Steps/TextStep/TextStepEditor'
+import { getCurrentLesson } from '../../store/lesson/selectors'
+import { setCurrentStep, setSteps } from '../../store/lessonSteps/reducer'
+import { getSteps } from '../../store/lessonSteps/selectors'
+import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
+
+const stepTypes = {
+  text: TextStepEditor,
+  video: VideoStepEditor,
+}
+
+const stepIcons = {
+  text: 'fa-align-left',
+  video: 'fa-film',
+}
 
 const LessonEditor = ({ lesson, course }) => {
   const dispatch = useDispatch()
   const [lessonTitle, setLessonTitle] = useState()
-
+  const [stepNumber, setStepNumber] = useState(0)
+  const currentLesson = useSelector(getCurrentLesson)
+  const steps = useSelector(getSteps)
+  const currentStep = steps[stepNumber]
+  console.log(steps)
   useEffect(() => {
     dispatch(setCurrentCourse(course))
     dispatch(setCurrentLesson(lesson))
+    dispatch(setSteps(lesson.steps))
     setLessonTitle(lesson.title)
     return () => {
       dispatch(clearCurrentCourse())
@@ -25,6 +44,32 @@ const LessonEditor = ({ lesson, course }) => {
   const onTitleSave = () => {
     dispatch(updateLesson(lesson._id, { title: lessonTitle }))
   }
+
+  if (!currentLesson || !currentStep) {
+    return <div>loading...</div>
+  }
+
+  const onChangeStep = (stepNum) => {
+    setCurrentStep(steps[stepNum + 1])
+    setStepNumber(stepNum)
+  }
+
+  const stepIconBlock = steps.map((step, index) => {
+    return (
+      <a className="mr-1" style={{ textDecoration: 'none' }} key={step.stepId._id}>
+        <button
+          onClick={() => onChangeStep(index)}
+          className="lesson-btn d-flex"
+          style={{ backgroundColor: stepNumber === index ? '#63c76a' : '#212529' }}>
+          <i className={`fas ${stepIcons[step.stepId.type]}`}/>
+        </button>
+      </a>
+    )
+  })
+
+  const StepBlock = stepTypes[currentStep.stepId.type]
+  console.log(currentStep.stepId.type)
+  console.log(currentStep)
 
   return (
     <div>
@@ -48,62 +93,7 @@ const LessonEditor = ({ lesson, course }) => {
             <div className="my-5">
               <h3 className="editor-lesson-title mb-3">Lesson plan</h3>
               <div className="d-flex">
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#63c76a' }}>
-                      <i className="fas fa-film"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="fas fa-align-left"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="fas fa-pen"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="fas fa-question"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="fas fa-flask"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="far fa-comment-dots"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="far fa-check-square"/>
-                    </button>
-                  </a>
-                </Link>
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" style={{ backgroundColor: '#212529' }}>
-                      <i className="fas fa-list-ol"/>
-                    </button>
-                  </a>
-                </Link>
+                {stepIconBlock}
                 <Link href={`#`}>
                   <a className="mr-1" style={{ textDecoration: 'none' }}>
                     <button className="lesson-btn d-flex">
@@ -113,38 +103,8 @@ const LessonEditor = ({ lesson, course }) => {
                 </Link>
               </div>
             </div>
-            <h3 className="editor-lesson-title mt-5 mb-3">Step 1 | Task description</h3>
-            <Editor
-              // apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-              // value={editorBody}
-              // initialValue={!isHomework ? currentLesson?.body : currentLesson?.homeWork || ''}
-              init={{
-                // height: 500,
-                width: '100%',
-                min_height: 300,
-                borderRadius: '8px',
-                selector: 'textarea',
-                plugins: [
-                  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount',
-                ],
-                toolbar:
-                  `undo redo | formatselect | bold italic backcolor | \
-                  alignleft aligncenter alignright alignjustify | \
-                  bullist numlist outdent indent | removeformat | help`,
-              }}
-              // onEditorChange={handleEditorChange}
-            />
-            <h3 className="editor-lesson-title mt-5 mb-3">Right answer on your question</h3>
-            <input
-              className={'editor-input d-block my-auto'}
-              // value={title}
-              // onChange={(event) => setTitle(event.target.value)}
-              type="answer"
-              placeholder="Right answer"
-              name="answer"
-              id="answer"/>
+            <h3 className="editor-lesson-title mt-5 mb-3">Step {stepNumber + 1} | Task description</h3>
+            <StepBlock />
           </div>
 
 

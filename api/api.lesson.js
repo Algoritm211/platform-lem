@@ -25,7 +25,7 @@ class LessonAPI {
 
   // updateData obj may contains only fields in Lesson model (see backend)
   async update(id, updateData) {
-    const { data } = await instanceAxios.post(`/lesson/update/${id}`, updateData)
+    const { data } = await instanceAxios.patch(`/lesson/update/${id}`, updateData)
     return data
   }
 }

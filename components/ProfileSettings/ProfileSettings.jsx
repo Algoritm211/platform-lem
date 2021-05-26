@@ -10,13 +10,13 @@ import { useTranslation } from 'next-i18next'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string()
-    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+    .matches(/[^<>%$]/i, 'Forbidden symbols are present'),
   surName: Yup.string()
-    .matches(/^[^<>%$]*$/i, 'Присутні заборонені символи'),
+    .matches(/^[^<>%$]*$/i, 'Forbidden symbols are present'),
   description: Yup.string()
-    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+    .matches(/[^<>%$]/i, 'Forbidden symbols are present'),
   city: Yup.string()
-    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+    .matches(/[^<>%$]/i, 'Forbidden symbols are present'),
 })
 
 

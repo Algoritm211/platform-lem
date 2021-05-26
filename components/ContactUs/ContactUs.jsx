@@ -8,7 +8,7 @@ const ContactUs = () => {
       <div className="container my-3">
         <div style={{ backgroundColor: '#8cdac8', borderRadius: '8px' }}>
           <div className="row">
-            <div className="col-12 col-md-4 p-5 m-auto">
+            <div className="col-12 col-md-6 col-lg-4 p-5 m-auto">
               <h3 className="content-title mb-2">{t('title')}</h3>
               <p className="content-text">{t('description')}</p>
               <a className="contact-link" href="https://t.me/EdwardDK">
@@ -24,7 +24,7 @@ const ContactUs = () => {
                 </div>
               </a>
             </div>
-            <div className="col-12 col-md-8 m-auto">
+            <div className="col-12 col-md-6 col-lg-8 m-auto">
               <img className="content-image" src="/4.png" alt="photo"/>
             </div>
           </div>

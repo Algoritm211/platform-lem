@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfileNavbar from '../Navbars/ProfileNavbar'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,8 +6,13 @@ import { getUserAuthorCourses } from '../../store/courses/selectors'
 import { loadUserCourses } from '../../store/courses/thunks'
 import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
 import withAuthRequired from '../HOC/withAuthRequired'
+import { useTranslation } from 'next-i18next'
+import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal'
 
 const ProfileTeaching = () => {
+  const { t } = useTranslation('teaching')
+  const [createCourseModalShow, setCreateCourseModalShow] = useState(false)
+
   const dispatch = useDispatch()
   const coursesUserAuthor = useSelector(getUserAuthorCourses)
 
@@ -35,28 +40,32 @@ const ProfileTeaching = () => {
                 <img className="profile-welcome-img" src="/10.png" alt="upgrade"/>
               </div>
               <div className="profile-welcome-block">
-                <h3 className="profile-welcome-title">Your courses</h3>
-                <p className="profile-welcome-subtitle">Ready to teach someone something new?</p>
+                <h3 className="profile-welcome-title">{t('title')}</h3>
+                <p className="profile-welcome-subtitle">{t('subtitle')}</p>
               </div>
             </div>
             <div className="profile-courses">
-              <h3 className="profile-courses-title">Teaching</h3>
+              <h3 className="profile-courses-title">{t('teaching')}</h3>
               {courseCreatedBlock.length !== 0
                 ? courseCreatedBlock
                 : (
                   <div className="profile-courses-one d-flex my-3">
                     <img className="profile-courses-nocourses-img" src="/9.png" alt="preview-course-photo"/>
                     <div className="profile-courses-one-content">
-                      <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>Uh-oh...</h3>
-                      <p className="profile-courses-one-text">You don`t have any courses yet</p>
-                      <Link href={'/programs'}>
+                      <h3 className="profile-courses-one-title" style={{ fontSize: '18px' }}>{t('ohUh')}</h3>
+                      <p className="profile-courses-one-text">{t('noCourse')}</p>
+                      <Link href={'#'} onClick={() => setCreateCourseModalShow(true)}>
                         <a className="profile-courses-nocourse-a">
-                          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>Let`s find new course</p>
+                          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }} onClick={() => setCreateCourseModalShow(true)}>{t('createCourse')}</p>
                         </a>
                       </Link>
                     </div>
                   </div>
                 )}
+              <CreateCourseModal
+                show={createCourseModalShow}
+                onHide={() => setCreateCourseModalShow(false)}
+              />
             </div>
           </div>
         </div>

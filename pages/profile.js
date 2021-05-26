@@ -18,7 +18,7 @@ export default withAuthRequired(Profile)
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['navbar', 'header']),
+      ...await serverSideTranslations(locale, ['navbar', 'header', 'profile']),
     },
   }
 }

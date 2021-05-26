@@ -217,9 +217,15 @@
     .profile-welcome-height{
         height: auto;
     }
+    .profile-create-course-text{
+        font-size: 12px;
+    }
 }
 @media (max-width: 768px) {
     .profile-button-text{
+        font-size: 14px;
+    }
+    .profile-create-course-text{
         font-size: 14px;
     }
     .profile-button-illustration{

@@ -41,10 +41,10 @@ const CoursePage = () => {
       <div className="container my-3">
         <div style={{ backgroundColor: '#f0c4d7', borderRadius: '8px' }}>
           <div className="row">
-            <div className="col-12 col-md-8 m-auto">
+            <div className="col-12 col-md-6 col-lg-8 m-auto">
               <img className="content-image" src="/3.png" alt="photo"/>
             </div>
-            <div className="col-12 col-md-4 p-5 m-auto">
+            <div className="col-12 col-md-6 col-lg-4 p-5 m-auto">
               <h3 className="content-title mb-2">{t('title')}</h3>
               <p className="content-text">{t('subtitle')}</p>
             </div>

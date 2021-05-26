@@ -45,7 +45,7 @@ const LessonEditor = ({ lesson, course }) => {
     dispatch(updateLesson(lesson._id, { title: lessonTitle }))
   }
 
-  if (!currentLesson || !currentStep) {
+  if (!currentLesson) {
     return <div>loading...</div>
   }
 

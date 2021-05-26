@@ -63,6 +63,7 @@ const ProfileSettings = () => {
   const onDeletePhoto = () => {
     dispatch(deleteAvatar())
   }
+  const userEnteredDate = new Date(user.dateRegistration)
   return (
     <div>
       <div className="container my-5">
@@ -78,7 +79,7 @@ const ProfileSettings = () => {
               </div>
               <div className="col-6 col-md-9 text-right">
                 <span
-                  className="acc-join-title">{t('enter')} 19/05/2021 {/* {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}*/}</span>
+                  className="acc-join-title">{t('enter')} {(userEnteredDate.getMonth() + 1) + '/' + userEnteredDate.getDate() + '/' + userEnteredDate.getFullYear()}</span>
               </div>
             </div>
             <form onSubmit={formik.handleSubmit} className="pt-3">

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CourseNavbar from '../Navbars/CourseNavbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
@@ -14,6 +14,7 @@ const CourseManager = ({ course, lessons }) => {
   const router = useRouter()
   const currentLessons = useSelector(getLessons)
   const currentCourse = useSelector(getCurrentCourse)
+  const [loading, setIsLoading] = useState(false)
 
   useEffect(() => {
     dispatch(setCurrentCourse(course))
@@ -26,7 +27,9 @@ const CourseManager = ({ course, lessons }) => {
 
   const onCreateLesson = async () => {
     if (currentCourse) {
+      setIsLoading(true)
       const data = await LessonAPI.create(currentCourse._id)
+      setIsLoading(false)
       await router.push(`/editlesson/${data.lesson._id}`)
     }
   }
@@ -54,10 +57,13 @@ const CourseManager = ({ course, lessons }) => {
             <div className="profile-courses">
               <h3 className="profile-courses-title">Lessons({currentLessons.length})</h3>
               {lessonBlock}
-              <a style={{ textDecoration: 'none' }} onClick={onCreateLesson}>
+              <a style={{ textDecoration: 'none' }}>
                 <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
                   <div className="mr-3">
-                    <button className="lesson-btn d-flex">
+                    <button
+                      disabled={loading}
+                      className="lesson-btn d-flex"
+                      onClick={onCreateLesson}>
                       <i className="fas fa-plus"/>
                     </button>
                   </div>

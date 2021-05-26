@@ -6,3 +6,7 @@ export const getSteps = (state) => {
 export const getCurrentStep = (state) => {
   return state.lessonStepsReducer.currentStep
 }
+
+export const getIsLoading = (state) => {
+  return state.lessonStepsReducer.isLoading
+}

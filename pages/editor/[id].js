@@ -4,6 +4,7 @@ import EditorPage from '../../components/EditorPage/CourseEditorPage'
 import CourseAPI from '../../api/api.course'
 import { wrapper } from '../../store/store'
 import withEditProtect from '../../components/HOC/withEditProtect'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Editor = ({ course }) => {
   return (
@@ -16,20 +17,13 @@ const Editor = ({ course }) => {
 
 export default withEditProtect(Editor)
 
-// export const getStaticProps = async ({ locale }) => {
-//   return {
-//     props: {
-//       ...await serverSideTranslations(locale, ['navbar', 'header']),
-//     },
-//   }
-// }
-
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const { id } = ctx.query
   const data = await CourseAPI.one(id)
   return {
     props: {
       course: data.course,
+      ...await serverSideTranslations(ctx.locale, ['navbar', 'header']),
     },
   }
 })

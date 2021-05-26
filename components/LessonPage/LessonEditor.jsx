@@ -29,7 +29,7 @@ const LessonEditor = ({ lesson, course }) => {
   const currentLesson = useSelector(getCurrentLesson)
   const steps = useSelector(getSteps)
   const currentStep = steps[stepNumber]
-  console.log(steps)
+
   useEffect(() => {
     dispatch(setCurrentCourse(course))
     dispatch(setCurrentLesson(lesson))
@@ -68,8 +68,6 @@ const LessonEditor = ({ lesson, course }) => {
   })
 
   const StepBlock = stepTypes[currentStep.stepId.type]
-  console.log(currentStep.stepId.type)
-  console.log(currentStep)
 
   return (
     <div>
@@ -104,7 +102,7 @@ const LessonEditor = ({ lesson, course }) => {
               </div>
             </div>
             <h3 className="editor-lesson-title mt-5 mb-3">Step {stepNumber + 1} | Task description</h3>
-            <StepBlock />
+            <StepBlock stepData={currentStep.stepId}/>
           </div>
 
 

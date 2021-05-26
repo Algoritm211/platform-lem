@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 import { getIsLoading } from '../../../store/courses/selectors'
 import { Button } from 'react-bootstrap'
 
-const TextStepEditor = () => {
+const MathTaskStepEditor = () => {
   const isLoading = useSelector(getIsLoading)
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">Write your material in the area below</h3>
+      <h3 className="editor-lesson-title mt-5 mb-3">Write your question in the area below</h3>
       <Editor
         // apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
         // value={editorBody}
@@ -31,9 +31,16 @@ const TextStepEditor = () => {
         }}
         // onEditorChange={handleEditorChange}
       />
+      <h3 className="editor-lesson-title mt-5 mb-3">Enter the correct answer (mathematical expression):</h3>
+      <input
+        className={'inputAcc mb-5'}
+        placeholder={'e.g 2*x+y/z'}
+        type="math-answer"
+        name="math-answer"
+        id="math-answer"/>
       <Button className="mt-3" type={'submit'} disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
     </div>
   )
 }
 
-export default TextStepEditor
+export default MathTaskStepEditor

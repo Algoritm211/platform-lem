@@ -2,11 +2,11 @@
   "title": "Upgrade your education",
   "subtitle": "Choose what type of platform is right for you in order to make education more useful and accessible for everyone right now!",
   "basic": "Basic",
-  "twoWeeks": "/2 weeks",
+  "twoWeeks": "2 weeks",
   "design": "Adaptive design",
   "account": "Personal account",
   "permissions": "permission levels",
-  "takeCourse": "Taking courses",
+  "takeCourse": "Registration and completion of courses",
   "createCourse": "Ability to create courses",
   "taskType": "types of tasks for building lessons",
   "techSupport": "Service technical support",
@@ -18,7 +18,7 @@
   "schedule": "Schedules for each class",
   "upgradeButton": "Get upgrade",
   "premium": "Premium",
-  "month": "/month",
+  "month": "1 month",
   "addFunc": "Additional functions",
   "rating": "Assessment and rating of courses",
   "newTask": "Adding a new task type for building a lesson",
@@ -28,5 +28,7 @@
   "confirmation": "Mail / phone number confirmation during registration",
   "promotion": "Search engine promotion tools",
   "webAnalytics": "Web-Site analytics",
-  "userAnalytics": "User analytics"
+  "userAnalytics": "User analytics",
+  "timing": "Timing",
+  "price": "Price"
 }

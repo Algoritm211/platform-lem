@@ -20,11 +20,6 @@ const PricePage = () => {
         <div className="col-12 col-sm-6 col-lg-4 my-3 text-center">
           <div className="price-card mb-4">
             <h3 className="price-card-name mt-4 mb-3">{t('basic')}</h3>
-            <h1 className="price-card-title pricing-card-title mb-3">
-              <small className="price-card-sum">$</small>
-              2000
-              <small className="price-card-sum" style={{ whiteSpace: 'nowrap' }}>{t('twoWeeks')}</small>
-            </h1>
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
@@ -82,17 +77,19 @@ const PricePage = () => {
                 </div>
               </div>
             </div>
-            <button type="button" className="price-button mb-4">{t('upgradeButton')}</button>
+            <h3 className="price-card-name mt-4 mb-3 text-left">{t('timing')}</h3>
+            <h3 className="price-card-sum text-left mb-3 text-left" style={{ whiteSpace: 'nowrap' }}>{t('twoWeeks')}</h3>
+            <h3 className="price-card-name mt-4 mb-3 text-left">{t('price')}</h3>
+            <h1 className="price-card-title pricing-card-title text-left mb-3">
+              <small className="price-card-sum text-left">$</small>
+              2000
+            </h1>
+            <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-4 my-3 text-center">
           <div className="price-card mb-4">
             <h3 className="price-card-name mt-4 mb-3">{t('premium')}</h3>
-            <h1 className="price-card-title pricing-card-title mb-3">
-              <small className="price-card-sum">$</small>
-              3500
-              <small className="price-card-sum">{t('month')}</small>
-            </h1>
             <div className="price-benefits my-5">
               <div className="price-benefits-one">
                 <i className="far fa-check-circle price-benefits-ill"/>
@@ -147,7 +144,14 @@ const PricePage = () => {
                 <p className="price-benefits-text">{t('schedule')}</p>
               </div>
             </div>
-            <button type="button" className="price-button mb-4">{t('upgradeButton')}</button>
+            <h3 className="price-card-name mt-4 mb-3 text-left">{t('timing')}</h3>
+            <h3 className="price-card-sum text-left mb-3 text-left" style={{ whiteSpace: 'nowrap' }}>{t('month')}</h3>
+            <h3 className="price-card-name mt-4 mb-3 text-left">{t('price')}</h3>
+            <h1 className="price-card-title pricing-card-title text-left mb-3">
+              <small className="price-card-sum text-left">$</small>
+              3500
+            </h1>
+            <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
           </div>
         </div>
       </div>

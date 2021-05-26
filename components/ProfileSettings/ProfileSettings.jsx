@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getIsLoading, getUserData } from '../../store/auth/selectors'
 import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth/user.thunks'
 import withAuthRequired from '../HOC/withAuthRequired'
+import { useTranslation } from 'next-i18next'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string()
@@ -20,6 +21,8 @@ const editProfileSchema = Yup.object().shape({
 
 
 const ProfileSettings = () => {
+  const { t } = useTranslation('settings')
+
   const user = useSelector(getUserData)
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
@@ -71,18 +74,18 @@ const ProfileSettings = () => {
           <div className="col mb-3 e-profile">
             <div className="row">
               <div className="col-6 col-md-3">
-                <h1 className="acc-title">Мій профіль</h1>
+                <h1 className="acc-title">{t('title')}</h1>
               </div>
-              <div className="col-6 col-md-9">
+              <div className="col-6 col-md-9 text-right">
                 <span
-                  className="acc-join-title">Приєднався 19/05/2021 {/* {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}*/}</span>
+                  className="acc-join-title">{t('enter')} 19/05/2021 {/* {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}*/}</span>
               </div>
             </div>
             <form onSubmit={formik.handleSubmit} className="pt-3">
-              <h3 className="acc-subtitle">Особисті дані</h3>
+              <h3 className="acc-subtitle">{t('data')}</h3>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Аватар</span>
+                  <span className="info-title">{t('avatar')}</span>
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5 d-flex">
                   <img
@@ -97,17 +100,17 @@ const ProfileSettings = () => {
                         name={'avatar'} onChange={onHandleImage}
                         multiple={false}
                         hidden={true} accept="image/jpeg,image/png"/>
-                      <label htmlFor={'avatar'} className="avatar-change">Оновити</label>
-                      <span onClick={onDeletePhoto} className="avatar-delete">Видалити</span>
+                      <label htmlFor={'avatar'} className="avatar-change">{t('update')}</label>
+                      <span onClick={onDeletePhoto} className="avatar-delete">{t('delete')}</span>
                     </>
                   ) : (
-                    <span className="avatar-change" style={{ cursor: 'progress' }}>Оновлення...</span>
+                    <span className="avatar-change" style={{ cursor: 'progress' }}>{t('updating')}...</span>
                   )}
                 </div>
               </div>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Ім`я</span>
+                  <span className="info-title">{t('name')}</span>
                 </div>
 
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -123,7 +126,7 @@ const ProfileSettings = () => {
               </div>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Прізвище</span>
+                  <span className="info-title">{t('surname')}</span>
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <input
@@ -141,7 +144,7 @@ const ProfileSettings = () => {
               {user.role === 'teacher' && (
                 <div className="row acc-info d-flex">
                   <div className="col-12 col-md-3">
-                    <span className="info-title">Посада</span>
+                    <span className="info-title">{t('position')}</span>
                   </div>
                   <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                     <textarea
@@ -156,7 +159,7 @@ const ProfileSettings = () => {
 
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Місто</span>
+                  <span className="info-title">{t('city')}</span>
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <input
@@ -171,7 +174,7 @@ const ProfileSettings = () => {
               </div>
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Дата народження</span>
+                  <span className="info-title">{t('dateOfBirth')}</span>
                 </div>
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5 justify-content-center">
                   <div className="select-wrap">
@@ -181,7 +184,7 @@ const ProfileSettings = () => {
                       name={'dayBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
-                      <option defaultValue>День</option>
+                      <option defaultValue>{t('day')}</option>
                       <option value="01">01</option>
                       <option value="02">02</option>
                       <option value="03">03</option>
@@ -222,19 +225,19 @@ const ProfileSettings = () => {
                       name={'monthBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
-                      <option defaultValue>Місяць</option>
-                      <option value="01">Січень</option>
-                      <option value="02">Лютий</option>
-                      <option value="03">Березень</option>
-                      <option value="04">Квітень</option>
-                      <option value="05">Травень</option>
-                      <option value="06">Червень</option>
-                      <option value="07">Липень</option>
-                      <option value="08">Серпень</option>
-                      <option value="09">Вересень</option>
-                      <option value="10">Жовтень</option>
-                      <option value="11">Листопад</option>
-                      <option value="12">Грудень</option>
+                      <option defaultValue>{t('month')}</option>
+                      <option value="01">{t('January')}</option>
+                      <option value="02">{t('February')}</option>
+                      <option value="03">{t('March')}</option>
+                      <option value="04">{t('April')}</option>
+                      <option value="05">{t('May')}</option>
+                      <option value="06">{t('June')}</option>
+                      <option value="07">{t('July')}</option>
+                      <option value="08">{t('August')}</option>
+                      <option value="09">{t('September')}</option>
+                      <option value="10">{t('October')}</option>
+                      <option value="11">{t('November')}</option>
+                      <option value="12">{t('December')}</option>
                     </select>
 
 
@@ -244,7 +247,7 @@ const ProfileSettings = () => {
                       name={'yearBirth'}
                       className="form-select mr-1 me-2"
                       aria-label="Default select example">
-                      <option defaultValue>Рік</option>
+                      <option defaultValue>{t('year')}</option>
                       <option value="2017">2017</option>
                       <option value="2016">2016</option>
                       <option value="2015">2015</option>
@@ -349,7 +352,7 @@ const ProfileSettings = () => {
 
               <div className="row acc-info d-flex">
                 <div className="col-12 col-md-3">
-                  <span className="info-title">Ваша стать</span>
+                  <span className="info-title">{t('gender')}</span>
                 </div>
                 <div className="col-12  col-md-8 col-lg-6 col-xl-5">
                   <div className="custom-controls-stacked px-2">
@@ -360,7 +363,7 @@ const ProfileSettings = () => {
                         checked={formik.values.gender === 'man'}
                         onChange={formik.handleChange}
                         name="gender" id="flexRadioDefault2"/>
-                      <label className="form-check-label" htmlFor="flexRadioDefault2">Чоловіча</label>
+                      <label className="form-check-label" htmlFor="flexRadioDefault2">{t('man')}</label>
                     </span>
                     <span className="form-check">
                       <input
@@ -369,7 +372,7 @@ const ProfileSettings = () => {
                         checked={formik.values.gender === 'woman'}
                         value={'woman'}
                         name="gender" id="flexRadioDefault3"/>
-                      <label className="form-check-label" htmlFor="flexRadioDefault3">Жіноча</label>
+                      <label className="form-check-label" htmlFor="flexRadioDefault3">{t('woman')}</label>
                     </span>
                   </div>
                 </div>
@@ -377,7 +380,7 @@ const ProfileSettings = () => {
               <div className="acc-info d-flex">
                 <div className="d-flex justify-content-start">
                   <button className="acc-save-button" disabled={isLoading} type="submit">
-                    {!isLoading ? 'Зберегти налаштування' : 'Зберігається'}
+                    {!isLoading ? t('saveSettings') : t('saving')}
                   </button>
                 </div>
 

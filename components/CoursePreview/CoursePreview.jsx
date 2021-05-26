@@ -63,9 +63,9 @@ const CoursePreview = () => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-8 mt-5">
+          <div className="col-12 col-md-8 mt-5 image-fix">
             <h3 className="course-preview-title my-3">About course</h3>
-            <p dangerouslySetInnerHTML={{ __html: course?.about }}>
+            <p style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html: course?.about }}>
               {/* {course?.about}*/}
             </p>
           </div>

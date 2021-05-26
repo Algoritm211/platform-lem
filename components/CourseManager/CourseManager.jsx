@@ -29,7 +29,7 @@ const CourseManager = ({ course, lessons }) => {
     if (currentCourse) {
       setIsLoading(true)
       const data = await LessonAPI.create(currentCourse._id)
-      setIsLoading(false)
+      // setIsLoading(false)
       await router.push(`/editlesson/${data.lesson._id}`)
     }
   }

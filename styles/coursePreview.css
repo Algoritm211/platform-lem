@@ -7,6 +7,10 @@
     font-size: 28px;
     font-weight: 600;
 }
+.image-fix img{
+    width: 100%;
+    height: auto;
+}
 .course-preview-text{
     font-size: 16px;
     margin: 0;

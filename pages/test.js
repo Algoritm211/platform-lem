@@ -1,10 +1,10 @@
 import React from 'react'
-import MathTaskStepEditor from '../components/Steps/MathTaskStep/MathTaskStepEditor'
+import Loader from '../components/Loader/Loader'
 
 const Test = () => {
   return (
     <div>
-      <MathTaskStepEditor/>
+      <Loader/>
     </div>
   )
 }

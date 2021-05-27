@@ -11,6 +11,7 @@ import { getCurrentLesson } from '../../store/lesson/selectors'
 import { setCurrentStep, setSteps } from '../../store/lessonSteps/reducer'
 import { getSteps } from '../../store/lessonSteps/selectors'
 import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
+import { useTranslation } from 'next-i18next'
 
 const stepTypes = {
   text: TextStepEditor,
@@ -23,6 +24,7 @@ const stepIcons = {
 }
 
 const LessonEditor = ({ lesson, course }) => {
+  const { t } = useTranslation('editLesson')
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const [lessonTitle, setLessonTitle] = useState()
@@ -78,8 +80,8 @@ const LessonEditor = ({ lesson, course }) => {
             <CourseNavbar/>
           </div>
           <div className="col-sm-9 col-md-10">
-            <h1 className="editor-title mb-5">Settings of the lesson</h1>
-            <h3 className="editor-lesson-title mb-3">Lesson title</h3>
+            <h1 className="editor-title mb-5">{t('title')}</h1>
+            <h3 className="editor-lesson-title mb-3">{t('lessonTitle')}</h3>
             <input
               className={'editor-input d-block my-auto'}
               value={lessonTitle}
@@ -88,9 +90,9 @@ const LessonEditor = ({ lesson, course }) => {
               placeholder="Course title"
               name="title"
               id="title"/>
-            <Button onClick={onTitleSave}>Save lesson title</Button>
+            <Button className="mt-3" onClick={onTitleSave}>{t('saveTitle')}</Button>
             <div className="my-5">
-              <h3 className="editor-lesson-title mb-3">Lesson plan</h3>
+              <h3 className="editor-lesson-title mb-3">{t('plan')}</h3>
               <div className="d-flex">
                 {stepIconBlock}
                 <Link href={`#`}>
@@ -102,7 +104,7 @@ const LessonEditor = ({ lesson, course }) => {
                 </Link>
               </div>
             </div>
-            <h3 className="editor-lesson-title mt-5 mb-3">Step {stepNumber + 1} | Task description</h3>
+            <h3 className="editor-lesson-title mt-5 mb-3">{t('step')} {stepNumber + 1} | {t('taskDescription')}</h3>
             <StepBlock stepData={currentStep.stepId}/>
           </div>
           <Modal
@@ -114,7 +116,7 @@ const LessonEditor = ({ lesson, course }) => {
           >
             <Modal.Header closeButton>
               <Modal.Title id="example-custom-modal-styling-title">
-                Выберите тип шага
+                {t('modalType')}
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -124,8 +126,8 @@ const LessonEditor = ({ lesson, course }) => {
                     <div className="modal-task-type">
                       <i className="fas fa-align-left modal-task-ill"/>
                       <div className="pl-3">
-                        <h3 className="modal-task-title">Текст</h3>
-                        <span className="modal-task-subtitle">Текст с форматированием, изображениями, формулами</span>
+                        <h3 className="modal-task-title">{t('text')}</h3>
+                        <span className="modal-task-subtitle">{t('textDesc')}</span>
                       </div>
                     </div>
                   </Col>
@@ -133,8 +135,8 @@ const LessonEditor = ({ lesson, course }) => {
                     <div className="modal-task-type">
                       <i className="fas fa-film modal-task-ill"/>
                       <div className="pl-3">
-                        <h3 className="modal-task-title">Видео</h3>
-                        <span className="modal-task-subtitle">Загружайте видео со сторонних сервисов</span>
+                        <h3 className="modal-task-title">{t('video')}</h3>
+                        <span className="modal-task-subtitle">{t('videoDesc')}</span>
                       </div>
                     </div>
                   </Col>

@@ -7,8 +7,10 @@ import { Button } from 'react-bootstrap'
 import { getCurrentCourse, getIsLoading } from '../../store/courses/selectors'
 import { updateCourseInfo, updateCoursePreview } from '../../store/courses/thunks'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
+import { useTranslation } from 'next-i18next'
 
 const CourseEditorPage = ({ course }) => {
+  const { t } = useTranslation('description')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const currentCourse = useSelector(getCurrentCourse)
@@ -51,7 +53,7 @@ const CourseEditorPage = ({ course }) => {
             <CourseNavbar/>
           </div>
           <form className="col-sm-9 col-md-10" onSubmit={formik.handleSubmit}>
-            <h1 className="editor-title mb-5">Description of the course</h1>
+            <h1 className="editor-title mb-5">{t('title')}</h1>
             <div className="row">
               <label className="col-3">
                 <input
@@ -63,7 +65,7 @@ const CourseEditorPage = ({ course }) => {
                 <img src={currentCourse?.coursePreview?.url || noPhotoCourse} className="editor-preview-image" alt="editor-preview-image"/>
               </label>
               <div className="col-9">
-                {/* <h3 className="editor-lesson-title mb-3">{course.title}</h3>*/}
+                <h3 className="editor-lesson-title mb-3">{t('courseTitle')}</h3>
                 <input
                   className={'editor-input d-block my-auto'}
                   value={formik.values.title}
@@ -74,7 +76,7 @@ const CourseEditorPage = ({ course }) => {
                   id="title"/>
               </div>
             </div>
-            <h3 className="editor-lesson-title mt-5 mb-3">Course short description</h3>
+            <h3 className="editor-lesson-title mt-5 mb-3">{t('shortDesc')}</h3>
             <textarea
               value={formik.values.description}
               onChange={formik.handleChange}
@@ -83,7 +85,7 @@ const CourseEditorPage = ({ course }) => {
               placeholder="Tell us about the course"
               id="description"/>
 
-            <h3 className="editor-lesson-title mt-5 mb-3">Course description</h3>
+            <h3 className="editor-lesson-title mt-5 mb-3">{t('Desc')}</h3>
             <Editor
               // apiKey={'tiny-react_19541007271621779183675'}
               initialValue={course.about || ''}
@@ -104,7 +106,7 @@ const CourseEditorPage = ({ course }) => {
               }}
               onEditorChange={handleEditorChange}
             />
-            <Button className="mt-3" type={'submit'} disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+            <Button className="mt-3" type={'submit'} disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
           </form>
 
 

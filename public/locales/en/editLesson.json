@@ -1,0 +1,13 @@
+{
+  "title": "Settings of the lesson",
+  "lessonTitle": "Lesson title",
+  "saveTitle": "Save",
+  "plan": "Lesson plan",
+  "step": "Step",
+  "taskDescription": "Task description",
+  "modalType": "Select step type",
+  "text": "Text",
+  "textDesc": "Text with formatting, images, formulas",
+  "video": "Video",
+  "videoDesc": "Download videos from third-party services"
+}

@@ -7,5 +7,7 @@
   "upgrade": "Upgrade",
   "course": "Course",
   "description": "Description",
-  "content": "Lessons"
+  "content": "Lessons",
+  "teachSubtitle": "Here you can see your lessons, change them, delete and whatever you want!"б
+  "createLesson": "Create new lesson"
 }

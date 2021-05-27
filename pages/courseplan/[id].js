@@ -4,6 +4,8 @@ import CourseManager from '../../components/CourseManager/CourseManager'
 import { wrapper } from '../../store/store'
 import LessonAPI from '../../api/api.lesson'
 import withEditProtect from '../../components/HOC/withEditProtect'
+import CourseAPI from '../../api/api.course'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const CoursePlan = ({ course, lessons }) => {
   return (
@@ -23,6 +25,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
     props: {
       course: data.course,
       lessons: data.lessons,
+      ...await serverSideTranslations(ctx.locale, ['navbar', 'header']),
     },
   }
 })

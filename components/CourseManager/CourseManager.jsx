@@ -8,8 +8,10 @@ import { getCurrentCourse } from '../../store/courses/selectors'
 import LessonCard from '../LessonPage/LessonCard'
 import LessonAPI from '../../api/api.lesson'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 const CourseManager = ({ course, lessons }) => {
+  const { t } = useTranslation('navbar')
   const dispatch = useDispatch()
   const router = useRouter()
   const currentLessons = useSelector(getLessons)
@@ -47,14 +49,14 @@ const CourseManager = ({ course, lessons }) => {
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>
               <div className="profile-welcome-block">
                 <h3 className="profile-welcome-title">{course.title}</h3>
-                <p className="profile-welcome-subtitle">Here you can see your lessons, change them, delete and whatever you want!</p>
+                <p className="profile-welcome-subtitle">{t('teachSubtitle')}</p>
               </div>
               <div className="col-12 col-sm-6">
                 <img className="profile-welcome-course-img" src="https://i.pinimg.com/originals/84/15/e1/8415e1af255424efc151ed1cb79147b1.jpg" alt="upgrade"/>
               </div>
             </div>
             <div className="profile-courses">
-              <h3 className="profile-courses-title">Lessons({currentLessons.length})</h3>
+              <h3 className="profile-courses-title">{t('content')}({currentLessons.length})</h3>
               {lessonBlock}
               <a style={{ textDecoration: 'none' }}>
                 <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
@@ -66,7 +68,7 @@ const CourseManager = ({ course, lessons }) => {
                       <i className="fas fa-plus"/>
                     </button>
                   </div>
-                  <h3 className="profile-courses-one-title m-0">Create another lesson</h3>
+                  <h3 className="profile-courses-one-title m-0">{t('createLesson')}</h3>
                 </div>
               </a>
             </div>

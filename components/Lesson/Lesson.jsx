@@ -1,83 +1,72 @@
-import React from 'react'
-import { Editor } from '@tinymce/tinymce-react'
-import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
+import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
+import { setCurrentStep, setSteps } from '../../store/lessonSteps/reducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentLesson } from '../../store/lesson/selectors'
+import { getSteps } from '../../store/lessonSteps/selectors'
+import TextStep from '../Steps/TextStep/TextStep'
+import { getCurrentCourse } from '../../store/courses/selectors'
+import Loader from '../Loader/Loader'
+import VideoStep from '../Steps/VideoStep/VideoStep'
 
-const Lesson = () => {
+const stepTypes = {
+  text: TextStep,
+  video: VideoStep,
+}
+const LessonPage = ({ lesson, course }) => {
+  const dispatch = useDispatch()
+  const currentLesson = useSelector(getCurrentLesson)
+  const currentCourse = useSelector(getCurrentCourse)
+  const steps = useSelector(getSteps)
+  const [stepNumber, setStepNumber] = useState(0)
+  const currentStep = steps[stepNumber]
+
+  useEffect(() => {
+    dispatch(setCurrentCourse(course))
+    dispatch(setCurrentLesson(lesson))
+    dispatch(setSteps(lesson.steps))
+    return () => {
+      dispatch(clearCurrentCourse())
+      dispatch(clearCurrentLesson())
+    }
+  }, [])
+
+  if (!currentLesson || !currentCourse ) {
+    return <Loader />
+  }
+
+  const onChangeStep = (num) => {
+    setCurrentStep(steps[stepNumber + num])
+    setStepNumber(stepNumber + num)
+  }
+
+  const StepBlock = stepTypes[currentStep.stepId.type]
   return (
     <div>
       <div className="container course-page mt-5">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-8">
             <h1 className="category-picker">Lesson title</h1>
-            <h3 className="editor-lesson-title mt-5 mb-3">Task 1</h3>
-            <p className="courses-lecture mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus. Amet facilisis magna etiam
-              tempor orci eu lobortis elementum. Consectetur a erat nam at lectus. Tempor id eu nisl nunc mi ipsum. Tortor at risus viverra adipiscing at in tellus integer feugiat. Malesuada fames ac turpis
-              egestas maecenas pharetra. Sed lectus vestibulum mattis ullamcorper velit. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Ipsum dolor sit amet consectetur.
-              Aliquet eget sit amet tellus cras adipiscing. Eget aliquet nibh praesent tristique magna sit amet purus. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Consectetur purus ut
-              faucibus pulvinar elementum. Fermentum odio eu feugiat pretium nibh.<br />
-              <br />
-            </p>
-
-            <h3 className="editor-lesson-title mt-5 mb-3">Type your answer down below</h3>
-            <Editor
-              // apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-              // value={editorBody}
-              // initialValue={!isHomework ? currentLesson?.body : currentLesson?.homeWork || ''}
-              init={{
-                // height: 500,
-                width: '100%',
-                min_height: 300,
-                borderRadius: '8px',
-                selector: 'textarea',
-                plugins: [
-                  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount',
-                ],
-                toolbar: `undo redo | formatselect | bold italic backcolor | \
-                          alignleft aligncenter alignright alignjustify | \
-                          bullist numlist outdent indent | removeformat | help`,
-              }}
-              // onEditorChange={handleEditorChange}
-            />
-
-            <h3 className="editor-lesson-title mt-5 mb-3">Test answer</h3>
-            <input className={'editor-input d-block my-auto'}
-              // value={title}
-              // onChange={(event) => setTitle(event.target.value)}
-              type="answer"
-              placeholder="Test answer"
-              name="answer"
-              id="answer"/>
-
-            <div className="d-flex mt-3">
-              <div className="d-flex justify-content-start mb-5">
-                <button className="content-btn">
-                  Next task
-                </button>
-              </div>
-            </div>
+            <h3 className="editor-lesson-title mt-5 mb-3">Task {stepNumber + 1}</h3>
+            <StepBlock stepInfo={currentStep.stepId}/>
           </div>
           <div className="col-12 col-sm-12 col-md-3 course-info">
             <h3 className="courses-subtitle">Lesson №1</h3>
-            <h1 className="courses-title mb-5">Course title</h1>
-            <p className="course-description mb-5">Author - Edward Kvashyn. Student of the KPI, web-developer and web-designer</p>
-            <div className="d-flex justify-content-start mb-5">
-              <Link href={`#`}>
-                <a className="mr-1" style={{ textDecoration: 'none' }}>
-                  <button className="lesson-btn d-flex" style={{ lineHeight: '16px' }}>
-                    <i className="fas fa-pen mr-1"/>
-                    Edit lesson
-                  </button>
-                </a>
-              </Link>
-            </div>
+            <h1 className="courses-title mb-5">{course.title}</h1>
+            <p className="course-description mb-5">{course.author.name}</p>
+            {stepNumber !== steps.length - 1 && (
+              <button onClick={() => onChangeStep(1)}>Далее</button>
+            )}
+            {stepNumber !== 0 && (
+              <button onClick={() => onChangeStep(-1)}>Назад</button>
+            )}
           </div>
+
         </div>
       </div>
     </div>
   )
 }
 
-export default Lesson
+export default LessonPage

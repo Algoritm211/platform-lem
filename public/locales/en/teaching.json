@@ -4,5 +4,9 @@
   "teaching": "Teaching",
   "ohUh": "Uh-oh...",
   "noCourse": "You don`t have any created courses yet",
-  "createCourse": "Let`s create new course"
+  "createCourse": "Let`s create new course",
+  "lessons": "lessons",
+  "view": "View course",
+  "change": "Change",
+  "delete": "Delete course"
 }

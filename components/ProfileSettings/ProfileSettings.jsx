@@ -79,7 +79,7 @@ const ProfileSettings = () => {
               </div>
               <div className="col-6 col-md-9 text-right">
                 <span
-                  className="acc-join-title">{t('enter')} {(userEnteredDate.getMonth() + 1) + '/' + userEnteredDate.getDate() + '/' + userEnteredDate.getFullYear()}</span>
+                  className="acc-join-title">{t('enter')} {userEnteredDate.getDate() + '/' + (userEnteredDate.getMonth() + 1) + '/' + userEnteredDate.getFullYear()}</span>
               </div>
             </div>
             <form onSubmit={formik.handleSubmit} className="pt-3">

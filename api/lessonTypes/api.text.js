@@ -6,6 +6,11 @@ class TextAPI {
     const { data } = await instanceAxios.patch(`/lesson/text/update/${id}`, updateBody)
     return data
   }
+
+  async create(lessonId) {
+    const { data } = await instanceAxios.post(`lesson/text/create/${lessonId}`)
+    return data
+  }
 }
 
 export default new TextAPI()

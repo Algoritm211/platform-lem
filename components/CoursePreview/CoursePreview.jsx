@@ -1,37 +1,39 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadCurrentCourse, subscribeToCourse, unsubscribeCourse } from '../../store/courses/thunks'
+import { loadCurrentCourse, subscribeToCourse } from '../../store/courses/thunks'
 import { getCurrentCourse } from '../../store/courses/selectors'
 import { getUserData } from '../../store/auth/selectors'
+import Loader from '../Loader/Loader'
+import Link from 'next/link'
 
 const CoursePreview = () => {
   const dispatch = useDispatch()
   const course = useSelector(getCurrentCourse)
   const user = useSelector(getUserData)
   const router = useRouter()
+  // console.log(course)
   useEffect(() => {
     dispatch(loadCurrentCourse(router.query.id))
   }, [])
   if (!course) {
-    return <div>loading...</div>
+    return <Loader />
   }
 
   const onSubscribe = () => {
     dispatch(subscribeToCourse(course._id))
   }
 
-  const onUnsubscribe = () => {
-    dispatch(unsubscribeCourse(course._id))
-  }
+  // const onUnsubscribe = () => {
+  //   dispatch(unsubscribeCourse(course._id))
+  // }
 
   return (
     <div>
       {user?.courses?.includes(course._id) ? (
         <button
           style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
-          className="mobile-course-preview-button"
-          onClick={onUnsubscribe}>Go to course</button>
+          className="mobile-course-preview-button">Go to course</button>
       ) : (
         <button className="mobile-course-preview-button" onClick={onSubscribe}>Get started</button>
       )}
@@ -73,10 +75,11 @@ const CoursePreview = () => {
             <img className="my-3" style={{ width: '100%' }} src={course.coursePreview?.url || course.coursePreview} alt="course-preview-photo"/>
             <p className="course-preview-price my-3">Free</p>
             {user?.courses?.includes(course._id) ? (
-              <button
-                style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
-                className="course-preview-button"
-                onClick={onUnsubscribe}>Go to course</button>
+              <Link href={`/lesson/${course.lessons[0]}`}>
+                <button
+                  style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
+                  className="course-preview-button">Go to course</button>
+              </Link>
             ) : (
               <button className="course-preview-button" onClick={onSubscribe}>Get started</button>
             )}

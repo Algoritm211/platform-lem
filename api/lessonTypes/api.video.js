@@ -7,6 +7,11 @@ class VideoAPI {
     const { data } = await instanceAxios.patch(`/lesson/video/update/${id}`, updateBody)
     return data
   }
+
+  async create(lessonId) {
+    const { data } = await instanceAxios.post(`lesson/video/create/${lessonId}`)
+    return data
+  }
 }
 
 export default new VideoAPI()

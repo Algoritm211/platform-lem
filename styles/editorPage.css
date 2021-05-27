@@ -27,3 +27,33 @@
     font-size: 13px;
     padding: 10px 20px;
 }
+.modal-task-type{
+    display: flex;
+    padding: 10px;
+    transition: 0.5s;
+}
+.modal-task-type:hover{
+    background-color: #eee;
+    transition: 0.5s;
+}
+.modal-task-title{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    display: block;
+}
+.modal-task-subtitle{
+    margin-top: 4px;
+    font-size: 14px;
+    color: #888888;
+}
+.modal-task-ill{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .modal-task-subtitle{
+        font-size: 12px;
+    }
+}

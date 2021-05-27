@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
 import { updateLesson } from '../../store/lesson/thunks'
 import TextStepEditor from '../Steps/TextStep/TextStepEditor'
 import { getCurrentLesson } from '../../store/lesson/selectors'
@@ -23,6 +23,7 @@ const stepIcons = {
 }
 
 const LessonEditor = ({ lesson, course }) => {
+  const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const [lessonTitle, setLessonTitle] = useState()
   const [stepNumber, setStepNumber] = useState(0)
@@ -94,7 +95,7 @@ const LessonEditor = ({ lesson, course }) => {
                 {stepIconBlock}
                 <Link href={`#`}>
                   <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex">
+                    <button className="lesson-btn d-flex" onClick={() => setShow(true)}>
                       <i className="fas fa-plus"/>
                     </button>
                   </a>
@@ -104,11 +105,43 @@ const LessonEditor = ({ lesson, course }) => {
             <h3 className="editor-lesson-title mt-5 mb-3">Step {stepNumber + 1} | Task description</h3>
             <StepBlock stepData={currentStep.stepId}/>
           </div>
-
-
-          <div className="container">
-
-          </div>
+          <Modal
+            show={show}
+            onHide={() => setShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="example-custom-modal-styling-title">
+                Выберите тип шага
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Container>
+                <Row>
+                  <Col xs={12} md={6}>
+                    <div className="modal-task-type">
+                      <i className="fas fa-align-left modal-task-ill"/>
+                      <div className="pl-3">
+                        <h3 className="modal-task-title">Текст</h3>
+                        <span className="modal-task-subtitle">Текст с форматированием, изображениями, формулами</span>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <div className="modal-task-type">
+                      <i className="fas fa-film modal-task-ill"/>
+                      <div className="pl-3">
+                        <h3 className="modal-task-title">Видео</h3>
+                        <span className="modal-task-subtitle">Загружайте видео со сторонних сервисов</span>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </Modal.Body>
+          </Modal>
         </div>
       </div>
     </div>

@@ -6,8 +6,10 @@ import { getCurrentCourse } from '../../store/courses/selectors'
 import { getUserData } from '../../store/auth/selectors'
 import Loader from '../Loader/Loader'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 const CoursePreview = () => {
+  const { t } = useTranslation('coursePreview')
   const dispatch = useDispatch()
   const course = useSelector(getCurrentCourse)
   const user = useSelector(getUserData)
@@ -33,9 +35,9 @@ const CoursePreview = () => {
       {user?.courses?.includes(course._id) ? (
         <button
           style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
-          className="mobile-course-preview-button">Go to course</button>
+          className="mobile-course-preview-button">{t('goToCourse')}</button>
       ) : (
-        <button className="mobile-course-preview-button" onClick={onSubscribe}>Get started</button>
+        <button className="mobile-course-preview-button" onClick={onSubscribe}>{t('getStarted')}</button>
       )}
       <div
         style={{ backgroundColor: '#3A5FA4', padding: '50px 0' }}
@@ -51,11 +53,11 @@ const CoursePreview = () => {
                 <div className="col-12 col-md-6 mt-auto py-3">
                   <div className="course-preview-rating d-flex">
                     <i className="fas fa-heart"/>
-                    <p className="course-preview-text">This course liked {course.rating} people</p>
+                    <p className="course-preview-text">{t('liked')} {course.rating} {t('people')}</p>
                   </div>
                   <div className="course-preview-rating d-flex">
                     <i className="fas fa-users"/>
-                    <p className="course-preview-text">{course.students.length} pupils</p>
+                    <p className="course-preview-text">{course.students.length} {t('pupils')}</p>
                   </div>
                 </div>
               </div>
@@ -66,7 +68,7 @@ const CoursePreview = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-8 mt-5 image-fix">
-            <h3 className="course-preview-title my-3">About course</h3>
+            <h3 className="course-preview-title my-3">{t('about')}</h3>
             <p style={{ overflow: 'auto' }} dangerouslySetInnerHTML={{ __html: course?.about }}>
               {/* {course?.about}*/}
             </p>
@@ -78,17 +80,17 @@ const CoursePreview = () => {
               <Link href={`/lesson/${course.lessons[0]}`}>
                 <button
                   style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
-                  className="course-preview-button">Go to course</button>
+                  className="course-preview-button">{t('goToCourse')}</button>
               </Link>
             ) : (
-              <button className="course-preview-button" onClick={onSubscribe}>Get started</button>
+              <button className="course-preview-button" onClick={onSubscribe}>{t('getStarted')}</button>
             )}
 
             <div className="course-preview-info-block my-5">
-              <p className="course-preview-info-title">The course includes</p>
-              <p className="course-preview-info-text">{course.lessons.length} Lesson</p>
-              <p className="course-preview-info-text">215 tests</p>
-              <p className="course-preview-info-text">13 programs</p>
+              <p className="course-preview-info-title">{t('analytics')}</p>
+              <p className="course-preview-info-text">{course.lessons.length} {t('lessons')}</p>
+              <p className="course-preview-info-text">215 {t('tests')}</p>
+              <p className="course-preview-info-text">13 {t('programs')}</p>
             </div>
           </div>
         </div>

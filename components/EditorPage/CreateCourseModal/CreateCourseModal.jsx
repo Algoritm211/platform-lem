@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import CourseAPI from '../../../api/api.course'
 import { setCurrentCourse } from '../../../store/courses/reducer'
 import { useRouter } from 'next/router'
+import { addCourseToUser } from '../../../store/auth/reducer'
 
 const createCourseValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -42,6 +43,7 @@ function CreateCourseModal({ ...props }) {
         }
       }
       const data = await CourseAPI.create(formData)
+      dispatch(addCourseToUser(data.course._id))
       dispatch(setCurrentCourse(data.course))
       props.onHide()
       await router.push(`/editor/${data.course._id}`)

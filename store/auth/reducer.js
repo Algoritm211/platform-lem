@@ -25,13 +25,16 @@ const reducer = createSlice({
       state.userData = {}
       state.isAuth = false
     },
+    addCourseToUser(state, action) {
+      state.userData.coursesAuthor.push(action.payload)
+    },
     setAuthError(state, action) {
       state.authError = action.payload
     },
     setRegistrationError(state, action) {
       state.registrationError = action.payload
     },
-    registrationSuccess(state, action) {
+    registrationSuccess(state) {
       state.registrationError = null
     },
     toggleIsLoading(state, action) {
@@ -46,6 +49,7 @@ export const {
   setUserData,
   setAuthError,
   setUserAuthData,
+  addCourseToUser,
   registrationSuccess,
   setRegistrationError,
   toggleIsLoading,

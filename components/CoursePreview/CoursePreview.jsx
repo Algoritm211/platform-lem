@@ -14,7 +14,6 @@ const CoursePreview = () => {
   const course = useSelector(getCurrentCourse)
   const user = useSelector(getUserData)
   const router = useRouter()
-  // console.log(course)
   useEffect(() => {
     dispatch(loadCurrentCourse(router.query.id))
   }, [])

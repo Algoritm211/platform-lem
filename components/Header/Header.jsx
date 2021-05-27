@@ -28,8 +28,8 @@ const Header = ({ size }) => {
   const onLanguageChange = (event) => {
     setCurrentLocation(event.target.value)
     router.push(
-      router.route,
-      router.route,
+      router.asPath,
+      router.asPath,
       { locale: event.target.value })
   }
 

@@ -42,19 +42,28 @@ const UserImage = () => {
             <div className="dropdown-divider"/>
           </div>
           <li>
-            <a href={`/profile`}>
-              <i className="fab fa-flipboard" style={{ marginRight: '10px' }}/>
-              {t('dashboard')}</a>
+            <Link href={`/profile`}>
+              <a>
+                <i className="fab fa-flipboard" style={{ marginRight: '10px' }}/>
+                {t('dashboard')}
+              </a>
+            </Link>
           </li>
           <li>
-            <a href={`/teaching`}>
-              <i className="fas fa-book" style={{ marginRight: '10px' }}/>
-              {t('teaching')}</a>
+            <Link href={`/teaching`}>
+              <a>
+                <i className="fas fa-book" style={{ marginRight: '10px' }}/>
+                {t('teaching')}
+              </a>
+            </Link>
           </li>
           <li>
-            <a href={`/settings`}>
-              <i className="fas fa-cog" style={{ marginRight: '10px' }}/>
-              {t('settings')}</a>
+            <Link href={`/settings`}>
+              <a>
+                <i className="fas fa-cog" style={{ marginRight: '10px' }}/>
+                {t('settings')}
+              </a>
+            </Link>
           </li>
           <div className="dropdown-divider"/>
           <li>

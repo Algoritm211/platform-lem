@@ -13,15 +13,24 @@ import { useTranslation } from 'next-i18next'
 
 const Header = ({ size }) => {
   const { t } = useTranslation('header')
+  const router = useRouter()
+  const [currentLocation, setCurrentLocation] = useState(router.locale)
 
   const [loginModalShow, setLoginModalShow] = useState(false)
   const [registrationModalShow, setRegistrationModalShow] = useState(false)
   const isAuth = useSelector(getIsAuth)
-  const router = useRouter()
 
   const switchModals = () => {
     setLoginModalShow((prev) => !prev)
     setRegistrationModalShow((prev) => !prev)
+  }
+
+  const onLanguageChange = (event) => {
+    setCurrentLocation(event.target.value)
+    router.push(
+      router.route,
+      router.route,
+      { locale: event.target.value })
   }
 
   const menuFieldCreator = (textLink, routePath) => {
@@ -58,15 +67,20 @@ const Header = ({ size }) => {
             <Nav className="mr-auto">
             </Nav>
             <Nav>
-              {menuFieldCreator( t('main'), '/')}
-              {menuFieldCreator( t('courses'), '/programs')}
-              {menuFieldCreator( t('plans'), '/plans')}
-              {menuFieldCreator( t('contacts'), '/contacts')}
+              {menuFieldCreator(t('main'), '/')}
+              {menuFieldCreator(t('courses'), '/programs')}
+              {menuFieldCreator(t('plans'), '/plans')}
+              {menuFieldCreator(t('contacts'), '/contacts')}
               <Form className="navigation-li px-3 d-flex" style={{ alignItems: 'center' }}>
                 <Form.Group className="m-0" controlId="exampleForm.SelectCustomSizeSm">
-                  <Form.Control as="select" size="sm" custom>
-                    <option>Русский</option>
-                    <option>English</option>
+                  <Form.Control
+                    as="select"
+                    size="sm"
+                    custom
+                    value={currentLocation}
+                    onChange={onLanguageChange}>
+                    <option value={'ru'}>Русский</option>
+                    <option value={'en'}>English</option>
                   </Form.Control>
                 </Form.Group>
               </Form>

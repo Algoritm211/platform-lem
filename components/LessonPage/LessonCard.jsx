@@ -20,19 +20,19 @@ const LessonCard = ({ lesson, lessonIndex }) => {
         </div>
       </div>
       <div className="d-flex ml-auto">
-        <div className="custom-control custom-switch d-flex mr-auto" style={{ alignItems: 'center' }}>
-          <input
-            onChange={(event) => console.log(event.target.value)}
-            type="checkbox"
-            className="custom-control-input"
-            // disabled={false}
-            id={lesson._id}
-            // readOnly
-          />
-          <label className="custom-control-label" htmlFor={lesson._id}>
-            Public
-          </label>
-        </div>
+        {/* <div className="custom-control custom-switch d-flex mr-auto" style={{ alignItems: 'center' }}>*/}
+        {/*  <input*/}
+        {/*    onChange={(event) => console.log(event.target.value)}*/}
+        {/*    type="checkbox"*/}
+        {/*    className="custom-control-input"*/}
+        {/*    // disabled={false}*/}
+        {/*    id={lesson._id}*/}
+        {/*    // readOnly*/}
+        {/*  />*/}
+        {/*  <label className="custom-control-label" htmlFor={lesson._id}>*/}
+        {/*    Public*/}
+        {/*  </label>*/}
+        {/* </div>*/}
         <div style={{ margin: 'auto 5px auto 10px' }}>
           <Link href={`/editlesson/${lesson._id}`}>
             <a style={{ textDecoration: 'none' }}>

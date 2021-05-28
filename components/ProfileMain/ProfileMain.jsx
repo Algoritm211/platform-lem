@@ -7,6 +7,7 @@ import { loadUserCourses } from '../../store/courses/thunks'
 import { getUserCourses } from '../../store/courses/selectors'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
+import Loader from '../Loader/Loader'
 
 const ProfileMain = () => {
   const { t } = useTranslation('profile')
@@ -20,7 +21,7 @@ const ProfileMain = () => {
   }, [])
 
   if (!userCourses) {
-    return <div>loading...</div>
+    return <Loader />
   }
 
   const courseLearningBlock = userCourses.map((course) => {

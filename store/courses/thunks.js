@@ -50,6 +50,13 @@ export const toggleLikeCourse = (courseId) => async (dispatch) => {
   dispatch(updateCourse(data.course))
 }
 
+export const toggleCourseIsReady = (courseId) => async (dispatch) => {
+  dispatch(toggleIsLoading(true))
+  const data = await CourseAPI.toggleReady(courseId)
+  dispatch(updateCourse(data.course))
+  dispatch(toggleIsLoading(false))
+}
+
 export const subscribeToCourse = (courseId) => async (dispatch) => {
   const data = await CourseAPI.subscribe(courseId)
   dispatch(setUserData(data.user))

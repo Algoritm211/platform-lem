@@ -45,9 +45,9 @@ const reducer = createSlice({
       state.allCourses = state.allCourses.map((course) =>
         updateCallback(course),
       )
-      state.usersCourses = state.usersCourses.map((course) =>
-        updateCallback(course),
-      )
+      state.usersCourses = state.usersCourses.map((course) => {
+        return updateCallback(course)
+      })
     },
     deleteCourse: (state, action) => {
       const deleteCallback = (course) => {

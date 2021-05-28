@@ -33,6 +33,11 @@ class CourseAPI {
     return data
   }
 
+  async toggleReady(id) {
+    const { data } = await instanceAxios.patch(`/course/toggleready/${id}`)
+    return data
+  }
+
   async subscribe(id) {
     const { data } = await instanceAxios.get(`course/subscribe?courseId=${id}`)
     return data

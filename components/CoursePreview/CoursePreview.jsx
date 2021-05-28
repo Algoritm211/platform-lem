@@ -76,7 +76,7 @@ const CoursePreview = () => {
             <img className="my-3" style={{ width: '100%' }} src={course.coursePreview?.url || course.coursePreview} alt="course-preview-photo"/>
             <p className="course-preview-price my-3">Free</p>
             {user?.courses?.includes(course._id) ? (
-              <Link href={`/lesson/${course.lessons[0]}`}>
+              <Link href={`/lessonslist/${course._id}`}>
                 <button
                   style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
                   className="course-preview-button">{t('goToCourse')}</button>

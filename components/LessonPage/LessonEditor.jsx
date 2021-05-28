@@ -57,10 +57,12 @@ const LessonEditor = ({ lesson, course }) => {
   }
 
   const onCreateTextLesson = async () => {
+    setShow(false)
     dispatch(createTextLesson(currentLesson._id))
   }
 
   const onCreateVideoLesson = async () => {
+    setShow(false)
     dispatch(createVideoLesson(currentLesson._id))
   }
 

@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import CourseNavbar from '../Navbars/CourseNavbar'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useTranslation } from 'next-i18next'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearLessons, setLessons } from '../../store/lesson/reducer'
+import { useDispatch, useSelector } from 'react-redux'
 import { getLessons } from '../../store/lesson/selectors'
 import { getCurrentCourse } from '../../store/courses/selectors'
-import LessonCard from '../LessonPage/LessonCard'
-import LessonAPI from '../../api/api.lesson'
-import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import Loader from '../Loader/Loader'
+import LessonsListCard from './LessonsListCard'
 
-const CourseManager = ({ course, lessons }) => {
-  const { t } = useTranslation('navbar')
+const LessonsList = ({ course, lessons }) => {
   const dispatch = useDispatch()
-  const router = useRouter()
+  const { t } = useTranslation('navbar')
   const currentLessons = useSelector(getLessons)
   const currentCourse = useSelector(getCurrentCourse)
-  const [loading, setIsLoading] = useState(false)
 
   useEffect(() => {
     dispatch(setCurrentCourse(course))
@@ -27,24 +23,17 @@ const CourseManager = ({ course, lessons }) => {
     }
   }, [])
 
-  const onCreateLesson = async () => {
-    if (currentCourse) {
-      setIsLoading(true)
-      const data = await LessonAPI.create(currentCourse._id)
-      await router.push(`/editlesson/${data.lesson._id}`)
-    }
+  if (!currentLessons && !currentCourse) {
+    return <Loader/>
   }
-
   const lessonBlock = currentLessons.map((lesson, index) => {
-    return <LessonCard lesson={lesson} key={lesson._id} lessonIndex={index}/>
+    return <LessonsListCard lesson={lesson} lessonIndex={index} key={lesson._id}/>
   })
+
   return (
     <div>
       <div className="container my-5">
         <div className="row">
-          <div className="col-sm-3 col-md-2">
-            <CourseNavbar/>
-          </div>
           <div className="col-sm-9 col-md-10">
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>
               <div className="profile-welcome-block">
@@ -58,19 +47,6 @@ const CourseManager = ({ course, lessons }) => {
             <div className="profile-courses">
               <h3 className="profile-courses-title">{t('content')}({currentLessons.length})</h3>
               {lessonBlock}
-              <a style={{ textDecoration: 'none' }}>
-                <div className="profile-courses-one justify-content-center d-flex my-3" style={{ alignItems: 'center' }}>
-                  <div className="mr-3">
-                    <button
-                      disabled={loading}
-                      className="lesson-btn d-flex"
-                      onClick={onCreateLesson}>
-                      <i className="fas fa-plus"/>
-                    </button>
-                  </div>
-                  <h3 className="profile-courses-one-title m-0">{t('createLesson')}</h3>
-                </div>
-              </a>
             </div>
           </div>
         </div>
@@ -79,4 +55,4 @@ const CourseManager = ({ course, lessons }) => {
   )
 }
 
-export default CourseManager
+export default LessonsList

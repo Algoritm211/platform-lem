@@ -12,6 +12,11 @@ class VideoAPI {
     const { data } = await instanceAxios.post(`lesson/video/create/${lessonId}`)
     return data
   }
+
+  async getOne(id) {
+    const { data } = await instanceAxios.get(`/lesson/video/${id}`)
+    return data
+  }
 }
 
 export default new VideoAPI()

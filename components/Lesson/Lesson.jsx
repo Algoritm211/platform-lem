@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
-import { setCurrentStep, setSteps } from '../../store/lessonSteps/reducer'
+import { setSteps } from '../../store/lessonSteps/reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentLesson } from '../../store/lesson/selectors'
 import { getSteps } from '../../store/lessonSteps/selectors'
@@ -12,8 +12,8 @@ import VideoStep from '../Steps/VideoStep/VideoStep'
 import { Button } from 'react-bootstrap'
 
 const stepTypes = {
-  text: TextStep,
-  video: VideoStep,
+  Text: TextStep,
+  Video: VideoStep,
 }
 const LessonPage = ({ lesson, course }) => {
   const dispatch = useDispatch()
@@ -38,11 +38,11 @@ const LessonPage = ({ lesson, course }) => {
   }
 
   const onChangeStep = (num) => {
-    setCurrentStep(steps[stepNumber + num])
     setStepNumber(stepNumber + num)
   }
 
-  const StepBlock = stepTypes[currentStep.stepId.type]
+  const StepBlock = stepTypes[currentStep.stepModel]
+
   return (
     <div>
       <div className="container course-page mt-5">
@@ -50,7 +50,7 @@ const LessonPage = ({ lesson, course }) => {
           <div className="col-12 col-sm-12 col-md-8">
             <h1 className="category-picker">Lesson title</h1>
             <h3 className="editor-lesson-title mt-5 mb-3">Task {stepNumber + 1}</h3>
-            <StepBlock stepInfo={currentStep.stepId}/>
+            <StepBlock stepId={currentStep.stepId}/>
           </div>
           <div className="col-12 col-sm-12 col-md-3 course-info">
             <h3 className="courses-subtitle">Lesson №1</h3>

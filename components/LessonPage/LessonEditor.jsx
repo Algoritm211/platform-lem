@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CourseNavbar from '../Navbars/CourseNavbar'
-import Link from 'next/link'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,30 +7,31 @@ import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
 import { updateLesson } from '../../store/lesson/thunks'
 import TextStepEditor from '../Steps/TextStep/TextStepEditor'
 import { getCurrentLesson } from '../../store/lesson/selectors'
-import { setCurrentStep, setSteps } from '../../store/lessonSteps/reducer'
+import { setSteps } from '../../store/lessonSteps/reducer'
 import { getSteps } from '../../store/lessonSteps/selectors'
 import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
 import { useTranslation } from 'next-i18next'
+import Loader from '../Loader/Loader'
+import { createTextLesson, createVideoLesson } from '../../store/lessonSteps/thunks'
 
 const stepTypes = {
-  text: TextStepEditor,
-  video: VideoStepEditor,
+  Text: TextStepEditor,
+  Video: VideoStepEditor,
 }
 
 const stepIcons = {
-  text: 'fa-align-left',
-  video: 'fa-film',
+  Text: 'fa-align-left',
+  Video: 'fa-film',
 }
 
 const LessonEditor = ({ lesson, course }) => {
   const { t } = useTranslation('editLesson')
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
-  const [lessonTitle, setLessonTitle] = useState()
+  const [lessonTitle, setLessonTitle] = useState('')
   const [stepNumber, setStepNumber] = useState(0)
   const currentLesson = useSelector(getCurrentLesson)
   const steps = useSelector(getSteps)
-  const currentStep = steps[stepNumber]
 
   useEffect(() => {
     dispatch(setCurrentCourse(course))
@@ -49,28 +49,35 @@ const LessonEditor = ({ lesson, course }) => {
   }
 
   if (!currentLesson) {
-    return <div>loading...</div>
+    return <Loader />
   }
 
   const onChangeStep = (stepNum) => {
-    setCurrentStep(steps[stepNum + 1])
     setStepNumber(stepNum)
+  }
+
+  const onCreateTextLesson = async () => {
+    dispatch(createTextLesson(currentLesson._id))
+  }
+
+  const onCreateVideoLesson = async () => {
+    dispatch(createVideoLesson(currentLesson._id))
   }
 
   const stepIconBlock = steps.map((step, index) => {
     return (
-      <a className="mr-1" style={{ textDecoration: 'none' }} key={step.stepId._id}>
+      <a className="mr-1" style={{ textDecoration: 'none' }} key={step.stepId}>
         <button
           onClick={() => onChangeStep(index)}
           className="lesson-btn d-flex"
           style={{ backgroundColor: stepNumber === index ? '#63c76a' : '#212529' }}>
-          <i className={`fas ${stepIcons[step.stepId.type]}`}/>
+          <i className={`fas ${stepIcons[step.stepModel]}`}/>
         </button>
       </a>
     )
   })
 
-  const StepBlock = stepTypes[currentStep.stepId.type]
+  const StepBlock = stepTypes[steps[stepNumber].stepModel]
 
   return (
     <div>
@@ -95,17 +102,15 @@ const LessonEditor = ({ lesson, course }) => {
               <h3 className="editor-lesson-title mb-3">{t('plan')}</h3>
               <div className="d-flex">
                 {stepIconBlock}
-                <Link href={`#`}>
-                  <a className="mr-1" style={{ textDecoration: 'none' }}>
-                    <button className="lesson-btn d-flex" onClick={() => setShow(true)}>
-                      <i className="fas fa-plus"/>
-                    </button>
-                  </a>
-                </Link>
+                <a className="mr-1" style={{ textDecoration: 'none' }}>
+                  <button className="lesson-btn d-flex" onClick={() => setShow(true)}>
+                    <i className="fas fa-plus"/>
+                  </button>
+                </a>
               </div>
             </div>
             <h3 className="editor-lesson-title mt-5 mb-3">{t('step')} {stepNumber + 1} | {t('taskDescription')}</h3>
-            <StepBlock stepData={currentStep.stepId}/>
+            <StepBlock stepId={steps[stepNumber].stepId}/>
           </div>
           <Modal
             show={show}
@@ -123,7 +128,7 @@ const LessonEditor = ({ lesson, course }) => {
               <Container>
                 <Row>
                   <Col xs={12} md={6}>
-                    <div className="modal-task-type">
+                    <div className="modal-task-type" onClick={onCreateTextLesson}>
                       <i className="fas fa-align-left modal-task-ill"/>
                       <div className="pl-3">
                         <h3 className="modal-task-title">{t('text')}</h3>
@@ -132,7 +137,7 @@ const LessonEditor = ({ lesson, course }) => {
                     </div>
                   </Col>
                   <Col xs={12} md={6}>
-                    <div className="modal-task-type">
+                    <div className="modal-task-type" onClick={onCreateVideoLesson}>
                       <i className="fas fa-film modal-task-ill"/>
                       <div className="pl-3">
                         <h3 className="modal-task-title">{t('video')}</h3>

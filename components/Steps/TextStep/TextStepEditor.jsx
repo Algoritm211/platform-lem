@@ -2,19 +2,26 @@ import React, { useEffect, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
-import { getIsLoading } from '../../../store/lessonSteps/selectors'
-import { updateTextLesson } from '../../../store/lessonSteps/thunks'
+import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
+import { loadTextStep, updateTextLesson } from '../../../store/lessonSteps/thunks'
+import Loader from '../../Loader/Loader'
 
-const TextStepEditor = ({ stepData }) => {
+const TextStepEditor = ({ stepId }) => {
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const [textContent, setTextContent] = useState('')
+  const currentStep = useSelector(getCurrentStep)
+
   useEffect(() => {
-    setTextContent(stepData.body)
-  }, [])
+    dispatch(loadTextStep(stepId))
+  }, [stepId])
+
+  if (!currentStep) {
+    return <Loader />
+  }
 
   const onUpdateLesson = () => {
-    dispatch(updateTextLesson(stepData._id, { body: textContent }))
+    dispatch(updateTextLesson(currentStep._id, { body: textContent }))
   }
 
   return (
@@ -22,7 +29,7 @@ const TextStepEditor = ({ stepData }) => {
       <h3 className="editor-lesson-title mt-5 mb-3">Write your material in the area below</h3>
       <Editor
         apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-        value={textContent}
+        initialValue={currentStep.body}
         init={{
           // height: 500,
           width: '100%',

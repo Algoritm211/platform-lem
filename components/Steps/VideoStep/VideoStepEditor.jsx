@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsLoading } from '../../../store/lessonSteps/selectors'
-import { updateVideoLesson } from '../../../store/lessonSteps/thunks'
+import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
+import { loadVideoStep, updateVideoLesson } from '../../../store/lessonSteps/thunks'
 
-const VideoStepEditor = ({ stepData }) => {
+const VideoStepEditor = ({ stepId }) => {
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const [videoUrl, setVideoUrl] = useState('')
-  console.log(stepData)
+  const currentStep = useSelector(getCurrentStep)
+
   useEffect(() => {
-    setVideoUrl(stepData.url)
-  }, [])
+    dispatch(loadVideoStep(stepId))
+  }, [stepId])
+
+  useEffect(() => {
+    setVideoUrl(currentStep.url)
+  }, [currentStep])
 
   const onUpdate = () => {
-    dispatch(updateVideoLesson(stepData._id, { url: videoUrl }))
+    dispatch(updateVideoLesson(currentStep._id, { url: videoUrl }))
   }
   return (
     <div>

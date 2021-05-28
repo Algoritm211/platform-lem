@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { loadTextStep } from '../../../store/lessonSteps/thunks'
+import Loader from '../../Loader/Loader'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentStep } from '../../../store/lessonSteps/selectors'
 
-const TextStep = ({ stepInfo }) => {
+const TextStep = ({ stepId }) => {
+  const dispatch = useDispatch()
+  const currentStep = useSelector(getCurrentStep)
+
+  useEffect(() => {
+    dispatch(loadTextStep(stepId))
+  }, [stepId])
+
+  if (!currentStep) {
+    return <Loader />
+  }
   return (
     <div>
-      <p className="courses-lecture mb-5" dangerouslySetInnerHTML={{ __html: stepInfo.body }}/>
+      <p className="courses-lecture mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
     </div>
   )
 }

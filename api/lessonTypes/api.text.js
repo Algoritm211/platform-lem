@@ -8,7 +8,12 @@ class TextAPI {
   }
 
   async create(lessonId) {
-    const { data } = await instanceAxios.post(`lesson/text/create/${lessonId}`)
+    const { data } = await instanceAxios.post(`/lesson/text/create/${lessonId}`)
+    return data
+  }
+
+  async getOne(id) {
+    const { data } = await instanceAxios.get(`/lesson/text/${id}`)
     return data
   }
 }

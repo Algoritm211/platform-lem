@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, ButtonGroup, Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth/selectors'
@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
 const ProfileCourseCard = ({ course }) => {
+  const [show, setShow] = useState(false)
   const { t } = useTranslation('teaching')
   const dispatch = useDispatch()
   const router = useRouter()
@@ -33,9 +34,36 @@ const ProfileCourseCard = ({ course }) => {
               <Dropdown.Item href={`/editor/${course._id}`}>{t('change')}</Dropdown.Item>
             </Link>
           )}
-          <Dropdown.Item onClick={() => dispatch(unsubscribeCourse(course._id))}>{t('delete')}</Dropdown.Item>
+          <Dropdown.Item onClick={() => setShow(true)}>{t('delete')}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Body closeButton>
+          <Container>
+            <Row>
+              <Col xs={12} md={6}>
+                <img className="content-image" src="/bucket.png" alt="photo"/>
+              </Col>
+              <Col xs={12} md={6} className="d-flex" style={{ alignItems: 'center' }}>
+                <div className="m-auto">
+                  <h3 className="profile-welcome-title d-block">Are you sure?</h3>
+                  <span className="modal-task-subtitle d-block">Do you want to permanently delete everything now?</span>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => dispatch(unsubscribeCourse(course._id))} className="btn-danger" style={{ borderRadius: '8px' }}>Yes, delete</Button>
+          <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   )
 }

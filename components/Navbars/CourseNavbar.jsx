@@ -48,7 +48,7 @@ const CourseNavbar = () => {
         <div className="profile-upgrade-block mt-5">
           <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
           <p className="profile-upgrade-text">{t('upToPro')}</p>
-          <a href={`/plans`}>
+          <a href={`/plans`} style={{ textDecoration: 'none' }}>
             <button className="profile-upgrade-button">{t('upgrade')}</button>
           </a>
         </div>

@@ -8,8 +8,8 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
 const ProfileCourseCard = ({ course }) => {
-  const [show, setShow] = useState(false)
   const { t } = useTranslation('teaching')
+  const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
   const user = useSelector(getUserData)

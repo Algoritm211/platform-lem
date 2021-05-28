@@ -17,7 +17,7 @@ const TextStep = ({ stepId }) => {
   }
   return (
     <div>
-      <p className="courses-lecture mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
+      <p className="courses-lecture mt-3 mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
     </div>
   )
 }

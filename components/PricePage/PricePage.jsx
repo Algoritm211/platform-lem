@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
+import Link from 'next/link'
 
 const PricePage = () => {
   const { t } = useTranslation('plans')
@@ -84,7 +85,11 @@ const PricePage = () => {
               <small className="price-card-sum text-left">$</small>
               2000
             </h1>
-            <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
+            <Link href={'/contacts'}>
+              <a>
+                <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="col-12 col-sm-6 col-lg-4 my-3 text-center">
@@ -151,7 +156,11 @@ const PricePage = () => {
               <small className="price-card-sum text-left">$</small>
               3500
             </h1>
-            <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
+            <Link href={'/contacts'}>
+              <a>
+                <button type="button" className="price-button my-4">{t('upgradeButton')}</button>
+              </a>
+            </Link>
           </div>
         </div>
       </div>

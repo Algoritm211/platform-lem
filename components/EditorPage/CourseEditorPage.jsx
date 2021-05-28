@@ -71,7 +71,7 @@ const CourseEditorPage = ({ course }) => {
                   value={formik.values.title}
                   onChange={formik.handleChange}
                   type="text"
-                  placeholder="Course title"
+                  placeholder="Lesson title"
                   name="title"
                   id="title"/>
               </div>

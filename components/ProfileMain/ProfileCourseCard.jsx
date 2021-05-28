@@ -21,22 +21,35 @@ const ProfileCourseCard = ({ course }) => {
         <p className="profile-courses-one-text">{course.description}</p>
         <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
       </div>
-      <Dropdown as={ButtonGroup} className="ml-auto my-auto">
-        <Button
-          className="course-view-btn d-flex"
-          variant="primary" onClick={() => router.push(`/programs/${course._id}`)}>{t('view')}</Button>
+      <div className="text-right ml-auto">
+        <div className="custom-control custom-switch mb-4">
+          <input
+            type="checkbox"
+            className="custom-control-input"
+            id={course._id}
+            readOnly
+          />
+          <label className="custom-control-label" htmlFor={course._id}>
+            Public
+          </label>
+        </div>
+        <Dropdown as={ButtonGroup} className="ml-auto my-auto">
+          <Button
+            className="course-view-btn d-flex"
+            variant="primary" onClick={() => router.push(`/programs/${course._id}`)}>{t('view')}</Button>
 
-        <Dropdown.Toggle className="course-view-btn" split variant="primary" id="dropdown-split-basic"/>
+          <Dropdown.Toggle className="course-view-btn" split variant="primary" id="dropdown-split-basic"/>
 
-        <Dropdown.Menu>
-          {user?._id === course.author._id && (
-            <Link href={`/editor/${course._id}`}>
-              <Dropdown.Item href={`/editor/${course._id}`}>{t('change')}</Dropdown.Item>
-            </Link>
-          )}
-          <Dropdown.Item onClick={() => setShow(true)}>{t('delete')}</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+          <Dropdown.Menu>
+            {user?._id === course.author._id && (
+              <Link href={`/editor/${course._id}`}>
+                <Dropdown.Item href={`/editor/${course._id}`}>{t('change')}</Dropdown.Item>
+              </Link>
+            )}
+            <Dropdown.Item onClick={() => setShow(true)}>{t('delete')}</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <Modal
         show={show}
         onHide={() => setShow(false)}

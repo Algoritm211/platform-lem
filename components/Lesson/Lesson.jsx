@@ -33,8 +33,8 @@ const LessonPage = ({ lesson, course }) => {
     }
   }, [])
 
-  if (!currentLesson || !currentCourse ) {
-    return <Loader />
+  if (!currentLesson || !currentCourse) {
+    return <Loader/>
   }
 
   const onChangeStep = (num) => {
@@ -49,18 +49,19 @@ const LessonPage = ({ lesson, course }) => {
         <div className="row">
           <div className="col-12 col-sm-12 col-md-8">
             <h1 className="category-picker">Lesson title</h1>
-            <h3 className="editor-lesson-title mt-5 mb-3">Task {stepNumber + 1}</h3>
+            <h3 className="editor-lesson-title">Task {stepNumber + 1}</h3>
             <StepBlock stepId={currentStep.stepId}/>
           </div>
-          <div className="col-12 col-sm-12 col-md-3 course-info">
+          <div className="col-12 col-sm-12 col-md-4">
             <h3 className="courses-subtitle">Lesson №1</h3>
             <h1 className="courses-title mb-5">{course.title}</h1>
+            <p className="course-description m-0">Author of the course</p>
             <p className="course-description mb-5">{course.author.name}</p>
-            {stepNumber !== steps.length - 1 && (
-              <Button className="btn-primary mb-5" onClick={() => onChangeStep(1)}>Далее</Button>
-            )}
             {stepNumber !== 0 && (
-              <Button className="btn-primary mb-5" onClick={() => onChangeStep(-1)}>Назад</Button>
+              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(-1)}>Назад</Button>
+            )}
+            {stepNumber !== steps.length - 1 && (
+              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(1)}>Далее</Button>
             )}
           </div>
 

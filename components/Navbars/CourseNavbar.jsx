@@ -31,26 +31,28 @@ const CourseNavbar = () => {
           {fieldCreator(t('description'), `/editor/${currentCourse?._id}`, 'fas fa-align-left')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator( t('content'), `/courseplan/${currentCourse?._id}`, 'fas fa-th-large')}
+          {fieldCreator(t('content'), `/courseplan/${currentCourse?._id}`, 'fas fa-th-large')}
         </div>
-        <hr className="separator-mobile" />
+        <hr className="separator-mobile"/>
       </div>
       <div className="profile-button mb-4">
         <div className="profile-button d-flex mb-4">
-          {fieldCreator( t('dashboard'), '/profile', 'fab fa-flipboard')}
+          {fieldCreator(t('dashboard'), '/profile', 'fab fa-flipboard')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator( t('teaching'), '/teaching', 'fas fa-book')}
+          {fieldCreator(t('teaching'), '/teaching', 'fas fa-book')}
         </div>
         <div className="profile-button d-flex mb-4">
-          {fieldCreator( t('settings'), '/settings', 'fas fa-cog')}
+          {fieldCreator(t('settings'), '/settings', 'fas fa-cog')}
         </div>
         <div className="profile-upgrade-block mt-5">
           <img className="profile-upgrade-img" src="/6.png" alt="upgrade"/>
           <p className="profile-upgrade-text">{t('upToPro')}</p>
-          <a href={`/plans`} style={{ textDecoration: 'none' }}>
-            <button className="profile-upgrade-button">{t('upgrade')}</button>
-          </a>
+          <Link href={`/plans`}>
+            <a style={{ textDecoration: 'none' }}>
+              <button className="profile-upgrade-button">{t('upgrade')}</button>
+            </a>
+          </Link>
         </div>
       </div>
     </div>

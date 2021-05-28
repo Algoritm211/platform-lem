@@ -123,10 +123,3 @@
         right: 0;
     }
 }
-
-@media (min-width: 768px){
-    .video-step-player{
-        width: 480px;
-        height: 320px;
-    }
-}

@@ -11,33 +11,45 @@ const LessonCard = ({ lesson, lessonIndex }) => {
     dispatch(deleteLesson(lesson._id))
   }
   return (
-    <div className="profile-courses-one d-flex my-3">
-      <h3 className="profile-courses-one-lessonNumber">{lessonIndex + 1}.</h3>
-      <div className="profile-courses-one-content">
-        <h3 className="profile-courses-one-title">{lesson.title || 'No title'}</h3>
-        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
+    <div className="profile-courses-one flexMobile my-3">
+      <div className="d-flex">
+        <h3 className="profile-courses-one-lessonNumber">{lessonIndex + 1}.</h3>
+        <div className="profile-courses-one-content">
+          <h3 className="profile-courses-one-title">{lesson.title || 'No title'}</h3>
+          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
+        </div>
       </div>
-      <div className="custom-control custom-switch d-flex" style={{ alignItems: 'center' }}>
-        <input
-          onChange={(event)=> console.log(event.target.value)}
-          type="checkbox"
-          className="custom-control-input"
-          // disabled={false}
-          id={lesson._id}
-          // readOnly
-        />
-        <label className="custom-control-label" htmlFor={lesson._id}>
-          Public
-        </label>
-      </div>
-      <div className="ml-auto">
-        <Link href={`/editlesson/${lesson._id}`}>
+      <div className="d-flex ml-auto">
+        <div className="custom-control custom-switch d-flex mr-auto" style={{ alignItems: 'center' }}>
+          <input
+            onChange={(event) => console.log(event.target.value)}
+            type="checkbox"
+            className="custom-control-input"
+            // disabled={false}
+            id={lesson._id}
+            // readOnly
+          />
+          <label className="custom-control-label" htmlFor={lesson._id}>
+            Public
+          </label>
+        </div>
+        <div style={{ margin: 'auto 5px auto 10px' }}>
+          <Link href={`/editlesson/${lesson._id}`}>
+            <a style={{ textDecoration: 'none' }}>
+              <button className="lesson-btn d-flex">
+                <i className="fas fa-pen"/>
+              </button>
+            </a>
+          </Link>
+        </div>
+
+        <div style={{ margin: 'auto 0' }}>
           <a style={{ textDecoration: 'none' }}>
-            <button className="lesson-btn d-flex">
-              <i className="fas fa-pen"/>
+            <button className="lesson-delete-btn d-flex" onClick={() => setShow(true)}>
+              <i className="fas fa-trash-alt"/>
             </button>
           </a>
-        </Link>
+        </div>
       </div>
       <Modal
         show={show}
@@ -66,13 +78,6 @@ const LessonCard = ({ lesson, lessonIndex }) => {
           <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>Close</Button>
         </Modal.Footer>
       </Modal>
-      <div className="ml-1">
-        <a style={{ textDecoration: 'none' }}>
-          <button className="lesson-delete-btn d-flex" onClick={() => setShow(true)}>
-            <i className="fas fa-trash-alt"/>
-          </button>
-        </a>
-      </div>
     </div>
   )
 }

@@ -122,9 +122,6 @@
     margin-right: 20px;
     object-fit: cover;
 }
-.profile-courses-one-content{
-    width: 60%;
-}
 .profile-courses-one-lessonNumber{
     font-size: 36px;
     width: 60px;
@@ -191,6 +188,9 @@
     color: #005ac7;
     text-decoration: none;
 }
+.flexMobile{
+    display: flex;
+}
 @media (max-width: 1200px) {
     .profile-welcome-img{
         top: -45px;
@@ -249,6 +249,9 @@
     .profile-upgrade-block{
         display: none;
     }
+    .profile-welcome-course-img{
+        margin-top: 20px;
+    }
     .separator-mobile{
         display: none;
     }
@@ -273,6 +276,12 @@
     }
     .profile-courses-one-img{
         display: none;
+    }
+    .flexMobile{
+        display: block;
+    }
+    .profile-courses-one-content{
+        width: 100%;
     }
 }
 @media (max-width: 575px) {

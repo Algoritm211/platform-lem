@@ -52,7 +52,7 @@ const LessonPage = ({ lesson, course }) => {
             <h3 className="editor-lesson-title">Task {stepNumber + 1}</h3>
             <StepBlock stepId={currentStep.stepId}/>
           </div>
-          <div className="col-12 col-sm-12 col-md-4">
+          <div className="col-12 col-sm-12 col-md-4" style={{ overflow: 'auto' }}>
             <h3 className="courses-subtitle">Lesson №1</h3>
             <h1 className="courses-title mb-5">{course.title}</h1>
             <p className="course-description m-0">Author of the course</p>
@@ -63,6 +63,7 @@ const LessonPage = ({ lesson, course }) => {
             {stepNumber !== steps.length - 1 && (
               <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(1)}>Далее</Button>
             )}
+            <Button href="javascript:history.back()" variant="outline-primary" style={{ position: 'fixed', top: '60px', right: '20px' }}>Back to course</Button>
           </div>
 
         </div>

@@ -34,7 +34,7 @@ const LessonsList = ({ course, lessons }) => {
     <div>
       <div className="container my-5">
         <div className="row">
-          <div className="col-sm-9 col-md-10">
+          <div className="col-sm-12 col-md-12">
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>
               <div className="profile-welcome-block">
                 <h3 className="profile-welcome-title">{course.title}</h3>

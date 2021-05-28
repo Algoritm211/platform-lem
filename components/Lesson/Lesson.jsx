@@ -9,6 +9,7 @@ import TextStep from '../Steps/TextStep/TextStep'
 import { getCurrentCourse } from '../../store/courses/selectors'
 import Loader from '../Loader/Loader'
 import VideoStep from '../Steps/VideoStep/VideoStep'
+import { Button } from 'react-bootstrap'
 
 const stepTypes = {
   text: TextStep,
@@ -56,10 +57,10 @@ const LessonPage = ({ lesson, course }) => {
             <h1 className="courses-title mb-5">{course.title}</h1>
             <p className="course-description mb-5">{course.author.name}</p>
             {stepNumber !== steps.length - 1 && (
-              <button onClick={() => onChangeStep(1)}>Далее</button>
+              <Button className="btn-primary mb-5" onClick={() => onChangeStep(1)}>Далее</Button>
             )}
             {stepNumber !== 0 && (
-              <button onClick={() => onChangeStep(-1)}>Назад</button>
+              <Button className="btn-primary mb-5" onClick={() => onChangeStep(-1)}>Назад</Button>
             )}
           </div>
 

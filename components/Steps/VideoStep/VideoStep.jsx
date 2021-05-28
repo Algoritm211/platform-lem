@@ -2,9 +2,9 @@ import React from 'react'
 
 const VideoStep = ({ stepInfo }) => {
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <iframe
-        width="400" height="250"
+        className="video-step-player mb-5"
         src={stepInfo.url}
         title="YouTube video player" frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

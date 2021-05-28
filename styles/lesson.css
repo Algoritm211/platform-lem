@@ -12,6 +12,10 @@
     position: fixed;
     right: 3rem;
 }
+.video-step-player{
+    width: 100%;
+    height: 320px;
+}
 @media (max-width: 768px) {
     .courses-title{
         margin-bottom: 1rem!important;
@@ -94,7 +98,6 @@
         flex-direction: column-reverse;
     }
 }
-
 @media (min-width: 1140px) {
     .course-info{
         position: fixed;
@@ -118,5 +121,12 @@
     .course-info{
         position: relative;
         right: 0;
+    }
+}
+
+@media (min-width: 768px){
+    .video-step-player{
+        width: 480px;
+        height: 320px;
     }
 }

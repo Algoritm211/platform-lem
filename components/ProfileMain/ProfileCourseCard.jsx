@@ -34,7 +34,7 @@ const ProfileCourseCard = ({ course }) => {
         <p className="profile-courses-one-text">{course.description}</p>
         <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
       </div>
-      <div className="text-right ml-auto">
+      <div className="text-right ml-auto" style={{ display: 'grid' }}>
         {user?.coursesAuthor.includes(course._id) && (
           <div className="custom-control custom-switch mb-4">
             <input
@@ -50,7 +50,7 @@ const ProfileCourseCard = ({ course }) => {
             </label>
           </div>
         )}
-        <Dropdown as={ButtonGroup} className="ml-auto my-auto">
+        <Dropdown as={ButtonGroup} className="ml-auto mt-auto">
           <Button
             className="course-view-btn d-flex"
             disabled={!isReady}

@@ -48,7 +48,7 @@ const LessonPage = ({ lesson, course }) => {
       <div className="container course-page mt-5">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-8 image-fix">
-            <h1 className="category-picker">Lesson title</h1>
+            <h1 className="category-picker">{lesson.title}</h1>
             <h3 className="editor-lesson-title">Task {stepNumber + 1}</h3>
             <StepBlock stepId={currentStep.stepId}/>
           </div>

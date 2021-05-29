@@ -96,7 +96,7 @@ const LessonEditor = ({ lesson, course }) => {
               value={lessonTitle}
               onChange={(event) => setLessonTitle(event.target.value)}
               type="text"
-              placeholder="Course title"
+              placeholder="Lesson title"
               name="title"
               id="title"/>
             <Button className="mt-3" onClick={onTitleSave}>{t('saveTitle')}</Button>

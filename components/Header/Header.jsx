@@ -81,6 +81,7 @@ const Header = ({ size }) => {
                     onChange={onLanguageChange}>
                     <option value={'ru'}>Русский</option>
                     <option value={'en'}>English</option>
+                    <option value={'uk'}>Українська</option>
                   </Form.Control>
                 </Form.Group>
               </Form>

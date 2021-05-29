@@ -1,6 +1,12 @@
 *{
     font-family: Montserrat, sans-serif;
 }
+.programs-progress-bar{
+    color: #fff;
+    width: 75%;
+    border-radius: 8px;
+    margin: 15px 0;
+}
 .course-image{
     width: 100%;
     height: 250px;
@@ -17,31 +23,30 @@
 .course-card-text{
     font-size: 16px;
     font-weight: 400;
+    line-height: 0.9;
     margin: 0;
     color: white;
+    align-items: flex-end;
+    display: flex;
 }
 .course-card-rating .fa-heart{
     font-size: 16px;
     margin: 0;
     color: white;
-    line-height: 24px;
     padding-right: 5px;
+    align-items: flex-end;
+    display: flex;
 }
 .course-card-btn{
-    position: absolute;
     border: none;
     border-radius: 8px;
-    bottom: 20px;
     padding: 15px;
     background-color: rgba(255,255,255, 0.5);
     transition: 0.5s;
 }
 .course-card-rating{
-    position: absolute;
     border: none;
     border-radius: 8px;
-    bottom: 20px;
-    right: 25px;
     margin: 0;
     padding: 15px;
     transition: 0.5s;

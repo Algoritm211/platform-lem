@@ -3,8 +3,10 @@ import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import { loadVideoStep, updateVideoLesson } from '../../../store/lessonSteps/thunks'
+import { useTranslation } from 'next-i18next'
 
 const VideoStepEditor = ({ stepId }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const [videoUrl, setVideoUrl] = useState('')
@@ -23,7 +25,7 @@ const VideoStepEditor = ({ stepId }) => {
   }
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">Enter link on the video down below</h3>
+      <h3 className="editor-lesson-title mt-5 mb-3">{t('videoMaterial')}</h3>
       <input
         className={'inputAcc mb-5'}
         placeholder={'Enter link'}
@@ -32,12 +34,12 @@ const VideoStepEditor = ({ stepId }) => {
         type="video-link"
         name="video-link"
         id="video-link"/>
-      <span className="info-title d-block">*You can embed a video link from any third party platform(YouTube, Dropbox, Google Drive, ICloud etc). Make sure your students can view the video.</span>
+      <span className="info-title d-block">*{t('videoInfo')}</span>
       <Button
         className="mt-3"
         onClick={onUpdate}
         type={'submit'}
-        disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+        disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
     </div>
   )
 }

@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Loader/Loader'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
 import { loadTextAnswerStep } from '../../../store/lessonSteps/thunks'
+import { useTranslation } from 'next-i18next'
 
 const OpenAnswerStep = ({ stepId }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
   const [answerText, setAnswerText] = useState('')
@@ -21,9 +23,10 @@ const OpenAnswerStep = ({ stepId }) => {
     <div>
       <p className="courses-lecture mt-3 mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
       <textarea
+        className="form-control inputAcc"
         value={answerText}
         onChange={(event) => setAnswerText(event.target.value)}
-        placeholder={'Type your answer here'} />
+        placeholder={t('answer')} />
     </div>
   )
 }

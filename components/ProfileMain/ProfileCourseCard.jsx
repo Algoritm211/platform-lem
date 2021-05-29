@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Col, Container, Dropdown, Modal, Row } from 'react-bootstrap'
+import { Button, ButtonGroup, Col, Container, Dropdown, Modal, ProgressBar, Row } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth/selectors'
@@ -27,16 +27,19 @@ const ProfileCourseCard = ({ course }) => {
   }
 
   return (
-    <div className="profile-courses-one d-flex my-3">
-      <img className="profile-courses-one-img" src={course.coursePreview?.url || course.coursePreview} alt="preview-course-photo"/>
-      <div className="profile-courses-one-content">
-        <h3 className="profile-courses-one-title">{course.title}</h3>
-        <p className="profile-courses-one-text">{course.description}</p>
-        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
+    <div className="profile-courses-one my-3">
+      <div className="d-flex">
+        <img className="profile-courses-one-img" src={course.coursePreview?.url || course.coursePreview} alt="preview-course-photo"/>
+        <div className="profile-courses-one-content">
+          <h3 className="profile-courses-one-title">{course.title}</h3>
+          <p className="profile-courses-one-text">{course.description}</p>
+          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
+          <ProgressBar style={{ width: '90%' }} className="programs-progress-bar d-flex" now={72} label={`${72}%`}/>
+        </div>
       </div>
-      <div className="text-right ml-auto" style={{ display: 'grid' }}>
+      <div className="text-right ml-auto profile-toolkit">
         {user?.coursesAuthor.includes(course._id) && (
-          <div className="custom-control custom-switch mb-4">
+          <div className="custom-control custom-switch">
             <input
               type="checkbox"
               className="custom-control-input"
@@ -46,11 +49,11 @@ const ProfileCourseCard = ({ course }) => {
               checked={isReady}
             />
             <label className="custom-control-label" htmlFor={course._id}>
-              {isReady ? 'Public' : 'Private'}
+              {isReady ? t('public') : t('private')}
             </label>
           </div>
         )}
-        <Dropdown as={ButtonGroup} className="ml-auto mt-auto">
+        <Dropdown as={ButtonGroup} className="ml-auto mt-auto dropdown-button">
           <Button
             className="course-view-btn d-flex"
             disabled={!isReady}
@@ -61,10 +64,10 @@ const ProfileCourseCard = ({ course }) => {
           <Dropdown.Menu>
             {user?._id === course.author._id && (
               <Link href={`/editor/${course._id}`}>
-                <Dropdown.Item href={`/editor/${course._id}`}>{t('change')}</Dropdown.Item>
+                <Dropdown.Item className="course-view-text" href={`/editor/${course._id}`}>{t('change')}</Dropdown.Item>
               </Link>
             )}
-            <Dropdown.Item onClick={() => setShow(true)}>{t('delete')}</Dropdown.Item>
+            <Dropdown.Item className="course-view-text" onClick={() => setShow(true)}>{t('delete')}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -83,16 +86,16 @@ const ProfileCourseCard = ({ course }) => {
               </Col>
               <Col xs={12} md={6} className="d-flex" style={{ alignItems: 'center' }}>
                 <div className="m-auto">
-                  <h3 className="profile-welcome-title d-block">Are you sure?</h3>
-                  <span className="modal-task-subtitle d-block">Do you want to permanently delete everything now?</span>
+                  <h3 className="profile-welcome-title d-block">{t('sure')}</h3>
+                  <span className="modal-task-subtitle d-block">{t('want')}</span>
                 </div>
               </Col>
             </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => dispatch(unsubscribeCourse(course._id))} className="btn-danger" style={{ borderRadius: '8px' }}>Yes, delete</Button>
-          <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>Close</Button>
+          <Button onClick={() => dispatch(unsubscribeCourse(course._id))} className="btn-danger" style={{ borderRadius: '8px' }}>{t('yesDelete')}</Button>
+          <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>{t('close')}</Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -74,7 +74,7 @@ const CoursePreview = () => {
           </div>
           <div className="col-12 col-md-4 mt-5">
             <img className="my-3" style={{ width: '100%' }} src={course.coursePreview?.url || course.coursePreview} alt="course-preview-photo"/>
-            <p className="course-preview-price my-3">Free</p>
+            <p className="course-preview-price my-3">{t('free')}</p>
             {user?.courses?.includes(course._id) ? (
               <Link href={`/lessonslist/${course._id}`}>
                 <button

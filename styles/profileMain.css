@@ -114,6 +114,7 @@
     width: 100%;
     background-color: #f7f7fc;
     padding: 20px;
+    display: flex;
     border-radius: 8px;
 }
 .profile-courses-nocourses-img{
@@ -191,6 +192,12 @@
 .flexMobile{
     display: flex;
 }
+.course-view-text{
+    font-size: 16px;
+}
+.profile-toolkit{
+    display: grid;
+}
 @media (max-width: 1200px) {
     .profile-welcome-img{
         top: -45px;
@@ -244,6 +251,23 @@
     .profile-welcome-subtitle{
         font-size: 14px;
     }
+    .dropdown-button{
+        padding: 0!important;
+    }
+    .course-view-btn{
+        font-size: 14px;
+    }
+    .course-view-text{
+        font-size: 14px;
+    }
+    .profile-courses-one{
+        display: block;
+    }
+    .profile-toolkit{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+    }
 }
 @media (max-width: 576px) {
     .profile-upgrade-block{
@@ -282,6 +306,12 @@
     }
     .profile-courses-one-content{
         width: 100%;
+    }
+    .profile-courses-one-text{
+        font-size: 10px;
+    }
+    .custom-control-label{
+        font-size: 12px;
     }
 }
 @media (max-width: 575px) {

@@ -8,5 +8,11 @@
   "lessons": "lessons",
   "view": "View course",
   "change": "Change",
-  "delete": "Delete course"
+  "delete": "Delete course",
+  "private": "Private",
+  "public": "Public",
+  "sure": "Are you sure?",
+  "want": "Do you want to permanently delete everything now?",
+  "yesDelete": "Yes, delete",
+  "close": "Close"
 }

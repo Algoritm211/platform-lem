@@ -7,6 +7,7 @@ import CourseAPI from '../../../api/api.course'
 import { setCurrentCourse } from '../../../store/courses/reducer'
 import { useRouter } from 'next/router'
 import { addCourseToUser } from '../../../store/auth/reducer'
+import { useTranslation } from 'next-i18next'
 
 const createCourseValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -24,6 +25,7 @@ const createCourseValidationSchema = Yup.object().shape({
 })
 
 function CreateCourseModal({ ...props }) {
+  const { t } = useTranslation('navbar')
   const router = useRouter()
   const dispatch = useDispatch()
   const formik = useFormik({
@@ -58,7 +60,7 @@ function CreateCourseModal({ ...props }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <h1 className="AuthTitle">Create new course</h1>
+          <h1 className="AuthTitle">{t('createCourse')}</h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -89,32 +91,32 @@ function CreateCourseModal({ ...props }) {
                 {/*)}*/}
               {/*</div>*/}
               <div className="form-textbox">
-                <label htmlFor="courseTitle">Course Title</label>
+                <label htmlFor="courseTitle">{t('courseTitle')}</label>
                 <input
                   value={formik.values.title}
                   onChange={formik.handleChange}
                   className={'inputAuth inputAcc'}
                   type="courseTitle"
-                  placeholder="Course title"
+                  placeholder={t('courseTitle')}
                   name="title"
                   id="title"/>
                 {formik.errors.title}
               </div>
 
               <div className="form-textbox">
-                <label htmlFor="courseTitle">Short description</label>
+                <label htmlFor="courseTitle">{t('shortDesc')}</label>
                 <textarea
                   value={formik.values.description}
                   onChange={formik.handleChange}
                   className="form-control inputAcc"
                   style={{ minHeight: '80px' }}
-                  placeholder="Tell us about the course"
+                  placeholder={t('tellAbout')}
                   id="description"/>
                 {formik.errors.description}
               </div>
 
               <div className="form-textbox">
-                <label htmlFor="subject" style={{ width: '100%' }}>Subject</label>
+                <label htmlFor="subject" style={{ width: '100%' }}>{t('subject')}</label>
                 <select
                   value={formik.values.subject}
                   onChange={formik.handleChange}
@@ -122,12 +124,14 @@ function CreateCourseModal({ ...props }) {
                   id={'subject'}
                   className="form-select mr-3"
                   aria-label="Default select example">
-                  <option defaultValue>Subject</option>
-                  <option value="design">Design</option>
-                  <option value="business">Biology</option>
-                  <option value="education">Chemistry</option>
-                  <option value="marketing">History</option>
-                  <option value="it">IT</option>
+                  <option defaultValue>{t('subject')}</option>
+                  <option value="design">{t('math')}</option>
+                  <option value="business">{t('science')}</option>
+                  <option value="education">{t('it')}</option>
+                  <option value="marketing">{t('geography')}</option>
+                  <option value="it">{t('art')}</option>
+                  <option value="english">{t('english')}</option>
+                  <option value="history">{t('history')}</option>
                 </select>
                 {formik.errors.subject}
               </div>
@@ -137,9 +141,9 @@ function CreateCourseModal({ ...props }) {
       </Modal.Body>
       <Modal.Footer>
         <Button style={{ borderRadius: '8px', backgroundColor: '#63c76a', border: '1px solid #63c76a' }} onClick={formik.submitForm}>
-          Create Course
+          {t('create')}
         </Button>
-        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>Close</Button>
+        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>{t('close')}</Button>
       </Modal.Footer>
     </Modal>
   )

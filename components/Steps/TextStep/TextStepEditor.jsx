@@ -5,8 +5,10 @@ import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import { loadTextStep, updateTextLesson } from '../../../store/lessonSteps/thunks'
 import Loader from '../../Loader/Loader'
+import { useTranslation } from 'next-i18next'
 
 const TextStepEditor = ({ stepId }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const [textContent, setTextContent] = useState('')
@@ -26,7 +28,7 @@ const TextStepEditor = ({ stepId }) => {
 
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">Write your material in the area below</h3>
+      <h3 className="editor-lesson-title mt-5 mb-3">{t('textMaterial')}</h3>
       <Editor
         apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
         initialValue={currentStep.body}
@@ -52,7 +54,7 @@ const TextStepEditor = ({ stepId }) => {
         className="mt-3"
         onClick={onUpdateLesson}
         type={'submit'}
-        disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+        disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
     </div>
   )
 }

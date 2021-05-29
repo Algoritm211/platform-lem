@@ -5,8 +5,10 @@ import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import { loadTextAnswerStep, updateTextAnswerLesson } from '../../../store/lessonSteps/thunks'
 import Loader from '../../Loader/Loader'
+import { useTranslation } from 'next-i18next'
 
 const OpenAnswerStepEditor = ({ stepId }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const [textContent, setTextContent] = useState('')
@@ -26,7 +28,7 @@ const OpenAnswerStepEditor = ({ stepId }) => {
 
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">Write your question in the area below</h3>
+      <h3 className="editor-lesson-title mt-5 mb-3">{t('openQuest')}</h3>
       <Editor
         apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
         initialValue={currentStep.body}
@@ -48,12 +50,12 @@ const OpenAnswerStepEditor = ({ stepId }) => {
         }}
         onEditorChange={(content) => setTextContent(content)}
       />
-      <span className="info-title d-block">*Any answer will be appreciated as correct.</span>
+      <span className="info-title d-block">*{t('correct')}</span>
       <Button
         onClick={onUpdateStep}
         className="mt-3"
         type={'submit'}
-        disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+        disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
     </div>
   )
 }

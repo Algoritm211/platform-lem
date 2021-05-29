@@ -9,5 +9,18 @@
   "description": "Description",
   "content": "Lessons",
   "teachSubtitle": "Here you can see your lessons, change them, delete and whatever you want!",
-  "createLesson": "Create new lesson"
+  "createLesson": "Create new lesson",
+  "courseTitle": "Course title",
+  "shortDesc": "Short description",
+  "subject": "Subject",
+  "create": "Create",
+  "close": "Close",
+  "math": "Math",
+  "science": "Science",
+  "it": "IT",
+  "geography": "Geography",
+  "art": "Art",
+  "english": "English",
+  "history": "History",
+  "tellAbout": "Tell us about the course"
 }

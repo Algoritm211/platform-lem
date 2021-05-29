@@ -11,6 +11,7 @@ import Loader from '../Loader/Loader'
 import VideoStep from '../Steps/VideoStep/VideoStep'
 import { Button } from 'react-bootstrap'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 import OpenAnswerStep from '../Steps/OpenAnswerStep/OpenAnswerStep'
 
 const stepTypes = {
@@ -19,6 +20,7 @@ const stepTypes = {
   TextWithAnswer: OpenAnswerStep,
 }
 const LessonPage = ({ lesson, course }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const currentLesson = useSelector(getCurrentLesson)
   const currentCourse = useSelector(getCurrentCourse)
@@ -52,24 +54,23 @@ const LessonPage = ({ lesson, course }) => {
         <div className="row">
           <div className="col-12 col-sm-12 col-md-8 image-fix">
             <h1 className="category-picker">{lesson.title}</h1>
-            <h3 className="editor-lesson-title">Task {stepNumber + 1}</h3>
+            <h3 className="editor-lesson-title">{t('task')} {stepNumber + 1}</h3>
             <StepBlock stepId={currentStep.stepId}/>
           </div>
           <div className="col-12 col-sm-12 col-md-4" style={{ overflow: 'auto' }}>
-            <h3 className="courses-subtitle">Lesson №1</h3>
             <h1 className="courses-title mb-5">{course.title}</h1>
-            <p className="course-description m-0">Author of the course</p>
+            <p className="course-description m-0">{t('author')}</p>
             <p className="course-description mb-5">{course.author.name}</p>
             {stepNumber !== 0 && (
-              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(-1)}>Назад</Button>
+              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(-1)}>{t('previous')}</Button>
             )}
             {stepNumber !== steps.length - 1 && (
-              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(1)}>Далее</Button>
+              <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(1)}>{t('next')}</Button>
             )}
             <Link href={`/lessonslist/${course._id}`}>
               <Button
                 variant="outline-primary"
-                style={{ position: 'fixed', top: '60px', right: '20px' }}>Back to course</Button>
+                style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('back')}</Button>
             </Link>
           </div>
         </div>

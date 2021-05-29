@@ -6,14 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:eslint": "npx eslint --ext .jsx,.js ."
+    "lint:eslint": "npx eslint --ext .jsx,.js .",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@next/bundle-analyzer": "^10.2.3",
     "@reduxjs/toolkit": "^1.5.1",
     "@tinymce/tinymce-react": "^3.12.5",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "cross-env": "^7.0.3",
     "formik": "^2.2.6",
     "next": "10.2.0",
     "next-i18next": "^8.3.0",

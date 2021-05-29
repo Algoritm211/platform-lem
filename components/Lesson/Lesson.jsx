@@ -10,6 +10,7 @@ import { getCurrentCourse } from '../../store/courses/selectors'
 import Loader from '../Loader/Loader'
 import VideoStep from '../Steps/VideoStep/VideoStep'
 import { Button } from 'react-bootstrap'
+import Link from 'next/link'
 
 const stepTypes = {
   Text: TextStep,
@@ -63,9 +64,12 @@ const LessonPage = ({ lesson, course }) => {
             {stepNumber !== steps.length - 1 && (
               <Button className="btn-primary mb-5 mr-3" onClick={() => onChangeStep(1)}>Далее</Button>
             )}
-            <Button href="javascript:history.back()" variant="outline-primary" style={{ position: 'fixed', top: '60px', right: '20px' }}>Back to course</Button>
+            <Link href={`/lessonslist/${course._id}`}>
+              <Button
+                variant="outline-primary"
+                style={{ position: 'fixed', top: '60px', right: '20px' }}>Back to course</Button>
+            </Link>
           </div>
-
         </div>
       </div>
     </div>

@@ -47,3 +47,8 @@ export const deleteAccount = () => async (dispatch) => {
     console.log(error)
   }
 }
+
+export const addStepToCompleted = (stepId) => async (dispatch) => {
+  const data = await UserAPI.addStepToCompleted(stepId)
+  dispatch(setUserData(data.user))
+}

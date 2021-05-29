@@ -7,6 +7,7 @@ import { toggleCourseIsReady, unsubscribeCourse } from '../../store/courses/thun
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { getIsLoading } from '../../store/courses/selectors'
+import { percentCompletedCourse } from '../utils/lessonFunctions'
 
 const ProfileCourseCard = ({ course }) => {
   const { t } = useTranslation('teaching')
@@ -16,6 +17,10 @@ const ProfileCourseCard = ({ course }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const user = useSelector(getUserData)
+  let percentCompleted = 0
+  if (user.stepsCompleted) {
+    percentCompleted = percentCompletedCourse(user.stepsCompleted, course)
+  }
 
   useEffect(() => {
     setIsReady(course.isReady)
@@ -34,7 +39,9 @@ const ProfileCourseCard = ({ course }) => {
           <h3 className="profile-courses-one-title">{course.title}</h3>
           <p className="profile-courses-one-text">{course.description}</p>
           <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
-          <ProgressBar style={{ width: '90%' }} className="programs-progress-bar d-flex" now={72} label={`${72}%`}/>
+          {percentCompleted !== 0 && (
+            <ProgressBar style={{ width: '90%' }} className="programs-progress-bar d-flex" now={percentCompleted} label={`${percentCompleted}%`}/>
+          )}
         </div>
       </div>
       <div className="text-right ml-auto profile-toolkit">

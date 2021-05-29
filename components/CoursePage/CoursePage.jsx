@@ -26,7 +26,6 @@ const CoursePage = () => {
   useEffect(() => {
     dispatch(loadAllCourses(1, ''))
   }, [])
-  // console.log(courses)
 
   const coursesBlock = courses.map((course, index) => {
     const countBlock = index % 3 === 0 ? 8 : 4

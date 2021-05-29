@@ -22,6 +22,11 @@ class UserAPI {
     const { data } = await instanceAxios.delete('user/')
     return data
   }
+
+  async addStepToCompleted(stepId) {
+    const { data } = await instanceAxios.patch(`user/addcompletedstep?stepId=${stepId}`)
+    return data
+  }
 }
 
 

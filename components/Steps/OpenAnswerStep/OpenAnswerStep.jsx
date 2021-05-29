@@ -4,15 +4,21 @@ import Loader from '../../Loader/Loader'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
 import { loadTextAnswerStep } from '../../../store/lessonSteps/thunks'
 import { useTranslation } from 'next-i18next'
+import { addStepToCompleted } from '../../../store/auth/user.thunks'
+import { getUserData } from '../../../store/auth/selectors'
 
 const OpenAnswerStep = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
+  const user = useSelector(getUserData)
   const [answerText, setAnswerText] = useState('')
 
   useEffect(() => {
     dispatch(loadTextAnswerStep(stepId))
+    if (!user?.stepsCompleted.includes(stepId)) {
+      dispatch(addStepToCompleted(stepId))
+    }
   }, [stepId])
 
   if (!currentStep) {

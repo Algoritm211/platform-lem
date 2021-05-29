@@ -8,6 +8,7 @@ import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
 import withAuthRequired from '../HOC/withAuthRequired'
 import { useTranslation } from 'next-i18next'
 import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal'
+import Loader from '../Loader/Loader'
 
 const ProfileTeaching = () => {
   const { t } = useTranslation('teaching')
@@ -21,9 +22,9 @@ const ProfileTeaching = () => {
   }, [])
 
   if (!coursesUserAuthor) {
-    return <div>loading...</div>
+    return <Loader />
   }
-
+  console.log(coursesUserAuthor)
   const courseCreatedBlock = coursesUserAuthor.map((course) => {
     return <ProfileCourseCard course={course} key={course._id}/>
   })

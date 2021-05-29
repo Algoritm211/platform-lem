@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
-import { useSelector } from 'react-redux'
-import { getIsLoading } from '../../../store/courses/selectors'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
+import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
+import { loadTextAnswerStep, updateTextAnswerLesson } from '../../../store/lessonSteps/thunks'
+import Loader from '../../Loader/Loader'
 
-const OpenAnswerStepEditor = () => {
+const OpenAnswerStepEditor = ({ stepId }) => {
+  const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
+  const [textContent, setTextContent] = useState('')
+  const currentStep = useSelector(getCurrentStep)
+
+  useEffect(() => {
+    dispatch(loadTextAnswerStep(stepId))
+  }, [stepId])
+
+  if (!currentStep) {
+    return <Loader />
+  }
+
+  const onUpdateStep= () => {
+    dispatch(updateTextAnswerLesson(currentStep._id, { body: textContent }))
+  }
+
   return (
     <div>
       <h3 className="editor-lesson-title mt-5 mb-3">Write your question in the area below</h3>
       <Editor
-        // apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-        // value={editorBody}
-        // initialValue={!isHomework ? currentLesson?.body : currentLesson?.homeWork || ''}
+        apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
+        initialValue={currentStep.body}
         init={{
           // height: 500,
           width: '100%',
@@ -29,10 +46,14 @@ const OpenAnswerStepEditor = () => {
                   alignleft aligncenter alignright alignjustify | \
                   bullist numlist outdent indent | removeformat | help`,
         }}
-        // onEditorChange={handleEditorChange}
+        onEditorChange={(content) => setTextContent(content)}
       />
       <span className="info-title d-block">*Any answer will be appreciated as correct.</span>
-      <Button className="mt-3" type={'submit'} disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
+      <Button
+        onClick={onUpdateStep}
+        className="mt-3"
+        type={'submit'}
+        disabled={isLoading}>{isLoading ? 'Saving...' : 'Save'}</Button>
     </div>
   )
 }

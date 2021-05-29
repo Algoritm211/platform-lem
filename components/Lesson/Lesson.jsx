@@ -11,10 +11,12 @@ import Loader from '../Loader/Loader'
 import VideoStep from '../Steps/VideoStep/VideoStep'
 import { Button } from 'react-bootstrap'
 import Link from 'next/link'
+import OpenAnswerStep from '../Steps/OpenAnswerStep/OpenAnswerStep'
 
 const stepTypes = {
   Text: TextStep,
   Video: VideoStep,
+  TextWithAnswer: OpenAnswerStep,
 }
 const LessonPage = ({ lesson, course }) => {
   const dispatch = useDispatch()

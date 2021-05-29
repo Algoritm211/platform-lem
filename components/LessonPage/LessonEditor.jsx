@@ -12,16 +12,19 @@ import { getSteps } from '../../store/lessonSteps/selectors'
 import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
 import { useTranslation } from 'next-i18next'
 import Loader from '../Loader/Loader'
-import { createTextLesson, createVideoLesson } from '../../store/lessonSteps/thunks'
+import { createTextAnswerLesson, createTextLesson, createVideoLesson } from '../../store/lessonSteps/thunks'
+import OpenAnswerStepEditor from '../Steps/OpenAnswerStep/OpenAnswerStepEditor'
 
 const stepTypes = {
   Text: TextStepEditor,
   Video: VideoStepEditor,
+  TextWithAnswer: OpenAnswerStepEditor,
 }
 
 const stepIcons = {
   Text: 'fa-align-left',
   Video: 'fa-film',
+  TextWithAnswer: 'fa-question',
 }
 
 const LessonEditor = ({ lesson, course }) => {
@@ -64,6 +67,11 @@ const LessonEditor = ({ lesson, course }) => {
   const onCreateVideoLesson = async () => {
     setShow(false)
     dispatch(createVideoLesson(currentLesson._id))
+  }
+
+  const onCreateTextAnswerLesson = async () => {
+    setShow(false)
+    dispatch(createTextAnswerLesson(currentLesson._id))
   }
 
   const stepIconBlock = steps.map((step, index) => {
@@ -144,6 +152,17 @@ const LessonEditor = ({ lesson, course }) => {
                       <div className="pl-3">
                         <h3 className="modal-task-title">{t('video')}</h3>
                         <span className="modal-task-subtitle">{t('videoDesc')}</span>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12} md={6}>
+                    <div className="modal-task-type" onClick={onCreateTextAnswerLesson}>
+                      <i className="fas fa-question modal-task-ill"/>
+                      <div className="pl-3">
+                        <h3 className="modal-task-title">{'Create Text with answer'}</h3>
+                        <span className="modal-task-subtitle">{'Set exercise and student will send you answer'}</span>
                       </div>
                     </div>
                   </Col>

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getIsAuth, getIsLoading } from '../../store/auth/selectors'
 import ForbiddenPage from '../../pages/403'
+import Loader from '../Loader/Loader'
 
 const withAuthRequired = (Component) => {
   // eslint-disable-next-line react/display-name
@@ -9,7 +10,7 @@ const withAuthRequired = (Component) => {
     const isLoading = useSelector(getIsLoading)
     const isAuth = useSelector(getIsAuth)
     if (isLoading) {
-      return <div>LOADING.....</div>
+      return <Loader />
     }
 
     if (!isAuth) {

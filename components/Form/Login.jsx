@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { loginUser } from '../../store/auth/auth.thunks'
 import { useTranslation } from 'next-i18next'
+import { setUserAuthData } from '../../store/auth/reducer'
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -33,6 +34,37 @@ function LoginModal({ switchModals, ...props }) {
       formik.resetForm()
     },
   })
+
+  const onCatchGoogleLogin = (messageEvent) => {
+    if (messageEvent.origin === process.env.NEXT_PUBLIC_APP_URL) {
+      const parsedData = JSON.parse(messageEvent.data)
+      dispatch(setUserAuthData(parsedData.user))
+      props.onHide()
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', onCatchGoogleLogin)
+    return () => {
+      window.removeEventListener('message', onCatchGoogleLogin)
+    }
+  }, [])
+
+  const onGoogleAuth = () => {
+    const win = window.open(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/google`,
+      'Auth',
+      'width=500,height=500,status=yes,toolbar=no,menubar=no,location=no',
+    )
+
+    const timer = setInterval(() => {
+      if (win.closed) {
+        clearInterval(timer)
+      }
+    }, 100)
+  }
+
+
   return (
     <Modal
       {...props}
@@ -88,7 +120,7 @@ function LoginModal({ switchModals, ...props }) {
                 <div className="line-separator"/>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12" onClick={onGoogleAuth}>
                   <button className="btn btn-lg btn-google btn-block btn-outline">
                     <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt={'googleImg'}/> {t('google')}
                   </button>

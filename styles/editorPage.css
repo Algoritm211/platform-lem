@@ -21,7 +21,6 @@
     border: solid 2px #dadce0;
     box-sizing: border-box;
     border-radius: 8px;
-    margin: 0 !important;
     color: rgba(0,0,0,.9);
     font-weight: 600;
     font-size: 13px;
@@ -51,6 +50,20 @@
     font-size: 18px;
     display: flex;
     align-items: center;
+}
+.checkbox-editor{
+    width: 20px;
+    height: 20px;
+}
+.input-checkbox-editor{
+    width: 100%;
+    border: none;
+    background-color: #f7f7fc;
+    padding: 10px;
+}
+.input-checkbox-editor:active, .input-checkbox-editor:focus{
+    border: none;
+    background-color: #fff;
 }
 @media (max-width: 768px) {
     .modal-task-subtitle{

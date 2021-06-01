@@ -14,17 +14,21 @@ import { useTranslation } from 'next-i18next'
 import Loader from '../Loader/Loader'
 import { createTextAnswerLesson, createTextLesson, createVideoLesson } from '../../store/lessonSteps/thunks'
 import OpenAnswerStepEditor from '../Steps/OpenAnswerStep/OpenAnswerStepEditor'
+import TestStepEditor from '../Steps/TestTaskStep/TestStepEditor'
+import { createTestStep } from '../../store/lessonSteps/test.thunk'
 
 const stepTypes = {
   Text: TextStepEditor,
   Video: VideoStepEditor,
   TextWithAnswer: OpenAnswerStepEditor,
+  Test: TestStepEditor,
 }
 
 const stepIcons = {
   Text: 'fa-align-left',
   Video: 'fa-film',
   TextWithAnswer: 'fa-question',
+  Test: 'fa-list-alt',
 }
 
 const LessonEditor = ({ lesson, course }) => {
@@ -72,6 +76,11 @@ const LessonEditor = ({ lesson, course }) => {
   const onCreateTextAnswerLesson = async () => {
     setShow(false)
     dispatch(createTextAnswerLesson(currentLesson._id))
+  }
+
+  const onCreateTestLesson = async () => {
+    setShow(false)
+    dispatch(createTestStep(currentLesson._id))
   }
 
   const stepIconBlock = steps.map((step, index) => {
@@ -163,6 +172,15 @@ const LessonEditor = ({ lesson, course }) => {
                       <div className="pl-3">
                         <h3 className="modal-task-title">{'Create Text with answer'}</h3>
                         <span className="modal-task-subtitle">{'Set exercise and student will send you answer'}</span>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <div className="modal-task-type" onClick={onCreateTestLesson}>
+                      <i className="fas fa-list-alt modal-task-ill"/>
+                      <div className="pl-3">
+                        <h3 className="modal-task-title">{'Create test'}</h3>
+                        <span className="modal-task-subtitle">{'Create and edit test tasks'}</span>
                       </div>
                     </div>
                   </Col>

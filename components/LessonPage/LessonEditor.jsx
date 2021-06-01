@@ -161,8 +161,8 @@ const LessonEditor = ({ lesson, course }) => {
                     <div className="modal-task-type" onClick={onCreateTextAnswerLesson}>
                       <i className="fas fa-question modal-task-ill"/>
                       <div className="pl-3">
-                        <h3 className="modal-task-title">{'Create Text with answer'}</h3>
-                        <span className="modal-task-subtitle">{'Set exercise and student will send you answer'}</span>
+                        <h3 className="modal-task-title">{t('answer')}</h3>
+                        <span className="modal-task-subtitle">{t('answerDesc')}</span>
                       </div>
                     </div>
                   </Col>

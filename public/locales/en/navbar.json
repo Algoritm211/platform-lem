@@ -22,5 +22,10 @@
   "art": "Art",
   "english": "English",
   "history": "History",
-  "tellAbout": "Tell us about the course"
+  "tellAbout": "Tell us about the course",
+  "comment": "Create tasks and exercises",
+  "noTitle": "No title",
+  "sure": "Are you sure?",
+  "delete": "Do you want to permanently delete everything now?",
+  "yes": "Yes, delete"
 }

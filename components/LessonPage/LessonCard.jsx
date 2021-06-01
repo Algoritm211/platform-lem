@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { deleteLesson } from '../../store/lesson/thunks'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
+import { useTranslation } from 'next-i18next'
 
 const LessonCard = ({ lesson, lessonIndex }) => {
+  const { t } = useTranslation('navbar')
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const onDelete = () => {
@@ -15,8 +17,8 @@ const LessonCard = ({ lesson, lessonIndex }) => {
       <div className="d-flex">
         <h3 className="profile-courses-one-lessonNumber">{lessonIndex + 1}.</h3>
         <div className="profile-courses-one-content">
-          <h3 className="profile-courses-one-title">{lesson.title || 'No title'}</h3>
-          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>9 tasks and exercises</p>
+          <h3 className="profile-courses-one-title">{lesson.title || t('noTitle') }</h3>
+          <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{t('comment')}</p>
         </div>
       </div>
       <div className="d-flex ml-auto">
@@ -66,16 +68,16 @@ const LessonCard = ({ lesson, lessonIndex }) => {
               </Col>
               <Col xs={12} md={6} className="d-flex" style={{ alignItems: 'center' }}>
                 <div className="m-auto">
-                  <h3 className="profile-welcome-title d-block">Are you sure?</h3>
-                  <span className="modal-task-subtitle d-block">Do you want to permanently delete everything now?</span>
+                  <h3 className="profile-welcome-title d-block">{t('sure')}</h3>
+                  <span className="modal-task-subtitle d-block">{t('delete')}</span>
                 </div>
               </Col>
             </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={onDelete} className="btn-danger" style={{ borderRadius: '8px' }}>Yes, delete</Button>
-          <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>Close</Button>
+          <Button onClick={onDelete} className="btn-danger" style={{ borderRadius: '8px' }}>{t('yes')}</Button>
+          <Button onClick={() => setShow(false)} className="btn-primary" style={{ borderRadius: '8px' }}>{t('close')}</Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -3,7 +3,7 @@ import { Button, Col, Container, Modal, Row, ToggleButton, ToggleButtonGroup } f
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import Loader from '../../Loader/Loader'
-import { loadTestStep } from '../../../store/lessonSteps/test.thunk'
+import { loadTestStep, updateTestStep } from '../../../store/lessonSteps/test.thunk'
 import { useTranslation } from 'next-i18next'
 
 const TestStepEditor = ({ stepId }) => {
@@ -40,7 +40,7 @@ const TestStepEditor = ({ stepId }) => {
     })
   }
 
-  const onAddOption = (event) => {
+  const onAddOption = () => {
     setTestInfo((prevState) => {
       return { ...prevState, options: [...prevState.options, ''] }
     })
@@ -72,6 +72,10 @@ const TestStepEditor = ({ stepId }) => {
       answers = [...answers, checkboxValue]
     }
     setTestInfo((prevState) => ({ ...prevState, answers: answers }))
+  }
+
+  const onUpdateTestStep = () => {
+    dispatch(updateTestStep(currentStep._id, testInfo))
   }
 
   const optionsBlock = testInfo?.options?.map((option, index) => {
@@ -129,7 +133,7 @@ const TestStepEditor = ({ stepId }) => {
       </Button>
       <h3 className="editor-lesson-title mt-5 mb-3">Choose right answer(s)</h3>
       {testInfo.type === 'single' ? (
-        <select onChange={(event) => setTestInfo((prevState) => ({ ...prevState, answers: [event.target.value] }))}>
+        <select value={testInfo.answers[0]} onChange={(event) => setTestInfo((prevState) => ({ ...prevState, answers: [event.target.value] }))}>
           {testInfo.options?.map((option) => {
             return (
               <option
@@ -158,7 +162,7 @@ const TestStepEditor = ({ stepId }) => {
       )}
       <br/>
       <Button
-        onClick={() => alert(JSON.stringify(testInfo, null, 2))}
+        onClick={onUpdateTestStep}
         className="mt-3"
         type={'submit'}
         disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>

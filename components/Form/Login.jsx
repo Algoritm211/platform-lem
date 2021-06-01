@@ -127,7 +127,7 @@ function LoginModal({ switchModals, ...props }) {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12" onClick={() => alert('Функція у розробці')}>
                   <a className="btn btn-lg btn-facebook btn-block btn-outline" href="#">
                     <i className="fab fa-facebook"/> {t('facebook')}
                   </a>

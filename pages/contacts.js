@@ -17,7 +17,7 @@ export default Contacts
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['contacts', 'header']),
+      ...await serverSideTranslations(locale, ['contacts', 'header', 'auth']),
     },
   }
 }

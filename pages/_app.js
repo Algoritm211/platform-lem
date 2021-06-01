@@ -21,16 +21,16 @@ import App from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import Head from 'next/head'
 import { useDispatch } from 'react-redux'
-import { getCookie } from '../components/utils/cookieFunctions'
+// import { getCookie } from '../components/utils/cookieFunctions'
 import { authUser } from '../store/auth/auth.thunks'
 import { appWithTranslation } from 'next-i18next'
 
 function MyComponent({ children }) {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (getCookie('authToken')) {
-      dispatch(authUser())
-    }
+    // if (getCookie('authToken')) {
+    dispatch(authUser())
+    // }
   }, [dispatch])
 
   return <>{children}</>

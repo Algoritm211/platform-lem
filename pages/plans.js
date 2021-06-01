@@ -17,7 +17,7 @@ export default Plans
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['plans', 'header']),
+      ...await serverSideTranslations(locale, ['plans', 'header', 'auth']),
     },
   }
 }

@@ -5,6 +5,7 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import Loader from '../../Loader/Loader'
 import { loadTestStep, updateTestStep } from '../../../store/lessonSteps/test.thunk'
 import { useTranslation } from 'next-i18next'
+import { clearCurrentStep } from '../../../store/lessonSteps/reducer'
 
 const TestStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -12,9 +13,10 @@ const TestStepEditor = ({ stepId }) => {
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
   const currentStep = useSelector(getCurrentStep)
-  const [testInfo, setTestInfo] = useState({})
+  const [testInfo, setTestInfo] = useState(null)
 
   useEffect(() => {
+    dispatch(clearCurrentStep())
     dispatch(loadTestStep(stepId))
   }, [stepId])
 
@@ -22,7 +24,7 @@ const TestStepEditor = ({ stepId }) => {
     setTestInfo(currentStep)
   }, [currentStep])
 
-  if (!currentStep) {
+  if (!currentStep || !testInfo) {
     return <Loader/>
   }
 
@@ -56,8 +58,19 @@ const TestStepEditor = ({ stepId }) => {
   }
 
   const onChangeAnswerType = (event) => {
+    const newType = event.target.value
+    let answers = [...testInfo.answers]
+    if (newType === 'single') {
+      answers = answers.slice(0, 1)
+    }
     setTestInfo((prevState) => {
-      return { ...prevState, type: event.target.value }
+      return { ...prevState, answers: answers, type: event.target.value }
+    })
+  }
+
+  const onSingleChange = (event) => {
+    setTestInfo((prevState) => {
+      return { ...prevState, answers: [event.target.value] }
     })
   }
 
@@ -81,6 +94,21 @@ const TestStepEditor = ({ stepId }) => {
   const optionsBlock = testInfo?.options?.map((option, index) => {
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
+        {testInfo.type === 'single' ? (
+          <input
+            className="checkbox-editor mx-3"
+            type="radio"
+            onChange={onSingleChange}
+            checked={testInfo.answers.includes(option)}
+            value={option}/>
+        ) : (
+          <input
+            value={option}
+            onChange={onMultipleChange}
+            className="checkbox-editor mx-3"
+            type="checkbox"
+            checked={testInfo.answers.includes(option)}/>
+        )}
         <input
           className={'input-checkbox-editor'}
           type="variant"
@@ -99,10 +127,8 @@ const TestStepEditor = ({ stepId }) => {
           </a>
         </div>
       </div>
-
     )
   })
-
   return (
     <div>
       <h3 className="editor-lesson-title mt-5 mb-3">Write your question down below</h3>
@@ -119,11 +145,11 @@ const TestStepEditor = ({ stepId }) => {
         className={'input-checkbox-editor'}
       />
       <h3 className="editor-lesson-title mt-5 mb-3">Write possible answers</h3>
-      <ToggleButtonGroup type="radio" name="options" defaultValue={1} style={{ borderRadius: '8px' }}>
-        <ToggleButton checked={testInfo.type === 'single'} id="tbg-radio-1" value={'single'} onClick={onChangeAnswerType}>
+      <ToggleButtonGroup type="radio" name="options" defaultValue={testInfo.type} style={{ borderRadius: '8px' }}>
+        <ToggleButton id="tbg-radio-1" value={'single'} onClick={onChangeAnswerType}>
           Single answer
         </ToggleButton>
-        <ToggleButton checked={testInfo.type === 'multiple'} id="tbg-radio-2" value={'multiple'} onClick={onChangeAnswerType}>
+        <ToggleButton id="tbg-radio-2" value={'multiple'} onClick={onChangeAnswerType}>
           Multiple answers
         </ToggleButton>
       </ToggleButtonGroup>
@@ -132,34 +158,6 @@ const TestStepEditor = ({ stepId }) => {
         <i className="fas fa-plus"/>
       </Button>
       <h3 className="editor-lesson-title mt-5 mb-3">Choose right answer(s)</h3>
-      {testInfo.type === 'single' ? (
-        <select value={testInfo.answers[0]} onChange={(event) => setTestInfo((prevState) => ({ ...prevState, answers: [event.target.value] }))}>
-          {testInfo.options?.map((option) => {
-            return (
-              <option
-                value={option}
-                key={option}>
-                {option}
-              </option>
-            )
-          })}
-        </select>
-      ) : (
-        <div>
-          {testInfo.options?.map((option) => {
-            return (
-              <label key={option}>
-                <input
-                  onChange={onMultipleChange}
-                  value={option}
-                  checked={testInfo.answers.includes(option)}
-                  type={'checkbox'}/>
-                {option}
-              </label>
-            )
-          })}
-        </div>
-      )}
       <br/>
       <Button
         onClick={onUpdateTestStep}

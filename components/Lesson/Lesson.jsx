@@ -13,11 +13,13 @@ import { Button } from 'react-bootstrap'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import OpenAnswerStep from '../Steps/OpenAnswerStep/OpenAnswerStep'
+import TestStep from '../Steps/TestTaskStep/TestStep'
 
 const stepTypes = {
   Text: TextStep,
   Video: VideoStep,
   TextWithAnswer: OpenAnswerStep,
+  Test: TestStep,
 }
 const LessonPage = ({ lesson, course }) => {
   const { t } = useTranslation('steps')

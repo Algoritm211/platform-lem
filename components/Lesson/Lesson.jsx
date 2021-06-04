@@ -57,7 +57,7 @@ const LessonPage = ({ lesson, course }) => {
           <div className="col-12 col-sm-12 col-md-8 image-fix">
             <h1 className="category-picker">{lesson.title}</h1>
             <h3 className="editor-lesson-title">{t('task')} {stepNumber + 1}</h3>
-            <StepBlock stepId={currentStep.stepId}/>
+            <StepBlock stepId={currentStep.stepId} lesson={currentLesson}/>
           </div>
           <div className="col-12 col-sm-12 col-md-4" style={{ overflow: 'auto' }}>
             <h1 className="courses-title mb-5">{course.title}</h1>

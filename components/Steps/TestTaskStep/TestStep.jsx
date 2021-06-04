@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Loader/Loader'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
-import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
 import { loadTestStep } from '../../../store/lessonSteps/test.thunk'
 import { Button } from 'react-bootstrap'
 import { countArrayEntries } from '../../utils/lessonFunctions'
+import { addLessonUserMark } from '../../../store/lesson/thunks'
+import { addStepToCompleted } from '../../../store/auth/user.thunks'
 
-const OpenAnswerStep = ({ stepId }) => {
+const OpenAnswerStep = ({ stepId, lesson }) => {
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
+  const [answerIsDisabled, setAnswerIsDisabled] = useState(false)
   const [testInfo, setTestInfo] = useState(null)
 
   useEffect(() => {
     dispatch(loadTestStep(stepId))
-    if (!user?.stepsCompleted?.includes(stepId)) {
-      dispatch(addStepToCompleted(stepId))
-    }
+    setAnswerIsDisabled(false)
   }, [stepId])
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const OpenAnswerStep = ({ stepId }) => {
 
   const onTestSubmit = () => {
     let result = 0
+    setAnswerIsDisabled(true)
     const score = testInfo.score
     const rightAnswers = testInfo.answers
     const userAnswers = testInfo.userAnswers
@@ -57,9 +58,12 @@ const OpenAnswerStep = ({ stepId }) => {
     if ((rightUserAnswersCount === userAnswers.length) && userAnswers.length !== 0) {
       result = score
     }
-    console.log(result)
+    dispatch(addLessonUserMark(currentStep.lesson, result, currentStep._id))
+    if (!user?.stepsCompleted?.includes(stepId)) {
+      dispatch(addStepToCompleted(stepId))
+    }
   }
-
+  const student = lesson?.students?.find((student) => student.userId === user._id)
   const optionsBlock = testInfo?.options?.map((option, index) => {
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
@@ -78,14 +82,7 @@ const OpenAnswerStep = ({ stepId }) => {
             type="checkbox"
             checked={testInfo.userAnswers.includes(option)}/>
         )}
-        <input
-          className={'input-checkbox-editor'}
-          type="variant"
-          placeholder="Variant"
-          value={option}
-          onChange={(event) => onChangeOption(event, index)}
-          name="variant"
-          id="variant"/>
+        <div>{option}</div>
       </div>
     )
   })
@@ -98,7 +95,10 @@ const OpenAnswerStep = ({ stepId }) => {
       <h3 className="editor-lesson-title mt-5 mb-3">Choose all right answers</h3>
       {optionsBlock}
       <br/>
-      <Button variant="info" onClick={onTestSubmit}>
+      <Button
+        disabled={student?.completedTests?.includes(stepId) || answerIsDisabled}
+        variant="info"
+        onClick={onTestSubmit}>
         Відповісти
       </Button>
     </div>

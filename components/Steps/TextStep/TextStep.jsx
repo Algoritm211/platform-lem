@@ -14,7 +14,7 @@ const TextStep = ({ stepId }) => {
 
   useEffect(() => {
     dispatch(loadTextStep(stepId))
-    if (!user?.stepsCompleted.includes(stepId)) {
+    if (!user?.stepsCompleted?.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }
   }, [stepId])

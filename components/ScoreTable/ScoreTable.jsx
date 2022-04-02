@@ -206,7 +206,6 @@ const ScoreTable = () => {
   return (
     <div>
       <Table bordered columns={columns} dataSource={dataSource} />
-      <Button onClick={onDeletePhoto}>Get Marks</Button>
     </div>
   );
 };

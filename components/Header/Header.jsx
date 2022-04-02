@@ -9,7 +9,8 @@ import { getIsAuth } from "../../store/auth/selectors";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { Drawer, Menu } from "antd";
+import { Drawer, Menu, Select } from "antd";
+const { Option } = Select;
 
 const Header = ({ size }) => {
   const { t } = useTranslation("header");
@@ -26,9 +27,9 @@ const Header = ({ size }) => {
     setRegistrationModalShow((prev) => !prev);
   };
 
-  const onLanguageChange = (event) => {
-    setCurrentLocation(event.target.value);
-    router.push(router.asPath, router.asPath, { locale: event.target.value });
+  const onLanguageChange = (value) => {
+    setCurrentLocation(value);
+    router.push(router.asPath, router.asPath, { locale: value });
   };
 
   const menuFieldCreator = (textLink, routePath) => {
@@ -75,42 +76,33 @@ const Header = ({ size }) => {
 
   const appMenuItems = appMenuData.map(({ title, routePath }) => {
     const regex = new RegExp("^" + routePath + "$", "g");
-
+    console.log(regex);
+    console.log(router.route.match(regex));
     return (
-      <Menu.Item key={title}>
-        <Link
-          style={{ fontWeight: router.route.match(regex) && "black" }}
-          href={routePath}
-        >
-          {title}
-        </Link>
+      <Menu.Item key={title} style={{ fontWeight: router.route.match(regex) && "bold" }}>
+        <Link href={routePath}>{title}</Link>
       </Menu.Item>
     );
   });
 
   const changeLanguageSelector = (
-    <Form className="navigation-li">
-      <Form.Group className="m-0" controlId="exampleForm.SelectCustomSizeSm">
-        <Form.Control
-          as="select"
-          size="sm"
-          custom
-          value={currentLocation}
-          onChange={onLanguageChange}
-        >
-          <option value={"ru"}>Русский</option>
-          <option value={"en"}>English</option>
-          <option value={"uk"}>Українська</option>
-        </Form.Control>
-      </Form.Group>
-    </Form>
+    <Select
+      value={currentLocation}
+      style={{ width: 120, borderRadius: "8px" }}
+      onChange={onLanguageChange}
+    >
+      <Option value={"ru"}>Русский</Option>
+      <Option value={"en"}>English</Option>
+      <Option value={"uk"}>Українська</Option>
+    </Select>
   );
 
   const appMenu = (isDrawerOpen) => {
     return (
       <div className="d-flex align-items-center">
         <Menu
-          style={{ border: "none", width: isDrawerOpen ? null : "520px" }}
+          className="justify-content-end"
+          style={{ border: "none", width: isDrawerOpen ? null : "530px" }}
           selectable={false}
           mode={isDrawerOpen ? "vertical" : "horizontal"}
         >
@@ -142,9 +134,7 @@ const Header = ({ size }) => {
             </h4>
           </Link>
           <div className="d-flex ml-auto">
-            <div className="d-none d-md-flex">
-              {appMenu(isDrawerVisible)}
-            </div>
+            <div className="d-none d-md-flex">{appMenu(isDrawerVisible)}</div>
             <button onClick={showDrawer} class="d-block d-md-none ml-auto btn">
               <i class="fas fa-bars"></i>
             </button>

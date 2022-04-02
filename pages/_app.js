@@ -15,6 +15,7 @@ import '../styles/coursePreview.css'
 import '../styles/editorPage.css'
 import '../styles/lesson.css'
 import '../styles/loader.css'
+import 'antd/dist/antd.css';
 import React, { useEffect } from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'

@@ -16,6 +16,7 @@
     "@next/bundle-analyzer": "^10.2.3",
     "@reduxjs/toolkit": "^1.5.1",
     "@tinymce/tinymce-react": "^3.12.5",
+    "antd": "^4.19.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "cross-env": "^7.0.3",

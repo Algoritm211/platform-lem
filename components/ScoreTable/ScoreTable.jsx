@@ -1,7 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Table, Button } from "antd";
-import { getTestUserMarks } from "../../store/auth/user.thunks";
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -205,11 +203,6 @@ const dataSource2 = {
 };
 
 const ScoreTable = () => {
-  const dispatch = useDispatch();
-  const onDeletePhoto = () => {
-    dispatch(getTestUserMarks())
-  }
-
   return (
     <div>
       <Table bordered columns={columns} dataSource={dataSource} />

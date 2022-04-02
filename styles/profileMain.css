@@ -328,6 +328,6 @@
     border-color: #fff!important;
 }
 
-.ant-select-selector{
-  border-radius: 8px !important;
+.ant-input-clear-icon{
+  display: flex;
 }

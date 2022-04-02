@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import RegistrationModal from "../Form/Registration";
 import LoginModal from "../Form/Login";
-import { Nav, Navbar, Form } from "react-bootstrap";
 import Link from "next/link";
 import UserImage from "./UserImage";
 import withPageSize from "../HOC/withPageSize";
@@ -85,7 +84,7 @@ const Header = () => {
       <div className="d-flex align-items-center">
         <Menu
           className="justify-content-end"
-          style={{ border: "none", width: isDrawerOpen ? null : "530px" }}
+          style={{ border: "none", width: isDrawerOpen ? null : "540px" }}
           selectable={false}
           mode={isDrawerOpen ? "vertical" : "horizontal"}
         >

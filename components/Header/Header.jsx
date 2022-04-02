@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next";
 import { Drawer, Menu, Select } from "antd";
 const { Option } = Select;
 
-const Header = ({ size }) => {
+const Header = () => {
   const { t } = useTranslation("header");
   const router = useRouter();
   const [currentLocation, setCurrentLocation] = useState(router.locale);
@@ -30,21 +30,6 @@ const Header = ({ size }) => {
   const onLanguageChange = (value) => {
     setCurrentLocation(value);
     router.push(router.asPath, router.asPath, { locale: value });
-  };
-
-  const menuFieldCreator = (textLink, routePath) => {
-    const regex = new RegExp("^" + routePath + "$", "g");
-    return (
-      <Link href={routePath}>
-        <Nav.Link
-          style={{ color: router.route.match(regex) && "black" }}
-          href={routePath}
-          className={"navigation-li px-3"}
-        >
-          {textLink}
-        </Nav.Link>
-      </Link>
-    );
   };
 
   const showDrawer = () => {
@@ -76,8 +61,6 @@ const Header = ({ size }) => {
 
   const appMenuItems = appMenuData.map(({ title, routePath }) => {
     const regex = new RegExp("^" + routePath + "$", "g");
-    console.log(regex);
-    console.log(router.route.match(regex));
     return (
       <Menu.Item key={title} style={{ fontWeight: router.route.match(regex) && "bold" }}>
         <Link href={routePath}>{title}</Link>

@@ -4,7 +4,6 @@ import LoginModal from "../Form/Login";
 import withPageSize from "../HOC/withPageSize";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import ScoreTable from "../ScoreTable/ScoreTable";
 
 const MainPage = ({ size }) => {
   const { t } = useTranslation("main");
@@ -19,7 +18,6 @@ const MainPage = ({ size }) => {
   return (
     <div>
       <div className="container my-3">
-        <ScoreTable />
         <div style={{ backgroundColor: "#B2CCFC", borderRadius: "8px" }}>
           <div className="row">
             <div className="col-12 col-md-6 col-lg-4 p-5 m-auto">

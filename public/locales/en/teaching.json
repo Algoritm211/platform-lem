@@ -14,5 +14,7 @@
   "sure": "Are you sure?",
   "want": "Do you want to permanently delete everything now?",
   "yesDelete": "Yes, delete",
-  "close": "Close"
+  "close": "Close",
+  "name": "Name",
+  "score": "Score"
 }

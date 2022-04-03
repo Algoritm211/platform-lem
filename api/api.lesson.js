@@ -27,11 +27,6 @@ class LessonAPI {
     const { data } = await instanceAxios.post(`/lesson/mark/${id}`, { mark, lessonStepId })
     return data
   }
-  
-  async getScoreTable(id) {
-    const { data } = await instanceAxios.get(`/lesson/mark/${id}`)
-    return data
-  }
 
   // updateData obj may contains only fields in Lesson model (see backend)
   async update(id, updateData) {

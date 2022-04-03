@@ -8,10 +8,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const MarksTable = ({ marks }) => {
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <ScoreTable marks={marks} />
-    </div>
+    </React.Fragment>
   );
 };
 

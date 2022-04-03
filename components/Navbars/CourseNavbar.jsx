@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { getCurrentCourse } from '../../store/courses/selectors';
 import { useTranslation } from 'next-i18next';
-import { Menu } from 'antd';
 
 const CourseNavbar = () => {
   const { t } = useTranslation('navbar');

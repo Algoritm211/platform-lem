@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table } from 'antd';
 import { useTranslation } from 'next-i18next';
+import { Layout } from 'antd';
+import NewCourseNavbar from '../Navbars/NewCourseNavbar';
+
+const { Sider, Content } = Layout;
 
 const ScoreTable = ({ marks }) => {
   const { t } = useTranslation('teaching');
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const onCollapse = (currentState) => {
+    setIsCollapsed(!currentState);
+  };
 
   const initTable = [
     {
@@ -50,22 +59,36 @@ const ScoreTable = ({ marks }) => {
         },
       };
     });
-
     return { ...item, children: updatedItemChildren };
   });
 
   const columns = initTable.concat(renderedColumns);
 
+  
+
   return (
     <div className='container'>
       <div className='my-3'>
-        <Table
-          bordered
-          scroll={{ x: 700 }}
-          pagination={{ position: ['none', 'none'] }}
-          columns={columns}
-          dataSource={marks.tableData}
-        />
+        <Layout>
+          <Sider
+            theme={'light'}
+            collapsible
+            width={150}
+            collapsed={isCollapsed}
+            onCollapse={() => onCollapse(isCollapsed)}
+          >
+            <NewCourseNavbar isCollapsed={isCollapsed}/>
+          </Sider>
+          <Content>
+            <Table
+              bordered
+              scroll={{ x: 700 }}
+              pagination={{ position: ['none', 'none'] }}
+              columns={columns}
+              dataSource={marks.tableData}
+            />
+          </Content>
+        </Layout>
       </div>
     </div>
   );

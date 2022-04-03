@@ -45,3 +45,13 @@ export const addLessonUserMark = (id, mark, lessonStepId) => async (dispatch) =>
     dispatch(setError('Can not add mark to lessons'))
   }
 }
+
+export const getCourseScoreTable = (id) => async (dispatch) => {
+  try {
+    const data = await LessonAPI.getScoreTable(id)
+    dispatch(setCurrentLesson(data.lesson))
+  } catch (error) {
+    console.log(error)
+    dispatch(setError('Can not add mark to lessons'))
+  }
+}

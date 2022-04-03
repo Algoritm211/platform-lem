@@ -52,6 +52,12 @@ class CourseAPI {
     const { data } = await instanceAxios.get('course/user')
     return data
   }
+  
+  async getCourseMarks(id) {
+    const { data } = await instanceAxios.get(`/answer/${id}`)
+    return data
+  }
+  
 }
 
 

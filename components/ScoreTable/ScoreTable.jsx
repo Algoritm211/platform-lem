@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { Layout } from 'antd';
 import NewCourseNavbar from '../Navbars/NewCourseNavbar';
+import { useDispatch } from 'react-redux';
+import {
+  clearCurrentCourse,
+  setCurrentCourse,
+} from '../../store/courses/reducer';
 
 const { Sider, Content } = Layout;
 
-const ScoreTable = ({ marks }) => {
+const ScoreTable = ({ course, marks }) => {
   const { t } = useTranslation('teaching');
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCurrentCourse(course));
+    return () => {
+      dispatch(clearCurrentCourse());
+    };
+  }, []);
 
   const onCollapse = (currentState) => {
     setIsCollapsed(!currentState);
   };
 
   const initTable = [
-    {
+    /*{
       title: 'UserId',
       dataIndex: 'userId',
       key: 'userId',
@@ -27,7 +40,7 @@ const ScoreTable = ({ marks }) => {
           children: <div>{text}</div>,
         };
       },
-    },
+    },*/
     {
       title: t('name'),
       dataIndex: 'name',
@@ -64,29 +77,34 @@ const ScoreTable = ({ marks }) => {
 
   const columns = initTable.concat(renderedColumns);
 
-  
-
   return (
     <div className='container'>
       <div className='my-3'>
         <Layout>
-          <Sider
-            theme={'light'}
-            collapsible
-            width={150}
-            collapsed={isCollapsed}
-            onCollapse={() => onCollapse(isCollapsed)}
-          >
-            <NewCourseNavbar isCollapsed={isCollapsed}/>
-          </Sider>
+          <div className='d-none d-md-block'>
+            <Sider
+              theme={'light'}
+              collapsible
+              width={150}
+              collapsed={isCollapsed}
+              onCollapse={() => onCollapse(isCollapsed)}
+            >
+              <NewCourseNavbar isCollapsed={isCollapsed} />
+            </Sider>
+          </div>
           <Content>
-            <Table
-              bordered
-              scroll={{ x: 700 }}
-              pagination={{ position: ['none', 'none'] }}
-              columns={columns}
-              dataSource={marks.tableData}
-            />
+            <div className='d-block d-md-none'>
+              <NewCourseNavbar isCollapsed={isCollapsed} />
+            </div>
+            <div className='container'>
+              <Table
+                bordered
+                scroll={{ x: 700 }}
+                pagination={{ position: ['none', 'none'] }}
+                columns={columns}
+                dataSource={marks.tableData}
+              />
+            </div>
           </Content>
         </Layout>
       </div>

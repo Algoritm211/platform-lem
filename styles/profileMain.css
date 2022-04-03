@@ -273,9 +273,6 @@
   }
 }
 @media (max-width: 576px) {
-  .profile-upgrade-block {
-    display: none;
-  }
   .profile-welcome-course-img {
     margin-top: 20px;
   }
@@ -330,4 +327,8 @@
 
 .ant-input-clear-icon{
   display: flex;
+}
+
+.ant-layout{
+  background: #fff!important;
 }

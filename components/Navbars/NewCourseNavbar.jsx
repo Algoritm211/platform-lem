@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { getCurrentCourse } from '../../store/courses/selectors';
 import { useTranslation } from 'next-i18next';
-import { Menu, Tooltip } from 'antd';
+import { Menu, Tooltip, Drawer } from 'antd';
+import { MenuUnfoldOutlined } from '@ant-design/icons';
 
 const NewCourseNavbar = ({ isCollapsed }) => {
   const { t } = useTranslation('navbar');
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
   const currentCourse = useSelector(getCurrentCourse);
-  console.log("currentCourse: ", currentCourse)
+
+  const showDrawer = () => {
+    setIsDrawerVisible(true);
+  };
+
+  const onDrawerClose = () => {
+    setIsDrawerVisible(false);
+  };
 
   const profileNavbarData = [
     {
@@ -47,7 +56,7 @@ const NewCourseNavbar = ({ isCollapsed }) => {
     },
   ];
 
-  const upgradePlan = isCollapsed ? (
+  const upgtadePlanBtn = (
     <Link href={`/plans`}>
       <a style={{ textDecoration: 'none' }}>
         <Tooltip placement='bottom' title={t('upgrade')}>
@@ -57,42 +66,71 @@ const NewCourseNavbar = ({ isCollapsed }) => {
         </Tooltip>
       </a>
     </Link>
+  );
+
+  const upgradePlan = isCollapsed ? (
+    <>{upgtadePlanBtn}</>
   ) : (
-    <div className='profile-upgrade-block m-2'>
-      <img className='profile-upgrade-img' src='/6.png' alt='upgrade' />
-      <p className='profile-upgrade-text'>{t('upToPro')}</p>
-      <Link href={`/plans`}>
-        <a style={{ textDecoration: 'none' }}>
-          <button className='profile-upgrade-button'>{t('upgrade')}</button>
-        </a>
-      </Link>
-    </div>
+    <>
+      <div className='profile-upgrade-block my-3'>
+        <img className='profile-upgrade-img' src='/6.png' alt='upgrade' />
+        <p className='profile-upgrade-text'>{t('upToPro')}</p>
+        <Link href={`/plans`}>
+          <a style={{ textDecoration: 'none' }}>
+            <button className='profile-upgrade-button'>{t('upgrade')}</button>
+          </a>
+        </Link>
+      </div>
+    </>
   );
 
   const NavbarMenu = ({ dataSource }) => {
     return dataSource.map(({ routePath, iconClass, textLink }) => {
       return (
-        <Link href={routePath}>
-          <a style={{ textDecoration: 'none', textOverflow: 'clip' }}>
-            <Menu.Item icon={<i className={iconClass} />}>{textLink}</Menu.Item>
-          </a>
-        </Link>
+        <Menu.Item icon={<i className={iconClass} />}>
+          <Link href={routePath}>
+            <a style={{ textDecoration: 'none', textOverflow: 'clip' }}>
+              {textLink}
+            </a>
+          </Link>
+        </Menu.Item>
       );
     });
   };
 
-  return (
+  const CourseNavbar = (
     <>
-      <p className='profile-button-text' style={{ fontSize: '16px' }}>
+      <h3 className='profile-button-text d-flex justify-content-center'>
         {t('course')}
-      </p>
-      <Menu mode='inline' selectable={false} theme='light'>
+      </h3>
+      <Menu mode='vertical' selectable={false} theme='light'>
         <NavbarMenu dataSource={profileCourseNavbarData} />
         <Menu.Divider />
         <NavbarMenu dataSource={profileNavbarData} />
         <Menu.Divider />
       </Menu>
       {upgradePlan}
+    </>
+  );
+
+  const openDrawerBtn = (
+    <button onClick={showDrawer} className='d-flex d-md-none mb-3 btn align-items-center'>
+      {React.createElement(MenuUnfoldOutlined)}
+      <p className='ml-3 my-0'>{t('openCourseNavigationMenu')}</p>
+    </button>
+  );
+
+  const siderDrawer = (
+    <Drawer placement='left' onClose={onDrawerClose} visible={isDrawerVisible}>
+      {CourseNavbar}
+    </Drawer>
+  );
+
+  return (
+    <>
+      <div className='d-none d-md-block'>{CourseNavbar}</div>
+      {siderDrawer}
+      {openDrawerBtn}
     </>
   );
 };

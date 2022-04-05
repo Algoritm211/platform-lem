@@ -72,19 +72,17 @@ const CourseManager = ({ course, lessons }) => {
                 className='col-12 сol-sm-6 profile-welcome'
                 style={{ backgroundColor: 'rgb(240, 196, 215)' }}
               >
-                <div className='profile-welcome-block'>
+                <div className='mr-0 mr-sm-3'>
                   <h3 className='profile-welcome-title'>{course.title}</h3>
                   <p className='profile-welcome-subtitle'>
                     {t('teachSubtitle')}
                   </p>
                 </div>
-                <div className='col-12 col-sm-6'>
-                  <img
-                    className='profile-welcome-course-img'
-                    src={course.coursePreview.url}
-                    alt='upgrade'
-                  />
-                </div>
+                <img
+                  className='profile-welcome-course-img'
+                  src={course.coursePreview.url}
+                  alt='upgrade'
+                />
               </div>
               <div className='profile-courses'>
                 <h3 className='profile-courses-title'>

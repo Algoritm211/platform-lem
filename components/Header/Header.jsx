@@ -99,6 +99,7 @@ const Header = () => {
     <Drawer
       title={t("menu")}
       placement="right"
+      width={300}
       onClose={onDrawerClose}
       visible={isDrawerVisible}
     >

@@ -80,8 +80,8 @@ const CourseEditorPage = ({ course }) => {
             <div className='container'>
               <form onSubmit={formik.handleSubmit}>
                 <h1 className='editor-title mb-5'>{t('title')}</h1>
-                <div className='row'>
-                  <label className='col-3'>
+                <div className='row align-items-center'>
+                  <label className='col-12 col-sm-3 mb-sm-0 mb-3'>
                     <input
                       type={'file'}
                       id={'coursePreview'}
@@ -97,7 +97,7 @@ const CourseEditorPage = ({ course }) => {
                       alt='editor-preview-image'
                     />
                   </label>
-                  <div className='col-9'>
+                  <div className='col-12 col-sm-9'>
                     <h3 className='editor-lesson-title mb-3'>
                       {t('courseTitle')}
                     </h3>

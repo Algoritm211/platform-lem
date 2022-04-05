@@ -79,10 +79,6 @@
   display: flex;
   margin-bottom: 40px;
 }
-.profile-welcome-block {
-  width: 75%;
-  margin: auto;
-}
 .profile-welcome-title {
   font-size: 24px;
   font-weight: 600;

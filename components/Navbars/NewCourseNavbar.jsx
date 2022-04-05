@@ -87,11 +87,12 @@ const NewCourseNavbar = ({ isCollapsed }) => {
   const NavbarMenu = ({ dataSource }) => {
     return dataSource.map(({ routePath, iconClass, textLink }) => {
       return (
-        <Menu.Item icon={<i className={iconClass} />}>
+        <Menu.Item
+          title={textLink}
+          icon={<i style={{ color: '#0070f3' }} className={iconClass} />}
+        >
           <Link href={routePath}>
-            <a style={{ textDecoration: 'none', textOverflow: 'clip' }}>
-              {textLink}
-            </a>
+            <a style={{ textDecoration: 'none' }}>{textLink}</a>
           </Link>
         </Menu.Item>
       );
@@ -114,14 +115,22 @@ const NewCourseNavbar = ({ isCollapsed }) => {
   );
 
   const openSiderDrawerBtn = (
-    <button onClick={showSiderDrawer} className='d-flex d-md-none mb-3 btn align-items-center'>
+    <button
+      onClick={showSiderDrawer}
+      className='d-flex d-md-none mb-3 btn align-items-center'
+    >
       {React.createElement(MenuUnfoldOutlined)}
       <p className='ml-3 my-0'>{t('openCourseNavigationMenu')}</p>
     </button>
   );
 
   const siderDrawer = (
-    <Drawer placement='left' width={250} onClose={onSiderDrawerClose} visible={isSiderDrawerVisible}>
+    <Drawer
+      placement='left'
+      width={250}
+      onClose={onSiderDrawerClose}
+      visible={isSiderDrawerVisible}
+    >
       {CourseNavbar}
     </Drawer>
   );

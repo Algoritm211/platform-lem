@@ -28,5 +28,6 @@
   "sure": "Are you sure?",
   "delete": "Do you want to permanently delete everything now?",
   "yes": "Yes, delete",
-  "scoreTable": "Marks"
+  "scoreTable": "Marks",
+  "openCourseNavigationMenu": "Open course menu"
 }

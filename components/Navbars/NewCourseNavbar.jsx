@@ -8,16 +8,16 @@ import { MenuUnfoldOutlined } from '@ant-design/icons';
 
 const NewCourseNavbar = ({ isCollapsed }) => {
   const { t } = useTranslation('navbar');
-  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const [isSiderDrawerVisible, setIsSiderDrawerVisible] = useState(false);
 
   const currentCourse = useSelector(getCurrentCourse);
 
-  const showDrawer = () => {
-    setIsDrawerVisible(true);
+  const showSiderDrawer = () => {
+    setIsSiderDrawerVisible(true);
   };
 
-  const onDrawerClose = () => {
-    setIsDrawerVisible(false);
+  const onSiderDrawerClose = () => {
+    setIsSiderDrawerVisible(false);
   };
 
   const profileNavbarData = [
@@ -113,15 +113,15 @@ const NewCourseNavbar = ({ isCollapsed }) => {
     </>
   );
 
-  const openDrawerBtn = (
-    <button onClick={showDrawer} className='d-flex d-md-none mb-3 btn align-items-center'>
+  const openSiderDrawerBtn = (
+    <button onClick={showSiderDrawer} className='d-flex d-md-none mb-3 btn align-items-center'>
       {React.createElement(MenuUnfoldOutlined)}
       <p className='ml-3 my-0'>{t('openCourseNavigationMenu')}</p>
     </button>
   );
 
   const siderDrawer = (
-    <Drawer placement='left' onClose={onDrawerClose} visible={isDrawerVisible}>
+    <Drawer placement='left' width={250} onClose={onSiderDrawerClose} visible={isSiderDrawerVisible}>
       {CourseNavbar}
     </Drawer>
   );
@@ -130,7 +130,7 @@ const NewCourseNavbar = ({ isCollapsed }) => {
     <>
       <div className='d-none d-md-block'>{CourseNavbar}</div>
       {siderDrawer}
-      {openDrawerBtn}
+      {openSiderDrawerBtn}
     </>
   );
 };

@@ -67,29 +67,6 @@ function CreateCourseModal({ ...props }) {
         <div className="containerReg">
           <div className="sign-up-content">
             <form className="signup-form" onSubmit={formik.handleSubmit}>
-              {/*<div className="form-textbox">*/}
-                {/*<label htmlFor="courseImage" style={{ width: '100%' }}>Course image</label>*/}
-                {/*<img*/}
-                {/*  className="avatar-img my-auto mr-3"*/}
-                {/*  src="https://i.pinimg.com/originals/84/15/e1/8415e1af255424efc151ed1cb79147b1.jpg"*/}
-                {/*  alt="courseImage"/>*/}
-
-                {/*{!isLoading ? (*/}
-                {/*  <>*/}
-                {/*<input*/}
-                {/*  type={'file'}*/}
-                {/*  id={'avatar'}*/}
-                {/*  name={'avatar'}*/}
-                {/*  onChange={onHandleImage}*/}
-                {/*  multiple={false}*/}
-                {/*  hidden={true} accept="image/jpeg,image/png"/>*/}
-                {/*<label htmlFor={'avatar'} className="avatar-delete" style={{ color: '#0070f3', fontWeight: '600', fontSize: '12px' }}>Update</label>*/}
-                {/*<span onClick={onDeletePhoto} className="avatar-delete">Delete</span>*/}
-                {/*  </>*/}
-                {/*) : (*/}
-                {/*  <span className="avatar-change" style={{ cursor: 'progress' }}>Оновлення...</span>*/}
-                {/*)}*/}
-              {/*</div>*/}
               <div className="form-textbox">
                 <label htmlFor="courseTitle">{t('courseTitle')}</label>
                 <input

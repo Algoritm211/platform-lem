@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
-import { useTranslation } from 'next-i18next';
-import NewCourseNavbar from '../Navbars/NewCourseNavbar';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'next-i18next'
+import NewCourseNavbar from '../Navbars/NewCourseNavbar'
+import { useDispatch } from 'react-redux'
 import {
   clearCurrentCourse,
   setCurrentCourse,
-} from '../../store/courses/reducer';
+} from '../../store/courses/reducer'
+import CodeEditor from '../CodeEditor/CodeEditor'
 
-import { Layout } from 'antd';
-const { Sider, Content } = Layout;
+import { Layout, Select, Table } from 'antd'
+
+const { Option } = Select
+const { Sider, Content } = Layout
 
 const ScoreTable = ({ course, marks }) => {
-  const { t } = useTranslation('teaching');
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const dispatch = useDispatch();
+  const { t } = useTranslation('teaching')
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setCurrentCourse(course));
+    dispatch(setCurrentCourse(course))
     return () => {
-      dispatch(clearCurrentCourse());
-    };
-  }, []);
+      dispatch(clearCurrentCourse())
+    }
+  }, [])
 
   const onCollapse = (currentState) => {
-    setIsCollapsed(!currentState);
-  };
+    setIsCollapsed(!currentState)
+  }
 
   const initTable = [
-    /*{
+    /* {
       title: 'UserId',
       dataIndex: 'userId',
       key: 'userId',
@@ -56,7 +58,7 @@ const ScoreTable = ({ course, marks }) => {
       width: 80,
       sorter: (a, b) => a.totalScore - b.totalScore,
     },
-  ];
+  ]
 
   const renderedColumns = marks.columnsData.map((item) => {
     const updatedItemChildren = item.children.map((child) => {
@@ -68,20 +70,24 @@ const ScoreTable = ({ course, marks }) => {
               style: { background: parseInt(text) > 0 ? '#95de64' : null },
             },
             children: <div>{text}</div>,
-          };
+          }
         },
-      };
-    });
-    return { ...item, children: updatedItemChildren };
-  });
+      }
+    })
+    return { ...item, children: updatedItemChildren }
+  })
 
-  const columns = initTable.concat(renderedColumns);
+  const columns = initTable.concat(renderedColumns)
+
+  const [editorValue, setEditorValue] = useState('')
+  const [selectedLang, setSelectedLang] = useState('text/x-c++src')
+  const [selectedTheme, setSelectedTheme] = useState('dracula')
 
   return (
-    <div className='container'>
-      <div className='my-3'>
+    <div className="container">
+      <div className="my-3">
         <Layout>
-          <div className='d-none d-md-block'>
+          <div className="d-none d-md-block">
             <Sider
               theme={'light'}
               collapsible
@@ -89,14 +95,14 @@ const ScoreTable = ({ course, marks }) => {
               collapsed={isCollapsed}
               onCollapse={() => onCollapse(isCollapsed)}
             >
-              <NewCourseNavbar isCollapsed={isCollapsed} />
+              <NewCourseNavbar isCollapsed={isCollapsed}/>
             </Sider>
           </div>
           <Content>
-            <div className='d-block d-md-none'>
-              <NewCourseNavbar isCollapsed={isCollapsed} />
+            <div className="d-block d-md-none">
+              <NewCourseNavbar isCollapsed={isCollapsed}/>
             </div>
-            <div className='container'>
+            <div className="container">
               <Table
                 bordered
                 scroll={{ x: 700 }}
@@ -104,12 +110,45 @@ const ScoreTable = ({ course, marks }) => {
                 columns={columns}
                 dataSource={marks.tableData}
               />
+              <div className="my-5">
+                <div className='d-flex'>
+                  <div className="d-flex mr-3 mb-2 align-items-center">
+                    <h6 className="m-0 mr-2">Language: </h6>
+                    <Select
+                      style={{ width: 120 }}
+                      value={selectedLang}
+                      onChange={(value) => setSelectedLang(value)}>
+                      <Option value='text/x-c++src'>C++</Option>
+                      <Option value="python">Python</Option>
+                      <Option value="javascript">JavaScript</Option>
+                    </Select>
+                  </div>
+                  <div className="d-flex mb-2 align-items-center">
+                    <h6 className="m-0 mr-2">Theme: </h6>
+                    <Select
+                      style={{ width: 120 }}
+                      value={selectedTheme}
+                      onChange={(value) => setSelectedTheme(value)}>
+                      <Option value='eclipse'>Eclipse</Option>
+                      <Option value="idea">Idea</Option>
+                      <Option value="material">Material</Option>
+                      <Option value="dracula">Dracula</Option>
+                    </Select>
+                  </div>
+                </div>
+                <CodeEditor
+                  language={selectedLang}
+                  theme={selectedTheme}
+                  value={editorValue}
+                  onChange={setEditorValue}
+                />
+              </div>
             </div>
           </Content>
         </Layout>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ScoreTable;
+export default ScoreTable

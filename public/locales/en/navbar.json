@@ -29,5 +29,6 @@
   "delete": "Do you want to permanently delete everything now?",
   "yes": "Yes, delete",
   "scoreTable": "Marks",
-  "openCourseNavigationMenu": "Open course menu"
+  "openCourseNavigationMenu": "Open course menu",
+  "openNavigationMenu" : "Open profile menu"
 }

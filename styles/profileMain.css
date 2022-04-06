@@ -17,14 +17,12 @@
   font-size: 14px;
   font-weight: 600;
   margin: 0;
-  width: 75%;
 }
 .profile-create-course-illustration {
   font-size: 24px;
   line-height: 35px;
   text-align: center;
   margin: 0;
-  width: 25%;
 }
 .profile-upgrade-block {
   background-color: #f7f7fc;
@@ -274,9 +272,6 @@
   }
   .separator-mobile {
     display: none;
-  }
-  .profile-create-course {
-    display: none !important;
   }
   .profile-button-illustration {
     font-size: 16px;

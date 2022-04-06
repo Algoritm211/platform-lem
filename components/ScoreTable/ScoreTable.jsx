@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import { useTranslation } from 'next-i18next';
-import { Layout } from 'antd';
 import NewCourseNavbar from '../Navbars/NewCourseNavbar';
 import { useDispatch } from 'react-redux';
 import {
@@ -9,6 +8,7 @@ import {
   setCurrentCourse,
 } from '../../store/courses/reducer';
 
+import { Layout } from 'antd';
 const { Sider, Content } = Layout;
 
 const ScoreTable = ({ course, marks }) => {

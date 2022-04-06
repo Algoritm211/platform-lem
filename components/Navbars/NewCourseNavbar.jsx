@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal';
 import { useSelector } from 'react-redux';
 import { getCurrentCourse } from '../../store/courses/selectors';
 import { useTranslation } from 'next-i18next';
@@ -9,8 +10,10 @@ import { MenuUnfoldOutlined } from '@ant-design/icons';
 const NewCourseNavbar = ({ isCollapsed }) => {
   const { t } = useTranslation('navbar');
   const [isSiderDrawerVisible, setIsSiderDrawerVisible] = useState(false);
+  const [createCourseModalShow, setCreateCourseModalShow] = useState(false);
 
   const currentCourse = useSelector(getCurrentCourse);
+  const isNotCoursePage = currentCourse == null;
 
   const showSiderDrawer = () => {
     setIsSiderDrawerVisible(true);
@@ -55,6 +58,19 @@ const NewCourseNavbar = ({ isCollapsed }) => {
       textLink: t('scoreTable'),
     },
   ];
+
+  const CreateCourseButton = ({ isCollapsed }) => {
+    const itemClass = ' profile-create-course justify-content-around mb-sm-5 mb-3 align-items-center';
+    return (
+      <div
+        className={isCollapsed ? 'd-block text-center' + itemClass : 'd-flex' + itemClass}
+        onClick={() => setCreateCourseModalShow(true)}
+      >
+        <h3 className='profile-create-course-text pr-2'>{t('createCourse')}</h3>
+        <i className='fas fa-plus-circle profile-create-course-illustration' />
+      </div>
+    );
+  };
 
   const upgtadePlanBtn = (
     <Link href={`/plans`}>
@@ -101,12 +117,20 @@ const NewCourseNavbar = ({ isCollapsed }) => {
 
   const CourseNavbar = (
     <>
-      <h3 className='profile-button-text d-flex justify-content-center'>
-        {t('course')}
-      </h3>
+      {isNotCoursePage ? (
+        <CreateCourseButton isCollapsed={isCollapsed} />
+      ) : (
+        <h3 className='profile-button-text d-flex justify-content-center'>
+          {t('course')}
+        </h3>
+      )}
       <Menu mode='vertical' selectable={false} theme='light'>
-        <NavbarMenu dataSource={profileCourseNavbarData} />
-        <Menu.Divider />
+        {isNotCoursePage ? null : (
+          <>
+            <NavbarMenu dataSource={profileCourseNavbarData} />
+            <Menu.Divider />
+          </>
+        )}
         <NavbarMenu dataSource={profileNavbarData} />
         <Menu.Divider />
       </Menu>
@@ -120,7 +144,9 @@ const NewCourseNavbar = ({ isCollapsed }) => {
       className='d-flex d-md-none mb-3 btn align-items-center'
     >
       {React.createElement(MenuUnfoldOutlined)}
-      <p className='ml-3 my-0'>{t('openCourseNavigationMenu')}</p>
+      <p className='ml-3 my-0'>
+        {t(isNotCoursePage ? 'openNavigationMenu' : 'openCourseNavigationMenu')}
+      </p>
     </button>
   );
 
@@ -140,6 +166,10 @@ const NewCourseNavbar = ({ isCollapsed }) => {
       <div className='d-none d-md-block'>{CourseNavbar}</div>
       {siderDrawer}
       {openSiderDrawerBtn}
+      <CreateCourseModal
+        show={createCourseModalShow}
+        onHide={() => setCreateCourseModalShow(false)}
+      />
     </>
   );
 };

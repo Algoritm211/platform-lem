@@ -29,5 +29,6 @@
   "delete": "После удаления данные будут навсегда утеряны",
   "yes": "Да, удалить",
   "scoreTable": "Оценки",
-  "openCourseNavigationMenu": "Открыть меню курса"
+  "openCourseNavigationMenu": "Открыть меню курса",
+  "openNavigationMenu" : "Открыть меню профиля"
 }

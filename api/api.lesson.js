@@ -23,6 +23,11 @@ class LessonAPI {
     return data
   }
 
+  async addLessonMark(id, { mark, lessonStepId }) {
+    const { data } = await instanceAxios.post(`/lesson/mark/${id}`, { mark, lessonStepId })
+    return data
+  }
+
   // updateData obj may contains only fields in Lesson model (see backend)
   async update(id, updateData) {
     const { data } = await instanceAxios.patch(`/lesson/update/${id}`, updateData)

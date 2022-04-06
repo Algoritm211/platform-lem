@@ -1,81 +1,169 @@
-import React, { useState } from 'react'
-import { Editor } from '@tinymce/tinymce-react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Modal, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
+import Loader from '../../Loader/Loader'
+import { loadTestStep, updateTestStep } from '../../../store/lessonSteps/test.thunk'
+import { useTranslation } from 'next-i18next'
+import { clearCurrentStep } from '../../../store/lessonSteps/reducer'
 
-const TestStepEditor = () => {
+const TestStepEditor = ({ stepId }) => {
+  const { t } = useTranslation('steps')
   const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getIsLoading)
+  const currentStep = useSelector(getCurrentStep)
+  const [testInfo, setTestInfo] = useState(null)
+
+  useEffect(() => {
+    dispatch(clearCurrentStep())
+    dispatch(loadTestStep(stepId))
+  }, [stepId])
+
+  useEffect(() => {
+    setTestInfo(currentStep)
+  }, [currentStep])
+
+  if (!currentStep || !testInfo) {
+    return <Loader/>
+  }
+
+  const onChangeQuestion = (event) => {
+    setTestInfo((prevState) => {
+      return { ...prevState, question: event.target.value }
+    })
+  }
+
+  const onChangeOption = (event, optionIndex) => {
+    const options = [...testInfo.options]
+    options[optionIndex] = event.target.value
+    setTestInfo((prevState) => {
+      return { ...prevState, options: options }
+    })
+  }
+
+  const onAddOption = () => {
+    setTestInfo((prevState) => {
+      return { ...prevState, options: [...prevState.options, ''] }
+    })
+  }
+
+  const onDeleteOption = (optionValue) => {
+    const options = [...testInfo.options]
+    const valueIndex = options.findIndex((option) => option === optionValue)
+    const newOptions = [
+      ...options.slice(0, valueIndex),
+      ...options.slice(valueIndex + 1)]
+    setTestInfo((prevState) => ({ ...prevState, options: newOptions }))
+  }
+
+  const onChangeAnswerType = (event) => {
+    const newType = event.target.value
+    let answers = [...testInfo.answers]
+    if (newType === 'single') {
+      answers = answers.slice(0, 1)
+    }
+    setTestInfo((prevState) => {
+      return { ...prevState, answers: answers, type: event.target.value }
+    })
+  }
+
+  const onSingleChange = (event) => {
+    setTestInfo((prevState) => {
+      return { ...prevState, answers: [event.target.value] }
+    })
+  }
+
+  const onMultipleChange = (event) => {
+    let answers = [...testInfo.answers]
+    const checkboxValue = event.target.value
+    if (answers.includes(checkboxValue)) {
+      answers = answers.filter((item) => {
+        return item !== checkboxValue
+      })
+    } else {
+      answers = [...answers, checkboxValue]
+    }
+    setTestInfo((prevState) => ({ ...prevState, answers: answers }))
+  }
+
+  const onUpdateTestStep = () => {
+    dispatch(updateTestStep(currentStep._id, testInfo))
+  }
+
+  const optionsBlock = testInfo?.options?.map((option, index) => {
+    return (
+      <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
+        {testInfo.type === 'single' ? (
+          <input
+            className="checkbox-editor mx-3"
+            type="radio"
+            onChange={onSingleChange}
+            checked={testInfo.answers.includes(option)}
+            value={option}/>
+        ) : (
+          <input
+            value={option}
+            onChange={onMultipleChange}
+            className="checkbox-editor mx-3"
+            type="checkbox"
+            checked={testInfo.answers.includes(option)}/>
+        )}
+        <input
+          className={'input-checkbox-editor'}
+          type="variant"
+          placeholder="Variant"
+          value={option}
+          onChange={(event) => onChangeOption(event, index)}
+          name="variant"
+          id="variant"/>
+        <div style={{ margin: 'auto 20px' }}>
+          <a style={{ textDecoration: 'none' }}>
+            <button
+              className="lesson-delete-btn d-flex"
+              onClick={() => onDeleteOption(option)}>
+              <i className="fas fa-trash-alt"/>
+            </button>
+          </a>
+        </div>
+      </div>
+    )
+  })
   return (
     <div>
       <h3 className="editor-lesson-title mt-5 mb-3">Write your question down below</h3>
-      <Editor
-        apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-        // initialValue={currentStep.body}
-        init={{
-          // height: 500,
-          width: '100%',
-          min_height: 300,
-          borderRadius: '8px',
-          selector: 'textarea',
-          plugins: [
-            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount',
-          ],
-          toolbar:
-            `undo redo | formatselect | bold italic backcolor | \
-                  alignleft aligncenter alignright alignjustify | \
-                  bullist numlist outdent indent | removeformat | help`,
-        }}
-        // onEditorChange={(content) => setTextContent(content)}
+      <textarea
+        onChange={onChangeQuestion}
+        value={testInfo.question}
+        cols="40" rows="5"/>
+      <h3 className="editor-lesson-title mt-5 mb-3">Write score of your question</h3>
+      <input
+        value={testInfo.score}
+        type={'number'}
+        min={1}
+        onChange={(event) => setTestInfo((prevState) => ({ ...prevState, score: +event.target.value }))}
+        className={'input-checkbox-editor'}
       />
       <h3 className="editor-lesson-title mt-5 mb-3">Write possible answers</h3>
-      <ToggleButtonGroup type="radio" name="options" defaultValue={1} style={{ borderRadius: '8px' }}>
-        <ToggleButton id="tbg-radio-1" value={1}>
+      <ToggleButtonGroup type="radio" name="options" defaultValue={testInfo.type} style={{ borderRadius: '8px' }}>
+        <ToggleButton id="tbg-radio-1" value={'single'} onClick={onChangeAnswerType}>
           Single answer
         </ToggleButton>
-        <ToggleButton id="tbg-radio-2" value={2}>
+        <ToggleButton id="tbg-radio-2" value={'multiple'} onClick={onChangeAnswerType}>
           Multiple answers
         </ToggleButton>
       </ToggleButtonGroup>
-      <div className="form-check d-flex profile-courses-one my-3 align-items-center">
-        <input className="checkbox-editor mx-3" type="checkbox" value="" id="flexCheckDefault"/>
-        <input
-          className={'input-checkbox-editor'}
-          // value={formik.values.title}
-          // onChange={formik.handleChange}
-          type="variant"
-          placeholder="Variant"
-          name="variant"
-          id="variant"/>
-        <div style={{ margin: 'auto 20px' }}>
-          <a style={{ textDecoration: 'none' }}>
-            <button className="lesson-delete-btn d-flex" onClick={() => setShow(true)}>
-              <i className="fas fa-trash-alt"/>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div className="form-check d-flex profile-courses-one my-3 align-items-center">
-        <input className="checkbox-editor mx-3" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-        <input
-          className={'input-checkbox-editor'}
-          // value={formik.values.title}
-          // onChange={formik.handleChange}
-          type="variant"
-          placeholder="Variant"
-          name="variant"
-          id="variant"/>
-        <div style={{ margin: 'auto 20px' }}>
-          <a style={{ textDecoration: 'none' }}>
-            <button className="lesson-delete-btn d-flex" onClick={() => setShow(true)}>
-              <i className="fas fa-trash-alt"/>
-            </button>
-          </a>
-        </div>
-      </div>
-      <Button variant="primary" style={{ borderRadius: '8px', width: '70px' }}>
+      {optionsBlock}
+      <Button variant="primary" onClick={onAddOption} style={{ borderRadius: '8px', width: '70px' }}>
         <i className="fas fa-plus"/>
       </Button>
+      <h3 className="editor-lesson-title mt-5 mb-3">Choose right answer(s)</h3>
+      <br/>
+      <Button
+        onClick={onUpdateTestStep}
+        className="mt-3"
+        type={'submit'}
+        disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
       <Modal
         show={show}
         onHide={() => setShow(false)}

@@ -35,3 +35,23 @@ export const updateLesson = (id, updateObj) => async (dispatch) => {
     dispatch(setError('Can not delete lessons'))
   }
 }
+
+export const addLessonUserMark = (id, mark, lessonStepId) => async (dispatch) => {
+  try {
+    const data = await LessonAPI.addLessonMark(id, { mark, lessonStepId })
+    dispatch(setCurrentLesson(data.lesson))
+  } catch (error) {
+    console.log(error)
+    dispatch(setError('Can not add mark to lessons'))
+  }
+}
+
+export const getCourseScoreTable = (id) => async (dispatch) => {
+  try {
+    const data = await LessonAPI.getScoreTable(id)
+    dispatch(setCurrentLesson(data.lesson))
+  } catch (error) {
+    console.log(error)
+    dispatch(setError('Can not add mark to lessons'))
+  }
+}

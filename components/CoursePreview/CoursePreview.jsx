@@ -32,9 +32,11 @@ const CoursePreview = () => {
   return (
     <div>
       {user?.courses?.includes(course._id) ? (
-        <button
-          style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
-          className="mobile-course-preview-button">{t('goToCourse')}</button>
+        <Link href={`/lessonslist/${course._id}`}>
+          <button
+            style={{ backgroundColor: '#63c76a', borderColor: '#63c76a' }}
+            className="mobile-course-preview-button">{t('goToCourse')}</button>
+        </Link>
       ) : (
         <button className="mobile-course-preview-button" onClick={onSubscribe}>{t('getStarted')}</button>
       )}

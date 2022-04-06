@@ -1,322 +1,325 @@
-*{
-    font-family: Montserrat, sans-serif;
+* {
+  font-family: Montserrat, sans-serif;
 }
-.profile-create-course{
-    background-color: #f7f7fc;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: left;
-    border: none;
-    transition: 0.5s;
+.profile-create-course {
+  background-color: #f7f7fc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  transition: 0.5s;
 }
-.profile-create-course:hover{
-    background-color: #e5e5e5;
-    transition: 0.5s;
+.profile-create-course:hover {
+  background-color: #e5e5e5;
+  transition: 0.5s;
 }
-.profile-create-course-text{
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0;
-    width: 75%;
+.profile-create-course-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
 }
-.profile-create-course-illustration{
-    font-size: 24px;
-    line-height: 35px;
-    text-align: center;
-    margin: 0;
-    width: 25%;
+.profile-create-course-illustration {
+  font-size: 24px;
+  line-height: 35px;
+  text-align: center;
+  margin: 0;
 }
-.profile-upgrade-block{
-    background-color: #f7f7fc;
-    padding: 10px;
-    border-radius: 8px;
+.profile-upgrade-block {
+  background-color: #f7f7fc;
+  padding: 10px;
+  border-radius: 8px;
 }
-.profile-upgrade-img{
-    width: 100%;
+.profile-upgrade-img {
+  width: 100%;
 }
-.profile-upgrade-text{
-    margin: 0;
-    font-size: 14px;
-    font-weight: 400;
+.profile-upgrade-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
 }
-.profile-upgrade-button{
-    border: 0;
-    display: flex;
-    text-align: center;
-    font-size: 14px;
-    margin: 10px auto;
-    padding: 8px;
-    border-radius: 8px;
-    color: white;
-    background-color: #0070f3;
-    transition: 0.5s;
+.profile-upgrade-button {
+  border: 0;
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  margin: 10px auto;
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  background-color: #0070f3;
+  transition: 0.5s;
 }
-.profile-upgrade-button:hover{
-    background-color: #005ac7;
-    transition: 0.5s;
+.profile-upgrade-button:hover {
+  background-color: #005ac7;
+  transition: 0.5s;
 }
-.profile-button-illustration{
-    font-size: 20px;
-    width: 40px;
-    padding: 0 10px;
-    line-height: 24px;
+.profile-button-illustration {
+  font-size: 18px;
+  width: 40px;
+  padding: 0 5px 0 10px;
+  line-height: 24px;
 }
-.profile-button-link:hover{
-    color: #0070f3;
-    text-decoration: none;
+.profile-button-link:hover {
+  color: #0070f3;
+  text-decoration: none;
 }
-.profile-button-text{
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
-    margin: 0;
+.profile-button-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
 }
-.profile-welcome{
-    background-color: #B2CCFC;
-    padding: 30px;
-    border-radius: 8px;
-    width: 100%;
-    display: flex;
-    margin-bottom: 40px;
+.profile-welcome {
+  background-color: #b2ccfc;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 40px;
 }
-.profile-welcome-block{
-    width: 75%;
-    margin: auto;
+.profile-welcome-title {
+  font-size: 24px;
+  font-weight: 600;
 }
-.profile-welcome-title{
-    font-size: 24px;
-    font-weight: 600;
+.profile-welcome-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
 }
-.profile-welcome-subtitle{
-    font-size: 16px;
-    font-weight: 400;
-    margin: 0;
+.profile-welcome-img {
+  width: 80%;
+  position: absolute;
+  top: -75px;
 }
-.profile-welcome-img{
-    width: 80%;
-    position: absolute;
-    top: -75px;
+.profile-welcome-height {
+  height: 150px;
 }
-.profile-welcome-height{
-    height: 150px;
+.profile-welcome-course-img {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
 }
-.profile-welcome-course-img{
-    width: 100%;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: cover;
+.profile-courses-title {
+  font-size: 20px;
+  font-weight: 600;
 }
-.profile-courses-title{
-    font-size: 20px;
-    font-weight: 600;
+.profile-courses-one {
+  width: 100%;
+  background-color: #f7f7fc;
+  padding: 20px;
+  display: flex;
+  border-radius: 8px;
 }
-.profile-courses-one{
-    width: 100%;
-    background-color: #f7f7fc;
-    padding: 20px;
-    display: flex;
-    border-radius: 8px;
+.profile-courses-nocourses-img {
+  height: auto;
+  width: 200px;
+  margin-right: 20px;
+  object-fit: cover;
 }
-.profile-courses-nocourses-img{
-    height: auto;
-    width: 200px;
-    margin-right: 20px;
-    object-fit: cover;
+.profile-courses-one-lessonNumber {
+  font-size: 36px;
+  width: 60px;
 }
-.profile-courses-one-lessonNumber{
-    font-size: 36px;
-    width: 60px;
+.profile-courses-one-img {
+  height: 100px;
+  border-radius: 8px;
+  width: 100px;
+  margin-right: 20px;
+  object-fit: cover;
 }
-.profile-courses-one-img{
-    height: 100px;
-    border-radius: 8px;
-    width: 100px;
-    margin-right: 20px;
-    object-fit: cover;
+.course-view-btn {
+  border-radius: 8px;
+  background-color: #0070f3;
 }
-.course-view-btn{
-    border-radius: 8px;
-    background-color: #0070f3;
+.lesson-btn {
+  display: flex;
+  justify-content: right;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+  background-color: #0070f3;
+  transition: 0.5s;
 }
-.lesson-btn{
-    display: flex;
-    justify-content: right;
-    border: none;
-    border-radius: 8px;
-    padding: 15px;
-    color: white;
-    background-color: #0070f3;
-    transition: 0.5s;
+.lesson-btn:hover {
+  background-color: #005ac7;
+  transition: 0.5s;
 }
-.lesson-btn:hover{
-    background-color: #005ac7;
-    transition: 0.5s;
+.lesson-delete-btn {
+  display: flex;
+  justify-content: right;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+  background-color: crimson;
+  transition: 0.5s;
 }
-.lesson-delete-btn{
-    display: flex;
-    justify-content: right;
-    border: none;
-    border-radius: 8px;
-    padding: 15px;
-    color: white;
-    background-color: crimson;
-    transition: 0.5s;
+.lesson-delete-btn:hover {
+  background-color: #c11135;
+  transition: 0.5s;
 }
-.lesson-delete-btn:hover{
-    background-color: #c11135;
-    transition: 0.5s;
+.profile-courses-one-title {
+  font-size: 16px;
+  font-weight: 600;
 }
-.profile-courses-one-title{
-    font-size: 16px;
-    font-weight: 600;
+.profile-courses-one-text {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
 }
-.profile-courses-one-text{
-    font-size: 14px;
-    font-weight: 400;
-    margin: 0;
+.profile-mobile {
+  display: block;
 }
-.profile-mobile{
-    display: block;
+.separator-mobile {
+  display: block;
 }
-.separator-mobile{
-    display: block;
+.profile-courses-nocourse-a {
+  text-decoration: none;
+  color: #0070f3;
 }
-.profile-courses-nocourse-a{
-    text-decoration: none;
-    color: #0070f3;
+.profile-courses-nocourse-a:hover {
+  color: #005ac7;
+  text-decoration: none;
 }
-.profile-courses-nocourse-a:hover{
-    color: #005ac7;
-    text-decoration: none;
+.flexMobile {
+  display: flex;
 }
-.flexMobile{
-    display: flex;
+.course-view-text {
+  font-size: 16px;
 }
-.course-view-text{
-    font-size: 16px;
-}
-.profile-toolkit{
-    display: grid;
+.profile-toolkit {
+  display: grid;
 }
 @media (max-width: 1200px) {
-    .profile-welcome-img{
-        top: -45px;
-    }
+  .profile-welcome-img {
+    top: -45px;
+  }
 }
 @media (max-width: 992px) {
-    .profile-welcome-img{
-        position: initial;
-        width: 100%;
-    }
-    .profile-button-text{
-        font-size: 12px;
-    }
-    .profile-button-illustration{
-        font-size: 16px;
-        width: 30px;
-    }
-    .profile-upgrade-button{
-        font-size: 12px;
-    }
-    .profile-upgrade-text{
-        font-size: 10px;
-    }
-    .profile-welcome-height{
-        height: auto;
-    }
-    .profile-create-course-text{
-        font-size: 12px;
-    }
+  .profile-welcome-img {
+    position: initial;
+    width: 100%;
+  }
+  .profile-button-text {
+    font-size: 12px;
+  }
+  .profile-button-illustration {
+    font-size: 16px;
+    width: 30px;
+  }
+  .profile-create-course-illustration {
+    font-size: 16px;
+  }
+  .profile-upgrade-button {
+    font-size: 12px;
+  }
+  .profile-upgrade-text {
+    font-size: 10px;
+  }
+  .profile-welcome-height {
+    height: auto;
+  }
+  .profile-create-course-text {
+    font-size: 12px;
+  }
 }
 @media (max-width: 768px) {
-    .profile-button-text{
-        font-size: 14px;
-    }
-    .profile-create-course-text{
-        font-size: 14px;
-    }
-    .profile-button-illustration{
-        font-size: 20px;
-        width: 30px;
-    }
-    .profile-upgrade-button{
-        font-size: 14px;
-    }
-    .profile-upgrade-text{
-        font-size: 12px;
-    }
-    .profile-welcome-title{
-        font-size: 20px;
-    }
-    .profile-welcome-subtitle{
-        font-size: 14px;
-    }
-    .dropdown-button{
-        padding: 0!important;
-    }
-    .course-view-btn{
-        font-size: 14px;
-    }
-    .course-view-text{
-        font-size: 14px;
-    }
-    .profile-courses-one{
-        display: block;
-    }
-    .profile-toolkit{
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-    }
+  .profile-button-text {
+    font-size: 14px;
+  }
+  .profile-create-course-text {
+    font-size: 14px;
+  }
+  .profile-button-illustration {
+    font-size: 14px;
+    width: 30px;
+  }
+  .profile-upgrade-button {
+    font-size: 14px;
+  }
+  .profile-upgrade-text {
+    font-size: 12px;
+  }
+  .profile-welcome-title {
+    font-size: 20px;
+  }
+  .profile-welcome-subtitle {
+    font-size: 14px;
+  }
+  .dropdown-button {
+    padding: 0 !important;
+  }
+  .course-view-btn {
+    font-size: 14px;
+  }
+  .course-view-text {
+    font-size: 14px;
+  }
+  .profile-courses-one {
+    display: block;
+  }
+  .profile-toolkit {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
 }
 @media (max-width: 576px) {
-    .profile-upgrade-block{
-        display: none;
-    }
-    .profile-welcome-course-img{
-        margin-top: 20px;
-    }
-    .separator-mobile{
-        display: none;
-    }
-    .profile-create-course{
-        display: none !important;
-    }
-    .profile-button-illustration{
-        font-size: 16px;
-        width: auto;
-    }
-    .profile-button-text{
-        font-size: 12px;
-    }
-    .profile-button{
-        padding: 0;
-    }
-    .profile-courses-nocourses-img{
-        width: 100px;
-    }
-    .profile-welcome{
-        display: block;
-    }
-    .profile-courses-one-img{
-        display: none;
-    }
-    .flexMobile{
-        display: block;
-    }
-    .profile-courses-one-content{
-        width: 100%;
-    }
-    .profile-courses-one-text{
-        font-size: 10px;
-    }
-    .custom-control-label{
-        font-size: 12px;
-    }
+  .profile-welcome-course-img {
+    margin-top: 20px;
+  }
+  .separator-mobile {
+    display: none;
+  }
+  .profile-button-illustration {
+    font-size: 16px;
+    width: auto;
+  }
+  .profile-button-text {
+    font-size: 12px;
+  }
+  .profile-button {
+    padding: 0;
+  }
+  .profile-courses-nocourses-img {
+    width: 100px;
+  }
+  .profile-welcome {
+    display: block;
+  }
+  .profile-courses-one-img {
+    display: none;
+  }
+  .flexMobile {
+    display: block;
+  }
+  .profile-courses-one-content {
+    width: 100%;
+  }
+  .profile-courses-one-text {
+    font-size: 10px;
+  }
+  .custom-control-label {
+    font-size: 12px;
+  }
 }
 @media (max-width: 575px) {
-    .profile-mobile{
-        display: flex;
-        justify-content: center;
-    }
+  .profile-mobile {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after{
+    border-color: #fff!important;
+}
+
+.ant-input-clear-icon{
+  display: flex;
+}
+
+.ant-layout{
+  background: #fff!important;
 }

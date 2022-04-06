@@ -15,22 +15,23 @@ import '../styles/coursePreview.css'
 import '../styles/editorPage.css'
 import '../styles/lesson.css'
 import '../styles/loader.css'
+import 'antd/dist/antd.css';
 import React, { useEffect } from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import Head from 'next/head'
 import { useDispatch } from 'react-redux'
-import { getCookie } from '../components/utils/cookieFunctions'
+// import { getCookie } from '../components/utils/cookieFunctions'
 import { authUser } from '../store/auth/auth.thunks'
 import { appWithTranslation } from 'next-i18next'
 
 function MyComponent({ children }) {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (getCookie('authToken')) {
-      dispatch(authUser())
-    }
+    // if (getCookie('authToken')) {
+    dispatch(authUser())
+    // }
   }, [dispatch])
 
   return <>{children}</>

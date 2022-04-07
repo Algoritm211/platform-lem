@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 import { useDispatch } from 'react-redux'
-import {
-  clearCurrentCourse,
-  setCurrentCourse,
-} from '../../store/courses/reducer'
-import CodeEditor from '../CodeEditor/CodeEditor'
+import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
+import Loader from '../Loader/Loader'
 
 import { Layout, Select, Table } from 'antd'
 
@@ -83,6 +80,8 @@ const ScoreTable = ({ course, marks }) => {
   const [selectedLang, setSelectedLang] = useState('text/x-c++src')
   const [selectedTheme, setSelectedTheme] = useState('dracula')
 
+  const CodeEditor = React.lazy(() => import('../CodeEditor/CodeEditor'))
+
   return (
     <div className="container">
       <div className="my-3">
@@ -111,14 +110,14 @@ const ScoreTable = ({ course, marks }) => {
                 dataSource={marks.tableData}
               />
               <div className="my-5">
-                <div className='d-flex'>
+                <div className="d-flex">
                   <div className="d-flex mr-3 mb-2 align-items-center">
                     <h6 className="m-0 mr-2">Language: </h6>
                     <Select
                       style={{ width: 120 }}
                       value={selectedLang}
                       onChange={(value) => setSelectedLang(value)}>
-                      <Option value='text/x-c++src'>C++</Option>
+                      <Option value="text/x-c++src">C++</Option>
                       <Option value="python">Python</Option>
                       <Option value="javascript">JavaScript</Option>
                     </Select>
@@ -129,19 +128,22 @@ const ScoreTable = ({ course, marks }) => {
                       style={{ width: 120 }}
                       value={selectedTheme}
                       onChange={(value) => setSelectedTheme(value)}>
-                      <Option value='eclipse'>Eclipse</Option>
+                      <Option value="eclipse">Eclipse</Option>
                       <Option value="idea">Idea</Option>
                       <Option value="material">Material</Option>
                       <Option value="dracula">Dracula</Option>
                     </Select>
                   </div>
                 </div>
-                <CodeEditor
-                  language={selectedLang}
-                  theme={selectedTheme}
-                  value={editorValue}
-                  onChange={setEditorValue}
-                />
+                <Suspense fallback={<Loader />}>
+                  <CodeEditor
+                    delay={50}
+                    language={selectedLang}
+                    theme={selectedTheme}
+                    value={editorValue}
+                    onChange={setEditorValue}
+                  />
+                </Suspense>
               </div>
             </div>
           </Content>

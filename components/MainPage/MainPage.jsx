@@ -47,7 +47,7 @@ const MainPage = ({ size }) => {
         onHide={() => setLoginModalShow(false)}
       />
 
-      <div className="container my-5">
+      <div className="container py-5">
         <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-3 my-3">
             <h2 className="category-picker m-auto">{t('learnEasy')}</h2>
@@ -60,7 +60,7 @@ const MainPage = ({ size }) => {
         </div>
       </div>
 
-      <div className="container my-5">
+      <div className="container py-5">
         <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-6 my-3">
             <img className="content-image" src="/12.png" alt="photo"/>
@@ -74,7 +74,7 @@ const MainPage = ({ size }) => {
         </div>
       </div>
 
-      <div className="container my-5">
+      <div className="container py-5">
         <div className="row d-flex" style={{ alignItems: 'center' }}>
           <div className="col-12 col-md-6 my-3">
             <h2 className="category-picker my-3">{t('additionalCourse')}</h2>
@@ -93,7 +93,7 @@ const MainPage = ({ size }) => {
         </div>
       </div>
 
-      <div className="container my-5">
+      <div className="container py-5">
         <h2 className="category-picker py-3">{t('favoriteSubj')}</h2>
         <div className="row">
           <div className={`col-12 col-md-4 ${size[0] < 768 ? 'mb-3' : ''}`}>

@@ -1,15 +1,11 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 import { useDispatch } from 'react-redux'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
-import Loader from '../Loader/Loader'
 
-import { Layout, Select, Table, Tooltip } from 'antd'
-
-const { Option } = Select
+import { Layout, Table, Tooltip } from 'antd'
 const { Sider, Content } = Layout
-const CodeEditor = React.lazy(() => import('../CodeEditor/CodeEditor'))
 
 const ScoreTable = ({ course, marks }) => {
   const { t } = useTranslation('teaching')
@@ -71,11 +67,6 @@ const ScoreTable = ({ course, marks }) => {
 
   const columns = initTable.concat(renderedColumns)
 
-  const [editorValue, setEditorValue] = useState('')
-  const [selectedLang, setSelectedLang] = useState('text/x-c++src')
-  const [selectedTheme, setSelectedTheme] = useState('dracula')
-
-
   return (
     <div className="container">
       <div className="my-3">
@@ -103,41 +94,6 @@ const ScoreTable = ({ course, marks }) => {
                 columns={columns}
                 dataSource={marks.tableData}
               />
-              <div className="my-5">
-                <div className="d-flex">
-                  <div className="d-flex mr-3 mb-2 align-items-center">
-                    <h6 className="m-0 mr-2">Language: </h6>
-                    <Select
-                      style={{ width: 120 }}
-                      value={selectedLang}
-                      onChange={(value) => setSelectedLang(value)}>
-                      <Option value="text/x-c++src">C++</Option>
-                      <Option value="python">Python</Option>
-                      <Option value="javascript">JavaScript</Option>
-                    </Select>
-                  </div>
-                  <div className="d-flex mb-2 align-items-center">
-                    <h6 className="m-0 mr-2">Theme: </h6>
-                    <Select
-                      style={{ width: 120 }}
-                      value={selectedTheme}
-                      onChange={(value) => setSelectedTheme(value)}>
-                      <Option value="eclipse">Eclipse</Option>
-                      <Option value="idea">Idea</Option>
-                      <Option value="material">Material</Option>
-                      <Option value="dracula">Dracula</Option>
-                    </Select>
-                  </div>
-                </div>
-                <Suspense fallback={<Loader/>}>
-                  <CodeEditor
-                    language={selectedLang}
-                    theme={selectedTheme}
-                    value={editorValue}
-                    onChange={setEditorValue}
-                  />
-                </Suspense>
-              </div>
             </div>
           </Content>
         </Layout>

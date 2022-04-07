@@ -5,10 +5,11 @@ import { useDispatch } from 'react-redux'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import Loader from '../Loader/Loader'
 
-import { Layout, Select, Table } from 'antd'
+import { Layout, Select, Table, Tooltip } from 'antd'
 
 const { Option } = Select
 const { Sider, Content } = Layout
+const CodeEditor = React.lazy(() => import('../CodeEditor/CodeEditor'))
 
 const ScoreTable = ({ course, marks }) => {
   const { t } = useTranslation('teaching')
@@ -27,19 +28,6 @@ const ScoreTable = ({ course, marks }) => {
   }
 
   const initTable = [
-    /* {
-      title: 'UserId',
-      dataIndex: 'userId',
-      key: 'userId',
-      render(text, record) {
-        return {
-          props: {
-            style: { color: '#999' },
-          },
-          children: <div>{text}</div>,
-        };
-      },
-    },*/
     {
       title: t('name'),
       dataIndex: 'name',
@@ -47,6 +35,13 @@ const ScoreTable = ({ course, marks }) => {
       width: 120,
       fixed: 'left',
       sorter: (a, b) => a.name.localeCompare(b.name),
+      render(text, record) {
+        return {
+          children: <Tooltip title={'id: ' + record.userId}>
+            <div>{text}</div>
+          </Tooltip>,
+        }
+      },
     },
     {
       title: t('score'),
@@ -80,7 +75,6 @@ const ScoreTable = ({ course, marks }) => {
   const [selectedLang, setSelectedLang] = useState('text/x-c++src')
   const [selectedTheme, setSelectedTheme] = useState('dracula')
 
-  const CodeEditor = React.lazy(() => import('../CodeEditor/CodeEditor'))
 
   return (
     <div className="container">
@@ -135,9 +129,8 @@ const ScoreTable = ({ course, marks }) => {
                     </Select>
                   </div>
                 </div>
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={<Loader/>}>
                   <CodeEditor
-                    delay={50}
                     language={selectedLang}
                     theme={selectedTheme}
                     value={editorValue}

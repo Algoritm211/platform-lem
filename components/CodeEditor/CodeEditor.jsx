@@ -16,7 +16,6 @@ export default function CodeEditor(props) {
     onChange(value)
   }
 
-
   return (
     <ControlledEditor
       onBeforeChange={handleEditorChange}

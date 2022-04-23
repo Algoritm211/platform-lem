@@ -32,7 +32,7 @@ const LessonsList = ({ course, lessons }) => {
 
   return (
     <div>
-      <div className="container my-5">
+      <div className="container py-5">
         <div className="row">
           <div className="col-sm-12 col-md-12">
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>

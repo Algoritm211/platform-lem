@@ -84,15 +84,15 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
-      <div className="container my-5">
+      <div className="container py-5">
         <h2 className="category-picker py-3">{t("popular")}</h2>
         <div className="row">{coursesBlock}</div>
       </div>
-      <div className="container my-5">
+      <div className="container py-5">
         <h2 className="category-picker py-3">{t("subjects")}</h2>
         <Carousel />
       </div>
-      <div className="container my-5">
+      <div className="container py-5">
         <h2 className="category-picker py-3">{t("themes")}</h2>
         <div className="row">
           <div className="col-6 col-md-4">
@@ -127,7 +127,7 @@ const CoursePage = () => {
         {isAuth ? (
           <div />
         ) : (
-          <div className="container my-5">
+          <div className="container py-5">
             <h2 className="category-picker py-3">{t("ownCourse")}</h2>
             <div style={{ backgroundColor: "#B2CCFC", borderRadius: "8px" }}>
               <div className="row">

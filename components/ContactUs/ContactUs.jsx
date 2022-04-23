@@ -30,7 +30,7 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-      {/* <div className="container my-5">*/
+      {/* <div className="container py-5">*/
       }
       {/*  <div className="row">*/
       }

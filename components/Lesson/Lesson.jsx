@@ -14,12 +14,14 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import OpenAnswerStep from '../Steps/OpenAnswerStep/OpenAnswerStep'
 import TestStep from '../Steps/TestTaskStep/TestStep'
+import CodeTaskStep from '../Steps/CodeTaskStep/CodeTaskStep'
 
 const stepTypes = {
   Text: TextStep,
   Video: VideoStep,
   TextWithAnswer: OpenAnswerStep,
   Test: TestStep,
+  Code: CodeTaskStep,
 }
 const LessonPage = ({ lesson, course }) => {
   const { t } = useTranslation('steps')

@@ -9,7 +9,6 @@ import { countArrayEntries } from '../../utils/lessonFunctions'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import TestStepAPI from '../../../api/lessonTypes/api.test'
 import AnswerAPI from '../../../api/api.answer'
-import { loadTextAnswerStep } from '../../../store/lessonSteps/thunks'
 
 const TestStep = ({ stepId, lesson }) => {
   const dispatch = useDispatch()

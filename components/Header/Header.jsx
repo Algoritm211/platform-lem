@@ -1,103 +1,104 @@
-import React, { useState } from "react";
-import RegistrationModal from "../Form/Registration";
-import LoginModal from "../Form/Login";
-import Link from "next/link";
-import UserImage from "./UserImage";
-import withPageSize from "../HOC/withPageSize";
-import { getIsAuth } from "../../store/auth/selectors";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { Drawer, Menu, Select } from "antd";
-const { Option } = Select;
+import React, { useState } from 'react'
+import RegistrationModal from '../Form/Registration'
+import LoginModal from '../Form/Login'
+import Link from 'next/link'
+import UserImage from './UserImage'
+import withPageSize from '../HOC/withPageSize'
+import { getIsAuth } from '../../store/auth/selectors'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { Drawer, Menu, Select } from 'antd'
+
+const { Option } = Select
 
 const Header = () => {
-  const { t } = useTranslation("header");
-  const router = useRouter();
-  const [currentLocation, setCurrentLocation] = useState(router.locale);
+  const { t } = useTranslation('header')
+  const router = useRouter()
+  const [currentLocation, setCurrentLocation] = useState(router.locale)
 
-  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const [loginModalShow, setLoginModalShow] = useState(false);
-  const [registrationModalShow, setRegistrationModalShow] = useState(false);
-  const isAuth = useSelector(getIsAuth);
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false)
+  const [loginModalShow, setLoginModalShow] = useState(false)
+  const [registrationModalShow, setRegistrationModalShow] = useState(false)
+  const isAuth = useSelector(getIsAuth)
 
   const switchModals = () => {
-    setLoginModalShow((prev) => !prev);
-    setRegistrationModalShow((prev) => !prev);
-  };
+    setLoginModalShow((prev) => !prev)
+    setRegistrationModalShow((prev) => !prev)
+  }
 
   const onLanguageChange = (value) => {
-    setCurrentLocation(value);
-    router.push(router.asPath, router.asPath, { locale: value });
-  };
+    setCurrentLocation(value)
+    router.push(router.asPath, router.asPath, { locale: value })
+  }
 
   const showDrawer = () => {
-    setIsDrawerVisible(true);
-  };
+    setIsDrawerVisible(true)
+  }
 
   const onDrawerClose = () => {
-    setIsDrawerVisible(false);
-  };
+    setIsDrawerVisible(false)
+  }
 
   const appMenuData = [
     {
-      title: t("main"),
-      routePath: "/",
+      title: t('main'),
+      routePath: '/',
     },
     {
-      title: t("courses"),
-      routePath: "/programs",
+      title: t('courses'),
+      routePath: '/programs',
     },
     {
-      title: t("plans"),
-      routePath: "/plans",
+      title: t('plans'),
+      routePath: '/plans',
     },
     {
-      title: t("contacts"),
-      routePath: "/contacts",
+      title: t('contacts'),
+      routePath: '/contacts',
     },
-  ];
+  ]
 
   const appMenuItems = appMenuData.map(({ title, routePath }) => {
-    const regex = new RegExp("^" + routePath + "$", "g");
+    const regex = new RegExp('^' + routePath + '$', 'g')
     return (
-      <Menu.Item key={title} style={{ fontWeight: router.route.match(regex) && "bold" }}>
+      <Menu.Item key={title} style={{ fontWeight: router.route.match(regex) && 'bold' }}>
         <Link href={routePath}>{title}</Link>
       </Menu.Item>
-    );
-  });
+    )
+  })
 
   const changeLanguageSelector = (
     <Select
       value={currentLocation}
-      style={{ width: 120, borderRadius: "8px" }}
+      style={{ width: 120, borderRadius: '8px' }}
       onChange={onLanguageChange}
     >
-      <Option value={"ru"}>Русский</Option>
-      <Option value={"en"}>English</Option>
-      <Option value={"uk"}>Українська</Option>
+      <Option value={'ru'}>Русский</Option>
+      <Option value={'en'}>English</Option>
+      <Option value={'uk'}>Українська</Option>
     </Select>
-  );
+  )
 
   const appMenu = (isDrawerOpen) => {
     return (
       <div className="d-flex align-items-center">
         <Menu
           className="justify-content-end"
-          style={{ border: "none", width: isDrawerOpen ? null : "540px" }}
+          style={{ border: 'none', width: isDrawerOpen ? null : '540px' }}
           selectable={false}
-          mode={isDrawerOpen ? "vertical" : "horizontal"}
+          mode={isDrawerOpen ? 'vertical' : 'horizontal'}
         >
           {appMenuItems}
           <Menu.Item>{changeLanguageSelector}</Menu.Item>
         </Menu>
       </div>
-    );
-  };
+    )
+  }
 
   const menuDrawer = (
     <Drawer
-      title={t("menu")}
+      title={t('menu')}
       placement="right"
       width={300}
       onClose={onDrawerClose}
@@ -105,14 +106,14 @@ const Header = () => {
     >
       {appMenu(isDrawerVisible)}
     </Drawer>
-  );
+  )
 
   return (
     <>
       <div className="container">
         <div className="py-2 d-flex align-items-center">
-          <Link href={"/"}>
-            <h4 style={{ cursor: "pointer" }} className="m-0">
+          <Link href={'/'}>
+            <h4 style={{ cursor: 'pointer' }} className="m-0">
               LEM
             </h4>
           </Link>
@@ -124,15 +125,15 @@ const Header = () => {
 
             <div className="d-flex align-items-center">
               {isAuth ? (
-                <UserImage />
+                <UserImage/>
               ) : (
-                <div className={"navigation-li px-2"}>
+                <div className={'navigation-li px-2'}>
                   <button
                     className="nav-link px-2 m-auto login-button navigation-li"
                     role="button"
                     onClick={() => setLoginModalShow(true)}
                   >
-                    {t("start")}
+                    {t('start')}
                   </button>
                 </div>
               )}
@@ -152,7 +153,7 @@ const Header = () => {
         onHide={() => setLoginModalShow(false)}
       />
     </>
-  );
-};
+  )
+}
 
-export default withPageSize(Header);
+export default withPageSize(Header)

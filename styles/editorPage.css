@@ -47,6 +47,8 @@
     color: #888888;
 }
 .modal-task-ill{
+    width: 20px;
+    justify-content: center;
     font-size: 18px;
     display: flex;
     align-items: center;

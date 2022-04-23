@@ -36,7 +36,7 @@ const ProfileMain = () => {
   });
   return (
     <div>
-      <div className='container my-5'>
+      <div className='container py-5'>
         <Layout>
           <div className='d-none d-md-block'>
             <Sider

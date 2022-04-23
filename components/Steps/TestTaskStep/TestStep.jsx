@@ -6,19 +6,19 @@ import { getUserData } from '../../../store/auth/selectors'
 import { loadTestStep } from '../../../store/lessonSteps/test.thunk'
 import { Button } from 'react-bootstrap'
 import { countArrayEntries } from '../../utils/lessonFunctions'
-import { addLessonUserMark } from '../../../store/lesson/thunks'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
+import TestStepAPI from '../../../api/lessonTypes/api.test'
+import AnswerAPI from '../../../api/api.answer'
+import { loadTextAnswerStep } from '../../../store/lessonSteps/thunks'
 
-const OpenAnswerStep = ({ stepId, lesson }) => {
+const TestStep = ({ stepId, lesson }) => {
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
-  const [answerIsDisabled, setAnswerIsDisabled] = useState(false)
   const [testInfo, setTestInfo] = useState(null)
 
   useEffect(() => {
     dispatch(loadTestStep(stepId))
-    setAnswerIsDisabled(false)
   }, [stepId])
 
   useEffect(() => {
@@ -48,9 +48,8 @@ const OpenAnswerStep = ({ stepId, lesson }) => {
     })
   }
 
-  const onTestSubmit = () => {
+  const onTestSubmit = async () => {
     let result = 0
-    setAnswerIsDisabled(true)
     const score = testInfo.score
     const rightAnswers = testInfo.answers
     const userAnswers = testInfo.userAnswers
@@ -58,12 +57,25 @@ const OpenAnswerStep = ({ stepId, lesson }) => {
     if ((rightUserAnswersCount === userAnswers.length) && userAnswers.length !== 0) {
       result = score
     }
-    dispatch(addLessonUserMark(currentStep.lesson, result, currentStep._id))
+
+    await TestStepAPI.addUserAnswer(currentStep._id, {
+      userAnswers,
+    })
+    await AnswerAPI.add({
+      text: userAnswers.join(', '),
+      score: result,
+      stepType: 'Test',
+      stepId: currentStep._id,
+      userId: user._id,
+    })
+
     if (!user?.stepsCompleted?.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }
+
+    dispatch(loadTestStep(stepId))
   }
-  const student = lesson?.students?.find((student) => student.userId === user._id)
+
   const optionsBlock = testInfo?.options?.map((option, index) => {
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
@@ -96,7 +108,7 @@ const OpenAnswerStep = ({ stepId, lesson }) => {
       {optionsBlock}
       <br/>
       <Button
-        disabled={student?.completedTests?.includes(stepId) || answerIsDisabled}
+        disabled={currentStep?.userAnswers?.length !== 0}
         variant="info"
         onClick={onTestSubmit}>
         Відповісти
@@ -105,4 +117,4 @@ const OpenAnswerStep = ({ stepId, lesson }) => {
   )
 }
 
-export default OpenAnswerStep
+export default TestStep

@@ -12,6 +12,11 @@ class TestStepAPI {
     return data
   }
 
+  async addUserAnswer(id, updateObj) {
+    const { data } = await instanceAxios.patch(`/lesson/test/addAnswer/${id}`, updateObj)
+    return data
+  }
+
   async getOne(id) {
     const { data } = await instanceAxios.get(`/lesson/test/${id}`)
     return data

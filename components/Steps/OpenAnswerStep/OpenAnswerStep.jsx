@@ -43,6 +43,9 @@ const OpenAnswerStep = ({ stepId }) => {
         answer: answerText,
       })
     dispatch(loadTextAnswerStep(stepId))
+    if (!user?.stepsCompleted?.includes(stepId)) {
+      dispatch(addStepToCompleted(stepId))
+    }
   }
 
   return (

@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadTextAnswerStep, updateTextAnswerLesson } from '../../../store/lessonSteps/video.thunk'
+import { loadCodeStep, updateCodeStep } from '../../../store/lessonSteps/code.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
 
@@ -15,7 +15,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
 
   useEffect(() => {
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadCodeStep(stepId))
   }, [stepId])
 
   if (!currentStep) {
@@ -23,7 +23,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   }
 
   const onUpdateStep= () => {
-    dispatch(updateTextAnswerLesson(currentStep._id, { body: textContent }))
+    dispatch(updateCodeStep(currentStep._id, { body: textContent }))
   }
 
   return (

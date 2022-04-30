@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { loadLectureStep } from '../../../store/lessonSteps/text.thunk'
+import { loadLectureStep } from '../../../store/lessonSteps/lecture.thunk'
 import Loader from '../../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'

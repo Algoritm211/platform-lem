@@ -3,11 +3,11 @@ import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadTextAnswerStep, updateTextAnswerLesson } from '../../../store/lessonSteps/video.thunk'
+import { loadTextStep, updateTextStep } from '../../../store/lessonSteps/text.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
 
-const OpenAnswerStepEditor = ({ stepId }) => {
+const TextTaskStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
@@ -15,7 +15,7 @@ const OpenAnswerStepEditor = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
 
   useEffect(() => {
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadTextStep(stepId))
   }, [stepId])
 
   if (!currentStep) {
@@ -23,7 +23,7 @@ const OpenAnswerStepEditor = ({ stepId }) => {
   }
 
   const onUpdateStep= () => {
-    dispatch(updateTextAnswerLesson(currentStep._id, { body: textContent }))
+    dispatch(updateTextStep(currentStep._id, { body: textContent }))
   }
 
   return (
@@ -60,4 +60,4 @@ const OpenAnswerStepEditor = ({ stepId }) => {
   )
 }
 
-export default OpenAnswerStepEditor
+export default TextTaskStepEditor

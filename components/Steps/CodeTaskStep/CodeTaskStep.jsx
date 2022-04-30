@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Loader/Loader'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
-import { loadTextAnswerStep } from '../../../store/lessonSteps/video.thunk'
+import { loadCodeStep } from '../../../store/lessonSteps/code.thunk'
 import { useTranslation } from 'next-i18next'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
@@ -18,7 +18,7 @@ const OpenAnswerStep = ({ stepId }) => {
   const user = useSelector(getUserData)
 
   useEffect(() => {
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadCodeStep(stepId))
     if (!user?.stepsCompleted.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }

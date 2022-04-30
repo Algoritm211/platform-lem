@@ -15,7 +15,7 @@ export const updateTextStep = (id, updateBody) => async (dispatch) => {
   dispatch(toggleIsLoading(false))
 }
 
-export const loadLectureStep = (id) => async (dispatch) => {
+export const loadTextStep = (id) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
   const data = await TextStepAPI.getOne(id)
   dispatch(setCurrentStep(data.step))

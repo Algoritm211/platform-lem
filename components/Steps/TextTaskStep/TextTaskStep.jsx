@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Loader/Loader'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
-import { loadTextAnswerStep } from '../../../store/lessonSteps/video.thunk'
+import { loadTextStep } from '../../../store/lessonSteps/text.thunk'
 import { useTranslation } from 'next-i18next'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
 
-const OpenAnswerStep = ({ stepId }) => {
+const TextTaskStep = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
@@ -15,7 +15,7 @@ const OpenAnswerStep = ({ stepId }) => {
   const [answerText, setAnswerText] = useState('')
 
   useEffect(() => {
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadTextStep(stepId))
     if (!user?.stepsCompleted.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }
@@ -37,4 +37,4 @@ const OpenAnswerStep = ({ stepId }) => {
   )
 }
 
-export default OpenAnswerStep
+export default TextTaskStep

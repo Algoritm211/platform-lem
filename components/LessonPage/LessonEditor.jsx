@@ -10,7 +10,7 @@ import { useTranslation } from 'next-i18next'
 
 import LectureStepEditor from '../Steps/LectureStep/LectureStepEditor'
 import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
-import OpenAnswerStepEditor from '../Steps/OpenAnswerStep/OpenAnswerStepEditor'
+import TextTaskStepEditor from '../Steps/TextTaskStep/TextTaskStepEditor'
 import TestStepEditor from '../Steps/TestTaskStep/TestStepEditor'
 import CodeTaskStepEditor from '../Steps/CodeTaskStep/CodeTaskStepEditor'
 
@@ -30,7 +30,7 @@ const { Sider, Content } = Layout
 const stepTypes = {
   Text: LectureStepEditor,
   Video: VideoStepEditor,
-  TextWithAnswer: OpenAnswerStepEditor,
+  TextWithAnswer: TextTaskStepEditor,
   Test: TestStepEditor,
   Code: CodeTaskStepEditor,
 }

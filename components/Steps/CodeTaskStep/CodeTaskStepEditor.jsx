@@ -6,9 +6,6 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import { loadCodeStep, updateCodeStep } from '../../../store/lessonSteps/code.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
-import { Select } from 'antd'
-
-const { Option } = Select
 
 const CodeEditor = React.lazy(() => import('../../CodeEditor/CodeEditor'))
 

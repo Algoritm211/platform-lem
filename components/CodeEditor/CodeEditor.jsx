@@ -7,6 +7,7 @@ import 'codemirror/theme/dracula.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/python/python'
 import 'codemirror/mode/clike/clike'
+import 'codemirror/mode/textile/textile'
 import { Controlled as ControlledEditor } from 'react-codemirror2'
 
 export default function CodeEditor(props) {
@@ -20,6 +21,7 @@ export default function CodeEditor(props) {
     <ControlledEditor
       onBeforeChange={handleEditorChange}
       value={value}
+      style={{ height: 'auto !important' }}
       className="code-mirror-wrapper"
       options={{
         lineWrapping: true,
@@ -28,7 +30,6 @@ export default function CodeEditor(props) {
         theme: theme,
         lineNumbers: true,
       }}
-    />
-  )
+    />)
 }
 

@@ -119,8 +119,8 @@ const Header = () => {
           </Link>
           <div className="d-flex ml-auto">
             <div className="d-none d-md-flex">{appMenu(isDrawerVisible)}</div>
-            <button onClick={showDrawer} class="d-block d-md-none ml-auto btn">
-              <i class="fas fa-bars"></i>
+            <button onClick={showDrawer} className="d-block d-md-none ml-auto btn">
+              <i className="fas fa-bars"></i>
             </button>
 
             <div className="d-flex align-items-center">

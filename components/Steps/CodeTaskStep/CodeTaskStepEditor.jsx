@@ -18,6 +18,72 @@ function uuidv4() {
   )
 }
 
+const TestItemHeader = ({ testInfo, onRemove }) => {
+  return (
+    <div className="d-flex align-items-center justify-content-between p-3">
+      <h5>
+        Test {testInfo.uuid}
+      </h5>
+      <button
+        className="btn d-flex m-3 btn-danger"
+        style={{ padding: '15px', borderRadius: '8px' }}
+        onClick={onRemove}
+      >
+        <i className="fas fa-trash-alt"/>
+      </button>
+    </div>
+  )
+}
+
+const TestItemInputSection = ({ value, label, onChange }) => {
+  return (
+    <div className="p-3">
+      <h5>{label}</h5>
+      <Suspense fallback={<Loader/>}>
+        <CodeEditor
+          language="textile"
+          theme="eclipse"
+          value={value}
+          onChange={onChange}
+        />
+      </Suspense>
+    </div>
+  )
+}
+
+const TestItemContent = ({ testInfo, onInputValueChange, onOutputValueChange }) => {
+  return (
+    <>
+      <TestItemInputSection
+        value={testInfo.test}
+        onChange={onInputValueChange}
+        label="Input"/>
+      <TestItemInputSection
+        value={testInfo.expected}
+        onChange={onOutputValueChange}
+        label="Output"/>
+    </>
+  )
+}
+
+const TestItem = ({ testInfo, onRemoveTest, onInputValueChange, onOutputValueChange }) => {
+  return (
+    <div
+      className="m-2"
+      style={{
+        background: 'white',
+        borderRadius: '8px',
+      }}>
+      <TestItemHeader testInfo={testInfo} onRemove={onRemoveTest}/>
+      <TestItemContent
+        testInfo={testInfo}
+        onInputValueChange={onInputValueChange}
+        onOutputValueChange={onOutputValueChange}/>
+    </div>
+  )
+}
+
+
 const CodeTaskStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const [codeInfo, setCodeInfo] = useState({ tests: [] })
@@ -48,79 +114,42 @@ const CodeTaskStepEditor = ({ stepId }) => {
     })
   }
 
-  const TestItemHeader = ({ testInfo }) => {
-    return (
-      <div className="d-flex align-items-center justify-content-between p-3">
-        <h5>
-          Test {testInfo.uuid}
-        </h5>
-        <button
-          className="btn d-flex m-3 btn-danger"
-          style={{ padding: '15px', borderRadius: '8px' }}
-          onClick={() => {
-            removeTest(testInfo)
-          }}
-        >
-          <i className="fas fa-trash-alt"/>
-        </button>
-      </div>
-    )
-  }
-
-  const TestItemInputSection = ({ value, setValue, label }) => {
-    return (
-      <div className="p-3">
-        <h5>{label}</h5>
-        <Suspense fallback={<Loader/>}>
-          <CodeEditor
-            language="textile"
-            theme="eclipse"
-            value={value}
-            onChange={setValue}
-          />
-        </Suspense>
-      </div>
-    )
-  }
-
-  {/*
-  const onChange = ({ testInfo }) => {
-    const fields = testInfo.fields.map((field, i) => {
-      if (i == index) field.val = value
-      return field
+  const inputChange = (testInfo, value) => {
+    const newTestValues = codeInfo.tests.map((test) => {
+      if (test.uuid === testInfo.uuid) test.test = value
+      return test
     })
-    setCodeInfo({
-      ...formFields,
-      fields,
+    setCodeInfo((prev) => {
+      return {
+        ...prev,
+        tests: newTestValues,
+      }
     })
   }
-  */}
 
-  const TestItemContent = ({ testInfo }) => {
-    return (
-      <>
-        <TestItemInputSection value={testInfo.test} label="Input"/>
-        <TestItemInputSection value={testInfo.test} label="Output"/>
-      </>
-    )
-  }
-
-  const TestItem = ({ testInfo }) => {
-    return (
-      <div
-        className="m-2"
-        style={{
-          background: 'white',
-          borderRadius: '8px',
-        }}>
-        <TestItemHeader testInfo={testInfo}/>
-        <TestItemContent testInfo={testInfo}/>
-      </div>
-    )
+  const outputChange = (testInfo, value) => {
+    const newTestValues = codeInfo.tests.map((test) => {
+      if (test.uuid === testInfo.uuid) test.expected = value
+      return test
+    })
+    setCodeInfo((prev) => {
+      return {
+        ...prev,
+        tests: newTestValues,
+      }
+    })
   }
 
   const testList = codeInfo.tests.map((test) => {
-    return <TestItem key={test.uuid} testInfo={test}/>
+    return (
+      <TestItem
+        key={test.uuid}
+        testInfo={test}
+        onRemoveTest={() => removeTest(test)}
+        onInputValueChange={(value) => inputChange(test, value)}
+        onOutputValueChange={(value) => outputChange(test, value)}
+      />
+    )
   })
 
   const onUpdateStep = () => {

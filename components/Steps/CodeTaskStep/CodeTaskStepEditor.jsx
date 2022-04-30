@@ -9,17 +9,11 @@ import { useTranslation } from 'next-i18next'
 
 const CodeEditor = React.lazy(() => import('../../CodeEditor/CodeEditor'))
 
-function uuidv4() {
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16),
-  )
-}
-
-const TestItemHeader = ({ testInfo, onRemove }) => {
+const TestItemHeader = ({ testInfo, onRemove, index }) => {
   return (
     <div className="d-flex align-items-center justify-content-between p-3">
       <h5>
-        Test {testInfo.uuid}
+        Test #{index+1}
       </h5>
       <button
         className="btn d-flex m-3 btn-danger"
@@ -63,7 +57,7 @@ const TestItemContent = ({ testInfo, onInputValueChange, onOutputValueChange }) 
   )
 }
 
-const TestItem = ({ testInfo, onRemoveTest, onInputValueChange, onOutputValueChange }) => {
+const TestItem = ({ testInfo, onRemoveTest, onInputValueChange, onOutputValueChange, index }) => {
   return (
     <div
       className="m-2"
@@ -71,7 +65,7 @@ const TestItem = ({ testInfo, onRemoveTest, onInputValueChange, onOutputValueCha
         background: 'white',
         borderRadius: '8px',
       }}>
-      <TestItemHeader testInfo={testInfo} onRemove={onRemoveTest}/>
+      <TestItemHeader testInfo={testInfo} onRemove={onRemoveTest} index={index}/>
       <TestItemContent
         testInfo={testInfo}
         onInputValueChange={onInputValueChange}
@@ -99,21 +93,25 @@ const CodeTaskStepEditor = ({ stepId }) => {
   const addTest = () => {
     setCodeInfo({
       ...codeInfo,
-      tests: [...codeInfo.tests, { uuid: uuidv4(), test: '', expected: '' }],
+      tests: [...codeInfo.tests, { test: '', expected: '' }],
     })
   }
 
-  const removeTest = (test) => {
-    const newTests = codeInfo.tests.filter((el) => el.uuid !== test.uuid)
+  const removeTest = (index) => {
+    const before = codeInfo.tests.slice(0, index)
+    const after = codeInfo.tests.slice(index + 1)
+
     setCodeInfo({
       ...codeInfo,
-      tests: newTests,
+      tests:
+        [...before,
+          ...after],
     })
   }
 
-  const inputChange = (testInfo, value) => {
-    const newTestValues = codeInfo.tests.map((test) => {
-      if (test.uuid === testInfo.uuid) test.test = value
+  const testChange = (index, value, field) => {
+    const newTestValues = codeInfo.tests.map((test, testIndex) => {
+      if (index === testIndex) test[field] = value
       return test
     })
     setCodeInfo((prev) => {
@@ -124,27 +122,15 @@ const CodeTaskStepEditor = ({ stepId }) => {
     })
   }
 
-  const outputChange = (testInfo, value) => {
-    const newTestValues = codeInfo.tests.map((test) => {
-      if (test.uuid === testInfo.uuid) test.expected = value
-      return test
-    })
-    setCodeInfo((prev) => {
-      return {
-        ...prev,
-        tests: newTestValues,
-      }
-    })
-  }
-
-  const testList = codeInfo.tests.map((test) => {
+  const testList = codeInfo.tests.map((test, index) => {
     return (
       <TestItem
-        key={test.uuid}
+        key={index}
+        index={index}
         testInfo={test}
-        onRemoveTest={() => removeTest(test)}
-        onInputValueChange={(value) => inputChange(test, value)}
-        onOutputValueChange={(value) => outputChange(test, value)}
+        onRemoveTest={() => removeTest(index)}
+        onInputValueChange={(value) => testChange(index, value, 'test')}
+        onOutputValueChange={(value) => testChange(index, value, 'expected')}
       />
     )
   })

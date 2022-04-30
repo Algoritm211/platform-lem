@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep } from '../../../store/lessonSteps/selectors'
 import Loader from '../../Loader/Loader'
-import { loadVideoStep } from '../../../store/lessonSteps/thunks'
+import { loadVideoStep } from '../../../store/lessonSteps/video.thunk'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
 

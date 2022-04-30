@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadVideoStep, updateVideoLesson } from '../../../store/lessonSteps/thunks'
+import { loadVideoStep, updateVideoStep } from '../../../store/lessonSteps/video.thunk'
 import { useTranslation } from 'next-i18next'
 
 const VideoStepEditor = ({ stepId }) => {
@@ -21,7 +21,7 @@ const VideoStepEditor = ({ stepId }) => {
   }, [currentStep])
 
   const onUpdate = () => {
-    dispatch(updateVideoLesson(currentStep._id, { url: videoUrl }))
+    dispatch(updateVideoStep(currentStep._id, { url: videoUrl }))
   }
   return (
     <div>

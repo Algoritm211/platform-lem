@@ -3,11 +3,11 @@ import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadTextStep, updateTextLesson } from '../../../store/lessonSteps/thunks'
+import { loadLectureStep, updateLectureStep } from '../../../store/lessonSteps/lecture.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
 
-const TextStepEditor = ({ stepId }) => {
+const LectureStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
@@ -15,7 +15,7 @@ const TextStepEditor = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
 
   useEffect(() => {
-    dispatch(loadTextStep(stepId))
+    dispatch(loadLectureStep(stepId))
   }, [stepId])
 
   if (!currentStep) {
@@ -23,7 +23,7 @@ const TextStepEditor = ({ stepId }) => {
   }
 
   const onUpdateLesson = () => {
-    dispatch(updateTextLesson(currentStep._id, { body: textContent }))
+    dispatch(updateLectureStep(currentStep._id, { body: textContent }))
   }
 
   return (
@@ -59,4 +59,4 @@ const TextStepEditor = ({ stepId }) => {
   )
 }
 
-export default TextStepEditor
+export default LectureStepEditor

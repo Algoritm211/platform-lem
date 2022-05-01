@@ -91,24 +91,37 @@ const TestStepEditor = ({ stepId }) => {
     dispatch(updateTestStep(currentStep._id, testInfo))
   }
 
+  const OptionInputItem = ({ inputType, checked, value }) => {
+    const optionInputInfo
+      = inputType === 'single'
+        ? {
+          optionInputType: 'radio',
+          onChangeFn: (event) => onSingleChange(event),
+        }
+        : {
+          optionInputType: 'checkbox',
+          onChangeFn: (event) => onMultipleChange(event),
+        }
+
+    return (
+      <input
+        className="checkbox-editor mx-3"
+        type={optionInputInfo.optionInputType}
+        onChange={optionInputInfo.onChangeFn}
+        checked={checked}
+        value={value}/>
+    )
+  }
+
+
   const optionsBlock = testInfo?.options?.map((option, index) => {
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
-        {testInfo.type === 'single' ? (
-          <input
-            className="checkbox-editor mx-3"
-            type="radio"
-            onChange={onSingleChange}
-            checked={testInfo.answers.includes(option)}
-            value={option}/>
-        ) : (
-          <input
-            value={option}
-            onChange={onMultipleChange}
-            className="checkbox-editor mx-3"
-            type="checkbox"
-            checked={testInfo.answers.includes(option)}/>
-        )}
+        <OptionInputItem
+          inputType={testInfo.type}
+          checked={testInfo.answers.includes(option)}
+          value={option}
+        />
         <input
           className={'input-checkbox-editor'}
           type="variant"
@@ -133,6 +146,7 @@ const TestStepEditor = ({ stepId }) => {
     <div>
       <h3 className="editor-lesson-title mt-5 mb-3">Write your question down below</h3>
       <textarea
+        className="form-control inputAcc"
         onChange={onChangeQuestion}
         value={testInfo.question}
         cols="40" rows="5"/>

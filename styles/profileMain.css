@@ -192,6 +192,10 @@
 .profile-toolkit {
   display: grid;
 }
+.profile-courses-one-content {
+  width: 100%;
+}
+
 @media (max-width: 1200px) {
   .profile-welcome-img {
     top: -45px;
@@ -294,9 +298,6 @@
   }
   .flexMobile {
     display: block;
-  }
-  .profile-courses-one-content {
-    width: 100%;
   }
   .profile-courses-one-text {
     font-size: 10px;

@@ -61,7 +61,7 @@ const ProfileMain = () => {
                   </h3>
                   <p className='profile-welcome-subtitle'>{t('subtitle')}</p>
                 </div>
-                <div className='col-12 col-sm-6'>
+                <div className='col-12 col-sm-6 ml-auto'>
                   <img
                     className='profile-welcome-img'
                     src='/7.png'

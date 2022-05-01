@@ -8,7 +8,7 @@ import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
 import { Button } from 'antd'
 import AnswerAPI from '../../../api/api.answer'
-import TextAnswerAPI from '../../../api/lessonTypes/api.textAnswer'
+import TextStepAPI from '../../../api/lessonTypes/api.text'
 
 const TextTaskStep = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -37,12 +37,12 @@ const TextTaskStep = ({ stepId }) => {
       stepId: currentStep._id,
       userId: user._id,
     })
-    await TextAnswerAPI.update(stepId,
+    await TextStepAPI.update(stepId,
       {
         body: currentStep.body,
         answer: answerText,
       })
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadTextStep(stepId))
     if (!user?.stepsCompleted?.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }

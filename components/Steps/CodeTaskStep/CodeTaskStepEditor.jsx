@@ -6,14 +6,17 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import { loadCodeStep, updateCodeStep } from '../../../store/lessonSteps/code.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
+import { Select } from 'antd'
+
+const { Option } = Select
 
 const CodeEditor = React.lazy(() => import('../../CodeEditor/CodeEditor'))
 
-const TestItemHeader = ({ testInfo, onRemove, index }) => {
+const TestItemHeader = ({ onRemove, index }) => {
   return (
     <div className="d-flex align-items-center justify-content-between p-3">
       <h5>
-        Test #{index+1}
+        Test №{index + 1}
       </h5>
       <button
         className="btn d-flex m-3 btn-danger"
@@ -65,7 +68,7 @@ const TestItem = ({ testInfo, onRemoveTest, onInputValueChange, onOutputValueCha
         background: 'white',
         borderRadius: '8px',
       }}>
-      <TestItemHeader testInfo={testInfo} onRemove={onRemoveTest} index={index}/>
+      <TestItemHeader onRemove={onRemoveTest} index={index}/>
       <TestItemContent
         testInfo={testInfo}
         onInputValueChange={onInputValueChange}
@@ -136,7 +139,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   })
 
   const onUpdateStep = () => {
-    dispatch(updateCodeStep(currentStep._id, { body: textContent }))
+    dispatch(updateCodeStep(currentStep._id, codeInfo))
   }
 
   const onChangeEditor = (value) => {
@@ -146,6 +149,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   }
 
   const onChangeScore = (event) => setCodeInfo((prevState) => ({ ...prevState, score: +event.target.value }))
+  const onChangeLanguage = (value) => setCodeInfo((prevState) => ({ ...prevState, language: value }))
 
   return (
     <div>
@@ -179,9 +183,21 @@ const CodeTaskStepEditor = ({ stepId }) => {
           value={codeInfo.score}
           type={'number'}
           min={1}
-          onChange={onChangeScore}
+          onChange={(value) => onChangeScore(value)}
           className={'input-checkbox-editor'}
         />
+      </div>
+
+      <div className="my-3" style={{ backgroundColor: '#f1f1f1' }}>
+        <h3 className="editor-lesson-title p-3">{t('language')}</h3>
+        <Select
+          placeholder={t('languagePlaceholder')}
+          style={{ width: '100%' }}
+          value={codeInfo.language}
+          onChange={(value) => onChangeLanguage(value)}>
+          <Option value="python3">Python</Option>
+          <Option value="nodejs">JavaScript</Option>
+        </Select>
       </div>
 
       <div className="my-3" style={{ backgroundColor: '#f1f1f1' }}>
@@ -199,9 +215,11 @@ const CodeTaskStepEditor = ({ stepId }) => {
         </div>
       </div>
 
+      {/*
       <pre>
         {JSON.stringify({ codeInfo }, null, 2)}
       </pre>
+      */}
 
       <Button
         onClick={onUpdateStep}

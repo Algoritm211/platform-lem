@@ -16,6 +16,11 @@ class CodeStepAPI {
     const { data } = await instanceAxios.get(`/lesson/code/${id}`)
     return data
   }
+
+  async checkCode(codeObj) {
+    const { data } = await instanceAxios.post(`/lesson/code/check`, codeObj)
+    return data
+  }
 }
 
 export default new CodeStepAPI()

@@ -6,6 +6,9 @@ import { loadTextAnswerStep } from '../../../store/lessonSteps/thunks'
 import { useTranslation } from 'next-i18next'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import { getUserData } from '../../../store/auth/selectors'
+import { Button } from 'antd'
+import AnswerAPI from '../../../api/api.answer'
+import TextAnswerAPI from '../../../api/lessonTypes/api.textAnswer'
 
 const OpenAnswerStep = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -13,6 +16,7 @@ const OpenAnswerStep = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
   const [answerText, setAnswerText] = useState('')
+  console.log(user)
 
   useEffect(() => {
     dispatch(loadTextAnswerStep(stepId))
@@ -25,6 +29,25 @@ const OpenAnswerStep = ({ stepId }) => {
     return <Loader/>
   }
 
+  const onSubmitAnswer = async () => {
+    await AnswerAPI.add({
+      text: answerText,
+      score: currentStep.score || 3,
+      stepType: 'TextWithAnswer',
+      stepId: currentStep._id,
+      userId: user._id,
+    })
+    await TextAnswerAPI.update(stepId,
+      {
+        body: currentStep.body,
+        answer: answerText,
+      })
+    dispatch(loadTextAnswerStep(stepId))
+    if (!user?.stepsCompleted?.includes(stepId)) {
+      dispatch(addStepToCompleted(stepId))
+    }
+  }
+
   return (
     <div>
       <p className="courses-lecture mt-3 mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
@@ -33,6 +56,10 @@ const OpenAnswerStep = ({ stepId }) => {
         value={answerText}
         onChange={(event) => setAnswerText(event.target.value)}
         placeholder={t('answer')} />
+      {/* //TODO fix layout of button */}
+      <Button disabled={!!currentStep.answer} onClick={onSubmitAnswer}>
+        Submit
+      </Button>
     </div>
   )
 }

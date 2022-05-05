@@ -61,6 +61,7 @@ const TextTaskStep = ({ stepId }) => {
   return (
     <div>
       <p className="courses-lecture mt-3 mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
+      {/* TODO: it is not current user answer, need refactoring on the backend side */}
       {currentStep.answer
         ? <textarea
           disabled

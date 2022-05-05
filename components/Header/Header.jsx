@@ -113,8 +113,14 @@ const Header = () => {
       <div className="container">
         <div className="py-2 d-flex align-items-center">
           <Link href={'/'}>
-            <h4 style={{ cursor: 'pointer' }} className="m-0">
-              LEM
+            <h4
+              style={{
+                cursor: 'pointer',
+                fontFamily: 'Comfortaa',
+                fontSize: '26px',
+              }}
+              className="m-0">
+              marklass
             </h4>
           </Link>
           <div className="d-flex ml-auto">

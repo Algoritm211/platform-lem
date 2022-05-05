@@ -112,6 +112,7 @@ const TestStep = ({ stepId, lesson }) => {
     )
   })
 
+  // TODO: it is not current user answer, need refactoring on the backend side
   const hasAnswer = currentStep?.userAnswers?.length !== 0
 
   return (

@@ -21,7 +21,7 @@ export default function CodeEditor(props) {
     <ControlledEditor
       onBeforeChange={handleEditorChange}
       value={value}
-      style={{ height: 'auto !important' }}
+      style={{ height: 'inherit' }}
       className="code-mirror-wrapper"
       options={{
         lineWrapping: true,

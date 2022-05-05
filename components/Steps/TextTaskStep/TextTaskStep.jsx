@@ -9,6 +9,7 @@ import { getUserData } from '../../../store/auth/selectors'
 import { Button } from 'react-bootstrap'
 import AnswerAPI from '../../../api/api.answer'
 import TextStepAPI from '../../../api/lessonTypes/api.text'
+import { useQuery } from 'react-query'
 
 const TextTaskStepTextArea = ({ value, onChange, placeholder }) => {
   return (
@@ -26,7 +27,8 @@ const TextTaskStep = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
   const [answerText, setAnswerText] = useState('')
-  console.log(user)
+  const { data: presentAnswer, refetch } = useQuery(['answer', currentStep._id],
+    () => AnswerAPI.getOne(currentStep._id))
 
   useEffect(() => {
     dispatch(loadTextStep(stepId))
@@ -47,10 +49,10 @@ const TextTaskStep = ({ stepId }) => {
       stepId: currentStep._id,
       userId: user._id,
     })
+    await refetch()
     await TextStepAPI.update(stepId,
       {
         body: currentStep.body,
-        answer: answerText,
       })
     dispatch(loadTextStep(stepId))
     if (!user?.stepsCompleted?.includes(stepId)) {
@@ -62,11 +64,11 @@ const TextTaskStep = ({ stepId }) => {
     <div>
       <p className="courses-lecture mt-3 mb-5" dangerouslySetInnerHTML={{ __html: currentStep.body }}/>
       {/* TODO: it is not current user answer, need refactoring on the backend side */}
-      {currentStep.answer
+      {presentAnswer?.answer?.text
         ? <textarea
           disabled
           className="form-control inputAcc"
-          value={currentStep.answer}/>
+          value={presentAnswer?.answer?.text}/>
         : <TextTaskStepTextArea
           value={answerText}
           onChange={(event) => setAnswerText(event.target.value)}
@@ -74,13 +76,12 @@ const TextTaskStep = ({ stepId }) => {
         />}
 
       <div className="my-3">
-        <Button disabled={!!currentStep.answer} onClick={onSubmitAnswer}>
+        <Button disabled={!!presentAnswer?.answer} onClick={onSubmitAnswer}>
           Submit
         </Button>
       </div>
 
-      {currentStep.answer ? <p>{t('cantChangeAnswer')}</p> : null}
-
+      {presentAnswer?.answer ? <p>{t('cantChangeAnswer')}</p> : null}
 
     </div>
   )

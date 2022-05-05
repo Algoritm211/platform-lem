@@ -10,6 +10,7 @@ import { Alert, Select } from 'antd'
 import { Button } from 'react-bootstrap'
 import CodeStepAPI from '../../../api/lessonTypes/api.code'
 import AnswerAPI from '../../../api/api.answer'
+import { useQuery } from 'react-query'
 
 const { Option } = Select
 const CodeEditor = React.lazy(() => import('../../CodeEditor/CodeEditor'))
@@ -35,13 +36,14 @@ const OpenAnswerStep = ({ stepId }) => {
   const [selectedTheme, setSelectedTheme] = useState('eclipse')
   const [runCodeResult, setRunCodeResult] = useState(currentStep.answer || null)
   const [isCodeRunning, setIsCodeRunning] = useState(false)
+  const { data: presentAnswer, refetch } = useQuery(['answer', currentStep._id],
+    () => AnswerAPI.getOne(currentStep._id))
 
 
   const checkCode = async (codeObj) => {
     setIsCodeRunning(true)
     const data = await CodeStepAPI.checkCode(codeObj)
     setRunCodeResult(data)
-    // TODO: here is editorValue passed in text field, make sure that it will successfully saved
     await AnswerAPI.add({
       text: editorValue,
       score: data.isValid ? currentStep.score : 0,
@@ -49,6 +51,7 @@ const OpenAnswerStep = ({ stepId }) => {
       stepId: currentStep._id,
       userId: user._id,
     })
+    await refetch()
     setIsCodeRunning(false)
   }
 
@@ -106,7 +109,7 @@ const OpenAnswerStep = ({ stepId }) => {
           <CodeEditor
             language="python"
             theme={selectedTheme}
-            value={currentStep.answer || editorValue}
+            value={presentAnswer?.answer?.text || editorValue}
             onChange={setEditorValue}
           />
         </Suspense>
@@ -121,7 +124,7 @@ const OpenAnswerStep = ({ stepId }) => {
           : null}
       </div>
       <pre>
-        {JSON.stringify(currentStep, null, 2)}
+        {JSON.stringify(presentAnswer?.answer, null, 2)}
       </pre>
       <pre>
         {JSON.stringify({

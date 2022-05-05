@@ -15,7 +15,7 @@ import '../styles/coursePreview.css'
 import '../styles/editorPage.css'
 import '../styles/lesson.css'
 import '../styles/loader.css'
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.css'
 import React, { useEffect } from 'react'
 import { wrapper } from '../store/store'
 import App from 'next/app'
@@ -25,6 +25,7 @@ import { useDispatch } from 'react-redux'
 // import { getCookie } from '../components/utils/cookieFunctions'
 import { authUser } from '../store/auth/auth.thunks'
 import { appWithTranslation } from 'next-i18next'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 function MyComponent({ children }) {
   const dispatch = useDispatch()
@@ -38,6 +39,10 @@ function MyComponent({ children }) {
 }
 
 class MyApp extends App {
+  constructor(props) {
+    super(props)
+    this.state = { queryClient: new QueryClient() }
+  }
   static async getServer({ Component, context }) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(context)
@@ -50,19 +55,21 @@ class MyApp extends App {
 
     return (
       <MyComponent>
-        <Head>
-          <meta charSet="utf-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <meta name="theme-color" content="#000000"/>
-          <title>Platform LEM</title>
-        </Head>
-        <NextNprogress
-          color="#29D"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height="3"
-        />
-        <Component {...pageProps} />
+        <QueryClientProvider client={this.state.queryClient}>
+          <Head>
+            <meta charSet="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="theme-color" content="#000000"/>
+            <title>Platform LEM</title>
+          </Head>
+          <NextNprogress
+            color="#29D"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height="3"
+          />
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </MyComponent>
     )
   }

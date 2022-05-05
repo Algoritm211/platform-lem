@@ -113,14 +113,20 @@ const Header = () => {
       <div className="container">
         <div className="py-2 d-flex align-items-center">
           <Link href={'/'}>
-            <h4 style={{ cursor: 'pointer' }} className="m-0">
-              LEM
+            <h4
+              style={{
+                cursor: 'pointer',
+                fontFamily: 'Comfortaa',
+                fontSize: '26px',
+              }}
+              className="m-0">
+              marklass
             </h4>
           </Link>
           <div className="d-flex ml-auto">
             <div className="d-none d-md-flex">{appMenu(isDrawerVisible)}</div>
-            <button onClick={showDrawer} class="d-block d-md-none ml-auto btn">
-              <i class="fas fa-bars"></i>
+            <button onClick={showDrawer} className="d-block d-md-none ml-auto btn">
+              <i className="fas fa-bars"></i>
             </button>
 
             <div className="d-flex align-items-center">

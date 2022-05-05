@@ -1,3 +1,9 @@
+.profile-welcome-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .courses-lecture{
     font-size: 16px;
 }

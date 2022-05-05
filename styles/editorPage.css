@@ -67,6 +67,9 @@
     border: none;
     background-color: #fff;
 }
+.CodeMirror{
+    height: auto !important;
+}
 @media (max-width: 768px) {
     .modal-task-subtitle{
         font-size: 12px;

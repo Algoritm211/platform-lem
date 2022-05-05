@@ -3,11 +3,11 @@ import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadTextAnswerStep, updateTextAnswerLesson } from '../../../store/lessonSteps/thunks'
+import { loadLectureStep, updateLectureStep } from '../../../store/lessonSteps/lecture.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
 
-const OpenAnswerStepEditor = ({ stepId }) => {
+const LectureStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
@@ -15,20 +15,20 @@ const OpenAnswerStepEditor = ({ stepId }) => {
   const currentStep = useSelector(getCurrentStep)
 
   useEffect(() => {
-    dispatch(loadTextAnswerStep(stepId))
+    dispatch(loadLectureStep(stepId))
   }, [stepId])
 
   if (!currentStep) {
     return <Loader />
   }
 
-  const onUpdateStep= () => {
-    dispatch(updateTextAnswerLesson(currentStep._id, { body: textContent }))
+  const onUpdateLesson = () => {
+    dispatch(updateLectureStep(currentStep._id, { body: textContent }))
   }
 
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">{t('openQuest')}</h3>
+      <h3 className="editor-lesson-title mt-5 mb-3">{t('textMaterial')}</h3>
       <Editor
         apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
         initialValue={currentStep.body}
@@ -45,19 +45,18 @@ const OpenAnswerStepEditor = ({ stepId }) => {
           ],
           toolbar:
             `undo redo | formatselect | bold italic backcolor | \
-                  alignleft aligncenter alignright alignjustify | \
-                  bullist numlist outdent indent | removeformat | help`,
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help`,
         }}
         onEditorChange={(content) => setTextContent(content)}
       />
-      <span className="info-title d-block">*{t('correct')}</span>
       <Button
-        onClick={onUpdateStep}
         className="mt-3"
+        onClick={onUpdateLesson}
         type={'submit'}
         disabled={isLoading}>{isLoading ? t('saving') : t('save')}</Button>
     </div>
   )
 }
 
-export default OpenAnswerStepEditor
+export default LectureStepEditor

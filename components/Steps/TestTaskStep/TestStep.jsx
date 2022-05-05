@@ -9,8 +9,10 @@ import { countArrayEntries } from '../../utils/lessonFunctions'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
 import TestStepAPI from '../../../api/lessonTypes/api.test'
 import AnswerAPI from '../../../api/api.answer'
+import { useTranslation } from 'next-i18next'
 
 const TestStep = ({ stepId, lesson }) => {
+  const { t } = useTranslation('steps')
   const dispatch = useDispatch()
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
@@ -75,44 +77,62 @@ const TestStep = ({ stepId, lesson }) => {
     dispatch(loadTestStep(stepId))
   }
 
+  const OptionInputItem = ({ inputType, checked, value }) => {
+    const optionInputInfo
+      = inputType === 'single'
+        ? {
+          optionInputType: 'radio',
+          onChangeFn: (event) => onSingleChange(event),
+        }
+        : {
+          optionInputType: 'checkbox',
+          onChangeFn: (event) => onMultipleChange(event),
+        }
+
+    return (
+      <input
+        className="checkbox-editor mx-3"
+        type={optionInputInfo.optionInputType}
+        onChange={optionInputInfo.onChangeFn}
+        checked={checked}
+        value={value}/>
+    )
+  }
+
   const optionsBlock = testInfo?.options?.map((option, index) => {
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
-        {testInfo.type === 'single' ? (
-          <input
-            className="checkbox-editor mx-3"
-            type="radio"
-            onChange={onSingleChange}
-            checked={testInfo.userAnswers.includes(option)}
-            value={option}/>
-        ) : (
-          <input
-            value={option}
-            onChange={onMultipleChange}
-            className="checkbox-editor mx-3"
-            type="checkbox"
-            checked={testInfo.userAnswers.includes(option)}/>
-        )}
+        <OptionInputItem
+          inputType={testInfo.type}
+          checked={testInfo.userAnswers.includes(option)}
+          value={option}
+        />
         <div>{option}</div>
       </div>
     )
   })
 
+  // TODO: it is not current user answer, need refactoring on the backend side
+  const hasAnswer = currentStep?.userAnswers?.length !== 0
+
   return (
-    <div>
+    <>
       <p className="courses-lecture mt-3 mb-5">
         {currentStep.question}
       </p>
       <h3 className="editor-lesson-title mt-5 mb-3">Choose all right answers</h3>
       {optionsBlock}
-      <br/>
-      <Button
-        disabled={currentStep?.userAnswers?.length !== 0}
-        variant="info"
-        onClick={onTestSubmit}>
-        Відповісти
-      </Button>
-    </div>
+      <div className="my-3">
+        <Button
+          disabled={hasAnswer}
+          onClick={onTestSubmit}>
+          Відповісти
+        </Button>
+      </div>
+
+      {hasAnswer ? <p>{t('cantChangeAnswer')}</p> : null}
+
+    </>
   )
 }
 

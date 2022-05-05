@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { clearCurrentLesson, setCurrentLesson } from '../../store/lesson/reducer'
-import { useDispatch, useSelector } from 'react-redux'
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
 import { updateLesson } from '../../store/lesson/thunks'
-import TextStepEditor from '../Steps/TextStep/TextStepEditor'
 import { getCurrentLesson } from '../../store/lesson/selectors'
 import { setSteps } from '../../store/lessonSteps/reducer'
 import { getSteps } from '../../store/lessonSteps/selectors'
-import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
 import { useTranslation } from 'next-i18next'
-import Loader from '../Loader/Loader'
-import { createTextAnswerLesson, createTextLesson, createVideoLesson } from '../../store/lessonSteps/thunks'
+
+import LectureStepEditor from '../Steps/LectureStep/LectureStepEditor'
+import VideoStepEditor from '../Steps/VideoStep/VideoStepEditor'
 import OpenAnswerStepEditor from '../Steps/OpenAnswerStep/OpenAnswerStepEditor'
 import TestStepEditor from '../Steps/TestTaskStep/TestStepEditor'
 import CodeTaskStepEditor from '../Steps/CodeTaskStep/CodeTaskStepEditor'
+
+import { createVideoStep } from '../../store/lessonSteps/video.thunk'
+import { createTextStep } from '../../store/lessonSteps/text.thunk'
+import { createCodeStep } from '../../store/lessonSteps/code.thunk'
+import { createLectureStep } from '../../store/lessonSteps/lecture.thunk'
 import { createTestStep } from '../../store/lessonSteps/test.thunk'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
+import Loader from '../Loader/Loader'
+
 import { Layout } from 'antd'
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
 
 const { Sider, Content } = Layout
 
 const stepTypes = {
-  Text: TextStepEditor,
+  Text: LectureStepEditor,
   Video: VideoStepEditor,
   TextWithAnswer: OpenAnswerStepEditor,
   Test: TestStepEditor,
@@ -42,62 +48,61 @@ const LessonEditorModal = ({ show, setShow }) => {
   const dispatch = useDispatch()
   const currentLesson = useSelector(getCurrentLesson)
 
-  const onCreateTextLesson = async () => {
+  const onCreateLectureStep = async () => {
     setShow(false)
-    dispatch(createTextLesson(currentLesson._id))
+    dispatch(createLectureStep(currentLesson._id))
   }
 
-  const onCreateVideoLesson = async () => {
+  const onCreateVideoStep = async () => {
     setShow(false)
-    dispatch(createVideoLesson(currentLesson._id))
+    dispatch(createVideoStep(currentLesson._id))
   }
 
-  const onCreateTextAnswerLesson = async () => {
+  const onCreateTextStep = async () => {
     setShow(false)
-    dispatch(createTextAnswerLesson(currentLesson._id))
+    dispatch(createTextStep(currentLesson._id))
   }
 
-  const onCreateTestLesson = async () => {
+  const onCreateTestStep = async () => {
     setShow(false)
     dispatch(createTestStep(currentLesson._id))
   }
 
   // TODO: replace dispatch func, create codeLesson.thunk
-  const onCreateCodeLesson = async () => {
+  const onCreateCodeStep = async () => {
     setShow(false)
-    dispatch(createTestStep(currentLesson._id))
-    // dispatch(createCodeStep(currentLesson._id))
+    dispatch(createCodeStep(currentLesson._id))
   }
 
   const selectTypeBtns = [
     {
       title: t('text'),
       description: t('textDesc'),
-      onClickFn: (() => onCreateTextLesson()),
+      onClickFn: (() => onCreateLectureStep()),
       iconClass: 'fa-align-left',
     },
     {
       title: t('video'),
       description: t('videoDesc'),
-      onClickFn: (() => onCreateVideoLesson()),
+      onClickFn: (() => onCreateVideoStep()),
       iconClass: 'fa-film',
     },
     {
       title: t('answer'),
       description: t('answerDesc'),
-      onClickFn: (() => onCreateTextAnswerLesson()),
+      onClickFn: (() => onCreateTextStep()),
       iconClass: 'fa-question',
     },
     {
       title: t('test'),
       description: t('testDesc'),
-      onClickFn: (() => onCreateTestLesson()),
+      onClickFn: (() => onCreateTestStep()),
       iconClass: 'fa-list-alt',
     },
     {
       title: t('code'),
       description: t('codeDesc'),
-      onClickFn: (() => onCreateCodeLesson()),
+      onClickFn: (() => onCreateCodeStep()),
       iconClass: 'fa-code',
     },
   ]
@@ -207,7 +212,6 @@ const LessonEditor = ({ lesson, course }) => {
           </button>
         </a>
       </div>
-
     )
   })
 

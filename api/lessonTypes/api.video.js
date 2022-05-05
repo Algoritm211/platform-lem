@@ -1,7 +1,6 @@
 import instanceAxios from '../api.config'
 
-
-class VideoAPI {
+class VideoStepAPI {
   // The fields from the text update must be the same as in the Video model (see backend)
   async update(id, updateBody) {
     const { data } = await instanceAxios.patch(`/lesson/video/update/${id}`, updateBody)
@@ -19,4 +18,4 @@ class VideoAPI {
   }
 }
 
-export default new VideoAPI()
+export default new VideoStepAPI()

@@ -5,7 +5,7 @@ import { setSteps } from '../../store/lessonSteps/reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentLesson } from '../../store/lesson/selectors'
 import { getSteps } from '../../store/lessonSteps/selectors'
-import TextStep from '../Steps/TextStep/TextStep'
+import LectureStep from '../Steps/LectureStep/LectureStep'
 import { getCurrentCourse } from '../../store/courses/selectors'
 import Loader from '../Loader/Loader'
 import VideoStep from '../Steps/VideoStep/VideoStep'
@@ -17,7 +17,7 @@ import TestStep from '../Steps/TestTaskStep/TestStep'
 import CodeTaskStep from '../Steps/CodeTaskStep/CodeTaskStep'
 
 const stepTypes = {
-  Text: TextStep,
+  Text: LectureStep,
   Video: VideoStep,
   TextWithAnswer: OpenAnswerStep,
   Test: TestStep,

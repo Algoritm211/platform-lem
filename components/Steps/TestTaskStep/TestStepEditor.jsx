@@ -3,7 +3,7 @@ import { Button, Col, Container, Modal, Row, ToggleButton, ToggleButtonGroup } f
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import Loader from '../../Loader/Loader'
-import { loadTestStep, updateTestStep } from '../../../store/lessonSteps/test.thunk'
+import { loadTestStep, updateTestStep, deleteTestStep } from '../../../store/lessonSteps/test.thunk'
 import { useTranslation } from 'next-i18next'
 import { clearCurrentStep } from '../../../store/lessonSteps/reducer'
 
@@ -142,9 +142,23 @@ const TestStepEditor = ({ stepId }) => {
       </div>
     )
   })
+
+  const onDeleteLesson = () => {
+    dispatch(deleteTestStep(currentStep._id))
+  }
+
+
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">Write your question down below</h3>
+      <div className='d-flex align-items-center justify-content-between'>
+        <h3 className="editor-lesson-title mt-5 mb-3">Write your question down below</h3>
+        <Button
+          className="mt-3 btn-danger"
+          onClick={onDeleteLesson}
+        >
+          <i className="fas fa-trash-alt" />
+        </Button>
+      </div>
       <textarea
         className="form-control inputAcc"
         onChange={onChangeQuestion}

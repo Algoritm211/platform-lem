@@ -16,7 +16,7 @@ export const updateTextStep = (id, updateBody) => async (dispatch) => {
   dispatch(toggleIsLoading(false))
 }
 
-export const deleteTestStep = (id) => async (dispatch) => {
+export const deleteTextStep = (id) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
   const { lessonData } = await TextStepAPI.delete(id)
   window.location.reload()

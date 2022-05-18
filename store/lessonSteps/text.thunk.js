@@ -1,5 +1,6 @@
 import { addStep, setCurrentStep, toggleIsLoading } from './reducer'
 import TextStepAPI from '../../api/lessonTypes/api.text'
+import { setCurrentLesson } from '../lesson/reducer'
 
 export const createTextStep = (lessonId) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
@@ -12,6 +13,14 @@ export const updateTextStep = (id, updateBody) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
   const data = await TextStepAPI.update(id, updateBody)
   dispatch(setCurrentStep(data.lesson))
+  dispatch(toggleIsLoading(false))
+}
+
+export const deleteTestStep = (id) => async (dispatch) => {
+  dispatch(toggleIsLoading(true))
+  const { lessonData } = await TextStepAPI.delete(id)
+  window.location.reload()
+  dispatch(setCurrentLesson(lessonData))
   dispatch(toggleIsLoading(false))
 }
 

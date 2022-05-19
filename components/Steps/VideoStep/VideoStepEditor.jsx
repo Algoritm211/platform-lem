@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadVideoStep, updateVideoStep } from '../../../store/lessonSteps/video.thunk'
+import { loadVideoStep, updateVideoStep, deleteVideoStep } from '../../../store/lessonSteps/video.thunk'
 import { useTranslation } from 'next-i18next'
 
 const VideoStepEditor = ({ stepId }) => {
@@ -23,9 +23,23 @@ const VideoStepEditor = ({ stepId }) => {
   const onUpdate = () => {
     dispatch(updateVideoStep(currentStep._id, { url: videoUrl }))
   }
+
+  const onDeleteLesson = () => {
+    dispatch(deleteVideoStep(currentStep._id))
+  }
+
+
   return (
     <div>
-      <h3 className="editor-lesson-title mt-5 mb-3">{t('videoMaterial')}</h3>
+      <div className='d-flex align-items-center justify-content-between'>
+        <h3 className="editor-lesson-title mt-5 mb-3">{t('videoMaterial')}</h3>
+        <Button
+          className="mt-3 btn-danger"
+          onClick={onDeleteLesson}
+        >
+          <i className="fas fa-trash-alt" />
+        </Button>
+      </div>
       <input
         className={'inputAcc mb-5'}
         placeholder={'Enter link'}

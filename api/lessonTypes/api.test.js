@@ -17,6 +17,12 @@ class TestStepAPI {
     return data
   }
 
+  async delete(id) {
+    const { data } = await instanceAxios.delete(`/lesson/test/delete/${id}`)
+    return data
+  }
+
+
   async getOne(id) {
     const { data } = await instanceAxios.get(`/lesson/test/${id}`)
     return data

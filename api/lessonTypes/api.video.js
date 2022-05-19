@@ -12,6 +12,11 @@ class VideoStepAPI {
     return data
   }
 
+  async delete(id) {
+    const { data } = await instanceAxios.delete(`/lesson/video/delete/${id}`)
+    return data
+  }
+
   async getOne(id) {
     const { data } = await instanceAxios.get(`/lesson/video/${id}`)
     return data

@@ -12,6 +12,11 @@ class LectureStepAPI {
     return data
   }
 
+  async delete(id) {
+    const { data } = await instanceAxios.delete(`/lesson/text/delete/${id}`)
+    return data
+  }
+
   async getOne(id) {
     const { data } = await instanceAxios.get(`/lesson/text/${id}`)
     return data

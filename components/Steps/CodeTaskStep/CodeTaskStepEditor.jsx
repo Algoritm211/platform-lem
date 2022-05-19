@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
-import { loadCodeStep, updateCodeStep } from '../../../store/lessonSteps/code.thunk'
+import { loadCodeStep, updateCodeStep, deleteCodeStep } from '../../../store/lessonSteps/code.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
 import { Select } from 'antd'
@@ -148,13 +148,25 @@ const CodeTaskStepEditor = ({ stepId }) => {
     })
   }
 
+  const onDeleteLesson = () => {
+    dispatch(deleteCodeStep(currentStep._id))
+  }
+
   const onChangeScore = (event) => setCodeInfo((prevState) => ({ ...prevState, score: +event.target.value }))
   const onChangeLanguage = (value) => setCodeInfo((prevState) => ({ ...prevState, language: value }))
 
   return (
     <div>
       <div className="my-3" style={{ backgroundColor: '#f1f1f1' }}>
-        <h3 className="editor-lesson-title p-3">{t('codeTask')}</h3>
+        <div className='d-flex align-items-center justify-content-between'>
+          <h3 className="editor-lesson-title p-3">{t('codeTask')}</h3>
+          <Button
+            className="mt-3 btn-danger"
+            onClick={onDeleteLesson}
+          >
+            <i className="fas fa-trash-alt" />
+          </Button>
+        </div>
         <Editor
           apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
           initialValue={currentStep.body}

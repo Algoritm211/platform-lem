@@ -1,5 +1,6 @@
 import { addStep, setCurrentStep, toggleIsLoading } from './reducer'
 import VideoStepAPI from '../../api/lessonTypes/api.video'
+import { setCurrentLesson } from '../lesson/reducer'
 
 export const createVideoStep = (lessonId) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
@@ -12,6 +13,14 @@ export const updateVideoStep = (id, updateBody) => async (dispatch) => {
   dispatch(toggleIsLoading(true))
   const data = await VideoStepAPI.update(id, updateBody)
   dispatch(setCurrentStep(data.lesson))
+  dispatch(toggleIsLoading(false))
+}
+
+export const deleteVideoStep = (id) => async (dispatch) => {
+  dispatch(toggleIsLoading(true))
+  const { lessonData } = await VideoStepAPI.delete(id)
+  window.location.reload()
+  dispatch(setCurrentLesson(lessonData))
   dispatch(toggleIsLoading(false))
 }
 

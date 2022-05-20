@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserData } from '../../store/auth/selectors';
-import ProfileCourseCard from './ProfileCourseCard';
-import { loadUserCourses } from '../../store/courses/thunks';
-import { getUserCourses } from '../../store/courses/selectors';
-import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
-import Loader from '../Loader/Loader';
-import { Layout } from 'antd';
-const { Sider, Content } = Layout;
-import NewCourseNavbar from '../Navbars/NewCourseNavbar';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserData } from '../../store/auth/selectors'
+import ProfileCourseCard from './ProfileCourseCard'
+import { loadUserCourses } from '../../store/courses/thunks'
+import { getUserCourses } from '../../store/courses/selectors'
+import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
+import Loader from '../Loader/Loader'
+import { Layout } from 'antd'
+const { Sider, Content } = Layout
+import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 
 const ProfileMain = () => {
-  const { t } = useTranslation('profile');
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { t } = useTranslation('profile')
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
-  const dispatch = useDispatch();
-  const user = useSelector(getUserData);
-  const userCourses = useSelector(getUserCourses);
+  const dispatch = useDispatch()
+  const user = useSelector(getUserData)
+  const userCourses = useSelector(getUserCourses)
 
   useEffect(() => {
-    dispatch(loadUserCourses());
-  }, []);
+    dispatch(loadUserCourses())
+  }, [])
 
   if (!userCourses) {
-    return <Loader />;
+    return <Loader />
   }
 
   const onCollapse = (currentState) => {
-    setIsCollapsed(!currentState);
-  };
+    setIsCollapsed(!currentState)
+  }
 
   const courseLearningBlock = userCourses.map((course) => {
-    return <ProfileCourseCard course={course} key={course._id} />;
-  });
+    return <ProfileCourseCard course={course} key={course._id} />
+  })
   return (
     <div>
       <div className='container py-5'>
@@ -109,7 +109,7 @@ const ProfileMain = () => {
         </Layout>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileMain;
+export default ProfileMain

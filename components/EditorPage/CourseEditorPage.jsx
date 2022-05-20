@@ -116,17 +116,6 @@ const CourseEditorPage = ({ course }) => {
                     />
                   </div>
                 </div>
-                <h3 className='editor-lesson-title mt-5 mb-3'>
-                  {t('shortDesc')}
-                </h3>
-                <textarea
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  className='form-control inputAcc'
-                  style={{ minHeight: '80px' }}
-                  placeholder='Tell us about the course'
-                  id='description'
-                />
 
                 <h3 className='editor-lesson-title mt-5 mb-3'>{t('Desc')}</h3>
                 <Editor

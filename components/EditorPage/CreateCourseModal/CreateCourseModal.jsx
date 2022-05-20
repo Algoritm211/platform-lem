@@ -15,11 +15,6 @@ const createCourseValidationSchema = Yup.object().shape({
     .required('Назва обов`язково повинна бути присутня')
     .max(40, 'Назва має бути не більш ніж 40 символів')
     .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
-  description: Yup.string()
-    .required('Опис обов`язково повинен бути присутнім')
-    .min(20, 'Опис має бути більш ніж 20 символів')
-    .max(120, 'Опис має бути не більш ніж 120 символів')
-    .matches(/[^<>%$]/i, 'Присутні заборонені символи'),
   subject: Yup.string()
     .required('Обов`язково треба вибрати категорію')
     .matches(/^(?!subject\b)/i, 'Виберіть будь ласка одну з категорій'),
@@ -84,18 +79,6 @@ function CreateCourseModal({ ...props }) {
                   name="title"
                   id="title"/>
                 {formik.errors.title}
-              </div>
-
-              <div className="form-textbox">
-                <label htmlFor="courseTitle">{t('shortDesc')}</label>
-                <textarea
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  className="form-control inputAcc"
-                  style={{ minHeight: '80px' }}
-                  placeholder={t('tellAbout')}
-                  id="description"/>
-                {formik.errors.description}
               </div>
 
               <div className="form-textbox">

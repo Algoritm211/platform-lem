@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserAuthorCourses } from '../../store/courses/selectors';
-import { loadUserCourses } from '../../store/courses/thunks';
-import ProfileCourseCard from '../ProfileMain/ProfileCourseCard';
-import withAuthRequired from '../HOC/withAuthRequired';
-import { useTranslation } from 'next-i18next';
-import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal';
-import Loader from '../Loader/Loader';
-import { Layout } from 'antd';
-const { Sider, Content } = Layout;
-import NewCourseNavbar from '../Navbars/NewCourseNavbar';
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserAuthorCourses } from '../../store/courses/selectors'
+import { loadUserCourses } from '../../store/courses/thunks'
+import ProfileCourseCard from '../ProfileMain/ProfileCourseCard'
+import withAuthRequired from '../HOC/withAuthRequired'
+import { useTranslation } from 'next-i18next'
+import CreateCourseModal from '../EditorPage/CreateCourseModal/CreateCourseModal'
+import Loader from '../Loader/Loader'
+import { Layout } from 'antd'
+const { Sider, Content } = Layout
+import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 
 const ProfileTeaching = () => {
-  const { t } = useTranslation('teaching');
-  const [createCourseModalShow, setCreateCourseModalShow] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { t } = useTranslation('teaching')
+  const [createCourseModalShow, setCreateCourseModalShow] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
-  const dispatch = useDispatch();
-  const coursesUserAuthor = useSelector(getUserAuthorCourses);
+  const dispatch = useDispatch()
+  const coursesUserAuthor = useSelector(getUserAuthorCourses)
 
   useEffect(() => {
-    dispatch(loadUserCourses());
-  }, []);
+    dispatch(loadUserCourses())
+  }, [])
 
   if (!coursesUserAuthor) {
-    return <Loader />;
+    return <Loader />
   }
 
   const onCollapse = (currentState) => {
-    setIsCollapsed(!currentState);
-  };
+    setIsCollapsed(!currentState)
+  }
 
-  console.log(coursesUserAuthor);
+  console.log(coursesUserAuthor)
   const courseCreatedBlock = coursesUserAuthor.map((course) => {
-    return <ProfileCourseCard course={course} key={course._id} />;
-  });
+    return <ProfileCourseCard course={course} key={course._id} />
+  })
   return (
     <div>
       <div className='container py-5'>
@@ -117,7 +117,7 @@ const ProfileTeaching = () => {
         </Layout>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default withAuthRequired(ProfileTeaching);
+export default withAuthRequired(ProfileTeaching)

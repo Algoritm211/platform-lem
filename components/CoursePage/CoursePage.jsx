@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CourseCard from '../CourseCard/CourseCard'
+import Carousel from './Subject-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadAllCourses } from '../../store/courses/thunks'
 import { getAllCourses } from '../../store/courses/selectors'
@@ -49,8 +50,8 @@ const CoursePage = () => {
     { label: t('history') },
   ]
 
-  const selectCategory = categories.map(({ label }) => {
-    return <Option key={label} value={label}>{label}</Option>
+  const selectCategory = categories.map(({ label }, index) => {
+    return <Option key={index} value={label}>{label}</Option>
   })
 
   return (
@@ -87,12 +88,10 @@ const CoursePage = () => {
         <h2 className="category-picker py-3">{t('popular')}</h2>
         <div className="row">{coursesBlock}</div>
       </div>
-      {/*
       <div className="container py-5">
         <h2 className="category-picker py-3">{t('subjects')}</h2>
         <Carousel />
       </div>
-
       <div className="container py-5">
         <h2 className="category-picker py-3">{t('themes')}</h2>
         <div className="row">
@@ -124,7 +123,6 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
-      */}
       <div>
         {isAuth ? (
           <div />

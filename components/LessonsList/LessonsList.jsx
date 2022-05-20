@@ -38,7 +38,6 @@ const LessonsList = ({ course, lessons }) => {
             <div className="col-12 сol-sm-6 profile-welcome" style={{ backgroundColor: 'rgb(240, 196, 215)' }}>
               <div className="profile-welcome-block">
                 <h3 className="profile-welcome-title">{course.title}</h3>
-                <p className="profile-welcome-subtitle">{course.description}</p>
               </div>
               <div className="col-12 col-sm-6 d-flex align-items-center">
                 <img className="profile-welcome-course-img" src={course.coursePreview.url} alt="upgrade"/>

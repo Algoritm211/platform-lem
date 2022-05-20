@@ -57,7 +57,6 @@ class CourseAPI {
     const { data } = await instanceAxios.get(`/answer/${id}`)
     return data
   }
-  
 }
 
 

@@ -14,7 +14,7 @@ import {
   setCurrentCourse,
 } from '../../store/courses/reducer'
 import { useTranslation } from 'next-i18next'
-import { message, Layout } from 'antd'
+import { Layout } from 'antd'
 const { Sider, Content } = Layout
 
 const CourseEditorPage = ({ course }) => {

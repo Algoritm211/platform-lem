@@ -49,7 +49,6 @@ const CoursePreview = () => {
               <div className="row">
                 <div className="col-12 col-md-6 m-auto py-3">
                   <h1 className="course-preview-name">{course.title}</h1>
-                  <p className="course-preview-text">{course.description}</p>
                 </div>
                 <div className="col-12 col-md-6 mt-auto py-3">
                   <div className="course-preview-rating d-flex">

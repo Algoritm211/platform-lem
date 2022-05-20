@@ -12,5 +12,6 @@
   "previous": "Previous",
   "correct": "Any answer will be appreciated as correct",
   "answer": "Type your answer here",
-  "editLesson" : "Edit lesson"
+  "editLesson" : "Edit lesson",
+  "updateVideoMessage": "Video step updated successfully!"
 }

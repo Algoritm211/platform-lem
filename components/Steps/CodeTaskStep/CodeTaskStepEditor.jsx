@@ -139,7 +139,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   })
 
   const onUpdateStep = () => {
-    message.success(t('updateStepMessage'))
+    message.success(t('updateCodeMessage'))
     dispatch(updateCodeStep(currentStep._id, codeInfo))
   }
 

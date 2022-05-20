@@ -79,7 +79,7 @@ const CourseManager = ({ course, lessons }) => {
                   </p>
                 </div>
                 <img
-                  className='profile-welcome-course-img'
+                  className='profile-welcome-course-img ml-auto'
                   src={course.coursePreview.url}
                   alt='upgrade'
                 />

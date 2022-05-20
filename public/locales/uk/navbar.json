@@ -30,5 +30,6 @@
   "yes": "Так, видалити",
   "scoreTable": "Оцінки",
   "openCourseNavigationMenu": "Відкрити меню курсу",
-  "openNavigationMenu" : "Відкрити меню профіля"
+  "openNavigationMenu" : "Відкрити меню профіля",
+  "successCreatedCourse" : "Курс успішно створений"
 }

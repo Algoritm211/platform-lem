@@ -11,5 +11,11 @@
   "next": "Next",
   "previous": "Previous",
   "correct": "Any answer will be appreciated as correct",
-  "answer": "Type your answer here"
+  "answer": "Type your answer here",
+  "editLesson" : "Edit lesson",
+  "updateVideoMessage": "Video step updated successfully!",
+  "updateTextStepMessage" : "Open answer step updated successfully!",
+  "updateTestMessage" : "Test step updated successfully!",
+  "updateLectureMessage" : "Lecture step updated successfully!",
+  "updateCodeMessage" : "Code step updated successfully!"
 }

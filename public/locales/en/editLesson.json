@@ -11,5 +11,13 @@
   "video": "Video",
   "videoDesc": "Download videos from third-party services, such as YouTube",
   "answer": "Open answer",
-  "answerDesc": "Set exercise and student will send you answer"
+  "answerDesc": "Set exercise and student will send you answer",
+  "checkLesson": "Check lesson",
+
+  "titleSaveMessage": "Lesson title was updated",
+  "lectureStepMessage": "Lecture successfully created",
+  "videoStepMessage": "Video successfully added",
+  "textStepMessage": "Text with answer successfully added",
+  "testStepMessage": "Test was successfully added",
+  "codeStepMessage": "Code exercise was successfully added"
 }

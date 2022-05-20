@@ -15,6 +15,7 @@ import { useTranslation } from 'next-i18next'
 import TextTaskStep from '../Steps/TextTaskStep/TextTaskStep'
 import TestStep from '../Steps/TestTaskStep/TestStep'
 import CodeTaskStep from '../Steps/CodeTaskStep/CodeTaskStep'
+import { getUserData } from '../../store/auth/selectors'
 
 const stepTypes = {
   Text: LectureStep,
@@ -29,6 +30,7 @@ const LessonPage = ({ lesson, course }) => {
   const currentLesson = useSelector(getCurrentLesson)
   const currentCourse = useSelector(getCurrentCourse)
   const steps = useSelector(getSteps)
+  const user = useSelector(getUserData)
   const [stepNumber, setStepNumber] = useState(0)
   const currentStep = steps[stepNumber]
 
@@ -76,6 +78,14 @@ const LessonPage = ({ lesson, course }) => {
                 variant="outline-primary"
                 style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('back')}</Button>
             </Link>
+            {user?._id === course.author._id
+              ? (
+                <Link href={`/editlesson/${lesson._id}`}>
+                  <Button
+                    variant="outline-danger"
+                    style={{ position: 'fixed', top: '105px', right: '20px' }}>{t('editLesson')}</Button>
+                </Link>)
+              : null}
           </div>
         </div>
       </div>

@@ -62,7 +62,7 @@ const ProfileCourseCard = ({ course }) => {
         <Dropdown as={ButtonGroup} className="ml-auto mt-auto dropdown-button">
           <Button
             className="course-view-btn d-flex"
-            disabled={!isReady}
+            disabled={user?._id !== course.author._id && !isReady}
             variant="primary" onClick={() => router.push(`/programs/${course._id}`)}>{t('view')}</Button>
 
           <Dropdown.Toggle className="course-view-btn" split variant="primary" id="dropdown-split-basic"/>

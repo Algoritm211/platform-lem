@@ -130,7 +130,7 @@ const CourseEditorPage = ({ course }) => {
 
                 <h3 className='editor-lesson-title mt-5 mb-3'>{t('Desc')}</h3>
                 <Editor
-                  // apiKey={'tiny-react_19541007271621779183675'}
+                  apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
                   initialValue={course.about || ''}
                   init={{
                     // height: 500,

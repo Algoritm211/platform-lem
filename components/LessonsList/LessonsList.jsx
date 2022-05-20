@@ -39,7 +39,7 @@ const LessonsList = ({ course, lessons }) => {
               <div className="profile-welcome-block">
                 <h3 className="profile-welcome-title">{course.title}</h3>
               </div>
-              <div className="col-12 col-sm-6 d-flex align-items-center">
+              <div className="col-12 col-sm-6 d-flex align-items-center ml-auto">
                 <img className="profile-welcome-course-img" src={course.coursePreview.url} alt="upgrade"/>
               </div>
             </div>

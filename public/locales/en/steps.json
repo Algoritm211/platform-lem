@@ -13,5 +13,7 @@
   "correct": "Any answer will be appreciated as correct",
   "answer": "Type your answer here",
   "editLesson" : "Edit lesson",
-  "updateVideoMessage": "Video step updated successfully!"
+  "updateVideoMessage": "Video step updated successfully!",
+  "updateTextStepMessage" : "Open answer step updated successfully!",
+  "updateTestMessage" : "Test step updated successfully!"
 }

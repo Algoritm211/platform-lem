@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selectors'
 import { loadVideoStep, updateVideoStep, deleteVideoStep } from '../../../store/lessonSteps/video.thunk'
 import { useTranslation } from 'next-i18next'
+import { message } from 'antd'
 
 const VideoStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -21,6 +22,7 @@ const VideoStepEditor = ({ stepId }) => {
   }, [currentStep])
 
   const onUpdate = () => {
+    message.success(t('updateVideoMessage'))
     dispatch(updateVideoStep(currentStep._id, { url: videoUrl }))
   }
 

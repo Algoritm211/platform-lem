@@ -6,7 +6,7 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import { loadCodeStep, updateCodeStep, deleteCodeStep } from '../../../store/lessonSteps/code.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
-import { Select } from 'antd'
+import { message, Select } from 'antd'
 
 const { Option } = Select
 
@@ -139,6 +139,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   })
 
   const onUpdateStep = () => {
+    message.success(t('updateStepMessage'))
     dispatch(updateCodeStep(currentStep._id, codeInfo))
   }
 

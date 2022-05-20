@@ -6,6 +6,7 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import { loadTextStep, updateTextStep, deleteTextStep } from '../../../store/lessonSteps/text.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
+import { message } from 'antd'
 
 const TextTaskStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -23,6 +24,7 @@ const TextTaskStepEditor = ({ stepId }) => {
   }
 
   const onUpdateStep= () => {
+    message.success(t('updateTextStepMessage'))
     dispatch(updateTextStep(currentStep._id, { body: textContent }))
   }
 

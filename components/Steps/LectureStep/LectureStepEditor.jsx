@@ -6,6 +6,7 @@ import { getCurrentStep, getIsLoading } from '../../../store/lessonSteps/selecto
 import { loadLectureStep, updateLectureStep, deleteLectureStep } from '../../../store/lessonSteps/lecture.thunk'
 import Loader from '../../Loader/Loader'
 import { useTranslation } from 'next-i18next'
+import { message } from 'antd'
 
 const LectureStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -23,6 +24,7 @@ const LectureStepEditor = ({ stepId }) => {
   }
 
   const onUpdateLesson = () => {
+    message.success(t('updateLessonMessage'))
     dispatch(updateLectureStep(currentStep._id, { body: textContent }))
   }
 

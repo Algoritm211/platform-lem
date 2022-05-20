@@ -6,6 +6,7 @@ import Loader from '../../Loader/Loader'
 import { loadTestStep, updateTestStep, deleteTestStep } from '../../../store/lessonSteps/test.thunk'
 import { useTranslation } from 'next-i18next'
 import { clearCurrentStep } from '../../../store/lessonSteps/reducer'
+import { message } from 'antd'
 
 const TestStepEditor = ({ stepId }) => {
   const { t } = useTranslation('steps')
@@ -88,6 +89,7 @@ const TestStepEditor = ({ stepId }) => {
   }
 
   const onUpdateTestStep = () => {
+    message.success(t('updateTestMessage'))
     dispatch(updateTestStep(currentStep._id, testInfo))
   }
 

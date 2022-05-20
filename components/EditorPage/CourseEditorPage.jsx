@@ -1,62 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import { Button } from 'react-bootstrap';
-import NewCourseNavbar from '../Navbars/NewCourseNavbar';
-import { getCurrentCourse, getIsLoading } from '../../store/courses/selectors';
+import React, { useEffect, useState } from 'react'
+import { Editor } from '@tinymce/tinymce-react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import { Button } from 'react-bootstrap'
+import NewCourseNavbar from '../Navbars/NewCourseNavbar'
+import { getCurrentCourse, getIsLoading } from '../../store/courses/selectors'
 import {
   updateCourseInfo,
   updateCoursePreview,
-} from '../../store/courses/thunks';
+} from '../../store/courses/thunks'
 import {
   clearCurrentCourse,
   setCurrentCourse,
-} from '../../store/courses/reducer';
-import { useTranslation } from 'next-i18next';
-import { Layout } from 'antd';
-const { Sider, Content } = Layout;
+} from '../../store/courses/reducer'
+import { useTranslation } from 'next-i18next'
+import { message, Layout } from 'antd'
+const { Sider, Content } = Layout
 
 const CourseEditorPage = ({ course }) => {
-  const { t } = useTranslation('description');
-  const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const currentCourse = useSelector(getCurrentCourse);
-  const [editorBody, setEditorBody] = useState('');
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const noPhotoCourse = '/no-course-image.jpeg';
+  const { t } = useTranslation('description')
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getIsLoading)
+  const currentCourse = useSelector(getCurrentCourse)
+  const [editorBody, setEditorBody] = useState('')
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const noPhotoCourse = '/no-course-image.jpeg'
   useEffect(() => {
-    dispatch(setCurrentCourse(course));
+    dispatch(setCurrentCourse(course))
     return () => {
-      dispatch(clearCurrentCourse());
-    };
-  }, []);
+      dispatch(clearCurrentCourse())
+    }
+  }, [])
   const formik = useFormik({
     initialValues: {
       title: course.title,
       description: course.description,
     },
     onSubmit: (values) => {
-      values['about'] = editorBody;
-      values['id'] = course._id;
-      dispatch(updateCourseInfo(values));
+      values['about'] = editorBody
+      values['id'] = course._id
+      dispatch(updateCourseInfo(values))
     },
-  });
+  })
 
   const handleEditorChange = (content) => {
-    setEditorBody(content);
-  };
+    setEditorBody(content)
+  }
+
+  const save = () => {
+    message.success(t('saveCourseInfo'))
+  }
 
   const onHandleImage = (event) => {
-    const formData = new FormData();
-    formData.append('id', course._id);
-    formData.append('photo', event.target.files[0]);
-    dispatch(updateCoursePreview(formData));
-  };
+    const formData = new FormData()
+    formData.append('id', course._id)
+    formData.append('photo', event.target.files[0])
+    dispatch(updateCoursePreview(formData))
+  }
 
   const onCollapse = (currentState) => {
-    setIsCollapsed(!currentState);
-  };
+    setIsCollapsed(!currentState)
+  }
 
   return (
     <div>
@@ -145,7 +149,7 @@ const CourseEditorPage = ({ course }) => {
                   }}
                   onEditorChange={handleEditorChange}
                 />
-                <Button className='mt-3' type={'submit'} disabled={isLoading}>
+                <Button onClick={save} className='mt-3' type={'submit'} disabled={isLoading}>
                   {isLoading ? t('saving') : t('save')}
                 </Button>
               </form>
@@ -154,7 +158,7 @@ const CourseEditorPage = ({ course }) => {
         </Layout>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CourseEditorPage;
+export default CourseEditorPage

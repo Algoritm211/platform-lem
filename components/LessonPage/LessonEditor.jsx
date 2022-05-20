@@ -22,7 +22,7 @@ import { createTestStep } from '../../store/lessonSteps/test.thunk'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 import Loader from '../Loader/Loader'
 
-import { Layout } from 'antd'
+import { Layout, message } from 'antd'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
 
 const { Sider, Content } = Layout
@@ -50,27 +50,31 @@ const LessonEditorModal = ({ show, setShow }) => {
 
   const onCreateLectureStep = async () => {
     setShow(false)
+    message.success(t('lectureStepMessage'))
     dispatch(createLectureStep(currentLesson._id))
   }
 
   const onCreateVideoStep = async () => {
     setShow(false)
+    message.success(t('videoStepMessage'))
     dispatch(createVideoStep(currentLesson._id))
   }
 
   const onCreateTextStep = async () => {
     setShow(false)
+    message.success(t('textStepMessage'))
     dispatch(createTextStep(currentLesson._id))
   }
 
   const onCreateTestStep = async () => {
     setShow(false)
+    message.success(t('testStepMessage'))
     dispatch(createTestStep(currentLesson._id))
   }
 
-  // TODO: replace dispatch func, create codeLesson.thunk
   const onCreateCodeStep = async () => {
     setShow(false)
+    message.success(t('codeStepMessage'))
     dispatch(createCodeStep(currentLesson._id))
   }
 
@@ -185,6 +189,7 @@ const LessonEditor = ({ lesson, course }) => {
   }
 
   const onTitleSave = () => {
+    message.success(t('titleSaveMessage'))
     dispatch(updateLesson(lesson._id, { title: lessonTitle }))
   }
 

@@ -1,36 +1,36 @@
-import React, {useState} from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoading, getUserData } from '../../store/auth/selectors';
+import React, { useState } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIsLoading, getUserData } from '../../store/auth/selectors'
 import {
   deleteAvatar,
   updateUserInfo,
   uploadAvatar,
-} from '../../store/auth/user.thunks';
-import withAuthRequired from '../HOC/withAuthRequired';
-import { useTranslation } from 'next-i18next';
-import { Layout } from 'antd';
-const { Sider, Content } = Layout;
-import NewCourseNavbar from '../Navbars/NewCourseNavbar';
+} from '../../store/auth/user.thunks'
+import withAuthRequired from '../HOC/withAuthRequired'
+import { useTranslation } from 'next-i18next'
+import { Layout, message } from 'antd'
+const { Sider, Content } = Layout
+import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string().matches(/[^<>%$]/i, 'Forbidden symbols are present'),
   surName: Yup.string().matches(/^[^<>%$]*$/i, 'Forbidden symbols are present'),
   description: Yup.string().matches(
     /[^<>%$]/i,
-    'Forbidden symbols are present'
+    'Forbidden symbols are present',
   ),
   city: Yup.string().matches(/[^<>%$]/i, 'Forbidden symbols are present'),
-});
+})
 
 const ProfileSettings = () => {
-  const { t } = useTranslation('settings');
+  const { t } = useTranslation('settings')
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const user = useSelector(getUserData);
-  const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const user = useSelector(getUserData)
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getIsLoading)
   const formik = useFormik({
     enableReinitialize: true,
     validationSchema: editProfileSchema,
@@ -58,25 +58,29 @@ const ProfileSettings = () => {
           values.yearBirth,
         ].join('-'),
         gender: values.gender,
-      };
-      dispatch(updateUserInfo(userData));
+      }
+      dispatch(updateUserInfo(userData))
     },
-  });
-  const noUserPhoto = '/no-avatar.png';
+  })
+  const noUserPhoto = '/no-avatar.png'
 
   const onHandleImage = (event) => {
-    dispatch(uploadAvatar(event.target.files[0]));
-    console.log();
-  };
+    dispatch(uploadAvatar(event.target.files[0]))
+    console.log()
+  }
 
   const onCollapse = (currentState) => {
-    setIsCollapsed(!currentState);
-  };
+    setIsCollapsed(!currentState)
+  }
+
+  const success = () => {
+    message.success(t('saveAccountMessage'))
+  }
 
   const onDeletePhoto = () => {
-    dispatch(deleteAvatar());
-  };
-  const userEnteredDate = new Date(user.dateRegistration);
+    dispatch(deleteAvatar())
+  }
+  const userEnteredDate = new Date(user.dateRegistration)
   return (
     <div>
       <div className='container py-5'>
@@ -104,11 +108,11 @@ const ProfileSettings = () => {
                 <div className='col-6 col-md-9 text-right'>
                   <span className='acc-join-title'>
                     {t('enter')}{' '}
-                    {userEnteredDate.getDate() +
-                      '/' +
-                      (userEnteredDate.getMonth() + 1) +
-                      '/' +
-                      userEnteredDate.getFullYear()}
+                    {userEnteredDate.getDate()
+                      + '/'
+                      + (userEnteredDate.getMonth() + 1)
+                      + '/'
+                      + userEnteredDate.getFullYear()}
                   </span>
                 </div>
               </div>
@@ -448,6 +452,7 @@ const ProfileSettings = () => {
                       className='acc-save-button'
                       disabled={isLoading}
                       type='submit'
+                      onClick={success}
                     >
                       {!isLoading ? t('saveSettings') : t('saving')}
                     </button>
@@ -459,7 +464,7 @@ const ProfileSettings = () => {
         </Layout>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default withAuthRequired(ProfileSettings);
+export default withAuthRequired(ProfileSettings)

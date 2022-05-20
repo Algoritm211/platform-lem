@@ -74,7 +74,12 @@ const LessonPage = ({ lesson, course }) => {
             <Link href={`/lessonslist/${course._id}`}>
               <Button
                 variant="outline-primary"
-                style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('back')}</Button>
+                style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('editLesson')}</Button>
+            </Link>
+            <Link href={`/editlesson/${lesson._id}`}>
+              <Button
+                variant="outline-danger"
+                style={{ position: 'fixed', top: '105px', right: '20px' }}>{t('edit')}</Button>
             </Link>
           </div>
         </div>

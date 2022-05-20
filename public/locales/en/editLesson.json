@@ -11,5 +11,6 @@
   "video": "Video",
   "videoDesc": "Download videos from third-party services, such as YouTube",
   "answer": "Open answer",
-  "answerDesc": "Set exercise and student will send you answer"
+  "answerDesc": "Set exercise and student will send you answer",
+  "checkLesson": "Check lesson"
 }

@@ -24,6 +24,7 @@ import Loader from '../Loader/Loader'
 
 import { Layout, message } from 'antd'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
+import Link from 'next/link'
 
 const { Sider, Content } = Layout
 
@@ -241,6 +242,11 @@ const LessonEditor = ({ lesson, course }) => {
             <div className="d-block d-md-none">
               <NewCourseNavbar isCollapsed={isCollapsed}/>
             </div>
+            <Link href={`/lesson/${lesson._id}`}>
+              <Button
+                variant="outline-primary"
+                style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('checkLesson')}</Button>
+            </Link>
             <div className="px-0 px-md-3">
               <h1 className="editor-title mb-5">{t('title')}</h1>
               <h3 className="editor-lesson-title mb-3">{t('lessonTitle')}</h3>

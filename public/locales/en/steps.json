@@ -11,5 +11,6 @@
   "next": "Next",
   "previous": "Previous",
   "correct": "Any answer will be appreciated as correct",
-  "answer": "Type your answer here"
+  "answer": "Type your answer here",
+  "editLesson" : "Edit lesson"
 }

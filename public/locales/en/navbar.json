@@ -30,5 +30,6 @@
   "yes": "Yes, delete",
   "scoreTable": "Marks",
   "openCourseNavigationMenu": "Open course menu",
-  "openNavigationMenu" : "Open profile menu"
+  "openNavigationMenu" : "Open profile menu",
+  "successCreatedCourse" : "Course successfully created"
 }

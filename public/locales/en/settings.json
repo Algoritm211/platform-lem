@@ -30,5 +30,6 @@
   "man": "Man",
   "woman": "Woman",
   "saveSettings": "Save settings",
-  "saving": "Saving..."
+  "saving": "Saving...",
+  "saveAccountMessage" : "Successfully saved"
 }

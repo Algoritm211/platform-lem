@@ -8,6 +8,7 @@ import { setCurrentCourse } from '../../../store/courses/reducer'
 import { useRouter } from 'next/router'
 import { addCourseToUser } from '../../../store/auth/reducer'
 import { useTranslation } from 'next-i18next'
+import { message } from 'antd'
 
 const createCourseValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -28,6 +29,11 @@ function CreateCourseModal({ ...props }) {
   const { t } = useTranslation('navbar')
   const router = useRouter()
   const dispatch = useDispatch()
+
+  const success = () => {
+    message.success(t('successCreatedCourse'))
+  }
+
   const formik = useFormik({
     enableReinitialize: true,
     validationSchema: createCourseValidationSchema,
@@ -117,13 +123,18 @@ function CreateCourseModal({ ...props }) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button style={{ borderRadius: '8px', backgroundColor: '#63c76a', border: '1px solid #63c76a' }} onClick={formik.submitForm}>
+        <Button
+          style={{ borderRadius: '8px', backgroundColor: '#63c76a', border: '1px solid #63c76a' }}
+          onClick={() => {
+            formik.submitForm()
+            success()}
+          }>
           {t('create')}
-        </Button>
-        <Button onClick={props.onHide} style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>{t('close')}</Button>
-      </Modal.Footer>
-    </Modal>
-  )
-}
+            </Button>
+            <Button onClick={props.onHide} style={{borderRadius: '8px', backgroundColor: '#0070f3'}}>{t('close')}</Button>
+            </Modal.Footer>
+            </Modal>
+            )
+          }
 
-export default CreateCourseModal
+          export default CreateCourseModal

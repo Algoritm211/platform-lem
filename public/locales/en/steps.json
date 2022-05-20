@@ -15,5 +15,7 @@
   "editLesson" : "Edit lesson",
   "updateVideoMessage": "Video step updated successfully!",
   "updateTextStepMessage" : "Open answer step updated successfully!",
-  "updateTestMessage" : "Test step updated successfully!"
+  "updateTestMessage" : "Test step updated successfully!",
+  "updateLectureMessage" : "Lecture step updated successfully!",
+  "updateCodeMessage" : "Code step updated successfully!"
 }

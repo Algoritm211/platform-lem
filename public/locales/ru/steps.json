@@ -15,5 +15,7 @@
   "editLesson" : "Редактировать урок",
   "updateVideoMessage": "Шаг с видео успешно обновлен!",
   "updateTextStepMessage" : "Шаг с открытым вопросом успешно обновлен!",
-  "updateTestMessage" : "Шаг с тестом успешно обновлен!"
+  "updateTestMessage" : "Шаг с тестом успешно обновлен!",
+  "updateLectureMessage" : "Шаг с лекцией успешно обновлен!",
+  "updateCodeMessage" : "Шаг с кодом успешно обновлен!"
 }

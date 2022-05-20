@@ -15,5 +15,7 @@
   "editLesson" : "Редагувати урок",
   "updateVideoMessage": "Відео крок успішно оновлено!",
   "updateTextStepMessage" : "Крок з відкритим питанням успішно оновлено!",
-  "updateTestMessage" : "Крок з тестом успішно оновлено!"
+  "updateTestMessage" : "Крок з тестом успішно оновлено!",
+  "updateLectureMessage" : "Крок з лекцією успішно оновлено!",
+  "updateCodeMessage" : "Крок з кодом успішно оновлено!"
 }

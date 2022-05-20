@@ -24,7 +24,7 @@ const LectureStepEditor = ({ stepId }) => {
   }
 
   const onUpdateLesson = () => {
-    message.success(t('updateLessonMessage'))
+    message.success(t('updateLectureMessage'))
     dispatch(updateLectureStep(currentStep._id, { body: textContent }))
   }
 

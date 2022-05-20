@@ -10,7 +10,7 @@ import {
 } from '../../store/auth/user.thunks'
 import withAuthRequired from '../HOC/withAuthRequired'
 import { useTranslation } from 'next-i18next'
-import { Layout } from 'antd'
+import { Layout, message } from 'antd'
 const { Sider, Content } = Layout
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 

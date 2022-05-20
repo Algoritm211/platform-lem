@@ -78,11 +78,14 @@ const LessonPage = ({ lesson, course }) => {
                 variant="outline-primary"
                 style={{ position: 'fixed', top: '60px', right: '20px' }}>{t('back')}</Button>
             </Link>
-            {user?._id === course.author._id ? <Link href={`/editlesson/${lesson._id}`}>
-              <Button
-                variant="outline-danger"
-                style={{ position: 'fixed', top: '105px', right: '20px' }}>{t('editLesson')}</Button>
-            </Link> : null}
+            {user?._id === course.author._id
+              ? (
+                <Link href={`/editlesson/${lesson._id}`}>
+                  <Button
+                    variant="outline-danger"
+                    style={{ position: 'fixed', top: '105px', right: '20px' }}>{t('editLesson')}</Button>
+                </Link>)
+              : null}
           </div>
         </div>
       </div>

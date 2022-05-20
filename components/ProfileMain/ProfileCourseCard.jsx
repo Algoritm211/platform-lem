@@ -37,7 +37,6 @@ const ProfileCourseCard = ({ course }) => {
         <img className="profile-courses-one-img" src={course.coursePreview?.url || course.coursePreview} alt="preview-course-photo"/>
         <div className="profile-courses-one-content">
           <h3 className="profile-courses-one-title">{course.title}</h3>
-          <p className="profile-courses-one-text">{course.description}</p>
           <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>
           {percentCompleted !== 0 && (
             <ProgressBar style={{ width: '90%' }} className="programs-progress-bar d-flex" now={percentCompleted} label={`${percentCompleted}%`}/>

@@ -21,9 +21,21 @@ const VideoStepEditor = ({ stepId }) => {
     setVideoUrl(currentStep.url)
   }, [currentStep])
 
+  const onChangeVideoURL = (event) => {
+    setVideoUrl(event.target.value)
+  }
+
   const onUpdate = () => {
-    message.success(t('updateVideoMessage'))
-    dispatch(updateVideoStep(currentStep._id, { url: videoUrl }))
+    try {
+      const url = new URL(videoUrl)
+      const videoToken = url.searchParams.get('v')
+
+      const embedLink = `${url.origin}/embed/${videoToken}`
+      message.success(t('updateVideoMessage'))
+      dispatch(updateVideoStep(currentStep._id, { url: embedLink }))
+    } catch (error) {
+      message.error('Please, provide valid url')
+    }
   }
 
   const onDeleteLesson = () => {
@@ -46,7 +58,7 @@ const VideoStepEditor = ({ stepId }) => {
         className={'inputAcc mb-5'}
         placeholder={'Enter link'}
         value={videoUrl}
-        onChange={(event) => setVideoUrl(event.target.value)}
+        onChange={onChangeVideoURL}
         type="video-link"
         name="video-link"
         id="video-link"/>

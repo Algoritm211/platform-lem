@@ -123,18 +123,18 @@ const OpenAnswerStep = ({ stepId }) => {
           </div>
           : null}
       </div>
-      <pre>
-        {JSON.stringify(presentAnswer?.answer, null, 2)}
-      </pre>
-      <pre>
-        {JSON.stringify({
-          text: editorValue,
-          score: runCodeResult.isValid ? currentStep.score : 0,
-          stepType: 'Code',
-          stepId: currentStep._id,
-          userId: user._id,
-        }, null, 2)}
-      </pre>
+      {/* <pre> */}
+      {/*   {JSON.stringify(presentAnswer?.answer, null, 2)} */}
+      {/* </pre> */}
+      {/* <pre> */}
+      {/*   {JSON.stringify({ */}
+      {/*     text: editorValue, */}
+      {/*     score: runCodeResult.isValid ? currentStep.score : 0, */}
+      {/*     stepType: 'Code', */}
+      {/*     stepId: currentStep._id, */}
+      {/*     userId: user._id, */}
+      {/*   }, null, 2)} */}
+      {/* </pre> */}
       <Button
         onClick={() => checkCode(checkCodeGenerator())}
         className="mt-3"

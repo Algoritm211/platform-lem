@@ -85,13 +85,13 @@ function CreateCourseModal({ ...props }) {
               <div className="form-textbox">
                 <label htmlFor="subject" style={{ width: '100%' }}>{t('subject')}</label>
                 <select
-                  value={formik.values.subject}
+                  value={formik.values.subject || null}
                   onChange={formik.handleChange}
                   name={'subject'}
                   id={'subject'}
                   className="form-select mr-3"
                   aria-label="Default select example">
-                  <option defaultValue>{t('subject')}</option>
+                  <option selected value={null}>{t('subject')}</option>
                   <option value="math">{t('math')}</option>
                   <option value="science">{t('science')}</option>
                   <option value="it">{t('it')}</option>

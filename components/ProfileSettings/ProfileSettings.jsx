@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next'
 import { Layout, message } from 'antd'
 const { Sider, Content } = Layout
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
+import { clearCurrentCourse } from '../../store/courses/reducer'
 
 const editProfileSchema = Yup.object().shape({
   name: Yup.string().matches(/[^<>%$]/i, 'Forbidden symbols are present'),
@@ -31,6 +32,11 @@ const ProfileSettings = () => {
   const user = useSelector(getUserData)
   const dispatch = useDispatch()
   const isLoading = useSelector(getIsLoading)
+
+  useEffect(() => {
+    dispatch(clearCurrentCourse())
+  }, [])
+
   const formik = useFormik({
     enableReinitialize: true,
     validationSchema: editProfileSchema,

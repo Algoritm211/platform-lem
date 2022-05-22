@@ -31,5 +31,6 @@
   "scoreTable": "Оценки",
   "openCourseNavigationMenu": "Открыть меню курса",
   "openNavigationMenu" : "Открыть меню профиля",
-  "successCreatedCourse" : "Курс успешно создан"
+  "successCreatedCourse" : "Курс успешно создан",
+  "getScore" : "Таблица успеваемости"
 }

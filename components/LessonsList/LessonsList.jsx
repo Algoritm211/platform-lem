@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getLessons } from '../../store/lesson/selectors'
 import { getCurrentCourse } from '../../store/courses/selectors'
 import Loader from '../Loader/Loader'
+import { Button } from 'react-bootstrap'
 import LessonsListCard from './LessonsListCard'
+import Link from 'next/link'
 
 const LessonsList = ({ course, lessons }) => {
   const dispatch = useDispatch()
@@ -43,6 +45,14 @@ const LessonsList = ({ course, lessons }) => {
               <div className="col-12 col-sm-6 d-flex align-items-center ml-auto">
                 <img className="profile-welcome-course-img" src={course.coursePreview?.url || noPhotoCourse} alt={course.title}/>
               </div>
+            </div>
+            <div className="my-5">
+              <Link href={`/scoretable/${course._id}`}>
+                <Button style={{ borderRadius: '8px', backgroundColor: '#0070f3' }}>
+                  <i className="fas fa-table mr-2" />
+                  {t('getScore')}
+                </Button>
+              </Link>
             </div>
             <div className="profile-courses">
               <h3 className="profile-courses-title">{t('content')}({currentLessons.length})</h3>

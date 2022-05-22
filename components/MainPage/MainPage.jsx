@@ -15,6 +15,27 @@ const MainPage = ({ size }) => {
     setLoginModalShow((prev) => !prev)
     setRegistrationModalShow((prev) => !prev)
   }
+
+  const CategoryCard = ({ courseAmount, label, bgColor, textColor, href }) => {
+    return (
+      <Link href={href}>
+        <a style={{ textDecoration: 'none' }}>
+          <div
+            className="carousel-card my-3"
+            style={{ backgroundColor: bgColor }}
+          >
+            <h3 className="carousel-title" style={{ color: textColor }}>
+              {label}
+            </h3>
+            <p className="carousel-subtitle m-0" style={{ color: textColor }}>
+              {courseAmount} {t('existCourses')}
+            </p>
+          </div>
+        </a>
+      </Link>
+    )
+  }
+
   return (
     <div>
       <div className="container my-3">
@@ -96,7 +117,7 @@ const MainPage = ({ size }) => {
       <div className="container py-5">
         <h2 className="category-picker py-3">{t('favoriteSubj')}</h2>
         <div className="row">
-          <div className={`col-12 col-md-4 ${size[0] < 768 ? 'mb-3' : ''}`}>
+          <div className={`col-12 col-md-4 my-3`}>
             <Link href={'/programs'}>
               <a style={{ textDecoration: 'none' }}>
                 <div
@@ -117,74 +138,12 @@ const MainPage = ({ size }) => {
             </Link>
           </div>
           <div className="col-6 col-md-4">
-            <Link href={'/'}>
-              <a style={{ textDecoration: 'none' }}>
-                <div
-                  className="carousel-card mb-3"
-                  style={{ backgroundColor: '#B2CCFC' }}
-                >
-                  <h3 className="carousel-title" style={{ color: '#466aa8' }}>
-                    {t('math')}
-                  </h3>
-                  <p className="carousel-subtitle" style={{ color: '#466aa8' }}>
-                    12 {t('existCourses')}
-                  </p>
-                </div>
-              </a>
-            </Link>
-            <Link href={'/'}>
-              <a style={{ textDecoration: 'none' }}>
-                <div
-                  className="carousel-card"
-                  style={{ backgroundColor: 'rgb(240, 196, 215)' }}
-                >
-                  <h3
-                    className="carousel-title"
-                    style={{ color: 'rgb(137, 81, 105)' }}
-                  >
-                    {t('chemistry')}
-                  </h3>
-                  <p
-                    className="carousel-subtitle"
-                    style={{ color: 'rgb(137, 81, 105)' }}
-                  >
-                    2 {t('existCourses')}
-                  </p>
-                </div>
-              </a>
-            </Link>
+            <CategoryCard href={'/programs'} bgColor={'#B2CCFC'} label={t('math')} textColor={'#466aa8'} courseAmount={3} />
+            <CategoryCard href={'/programs'} bgColor={'rgb(240, 196, 215)'} label={t('chemistry')} textColor={'rgb(137, 81, 105)'} courseAmount={1} />
           </div>
           <div className="col-6 col-md-4">
-            <Link href={'/'}>
-              <a style={{ textDecoration: 'none' }}>
-                <div
-                  className="carousel-card mb-3"
-                  style={{ backgroundColor: '#8cdac8' }}
-                >
-                  <h3 className="carousel-title" style={{ color: '#408971' }}>
-                    {t('biology')}
-                  </h3>
-                  <p className="carousel-subtitle" style={{ color: '#408971' }}>
-                    4 {t('existCourses')}
-                  </p>
-                </div>
-              </a>
-            </Link>
-            <Link href={'/'}>
-              <a style={{ textDecoration: 'none' }}>
-                <div
-                  className="carousel-card"
-                  style={{ backgroundColor: '#B2CCFC' }}
-                >
-                  <h3 className="carousel-title" style={{ color: '#466aa8' }}>
-                    {t('it')}
-                  </h3>
-                  <p className="carousel-subtitle" style={{ color: '#466aa8' }}>
-                    7 {t('existCourses')}
-                  </p>
-                </div>
-              </a>
-            </Link>
+            <CategoryCard href={'/programs'} bgColor={'#8cdac8'} label={t('biology')} textColor={'#408971'} courseAmount={2} />
+            <CategoryCard href={'/programs'} bgColor={'#B2CCFC'} label={t('it')} textColor={'#466aa8'} courseAmount={4} />
           </div>
         </div>
       </div>

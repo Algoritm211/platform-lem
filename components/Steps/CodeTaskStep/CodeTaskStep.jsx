@@ -39,6 +39,10 @@ const OpenAnswerStep = ({ stepId }) => {
   const { data: presentAnswer, refetch } = useQuery(['answer', currentStep._id],
     () => AnswerAPI.getOne(currentStep._id))
 
+  useEffect(() => {
+    setEditorValue(presentAnswer?.answer?.text)
+  }, [presentAnswer?.answer?.text])
+
 
   const checkCode = async (codeObj) => {
     setIsCodeRunning(true)
@@ -109,7 +113,7 @@ const OpenAnswerStep = ({ stepId }) => {
           <CodeEditor
             language="python"
             theme={selectedTheme}
-            value={presentAnswer?.answer?.text || editorValue}
+            value={editorValue}
             onChange={setEditorValue}
           />
         </Suspense>

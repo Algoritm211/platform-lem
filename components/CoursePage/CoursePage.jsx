@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CourseCard from '../CourseCard/CourseCard'
-import Carousel from './Subject-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadAllCourses } from '../../store/courses/thunks'
 import { getAllCourses } from '../../store/courses/selectors'
@@ -8,9 +7,6 @@ import RegistrationModal from '../Form/Registration'
 import LoginModal from '../Form/Login'
 import { getIsAuth } from '../../store/auth/selectors'
 import { useTranslation } from 'next-i18next'
-import { Select, Input } from 'antd'
-const { Option } = Select
-const { Search } = Input
 
 const CoursePage = () => {
   const { t } = useTranslation('programs')
@@ -39,6 +35,7 @@ const CoursePage = () => {
     )
   })
 
+  /*
   const categories = [
     { label: t('category') },
     { label: t('math') },
@@ -52,7 +49,7 @@ const CoursePage = () => {
 
   const selectCategory = categories.map(({ label }, index) => {
     return <Option key={index} value={label}>{label}</Option>
-  })
+  })*/
 
   return (
     <div>
@@ -67,6 +64,7 @@ const CoursePage = () => {
               <p className="content-text m-0">{t('subtitle')}</p>
             </div>
           </div>
+          {/*
           <div className="container pb-3">
             <div className="d-flex align-items-center pb-3">
               <Select
@@ -82,47 +80,19 @@ const CoursePage = () => {
               />
             </div>
           </div>
+          */}
         </div>
       </div>
       <div className="container py-5">
         <h2 className="category-picker py-3">{t('popular')}</h2>
         <div className="row">{coursesBlock}</div>
       </div>
-      <div className="container py-5">
+      {/*
+        <div className="container py-5">
         <h2 className="category-picker py-3">{t('subjects')}</h2>
         <Carousel />
       </div>
-      <div className="container py-5">
-        <h2 className="category-picker py-3">{t('themes')}</h2>
-        <div className="row">
-          <div className="col-6 col-md-4">
-            <div
-              className="carousel-card my-3"
-              style={{ backgroundColor: '#B2CCFC' }}
-            >
-              <h3 className="carousel-title" style={{ color: '#466aa8' }}>
-                Math
-              </h3>
-              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>
-                12 courses
-              </p>
-            </div>
-          </div>
-          <div className="col-6 col-md-4">
-            <div
-              className="carousel-card my-3"
-              style={{ backgroundColor: '#B2CCFC' }}
-            >
-              <h3 className="carousel-title" style={{ color: '#466aa8' }}>
-                Math
-              </h3>
-              <p className="carousel-subtitle" style={{ color: '#466aa8' }}>
-                12 courses
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      */}
       <div>
         {isAuth ? (
           <div />

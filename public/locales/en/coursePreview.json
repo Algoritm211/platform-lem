@@ -9,5 +9,6 @@
   "analytics": "The course includes",
   "lessons": "lessons",
   "tests": "tests",
-  "programs": "programs"
+  "programs": "programs",
+  "noAboutCourseDescription" : "It looks like the author hasn't added a description for his course yet."
 }

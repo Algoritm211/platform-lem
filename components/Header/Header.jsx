@@ -74,9 +74,9 @@ const Header = () => {
       style={{ width: 120, borderRadius: '8px' }}
       onChange={onLanguageChange}
     >
-      <Option value={'ru'}>Русский</Option>
       <Option value={'en'}>English</Option>
       <Option value={'uk'}>Українська</Option>
+      <Option value={'ru'}>Русский</Option>
     </Select>
   )
 

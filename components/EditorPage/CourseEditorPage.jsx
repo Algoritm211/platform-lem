@@ -5,16 +5,11 @@ import { useFormik } from 'formik'
 import { Button } from 'react-bootstrap'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
 import { getCurrentCourse, getIsLoading } from '../../store/courses/selectors'
-import {
-  updateCourseInfo,
-  updateCoursePreview,
-} from '../../store/courses/thunks'
-import {
-  clearCurrentCourse,
-  setCurrentCourse,
-} from '../../store/courses/reducer'
+import { updateCourseInfo, updateCoursePreview } from '../../store/courses/thunks'
+import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 import { useTranslation } from 'next-i18next'
-import { message, Layout } from 'antd'
+import { Layout, message } from 'antd'
+
 const { Sider, Content } = Layout
 
 const CourseEditorPage = ({ course }) => {
@@ -64,9 +59,9 @@ const CourseEditorPage = ({ course }) => {
 
   return (
     <div>
-      <div className='container py-5'>
+      <div className="container py-5">
         <Layout>
-          <div className='d-none d-md-block'>
+          <div className="d-none d-md-block">
             <Sider
               theme={'light'}
               collapsible
@@ -74,18 +69,18 @@ const CourseEditorPage = ({ course }) => {
               collapsed={isCollapsed}
               onCollapse={() => onCollapse(isCollapsed)}
             >
-              <NewCourseNavbar isCollapsed={isCollapsed} />
+              <NewCourseNavbar isCollapsed={isCollapsed}/>
             </Sider>
           </div>
           <Content>
-            <div className='d-block d-md-none'>
-              <NewCourseNavbar isCollapsed={isCollapsed} />
+            <div className="d-block d-md-none">
+              <NewCourseNavbar isCollapsed={isCollapsed}/>
             </div>
-            <div className='container'>
+            <div className="container">
               <form onSubmit={formik.handleSubmit}>
-                <h1 className='editor-title mb-5'>{t('title')}</h1>
-                <div className='row align-items-center'>
-                  <label className='col-12 col-sm-3 mb-sm-0 mb-3'>
+                <h1 className="editor-title mb-5">{t('title')}</h1>
+                <div className="row align-items-center">
+                  <label className="col-12 col-sm-3 mb-sm-0 mb-3 change-editor-preview-image">
                     <input
                       type={'file'}
                       id={'coursePreview'}
@@ -93,31 +88,39 @@ const CourseEditorPage = ({ course }) => {
                       onChange={onHandleImage}
                       multiple={false}
                       hidden={true}
-                      accept='image/jpeg,image/png'
+                      accept="image/jpeg,image/png"
                     />
                     <img
                       src={currentCourse?.coursePreview?.url || noPhotoCourse}
-                      className='editor-preview-image'
-                      alt='editor-preview-image'
+                      className="editor-preview-image"
+                      alt={currentCourse?.title}
                     />
+                    <div className="overlay-editor-preview-image mx-3">
+                      <div
+                        style={{ height: '100%' }}
+                        className="d-flex align-items-center justify-content-center flex-column">
+                        <i style={{ color: '#fff' }} className="fas fa-upload"/>
+                        <p style={{ color: '#fff' }} className="m-0 text-center">Update course image</p>
+                      </div>
+                    </div>
                   </label>
-                  <div className='col-12 col-sm-9'>
-                    <h3 className='editor-lesson-title mb-3'>
+                  <div className="col-12 col-sm-9">
+                    <h3 className="editor-lesson-title mb-3">
                       {t('courseTitle')}
                     </h3>
                     <input
                       className={'editor-input d-block my-auto'}
                       value={formik.values.title}
                       onChange={formik.handleChange}
-                      type='text'
-                      placeholder='Lesson title'
-                      name='title'
-                      id='title'
+                      type="text"
+                      placeholder="Lesson title"
+                      name="title"
+                      id="title"
                     />
                   </div>
                 </div>
 
-                <h3 className='editor-lesson-title mt-5 mb-3'>{t('Desc')}</h3>
+                <h3 className="editor-lesson-title mt-5 mb-3">{t('Desc')}</h3>
                 <Editor
                   apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
                   initialValue={course.about || ''}
@@ -138,7 +141,7 @@ const CourseEditorPage = ({ course }) => {
                   }}
                   onEditorChange={handleEditorChange}
                 />
-                <Button onClick={save} className='mt-3' type={'submit'} disabled={isLoading}>
+                <Button onClick={save} className="mt-3" type={'submit'} disabled={isLoading}>
                   {isLoading ? t('saving') : t('save')}
                 </Button>
               </form>

@@ -17,6 +17,7 @@ const ProfileCourseCard = ({ course }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const user = useSelector(getUserData)
+  const noPhotoCourse = '/no-course-image.jpeg'
   let percentCompleted = 0
   if (user.stepsCompleted) {
     percentCompleted = percentCompletedCourse(user.stepsCompleted, course)
@@ -34,7 +35,7 @@ const ProfileCourseCard = ({ course }) => {
   return (
     <div className="profile-courses-one my-3">
       <div className="d-flex" style={{ width: '100%' }}>
-        <img className="profile-courses-one-img" src={course.coursePreview?.url || course.coursePreview} alt="preview-course-photo"/>
+        <img className="profile-courses-one-img" src={course.coursePreview?.url || noPhotoCourse} alt="preview-course-photo"/>
         <div className="profile-courses-one-content">
           <h3 className="profile-courses-one-title">{course.title}</h3>
           <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{course.lessons.length} {t('lessons')}</p>

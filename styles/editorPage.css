@@ -2,6 +2,25 @@
     width: 100%;
     border-radius: 8px;
 }
+.editor-preview-image:hover, .editor-preview-image:focus, .editor-preview-image:active{
+    width: 100%;
+    border-radius: 8px;
+}
+.overlay-editor-preview-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.change-editor-preview-image:hover .overlay-editor-preview-image {
+    opacity: 1;
+}
 .editor-lesson-block{
     border-radius: 8px;
     border: 1px solid #0070f3;

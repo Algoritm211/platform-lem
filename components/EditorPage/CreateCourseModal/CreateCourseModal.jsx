@@ -52,6 +52,7 @@ function CreateCourseModal({ ...props }) {
       await router.push(`/editor/${data.course._id}`)
     },
   })
+
   return (
     <Modal
       {...props}
@@ -78,28 +79,28 @@ function CreateCourseModal({ ...props }) {
                   placeholder={t('courseTitle')}
                   name="title"
                   id="title"/>
-                {formik.errors.title}
+                <p className="m-0" style={{color: "red"}}>{formik.errors.title}</p>
               </div>
 
               <div className="form-textbox">
                 <label htmlFor="subject" style={{ width: '100%' }}>{t('subject')}</label>
                 <select
-                  value={formik.values.subject}
+                  value={formik.values.subject || null}
                   onChange={formik.handleChange}
                   name={'subject'}
                   id={'subject'}
                   className="form-select mr-3"
                   aria-label="Default select example">
-                  <option defaultValue>{t('subject')}</option>
-                  <option value="design">{t('math')}</option>
-                  <option value="business">{t('science')}</option>
-                  <option value="education">{t('it')}</option>
-                  <option value="marketing">{t('geography')}</option>
-                  <option value="it">{t('art')}</option>
+                  <option selected value={null}>{t('subject')}</option>
+                  <option value="math">{t('math')}</option>
+                  <option value="science">{t('science')}</option>
+                  <option value="it">{t('it')}</option>
+                  <option value="geography">{t('geography')}</option>
+                  <option value="art">{t('art')}</option>
                   <option value="english">{t('english')}</option>
                   <option value="history">{t('history')}</option>
                 </select>
-                {formik.errors.subject}
+                <p className="m-0" style={{color: "red"}}>{formik.errors.subject}</p>
               </div>
             </form>
           </div>
@@ -107,6 +108,7 @@ function CreateCourseModal({ ...props }) {
       </Modal.Body>
       <Modal.Footer>
         <Button
+          disabled={formik.values.subject === t('subject') || formik.values.subject === null || formik.values.title === '' }
           style={{ borderRadius: '8px', backgroundColor: '#63c76a', border: '1px solid #63c76a' }}
           onClick={() => {
             formik.submitForm()

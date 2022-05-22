@@ -9,5 +9,6 @@
   "analytics": "В курс входить",
   "lessons": "уроків",
   "tests": "тестів",
-  "programs": "програм"
+  "programs": "програм",
+  "noAboutCourseDescription" : "Схоже, автор ще не додав опису свого курсу."
 }

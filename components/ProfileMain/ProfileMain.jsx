@@ -10,6 +10,7 @@ import Loader from '../Loader/Loader'
 import { Layout } from 'antd'
 const { Sider, Content } = Layout
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
+import { clearCurrentCourse } from '../../store/courses/reducer'
 
 const ProfileMain = () => {
   const { t } = useTranslation('profile')
@@ -21,6 +22,7 @@ const ProfileMain = () => {
 
   useEffect(() => {
     dispatch(loadUserCourses())
+    dispatch(clearCurrentCourse())
   }, [])
 
   if (!userCourses) {

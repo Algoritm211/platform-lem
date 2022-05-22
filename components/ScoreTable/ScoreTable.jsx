@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import NewCourseNavbar from '../Navbars/NewCourseNavbar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { clearCurrentCourse, setCurrentCourse } from '../../store/courses/reducer'
 
 import { Layout, Table, Tooltip } from 'antd'
+import { getUserData } from '../../store/auth/selectors'
+
 const { Sider, Content } = Layout
 
 const ScoreTable = ({ course, marks }) => {
   const { t } = useTranslation('teaching')
   const [isCollapsed, setIsCollapsed] = useState(false)
   const dispatch = useDispatch()
+  const user = useSelector(getUserData)
 
   useEffect(() => {
     dispatch(setCurrentCourse(course))
@@ -71,25 +74,28 @@ const ScoreTable = ({ course, marks }) => {
     <div className="container">
       <div className="my-3">
         <Layout>
-          <div className="d-none d-md-block">
-            <Sider
-              theme={'light'}
-              collapsible
-              width={150}
-              collapsed={isCollapsed}
-              onCollapse={() => onCollapse(isCollapsed)}
-            >
-              <NewCourseNavbar isCollapsed={isCollapsed}/>
-            </Sider>
-          </div>
+          {user?._id === course.author._id
+            ? <div className="d-none d-md-block">
+              <Sider
+                theme={'light'}
+                collapsible
+                width={150}
+                collapsed={isCollapsed}
+                onCollapse={() => onCollapse(isCollapsed)}
+              >
+                <NewCourseNavbar isCollapsed={isCollapsed}/>
+              </Sider>
+            </div> : null}
           <Content>
-            <div className="d-block d-md-none">
-              <NewCourseNavbar isCollapsed={isCollapsed}/>
-            </div>
+            {user?._id === course.author._id
+              ? <div className="d-block d-md-none">
+                <NewCourseNavbar isCollapsed={isCollapsed}/>
+              </div>
+              : null}
             <div className="container">
               <Table
                 bordered
-                scroll={{ x: 700 }}
+                // scroll={{ x: 700 }}
                 pagination={{ position: ['none', 'none'] }}
                 columns={columns}
                 dataSource={marks.tableData}

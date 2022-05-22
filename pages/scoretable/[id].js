@@ -15,7 +15,8 @@ const MarksTable = ({ course, marks }) => {
   )
 }
 
-export default withEditProtect(MarksTable)
+// export default withEditProtect(MarksTable)
+export default MarksTable
 
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const { id } = ctx.params

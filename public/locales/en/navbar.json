@@ -31,5 +31,6 @@
   "scoreTable": "Marks",
   "openCourseNavigationMenu": "Open course menu",
   "openNavigationMenu" : "Open profile menu",
-  "successCreatedCourse" : "Course successfully created"
+  "successCreatedCourse" : "Course successfully created",
+  "getScore" : "Score table"
 }

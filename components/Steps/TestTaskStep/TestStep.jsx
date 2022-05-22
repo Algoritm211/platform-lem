@@ -7,9 +7,9 @@ import { loadTestStep } from '../../../store/lessonSteps/test.thunk'
 import { Button } from 'react-bootstrap'
 import { countArrayEntries } from '../../utils/lessonFunctions'
 import { addStepToCompleted } from '../../../store/auth/user.thunks'
-import TestStepAPI from '../../../api/lessonTypes/api.test'
 import AnswerAPI from '../../../api/api.answer'
 import { useTranslation } from 'next-i18next'
+import { useQuery } from 'react-query'
 
 const TestStep = ({ stepId, lesson }) => {
   const { t } = useTranslation('steps')
@@ -17,6 +17,8 @@ const TestStep = ({ stepId, lesson }) => {
   const currentStep = useSelector(getCurrentStep)
   const user = useSelector(getUserData)
   const [testInfo, setTestInfo] = useState(null)
+  const { data: presentAnswer, refetch } = useQuery(['answer', currentStep._id, user._id],
+    () => AnswerAPI.getOne(currentStep._id))
 
   useEffect(() => {
     dispatch(loadTestStep(stepId))
@@ -26,7 +28,7 @@ const TestStep = ({ stepId, lesson }) => {
     setTestInfo(currentStep)
   }, [currentStep])
 
-  if (!currentStep || !testInfo) {
+  if (!currentStep || !testInfo || !presentAnswer) {
     return <Loader/>
   }
 
@@ -59,9 +61,6 @@ const TestStep = ({ stepId, lesson }) => {
       result = score
     }
 
-    await TestStepAPI.addUserAnswer(currentStep._id, {
-      userAnswers,
-    })
     await AnswerAPI.add({
       text: userAnswers.join(', '),
       score: result,
@@ -73,11 +72,11 @@ const TestStep = ({ stepId, lesson }) => {
     if (!user?.stepsCompleted?.includes(stepId)) {
       dispatch(addStepToCompleted(stepId))
     }
-
+    refetch()
     dispatch(loadTestStep(stepId))
   }
 
-  const OptionInputItem = ({ inputType, checked, value }) => {
+  const OptionInputItem = ({ inputType, disabled, checked, value }) => {
     const optionInputInfo
       = inputType === 'single'
         ? {
@@ -91,6 +90,7 @@ const TestStep = ({ stepId, lesson }) => {
 
     return (
       <input
+        disabled={disabled}
         className="checkbox-editor mx-3"
         type={optionInputInfo.optionInputType}
         onChange={optionInputInfo.onChangeFn}
@@ -99,21 +99,23 @@ const TestStep = ({ stepId, lesson }) => {
     )
   }
 
+  const hasAnswer = !!presentAnswer?.answer
+  const answers = presentAnswer?.answer?.text.split(', ') || []
+
   const optionsBlock = testInfo?.options?.map((option, index) => {
+    console.log(option, answers)
     return (
       <div className="form-check d-flex profile-courses-one my-3 align-items-center" key={'option' + index}>
         <OptionInputItem
+          disabled={hasAnswer}
           inputType={testInfo.type}
-          checked={testInfo.userAnswers.includes(option)}
+          checked={!hasAnswer ? testInfo.userAnswers.includes(option) : answers.includes(option)}
           value={option}
         />
         <div>{option}</div>
       </div>
     )
   })
-
-  // TODO: it is not current user answer, need refactoring on the backend side
-  const hasAnswer = currentStep?.userAnswers?.length !== 0
 
   return (
     <>

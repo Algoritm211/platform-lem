@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
 import CourseAPI from '../../api/api.course'
-import withEditProtect from '../../components/HOC/withEditProtect'
 import { wrapper } from '../../store/store'
 import ScoreTable from '../../components/ScoreTable/ScoreTable'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

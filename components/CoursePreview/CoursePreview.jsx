@@ -8,6 +8,7 @@ import Loader from '../Loader/Loader'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { Alert } from 'antd'
+import { clearCurrentCourse } from '../../store/courses/reducer'
 
 const CoursePreview = () => {
   const { t } = useTranslation('coursePreview')
@@ -18,7 +19,11 @@ const CoursePreview = () => {
   const router = useRouter()
   useEffect(() => {
     dispatch(loadCurrentCourse(router.query.id))
+    return () => {
+      dispatch(clearCurrentCourse())
+    }
   }, [])
+
   if (!course) {
     return <Loader/>
   }

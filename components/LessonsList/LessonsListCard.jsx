@@ -10,7 +10,7 @@ const LessonsListCard = ({ lesson, lessonIndex }) => {
   const user = useSelector(getUserData)
   let percentCompleted = 0
   if (user.stepsCompleted) {
-    const completed = countArrayEntries(user.stepsCompleted, getStepIdArr(lesson.steps))
+    const completed = countArrayEntries(Array.from(new Set(user.stepsCompleted)), Array.from(new Set(getStepIdArr(lesson.steps))))
     if (completed !== 0) {
       percentCompleted = (completed * 100 / lesson.steps.length).toFixed(1)
     }

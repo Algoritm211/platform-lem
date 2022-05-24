@@ -78,8 +78,6 @@ const PricePage = () => {
                 </div>
               </div>
             </div>
-            <h3 className="price-card-name mt-4 mb-3 text-left">{t('timing')}</h3>
-            <h3 className="price-card-sum text-left mb-3 text-left" style={{ whiteSpace: 'nowrap' }}>{t('twoWeeks')}</h3>
             <h3 className="price-card-name mt-4 mb-3 text-left">{t('price')}</h3>
             <h1 className="price-card-title pricing-card-title text-left mb-3">
               <small className="price-card-sum text-left">$</small>
@@ -149,8 +147,6 @@ const PricePage = () => {
                 <p className="price-benefits-text">{t('schedule')}</p>
               </div>
             </div>
-            <h3 className="price-card-name mt-4 mb-3 text-left">{t('timing')}</h3>
-            <h3 className="price-card-sum text-left mb-3 text-left" style={{ whiteSpace: 'nowrap' }}>{t('month')}</h3>
             <h3 className="price-card-name mt-4 mb-3 text-left">{t('price')}</h3>
             <h1 className="price-card-title pricing-card-title text-left mb-3">
               <small className="price-card-sum text-left">$</small>

@@ -17,7 +17,7 @@ export default Catalog
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header']),
+      ...await serverSideTranslations(locale, ['header', 'forbidden']),
     },
   }
 }

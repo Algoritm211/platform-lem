@@ -3,12 +3,14 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth/selectors'
 import { countArrayEntries, getStepIdArr } from '../utils/lessonFunctions'
+import { useTranslation } from 'next-i18next'
 
 const LessonsListCard = ({ lesson, lessonIndex }) => {
+  const { t } = useTranslation('steps')
   const user = useSelector(getUserData)
   let percentCompleted = 0
   if (user.stepsCompleted) {
-    const completed = countArrayEntries(user.stepsCompleted, getStepIdArr(lesson.steps))
+    const completed = countArrayEntries(Array.from(new Set(user.stepsCompleted)), Array.from(new Set(getStepIdArr(lesson.steps))))
     if (completed !== 0) {
       percentCompleted = (completed * 100 / lesson.steps.length).toFixed(1)
     }
@@ -18,8 +20,8 @@ const LessonsListCard = ({ lesson, lessonIndex }) => {
     <div className="profile-courses-one d-flex my-3">
       <h3 className="profile-courses-one-lessonNumber">{lessonIndex + 1}.</h3>
       <div className="profile-courses-one-content">
-        <h3 className="profile-courses-one-title">{lesson.title || 'Немає назви'}</h3>
-        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>10 завдань</p>
+        <h3 className="profile-courses-one-title">{lesson.title || t('noTitle')}</h3>
+        <p className="profile-courses-one-text mt-2" style={{ fontWeight: '600' }}>{lesson.steps.length} {t('lessonTask')}</p>
       </div>
       <div className="ml-auto d-flex">
         {percentCompleted !== 0 && (

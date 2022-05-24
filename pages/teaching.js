@@ -17,7 +17,7 @@ export default Teaching
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['navbar', 'header', 'teaching']),
+      ...await serverSideTranslations(locale, ['navbar', 'header', 'teaching', 'forbidden']),
     },
   }
 }

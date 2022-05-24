@@ -85,7 +85,7 @@ const Header = () => {
       <div className="d-flex align-items-center">
         <Menu
           className="justify-content-end"
-          style={{ border: 'none', width: isDrawerOpen ? null : '540px' }}
+          style={{ border: 'none', width: isDrawerOpen ? null : '550px' }}
           selectable={false}
           mode={isDrawerOpen ? 'vertical' : 'horizontal'}
         >

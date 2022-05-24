@@ -6,6 +6,8 @@
   "videoMaterial": "Enter link on the video down below",
   "videoInfo": "You can embed a video link from any third party platform(YouTube, Dropbox, Google Drive, ICloud etc). Make sure your students can view the video",
   "task": "Step",
+  "lessonTask": "Step(s)",
+  "noTitle": "No title",
   "author": "Author of the course",
   "back": "Back to course",
   "next": "Next",

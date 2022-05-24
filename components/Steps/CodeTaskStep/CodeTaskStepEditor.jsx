@@ -89,6 +89,10 @@ const CodeTaskStepEditor = ({ stepId }) => {
     dispatch(loadCodeStep(stepId))
   }, [stepId])
 
+  useEffect(() => {
+    setCodeInfo(currentStep)
+  }, [currentStep])
+
   if (!currentStep) {
     return <Loader/>
   }
@@ -113,7 +117,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
   }
 
   const testChange = (index, value, field) => {
-    const newTestValues = codeInfo.tests.map((test, testIndex) => {
+    const newTestValues = codeInfo.tests?.map((test, testIndex) => {
       if (index === testIndex) test[field] = value
       return test
     })
@@ -125,7 +129,7 @@ const CodeTaskStepEditor = ({ stepId }) => {
     })
   }
 
-  const testList = codeInfo.tests.map((test, index) => {
+  const testList = codeInfo.tests?.map((test, index) => {
     return (
       <TestItem
         key={index}

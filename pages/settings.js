@@ -17,7 +17,7 @@ export default Settings
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['navbar', 'header', 'settings']),
+      ...await serverSideTranslations(locale, ['navbar', 'header', 'settings', 'forbidden']),
     },
   }
 }

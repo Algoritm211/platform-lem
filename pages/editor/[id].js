@@ -23,7 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   return {
     props: {
       course: data.course,
-      ...await serverSideTranslations(ctx.locale, ['navbar', 'header', 'description']),
+      ...await serverSideTranslations(ctx.locale, ['navbar', 'header', 'description', 'forbidden']),
     },
   }
 })

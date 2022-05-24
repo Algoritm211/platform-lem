@@ -30,7 +30,7 @@ export default UnfoundPage
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['unfound']),
+      ...await serverSideTranslations(locale, ['forbidden']),
     },
   }
 }

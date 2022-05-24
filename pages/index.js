@@ -24,7 +24,7 @@ export default function Home() {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['main', 'header', 'auth']),
+      ...await serverSideTranslations(locale, ['main', 'header', 'auth', 'forbidden']),
     },
   }
 }

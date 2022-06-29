@@ -28,9 +28,17 @@ const VideoStepEditor = ({ stepId }) => {
   const onUpdate = () => {
     try {
       const url = new URL(videoUrl)
-      const videoToken = url.searchParams.get('v')
+      let videoToken = ''
 
-      const embedLink = `${url.origin}/embed/${videoToken}`
+      if (url.hostname === 'www.youtube.com') {
+        videoToken = url.searchParams.get('v')
+      }
+
+      if (url.hostname === 'youtu.be') {
+        videoToken = url.pathname.slice(1)
+      }
+
+      const embedLink = `https://www.youtube.com/embed/${videoToken}`
       message.success(t('updateVideoMessage'))
       dispatch(updateVideoStep(currentStep._id, { url: embedLink }))
     } catch (error) {
